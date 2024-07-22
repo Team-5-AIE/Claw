@@ -10,6 +10,37 @@ config_version=5
 
 [application]
 
-config/name="Claw"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/name="ModularCharacterControllerDemo"
+run/main_scene="res://SWPlatformerPackage/example_world.tscn"
+config/features=PackedStringArray("4.2", "GL Compatibility")
+run/max_fps=60
 config/icon="res://icon.svg"
+
+[debug]
+
+settings/canvas_textures/default_texture_filter=3
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+
+[dotnet]
+
+project/assembly_name="ModularCharacterControllerDemo"
+
+[editor]
+
+movie_writer/fps=160
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=3
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+
+[threading]
+
+worker_pool/stdout/print_fps=false

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://2cdjqjtwcad0"]
+
+[node name="CustomCamera" type="Camera2D"]
+zoom = Vector2(3, 3)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
