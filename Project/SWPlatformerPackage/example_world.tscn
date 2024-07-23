@@ -11,5 +11,15 @@ layer_0/tile_data = PackedInt32Array(655362, 65536, 0, 655363, 65536, 0, 655364,
 
 [node name="Player" parent="." instance=ExtResource("2_ayit3")]
 position = Vector2(-326, -48)
+key_left = 65
+key_right = 68
+key_up = 87
+key_down = 83
+key_jump = 32
+key_double_jump = 32
+key_crouch = 4194326
+key_dash = 82
+key_glide = 32
+key_wall_grab = 4194325
 
 [node name="CustomCamera" parent="Player" instance=ExtResource("3_21g3r")]
