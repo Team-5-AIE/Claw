@@ -38,6 +38,8 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 
 
 func Inputs(event):
+	if Input.is_action_just_pressed("Claw"):
+		player.finite_state_machine.ChangeState(player.state_claw)
 	var just_pressed = event.is_pressed() && !event.is_echo()	
 	# Jump buffer Check
 	if player.finite_state_machine.jump_buffer_check(event) && just_pressed:

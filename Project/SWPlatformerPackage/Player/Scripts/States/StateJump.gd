@@ -61,11 +61,13 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
 
 func Inputs(event):
+	if Input.is_action_just_pressed("Claw"):
+		player.finite_state_machine.ChangeState(player.state_claw)
 	var just_pressed = event.is_pressed() && !event.is_echo()
 	
 	# Variable Jump
 	if event is InputEventKey and not event.pressed:
-		if event.keycode == player.key_jump && player.velocity.y < -player.jump_height/2 && !player.is_on_floor():
+		if Input.is_action_just_released("Jump") && player.velocity.y < -player.jump_height/2 && !player.is_on_floor():
 			player.velocity.y = -player.jump_height/2
 			half_jump = true
 	

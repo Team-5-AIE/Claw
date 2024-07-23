@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=36 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateMove.gd" id="5_wvydp"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateFall.gd" id="6_8mfgh"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateLand.gd" id="7_mqss4"]
+[ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateClaw.gd" id="8_h64g1"]
 
 [sub_resource type="Gradient" id="Gradient_p7qc1"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.156863, 0.337255, 1)
@@ -379,6 +380,22 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_foffa"]
+resource_name = "ShootClaw"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33]
+}
+
 [sub_resource type="Animation" id="Animation_q1qge"]
 resource_name = "Slide"
 length = 0.8
@@ -623,6 +640,7 @@ _data = {
 "LedgeClimb": SubResource("Animation_vgrig"),
 "RESET": SubResource("Animation_6cbom"),
 "Run": SubResource("Animation_w7045"),
+"ShootClaw": SubResource("Animation_foffa"),
 "Slide": SubResource("Animation_q1qge"),
 "WallClimb": SubResource("Animation_0ss5m"),
 "WallClimbLowStamina": SubResource("Animation_6dtpx"),
@@ -640,11 +658,18 @@ size = Vector2(10, 26)
 size = Vector2(10, 21)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 floor_constant_speed = true
 floor_block_on_wall = false
 floor_snap_length = 3.0
 script = ExtResource("1_qfw28")
 low_stamina_flash_color = SubResource("GradientTexture1D_3ovwb")
+double_jump_enabled = false
+dash_enabled = false
+wave_dash_enabled = false
+exit_dash_forced_gravity_enabled = false
+slide_enabled = false
+glide_enabled = false
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)
@@ -673,6 +698,10 @@ script = ExtResource("6_8mfgh")
 
 [node name="StateLand" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("7_mqss4")
+
+[node name="StateClaw" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("8_h64g1")
+clawVelHorizontalSpeed = 15.0
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)
@@ -710,34 +739,45 @@ one_shot = true
 [node name="RaycastSlideLeft" type="RayCast2D" parent="."]
 position = Vector2(-5, 0)
 target_position = Vector2(0, -26)
+collision_mask = 2
 
 [node name="RaycastSlideRight" type="RayCast2D" parent="."]
 position = Vector2(5, 0)
 target_position = Vector2(0, -26)
+collision_mask = 2
 
 [node name="RaycastBottomLeft" type="RayCast2D" parent="."]
 position = Vector2(-1, 0)
 target_position = Vector2(-6, 0)
+collision_mask = 2
 
 [node name="RaycastBottomRight" type="RayCast2D" parent="."]
 position = Vector2(1, 0)
 target_position = Vector2(6, 0)
+collision_mask = 2
 
 [node name="RaycastTopLeft" type="RayCast2D" parent="."]
 position = Vector2(-1, -26)
 target_position = Vector2(-6, 0)
+collision_mask = 2
 
 [node name="RaycastTopRight" type="RayCast2D" parent="."]
 position = Vector2(1, -26)
 target_position = Vector2(6, 0)
+collision_mask = 2
 
 [node name="RaycastClimbLeft" type="RayCast2D" parent="."]
 position = Vector2(0, -33)
 target_position = Vector2(-10, 0)
+collision_mask = 2
 
 [node name="RaycastClimbRight" type="RayCast2D" parent="."]
 position = Vector2(0, -33)
 target_position = Vector2(10, 0)
+collision_mask = 2
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -22)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]

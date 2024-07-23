@@ -16,11 +16,11 @@ func UpdatePhysics(_delta) -> void: # Runs in _physics_process()
 	# Before changing to idle or move
 	if !player.raycast_slide_left.is_colliding() && !player.raycast_slide_right.is_colliding():
 		# Change to Idle State
-		if player.input_axis.x == 0 && !Input.is_key_pressed(player.key_crouch):
+		if player.input_axis.x == 0 && !Input.is_action_pressed("Crouch"):
 			player.finite_state_machine.ChangeState(player.state_idle)
 			return
 		# Change to Move State
-		if player.input_axis.x != 0 && !Input.is_key_pressed(player.key_crouch):
+		if player.input_axis.x != 0 && !Input.is_action_pressed("Crouch"):
 			player.finite_state_machine.ChangeState(player.state_move)
 			return
 		# Change to Crouch Move State

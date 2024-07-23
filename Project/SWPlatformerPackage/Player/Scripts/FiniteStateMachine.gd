@@ -66,25 +66,25 @@ func ChangeState(newState: State) -> void:
 func get_input() -> void:
 	if !player.move_lock:
 		# Wall climb key input
-		if Input.is_key_pressed(player.key_wall_grab):
+		if Input.is_action_pressed("WallGrab"):
 			wall_grab_input = true
 		else:
 			wall_grab_input = false
 		
 		# Movement key input
-		if Input.is_key_pressed(player.key_left):
+		if Input.is_action_pressed("Left"):
 			player.input_axis.x = -1
 			wall_jump_input = true
-		elif Input.is_key_pressed(player.key_right):
+		elif Input.is_action_pressed("Right"):
 			player.input_axis.x = 1
 			wall_jump_input = true
 		else:
 			wall_jump_input = false
 			player.input_axis.x = 0
-		if Input.is_key_pressed(player.key_up):
+		if Input.is_action_pressed("Up"):
 			player.input_axis.y = -1
 			wall_climb_input = true
-		elif Input.is_key_pressed(player.key_down):
+		elif Input.is_action_pressed("Down"):
 			player.input_axis.y = 1
 			wall_climb_input = true
 		else:
@@ -124,38 +124,35 @@ func jump_buffer_jump() -> bool:
 	return false
 
 func jump_buffer_check(event) -> bool:
-	if check_key(event, player.key_jump): return false
-	if Input.is_key_pressed(player.key_jump) && player.jump_enabled:
+	if Input.is_action_pressed("Jump") && player.jump_enabled:
 		return true
 	return false
 
 func can_we_jump(event) -> bool:
-	if check_key(event, player.key_jump): return false
-	if Input.is_key_pressed(player.key_jump) && player.jump_enabled && player.jump_available:
+	if Input.is_action_just_pressed("Jump") && player.jump_enabled && player.jump_available:
 		if player.coyote_jump_timer.time_left > 0.0 || player.is_on_floor() || player.can_always_jump:
 			return true
 	return false
 
 func can_we_wall_jump(event) -> bool:
-	if check_key(event, player.key_jump): return false
-	if Input.is_key_pressed(player.key_jump) && player.finite_state_machine.get_next_to_wall() != Vector2.ZERO && player.wall_jump_enabled && player.wall_jump_available:
+	if Input.is_action_just_pressed("Jump") && player.finite_state_machine.get_next_to_wall() != Vector2.ZERO && player.wall_jump_enabled && player.wall_jump_available:
 		if player.current_wall_jumps > 0 || player.always_allow_wall_jumps:
 			if player.wall_grab_stamina.time_left > 0.0 || !player.wall_grab_stamina_enabled:
 				return true
 	return false
 
 func can_we_crouch(event) -> bool:
-	if check_key(event, player.key_crouch): return false
-	if player.crouch_enabled:
+	if Input.is_action_pressed("Crouch") && player.crouch_enabled:
 		return true
 	return false
 
 func can_we_crouch_move() -> bool:
-	if Input.is_key_pressed(player.key_crouch) &&player.crouch_walk_enabled && player.input_axis.x != 0:
+	if Input.is_action_pressed("Crouch") && player.crouch_walk_enabled && player.input_axis.x != 0:
 		return true
 	return false
 
 func can_we_dash(event) -> bool:
+	return false
 	if check_key(event, player.key_dash): return false
 	if Input.is_key_pressed(player.key_dash) && player.dash_enabled && player.dash_available:
 		if player.current_dashes > 0:
@@ -167,18 +164,20 @@ func can_we_dash(event) -> bool:
 	return false
 
 func can_we_slide(event) -> bool:
-	if check_key(event, player.key_slide): return false
-	if player.slide_enabled && Input.is_key_pressed(player.key_slide) && Input.is_key_pressed(player.key_slide_secondary):
+	return false
+	if player.slide_enabled && Input.is_action_just_pressed("Slide") && Input.is_action_just_pressed("Down"):
 		return true
 	return false
 
 func can_we_glide() -> bool:
+	return false
 	if player.glide_enabled && Input.is_key_pressed(player.key_glide):
 		if !out_of_stamina || !player.wall_grab_stamina_enabled:
 			return true
 	return false
 
 func can_we_double_jump(event) -> bool:
+	return false
 	if check_key(event, player.key_double_jump): return false
 	if Input.is_key_pressed(player.key_jump) && player.double_jump_enabled && player.double_jump_available && !player.is_on_floor(): 
 		return true
