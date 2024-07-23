@@ -1,6 +1,11 @@
-[gd_scene format=3 uid="uid://cfo08y52n2aan"]
+[gd_scene load_steps=3 format=3 uid="uid://cfo08y52n2aan"]
 
-[node name="EditorScene" type="Node2D"]
+[ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="1_qnorw"]
+[ext_resource type="Script" path="res://Scripts/LevelEditorManager.gd" id="1_say3h"]
+
+[node name="EditorScene" type="Node2D" node_paths=PackedStringArray("m_tilePalette")]
+script = ExtResource("1_say3h")
+m_tilePalette = NodePath("CanvasLayer/HBoxContainer/TPMenu/CenterContainer2/ColorRect/TilePalette")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -10,17 +15,37 @@
 offset_right = 640.0
 offset_bottom = 360.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+[node name="TPMenu" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+[node name="TTitleCentre" type="CenterContainer" parent="CanvasLayer/HBoxContainer/TPMenu"]
 layout_mode = 2
-alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="TPTitleMargin" type="MarginContainer" parent="CanvasLayer/HBoxContainer/TPMenu/TTitleCentre"]
 layout_mode = 2
-text = "Block Palette"
+theme_override_constants/margin_top = 5
+
+[node name="Tile Palette" type="RichTextLabel" parent="CanvasLayer/HBoxContainer/TPMenu/TTitleCentre/TPTitleMargin"]
+layout_mode = 2
+mouse_filter = 2
+text = "Tile Palette"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/HBoxContainer/TPMenu"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/TPMenu/CenterContainer2"]
+custom_minimum_size = Vector2(120, 200)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.392157)
+
+[node name="TilePalette" type="TileMap" parent="CanvasLayer/HBoxContainer/TPMenu/CenterContainer2/ColorRect"]
+position = Vector2(-15, 0)
+tile_set = ExtResource("1_qnorw")
+format = 2
+layer_0/name = "Palette"
+layer_0/tile_data = PackedInt32Array(65539, 0, 1, 65540, 65536, 1, 65541, 0, 2, 65542, 65536, 2, 131074, 131072, 0, 196610, 196608, 0, 131075, 131072, 1, 196611, 196608, 1, 131076, 0, 3, 196612, 65536, 3, 65538, 65536, 0)
