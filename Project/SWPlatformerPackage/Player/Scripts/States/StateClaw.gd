@@ -39,8 +39,6 @@ func EnterState() -> void:
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	if clawInstance.hooked:
 		player.finite_state_machine.disable_gravity = true
-		
-		
 		# Pull player towards claw
 		if Input.is_action_pressed("ClawPull"):
 			if clawInstance.distanceToPlayer >= 30:
@@ -83,8 +81,12 @@ func ProcessVelocity(delta:float) -> void:
 		AddAngularVelocity(sign(player.input_axis.x)* 0.001)
 	
 	var tanVel = angularVel * length
-	var velDir = Vector2(-cos(angle),sin(angle))
+	var velDir = Vector2(-cos(angle),sin(angle)) 
 	player.velocity = velDir * tanVel *50
+	
+	var offsetVelocity = (pivotPoint - player.position).normalized() * length
+	player.velocity.x += offsetVelocity.x
+
 
 func AddAngularVelocity(force:float)-> void:
 	angularVel += force

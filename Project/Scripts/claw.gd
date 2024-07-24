@@ -19,6 +19,7 @@ func _draw():
 	var endPos = Vector2.ZERO
 	distanceToPlayer = startPos.distance_to(endPos)
 	draw_line(Vector2.ZERO, player.state_claw.endPos - player.state_claw.pivotPoint,Color.WHITE,1,false)
+	draw_line(Vector2.ZERO, startPos,Color.RED,1,false)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	queue_redraw()
