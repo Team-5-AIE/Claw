@@ -18,7 +18,8 @@ func _draw():
 	var startPos = player.global_position-global_position - offset
 	var endPos = Vector2.ZERO
 	distanceToPlayer = startPos.distance_to(endPos)
-	draw_line(startPos, endPos,Color.WHITE,1,false)
+	draw_line(Vector2.ZERO, player.state_claw.endPos - player.state_claw.pivotPoint,Color.WHITE,1,false)
+	draw_line(Vector2.ZERO, startPos,Color.RED,1,false)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	queue_redraw()
@@ -26,15 +27,16 @@ func _process(delta):
 func _physics_process(delta):
 	if extending :
 		if move_and_collide(direction * SPEED):
+			player.state_claw.SetStartPosition(global_position,player.global_position)
 			hooked = true
 			extending = false
-	if distanceToPlayer > maxDistance:
-		Release()
-		return
+	#NOTE: UNCOMMENT
 	if distanceToPlayer <= 16 && hooked:
 		Release()
 		return
-		
+	if distanceToPlayer > maxDistance:
+		Release()
+		return
 	if Input.is_action_just_released("Claw") && !extending:
 		Release()
 	tip = global_position
@@ -44,6 +46,11 @@ func Shoot(dir : Vector2) -> void:
 	extending = true
 	tip = self.global_position
 	
+	
 
 func Release() -> void:
 	retracted = true
+	if player.is_on_floor():
+		player.finite_state_machine.ChangeState(player.state_idle)
+	else:
+		player.finite_state_machine.ChangeState(player.state_fall)

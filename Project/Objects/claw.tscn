@@ -11,11 +11,11 @@ height = 13.0
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_37xf6")
-SPEED = 10.0
+SPEED = 15.0
+maxDistance = 200
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_t58d4")
 
 [node name="Claw" type="Sprite2D" parent="."]
 texture = ExtResource("1_lh05u")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -0.5)
-shape = SubResource("CapsuleShape2D_t58d4")
