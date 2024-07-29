@@ -38,7 +38,7 @@ func EnterState() -> void:
 
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	if clawInstance.hooked:
-		player.finite_state_machine.disable_gravity = true
+		#player.finite_state_machine.disable_gravity = true
 		# Pull player towards claw
 		if Input.is_action_pressed("ClawPull"):
 			if clawInstance.distanceToPlayer >= 30:
@@ -59,33 +59,62 @@ func ExitState() -> void:
 	clawInstance.queue_free()
 	player.finite_state_machine.sprite_flip_lock = false
 	pivotPoint = Vector2.ZERO
-	player.finite_state_machine.disable_gravity = false
+	#player.finite_state_machine.disable_gravity = false
 
 func SetStartPosition(start:Vector2,end:Vector2) -> void:
 	print("startpos")
-	pivotPoint = start
-	endPos = end
-	length = clawInstance.distanceToPlayer
-	angle = -start.angle_to_point(end) + deg_to_rad(-90)
-	angularVel = 0.0
-	angularAcceleration = 0.0
+	#pivotPoint = start
+	#endPos = end
+	#length = clawInstance.distanceToPlayer
+	#angle = -start.angle_to_point(end) + deg_to_rad(-90)
+	#angularVel = 0.0
+	#angularAcceleration = 0.0
 
 func ProcessVelocity(delta:float) -> void:
-	angularAcceleration = ((gravity*delta) / length) * sin(angle)
-	angularVel += angularAcceleration
-	angularVel *= damping
-	angle += angularVel
-	endPos = pivotPoint - Vector2(length*sin(angle), length*cos(angle))
 	
+	var clawToPlayer = player.global_position - clawInstance.global_position
+	var ropeDirection : Vector2 = clawToPlayer.normalized()
+	
+	var offset = player.global_position - player.claw_marker.global_position
+	var startPos = player.global_position-clawInstance.global_position - offset
+	var endPos = Vector2.ZERO
+	var currentRopeLength : float = startPos.distance_to(endPos)
+	var vel : Vector2
+	
+	
+	var circularArcDirection : Vector2 = ropeDirection - Vector2.RIGHT.rotated(90)
+	var trueRopeLength : float = clawInstance.ropeLength
+	
+	if currentRopeLength > trueRopeLength:
+		var overextendedAmount : float = trueRopeLength - currentRopeLength
+		var correctiveMovement : Vector2 = overextendedAmount * ropeDirection 
+		#move and slide by corrective movement to fix that
+		#fix velocity
+		if ropeDirection.dot(player.velocity) > 0:
+			vel = vel.dot(circularArcDirection) * circularArcDirection
+		player.velocity += vel + correctiveMovement 
 	if player.input_axis.x != 0:
-		AddAngularVelocity(sign(player.input_axis.x)* 0.001)
+		player.velocity.x += player.input_axis.x * 10
+	#angularAcceleration = ((gravity*delta) / length) * sin(angle)
+	#angularVel += angularAcceleration
+	#angularVel *= damping
+	#angle += angularVel
+	#endPos only used for drawing the white line - 
+	# -- player should be at the end of it with correct velocity calculations
+	#endPos = pivotPoint - Vector2(length*sin(angle), length*cos(angle))
 	
-	var tanVel = angularVel * length
-	var velDir = Vector2(-cos(angle),sin(angle)) 
-	player.velocity = velDir * tanVel *50
+	#player.global_position = endPos
+	# If the player is holding down left or right - add force for swing
+	#if player.input_axis.x != 0:
+	#	AddAngularVelocity(sign(player.input_axis.x)* 0.001)
 	
-	var offsetVelocity = (pivotPoint - player.position).normalized() * length
-	player.velocity.x += offsetVelocity.x
+	# Apply velocity to player based on calculations
+	#var tanVel = angularVel * length
+	#var velDir = Vector2(-cos(angle),sin(angle)) 
+	#player.velocity = velDir * tanVel *50
+	
+	#var offsetVelocity = (pivotPoint - player.position).normalized() * length
+	#player.velocity.x += offsetVelocity.x
 
 
 func AddAngularVelocity(force:float)-> void:

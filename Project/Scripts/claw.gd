@@ -12,6 +12,7 @@ var extending : bool = false
 var hooked : bool = false
 var retracted : bool = false
 var distanceToPlayer : float = 0
+var ropeLength : float = 0
 
 func _draw():
 	var offset = player.global_position - player.claw_marker.global_position
@@ -27,6 +28,10 @@ func _process(delta):
 func _physics_process(delta):
 	if extending :
 		if move_and_collide(direction * SPEED):
+			var offset = player.global_position - player.claw_marker.global_position
+			var startPos = player.global_position-global_position - offset
+			var endPos = Vector2.ZERO
+			ropeLength = startPos.distance_to(endPos)
 			player.state_claw.SetStartPosition(global_position,player.global_position)
 			hooked = true
 			extending = false
