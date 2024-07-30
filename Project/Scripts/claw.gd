@@ -44,10 +44,10 @@ func _physics_process(delta):
 	if distanceToPlayer > maxDistance && !hooked:
 		Release()
 		return
-	if Input.is_action_just_released("Claw") && !extending:
+	if Input.is_action_just_pressed("Jump") && !extending:
 		Release()
 	if Input.is_action_pressed("ClawPull"):
-		ropeLength -= delta * 50
+		ropeLength -= delta * 150
 	tip = global_position
 
 func Shoot(dir : Vector2) -> void:

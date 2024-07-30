@@ -70,7 +70,10 @@ func ProcessVelocity(delta:float) -> void:
 	var ropeDirection : Vector2 = clawToPlayer
 	
 	
-	var currentRopeLength : float = sqrt(ropeDirection.x * ropeDirection.x + ropeDirection.y * ropeDirection.y)
+	#var currentRopeLength : float = sqrt(ropeDirection.x * ropeDirection.x + ropeDirection.y * ropeDirection.y)
+	#ropeDirection /= currentRopeLength
+	
+	var currentRopeLength : float = ropeDirection.length()
 	ropeDirection /= currentRopeLength
 	
 	#var vel : Vector2
