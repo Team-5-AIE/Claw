@@ -11,7 +11,7 @@ func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	
 	treeRoot = create_item()
-	hide_root = true
+	treeRoot.set_text(0, "[ScTr File Name]")
 
 func _can_drop_data(at_position : Vector2, data : Variant) -> bool:
 	# We expect that the data passed to us from te file system will be of a certain type and format
