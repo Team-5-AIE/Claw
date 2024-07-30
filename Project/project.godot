@@ -35,6 +35,10 @@ project/assembly_name="ModularCharacterControllerDemo"
 
 movie_writer/fps=160
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/scenetree/plugin.cfg")
+
 [file_customization]
 
 folder_colors={

@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://bajqn8rjoqf33"]
+
+[ext_resource type="Script" path="res://addons/scenetree/SceneFileTree.gd" id="1_h4sl1"]
+
+[node name="SceneTreeDock" type="HBoxContainer"]
+offset_right = 640.0
+offset_bottom = 360.0
+size_flags_vertical = 3
+
+[node name="FileTreeMargin" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 5
+
+[node name="FileTreeContainer" type="VBoxContainer" parent="FileTreeMargin"]
+layout_mode = 2
+
+[node name="File?" type="Label" parent="FileTreeMargin/FileTreeContainer"]
+layout_mode = 2
+text = "File?"
+
+[node name="FileTree" type="Tree" parent="FileTreeMargin/FileTreeContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+hide_folding = true
+script = ExtResource("1_h4sl1")
+
+[node name="SceneTreeMargin" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="SceneTreePlaceholder" type="ColorRect" parent="SceneTreeMargin"]
+layout_mode = 2
+color = Color(0, 0.79, 0.5135, 1)
