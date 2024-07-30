@@ -18,7 +18,7 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 		player.finite_state_machine.ChangeState(player.state_fall)
 		return
 	# Are we not holding the crouch key?
-	if player.input_axis.x == 0 && !Input.is_key_pressed(player.key_crouch):
+	if player.input_axis.x == 0 && !Input.is_action_pressed("Crouch"):
 		# Are we under something?
 		if player.raycast_slide_left.is_colliding() || player.raycast_slide_right.is_colliding():
 			# Change to Crouch state
@@ -30,11 +30,11 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 				player.finite_state_machine.ChangeState(player.state_idle)
 				return
 	# Change to Crouch state if we are not moving and holding the crouch key.
-	if player.input_axis.x == 0 && Input.is_key_pressed(player.key_crouch):
+	if player.input_axis.x == 0 && Input.is_action_pressed("Crouch"):
 		player.finite_state_machine.ChangeState(player.state_crouch)
 		return
 	# Change to Move state if we are no longer holding crouch and are moving
-	if player.input_axis.x != 0 && !Input.is_key_pressed(player.key_crouch):
+	if player.input_axis.x != 0 && !Input.is_action_pressed("Crouch"):
 		if !player.raycast_slide_left.is_colliding() && !player.raycast_slide_right.is_colliding():
 			player.finite_state_machine.ChangeState(player.state_move)
 			return

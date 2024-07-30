@@ -23,6 +23,8 @@ func UpdatePhysics(_delta)-> void:  # Runs in _physics_process()
 		return
 
 func Inputs(event):
+	if Input.is_action_just_pressed("Claw"):
+		player.finite_state_machine.ChangeState(player.state_claw)
 	var just_pressed = event.is_pressed() && !event.is_echo()
 	# Change to Slide state !!Important: This must be BEFORE Jump state.
 	if player.finite_state_machine.can_we_slide(event) && just_pressed:
@@ -40,6 +42,7 @@ func Inputs(event):
 	if player.finite_state_machine.can_we_dash(event) && just_pressed:
 		player.finite_state_machine.ChangeState(player.state_dash)
 		return
+	
 
 func ExitState() -> void:
 	pass

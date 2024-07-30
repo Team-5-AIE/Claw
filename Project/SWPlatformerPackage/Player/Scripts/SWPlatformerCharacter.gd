@@ -28,26 +28,6 @@ extends CharacterBody2D
 @export var debug_mode = true
 @export var out_of_stamina_color : Color = Color(1.00, 0.15, 0.33, 1.00)
 @export var low_stamina_flash_color : GradientTexture1D
-@export_group("Input")
-@export var key_left : Key = KEY_LEFT
-@export var key_right : Key = KEY_RIGHT
-@export var key_up : Key = KEY_UP
-@export var key_down : Key = KEY_DOWN
-@export_group("Input/Jumps")
-@export var key_jump : Key = KEY_Z
-@export var key_double_jump : Key = KEY_Z
-@export_group("Input/Slide")
-@export var key_slide : Key = KEY_Z
-## KeySlideSecondary - is an optional keybind if you want two require two inputs for this action. If you don't - set this input to the same key as KeySlide.
-@export var key_slide_secondary : Key = KEY_DOWN
-@export_group("Input/Crouch")
-@export var key_crouch : Key = KEY_D
-@export_group("Input/Dash")
-@export var key_dash : Key = KEY_C
-@export_group("Input/Glide")
-@export var key_glide : Key = KEY_A
-@export_group("Input/Wall")
-@export var key_wall_grab : Key = KEY_X
 
 ### Enable|Disable Character states Settings
 @export_group("Enable|Disable Character states/Jump")
@@ -204,6 +184,8 @@ var wall_jump_available = true
 @onready var state_wall_jump = null
 @onready var state_wall_climb = null
 @onready var state_ledge_climb = null
+@onready var state_claw = $FiniteStateMachine/StateClaw as StateClaw
+@onready var claw_marker = $Marker2D
 
 var move_lock = false
 var input_axis : Vector2
@@ -230,7 +212,7 @@ func _ready() -> void:
 	finite_state_machine.ChangeState(state_idle) # Set the player's state to free on start.
 func animation_finished(_anim_name):
 	animation_end = true
-
+	
 
 func animation_started(_anim_name):
 	animation_end = false
@@ -306,4 +288,5 @@ func create_state_nodes():
 		var stateNode = StateLedgeClimb.new()
 		stateNode.name = "StateLedgeClimb"
 		finite_state_machine.add_child(stateNode)
-		state_ledge_climb = $FiniteStateMachine/StateLedgeClimb as StateLedgeClimb
+		state_ledge_climb = $FiniteStateMachine/StateLedgeClimb 
+
