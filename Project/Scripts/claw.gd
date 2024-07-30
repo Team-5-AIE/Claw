@@ -46,8 +46,6 @@ func _physics_process(delta):
 		return
 	if Input.is_action_just_pressed("Jump") && !extending:
 		Release()
-	if Input.is_action_pressed("ClawPull"):
-		ropeLength -= delta * 150
 	tip = global_position
 
 func Shoot(dir : Vector2) -> void:

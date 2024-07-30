@@ -41,6 +41,7 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	if clawInstance.hooked:
 		#player.finite_state_machine.disable_gravity = true
 		# Dangle physics
+		
 		ProcessVelocity(delta)
 	else:
 		# We haven't hooked the claw - free movement
@@ -66,6 +67,9 @@ func SetStartPosition(start:Vector2,end:Vector2) -> void:
 	#angularAcceleration = 0.0
 
 func ProcessVelocity(delta:float) -> void:
+	if Input.is_action_pressed("ClawPull"):
+		clawInstance.ropeLength -= delta * 150
+	
 	var clawToPlayer = player.claw_marker.global_position - clawInstance.global_position
 	var ropeDirection : Vector2 = clawToPlayer
 	
@@ -81,6 +85,7 @@ func ProcessVelocity(delta:float) -> void:
 	
 	var circularArcDirection : Vector2 = Vector2(ropeDirection.y, -ropeDirection.x)
 	var trueRopeLength : float = clawInstance.ropeLength
+	
 	
 	if currentRopeLength > trueRopeLength:
 		var overextendedAmount : float = currentRopeLength - trueRopeLength
