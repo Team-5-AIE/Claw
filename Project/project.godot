@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Claw"
-run/main_scene="res://SWPlatformerPackage/example_world.tscn"
+run/main_scene="res://Chapters/Chap_Prototype/Proto_Level_01.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/max_fps=60
 config/icon="res://icon.svg"
@@ -38,6 +38,7 @@ movie_writer/fps=160
 [file_customization]
 
 folder_colors={
+"res://Chapters/": "yellow",
 "res://Objects/": "green",
 "res://SWPlatformerPackage/": "purple",
 "res://Scripts/": "red",
