@@ -40,6 +40,7 @@ popup/item_6/id = 4
 [node name="FileTree" type="Tree" parent="FileTreeMargin/FileTreeContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 1
 hide_folding = true
 script = ExtResource("1_h4sl1")
 

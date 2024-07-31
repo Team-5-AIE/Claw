@@ -44,7 +44,9 @@ func _drop_data(at_position : Vector2, data : Variant) -> void:
 			OpenSceneItem(newTreeItem)
 
 # Custom Functions
-# Takes a file path and adds a treeItem representing it
+func MakeNewTree() -> Resource:
+	var  newScTr = Resource.new()
+
 func AddSceneToTree(filePath : String) -> TreeItem:
 	var treeFile = create_item(treeRoot)
 	treeFile.set_metadata(0, filePath)

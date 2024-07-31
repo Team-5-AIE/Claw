@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://jojlgxlxky5k"]
+
+[ext_resource type="Script" path="res://addons/scenetree/ScTrResource.gd" id="1_gr3v6"]
+
+[resource]
+script = ExtResource("1_gr3v6")
