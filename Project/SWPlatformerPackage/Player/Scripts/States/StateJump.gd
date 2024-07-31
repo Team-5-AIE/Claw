@@ -2,13 +2,20 @@ class_name StateJump
 extends State
 @onready var player = $"../.."
 var half_jump = false
+var crouch_jumping = false
+var bunnyhop = false
+var initVel : Vector2 = Vector2.ZERO
 # This state can transition to: Double jump, Dash, Fall.
 # This state happens if we have pressed the Jump key.
 
 func EnterState() -> void:
+	initVel = player.velocity
 	half_jump = false
 	player.jump_available = false
-	player.velocity.y = -player.jump_height # Apply jump velocity
+	if crouch_jumping:
+		player.velocity.y = -player.crouch_jump_height # Apply jump velocity
+	else:
+		player.velocity.y = -player.jump_height # Apply jump velocity
 	if player.debug_mode:
 		print("Debug: Jump State")
 	player.animation_player.play("Jump")
@@ -48,10 +55,15 @@ func Inputs(event):
 	
 	# Variable Jump
 	if event is InputEventKey and not event.pressed:
-		if Input.is_action_just_released("Jump") && player.velocity.y < -player.jump_height/2 && !player.is_on_floor():
-			player.velocity.y = -player.jump_height/2
-			half_jump = true
-	
+		if Input.is_action_just_released("Jump"):
+			if crouch_jumping:
+				if player.velocity.y < -player.crouch_jump_height/2 && !player.is_on_floor():
+					player.velocity.y = -player.crouch_jump_height/2
+					half_jump = true
+			else:
+				if player.velocity.y < -player.jump_height/2 && !player.is_on_floor():
+					player.velocity.y = -player.jump_height/2
+					half_jump = true
 	# Change to Wall Jump State
 	if player.finite_state_machine.can_we_wall_jump(event) && just_pressed:
 		player.finite_state_machine.ChangeState(player.state_wall_jump)
@@ -67,4 +79,5 @@ func Inputs(event):
 
 
 func ExitState() -> void:
-	pass
+	bunnyhop = false
+	crouch_jumping = false

@@ -119,6 +119,7 @@ func apply_air_resistance(delta):
 #================State change checks=========================================
 func jump_buffer_jump() -> bool:
 	if player.jump_buffer && player.is_on_floor():
+		player.state_jump.bunnyhop = true
 		ChangeState(player.state_jump)
 		return true
 	return false
