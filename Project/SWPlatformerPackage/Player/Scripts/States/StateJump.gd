@@ -9,6 +9,10 @@ var initVel : Vector2 = Vector2.ZERO
 # This state happens if we have pressed the Jump key.
 
 func EnterState() -> void:
+	if bunnyhop:
+		print("bunnyhop")
+	else:
+		print("normal jump")
 	initVel = player.velocity
 	half_jump = false
 	player.jump_available = false
@@ -21,8 +25,15 @@ func EnterState() -> void:
 	player.animation_player.play("Jump")
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
+	
+	if player.velocity.y < -player.jump_height/2 && !player.is_on_floor() && bunnyhop:
+		player.velocity.y = -player.jump_height/2
+		half_jump = true
 	if player.input_axis.x != 0:
-		player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
+		if bunnyhop:
+			BunnyHopMovement(player.input_axis.x)
+		else:
+			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
 	# Set to fall state if we hit the roof of a collision
 	if player.is_on_ceiling():
 		player.finite_state_machine.ChangeState(player.state_fall)
@@ -55,7 +66,7 @@ func Inputs(event):
 	
 	# Variable Jump
 	if event is InputEventKey and not event.pressed:
-		if Input.is_action_just_released("Jump"):
+		if Input.is_action_just_released("Jump") && !bunnyhop:
 			if crouch_jumping:
 				if player.velocity.y < -player.crouch_jump_height/2 && !player.is_on_floor():
 					player.velocity.y = -player.crouch_jump_height/2
@@ -79,5 +90,24 @@ func Inputs(event):
 
 
 func ExitState() -> void:
-	bunnyhop = false
 	crouch_jumping = false
+
+func BunnyHopMovement(input):
+	if input > 0: #Right
+		if sign(initVel.x) == -1:
+			player.velocity.x = -initVel.x/2
+			if player.velocity.x > player.run_speed:
+				player.velocity.x = -player.run_speed
+		elif sign(initVel.x) == 1:
+			pass
+		
+		print("RIGHT")
+	
+	if input < 0: #Left
+		if sign(initVel.x) == -1:
+			pass
+		elif sign(initVel.x) == 1:
+			player.velocity.x = -initVel.x/2
+			if player.velocity.x < player.run_speed:
+				player.velocity.x = player.run_speed
+		print("LEFT")

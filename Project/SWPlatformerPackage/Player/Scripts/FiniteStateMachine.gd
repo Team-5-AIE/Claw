@@ -24,8 +24,10 @@ func _process(_delta) -> void:
 	manage_grab_stamina()
 	get_input()
 	update_sprite_flip()
+	print(player.velocity.x)
 
 func reset_grounded_variables() -> void:
+	player.state_jump.bunnyhop = false
 	player.dash_available = true
 	player.current_dashes = player.max_dashes
 	player.wall_jump_available = true
@@ -35,6 +37,7 @@ func reset_grounded_variables() -> void:
 	player.finite_state_machine.can_grab_wall = true
 	player.finite_state_machine.low_grab_stamina = false
 	player.finite_state_machine.out_of_stamina = false
+	
 
 func _input(event) -> void:
 	if state is State:
@@ -43,10 +46,12 @@ func _input(event) -> void:
 func _physics_process(delta) -> void:
 	if state is State:
 		state.UpdatePhysics(delta) # Run the UpdatePhysics function in our current state
-	apply_friction(delta)
+	
 	if !disable_gravity:
 		apply_gravity(delta)
-	apply_air_resistance(delta)
+	if !player.state_jump.bunnyhop:
+		apply_friction(delta)
+		apply_air_resistance(delta)
 	# Coyote jump timing
 	var was_on_floor = player.is_on_floor()
 	player.move_and_slide() # This apllies movement to the player
@@ -119,7 +124,9 @@ func apply_air_resistance(delta):
 #================State change checks=========================================
 func jump_buffer_jump() -> bool:
 	if player.jump_buffer && player.is_on_floor():
-		player.state_jump.bunnyhop = true
+		if state == player.state_jump || state == player.state_fall || state == player.state_claw:
+			if player.velocity.x >= player.run_speed || player.velocity.x <= -player.run_speed:
+				player.state_jump.bunnyhop = true
 		ChangeState(player.state_jump)
 		return true
 	return false

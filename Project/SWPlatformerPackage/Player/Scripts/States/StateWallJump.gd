@@ -9,11 +9,18 @@ func EnterState() -> void:
 		player.current_wall_jumps -= 1
 		if player.current_wall_jumps == 0:
 			player.wall_jump_available = false
+	var horizontalSpeedOfThisWallJump = player.wall_jump_speed
+	if player.state_jump.bunnyhop:
+		var signCheckVelocity = sign(player.velocity.x)
+		if signCheckVelocity == 1:
+			horizontalSpeedOfThisWallJump = -player.state_jump.initVel
+		elif signCheckVelocity == -1:
+			horizontalSpeedOfThisWallJump = player.state_jump.initVel
 	# Get direction to jump in
 	if player.finite_state_machine.get_next_to_wall() == Vector2.LEFT:
-		player.velocity.x = player.wall_jump_speed
+		player.velocity.x = horizontalSpeedOfThisWallJump
 	if player.finite_state_machine.get_next_to_wall() == Vector2.RIGHT:
-		player.velocity.x = -player.wall_jump_speed
+		player.velocity.x = -horizontalSpeedOfThisWallJump
 	player.velocity.y = -player.jump_height
 	if player.finite_state_machine.get_next_to_wall() == Vector2.RIGHT:
 		player.sprite_sheet.flip_h = true
@@ -24,7 +31,7 @@ func EnterState() -> void:
 	player.animation_player.play("WallJump")
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
-	if player.input_axis.x != 0:
+	if player.input_axis.x != 0 && !player.state_jump.bunnyhop:
 		player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
 	
 	# Set to fall state if we hit the roof of a collision
