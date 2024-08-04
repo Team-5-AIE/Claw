@@ -93,6 +93,7 @@ var dash_available = true
 @export_group("Enable|Disable Character states/Crouch")
 ## If On, allows the player to crouch
 @export var crouch_enabled : bool = true
+@export var crouch_jump_height : float = 200
 ## If On, allows the player to move while crouched.
 @export var crouch_walk_enabled : bool = true
 ## If On, allows the player to slide from crouch.

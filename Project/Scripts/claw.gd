@@ -20,30 +20,32 @@ func _draw():
 	var startPos = player.global_position-global_position - offset
 	var endPos = Vector2.ZERO
 	distanceToPlayer = startPos.distance_to(endPos)
-	draw_line(Vector2.ZERO, player.state_claw.endPos - player.state_claw.pivotPoint,Color.WHITE,1,false)
+	#draw_line(Vector2.ZERO, player.state_claw.endPos - player.state_claw.pivotPoint,Color.WHITE,1,false)
 	draw_line(Vector2.ZERO, startPos,Color.RED,1,false)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	queue_redraw()
 
 func _physics_process(delta):
-	if extending :
+	if extending:
 		if move_and_collide(direction * SPEED):
-			var offset = player.global_position - player.claw_marker.global_position
-			var startPos = player.global_position-global_position - offset
-			var endPos = Vector2.ZERO
-			ropeLength = startPos.distance_to(endPos)
-			player.state_claw.SetStartPosition(global_position,player.global_position)
+			#var offset = player.global_position - player.claw_marker.global_position
+			#var startPos = player.global_position-global_position - offset
+			#var endPos = Vector2.ZERO
+			#startPos.distance_to(endPos)
+			print("A hook thing just happened!")
+			ropeLength = player.claw_marker.global_position.distance_to(global_position)
+			player.state_claw.SetStartPosition(global_position,player.claw_marker.global_position)
 			hooked = true
 			extending = false
 	#NOTE: UNCOMMENT
 	if distanceToPlayer <= 16 && hooked:
 		Release()
 		return
-	if distanceToPlayer > maxDistance:
+	if distanceToPlayer > maxDistance && !hooked:
 		Release()
 		return
-	if Input.is_action_just_released("Claw") && !extending:
+	if Input.is_action_just_pressed("Jump") && !extending:
 		Release()
 	tip = global_position
 

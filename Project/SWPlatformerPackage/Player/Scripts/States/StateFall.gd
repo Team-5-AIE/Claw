@@ -14,7 +14,8 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 		pass
 	else:
 		if player.input_axis != Vector2.ZERO:
-			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
+			if !player.state_jump.bunnyhop:
+				player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
 	# Jump buffer 
 	if player.finite_state_machine.jump_buffer_jump():
 		return

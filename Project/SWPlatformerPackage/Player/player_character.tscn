@@ -669,7 +669,9 @@ dash_enabled = false
 wave_dash_enabled = false
 exit_dash_forced_gravity_enabled = false
 slide_enabled = false
+crouch_jump_height = 300.0
 glide_enabled = false
+wall_jump_speed = 100.0
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)

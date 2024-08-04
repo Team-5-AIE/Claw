@@ -46,6 +46,7 @@ func Inputs(event):
 	if !player.raycast_slide_left.is_colliding() && !player.raycast_slide_right.is_colliding():
 		# Change to Jump state
 		if player.finite_state_machine.can_we_jump(event) && just_pressed:
+			player.state_jump.crouch_jumping = true
 			player.finite_state_machine.ChangeState(player.state_jump)
 			return
 	# Change to Slide state !!Important: This must be BEFORE Jump state.
