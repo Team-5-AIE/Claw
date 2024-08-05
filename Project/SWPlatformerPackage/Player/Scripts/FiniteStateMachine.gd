@@ -62,8 +62,8 @@ func ChangeState(newState: State) -> void:
 	if state is State: # Wont run this if state is null
 		state.ExitState()
 	if newState is State:
-		newState.EnterState()
 		previous_state = state
+		newState.EnterState()
 		state = newState
 
 #Movement=====================================================================

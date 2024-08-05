@@ -6,7 +6,10 @@ extends State
 func EnterState() -> void:
 	if player.debug_mode:
 		print("Debug: Fall State")
-	player.animation_player.play("Fall")
+	if player.finite_state_machine.previous_state == player.state_claw:
+		player.animation_player.play("Jump")
+	else:
+		player.animation_player.play("Fall")
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	player.animation_player.play("Fall")

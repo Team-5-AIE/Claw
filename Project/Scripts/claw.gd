@@ -1,5 +1,6 @@
 extends CharacterBody2D
-@onready var claw = $Claw
+@onready var claw_right = $ClawRight
+@onready var claw_left = $ClawLeft
 
 @onready var direction : Vector2
 @onready var speed : float = 5
@@ -14,6 +15,14 @@ var retracted : bool = false
 var distanceToPlayer : float = 0
 var ropeLength : float = 0
 var released = false
+var flipped = false
+func _ready() -> void:
+	if flipped:
+		claw_left.visible = true
+		claw_right.visible = false
+	else:
+		claw_right.visible = true
+		claw_left.visible = false
 
 func _draw():
 	var offset = player.global_position - player.claw_marker.global_position
@@ -21,7 +30,7 @@ func _draw():
 	var endPos = Vector2.ZERO
 	distanceToPlayer = startPos.distance_to(endPos)
 	#draw_line(Vector2.ZERO, player.state_claw.endPos - player.state_claw.pivotPoint,Color.WHITE,1,false)
-	draw_line(Vector2.ZERO, startPos,Color.RED,1,false)
+	draw_line(Vector2.ZERO, startPos,Color.WHITE,1,false)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	queue_redraw()

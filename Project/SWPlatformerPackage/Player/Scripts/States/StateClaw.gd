@@ -22,16 +22,35 @@ func EnterState() -> void:
 	if player.debug_mode:
 		print("Debug: Claw State")
 	player.animation_player.play("ShootClaw")
+	if player.is_on_floor():
+		player.legs_air.visible = false
+		player.legs_ground.visible = true
+	else:
+		player.legs_air.visible = true
+		player.legs_ground.visible = false
 	# Get direction to shoot in
-	shootDirection = Vector2(player.last_input_direction.x,-1)
+	if player.lockclaw45direction || Input.is_action_just_pressed("C"):
+		shootDirection = Vector2(player.last_input_direction.x,-1)
+	else:
+		shootDirection = (player.get_global_mouse_position() - player.claw_marker.global_position)
 	# Update sprite flip to the shoot direction
 	player.finite_state_machine.sprite_flip_lock = true
-	if sign(shootDirection.x) == 1:
-		player.sprite_sheet.flip_h = false
-	else:
-		player.sprite_sheet.flip_h = true
-	#Create claw and set it up
 	clawInstance = CLAW.instantiate()
+	if sign(shootDirection.x) == 1:
+		player.claw_marker.global_position = player.global_position + Vector2(-6,-28)
+		player.sprite_sheet.flip_h = false
+		clawInstance.flipped = false
+		player.legs_air.flip_h = false
+		player.legs_ground.flip_h = false
+	else:
+		player.claw_marker.global_position = player.global_position + Vector2(6,-28)
+		player.sprite_sheet.flip_h = true
+		clawInstance.flipped = true
+		player.legs_air.flip_h = true
+		player.legs_ground.flip_h = true
+	#Create claw and set it up
+	
+	
 	add_child(clawInstance)
 	clawInstance.player = player
 	clawInstance.global_position = player.claw_marker.global_position
@@ -40,6 +59,8 @@ func EnterState() -> void:
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	if clawInstance.hooked:
 		ProcessVelocity(delta)
+		player.legs_air.visible = true
+		player.legs_ground.visible = false
 	else:
 		# We haven't hooked the claw - free movement
 		if player.is_on_floor():
@@ -52,6 +73,8 @@ func ExitState() -> void:
 	clawInstance.queue_free()
 	player.finite_state_machine.sprite_flip_lock = false
 	pivotPoint = Vector2.ZERO
+	player.legs_air.visible = false
+	player.legs_ground.visible = false
 
 func SetStartPosition(start:Vector2,end:Vector2) -> void:
 	pass
