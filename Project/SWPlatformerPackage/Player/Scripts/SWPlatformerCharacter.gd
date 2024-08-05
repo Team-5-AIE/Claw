@@ -33,6 +33,7 @@ extends CharacterBody2D
 @export_group("Enable|Disable Character states/Jump")
 ## If On, allows the player to jump.
 @export var jump_enabled : bool = true
+@export var bunnyHopDirectionSlow : bool = false
 @export var can_always_jump : bool = false
 ## How many pixels high the player should jump.
 @export_range(0, 100, 1, "or_greater") var jump_height : float = 300.0 #TODO add limitation to other variables
@@ -93,6 +94,7 @@ var dash_available = true
 @export_group("Enable|Disable Character states/Crouch")
 ## If On, allows the player to crouch
 @export var crouch_enabled : bool = true
+@export var crouch_jump_height : float = 200
 ## If On, allows the player to move while crouched.
 @export var crouch_walk_enabled : bool = true
 ## If On, allows the player to slide from crouch.
