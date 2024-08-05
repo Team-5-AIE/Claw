@@ -45,7 +45,7 @@ func _drop_data(at_position : Vector2, data : Variant) -> void:
 
 # Custom Functions
 func MakeNewTree() -> Resource:
-	var  newScTr = Resource.new()
+	var  newScTr = .new()
 
 func AddSceneToTree(filePath : String) -> TreeItem:
 	var treeFile = create_item(treeRoot)
