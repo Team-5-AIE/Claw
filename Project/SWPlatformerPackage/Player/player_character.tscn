@@ -664,8 +664,9 @@ floor_block_on_wall = false
 floor_snap_length = 3.0
 script = ExtResource("1_qfw28")
 low_stamina_flash_color = SubResource("GradientTexture1D_3ovwb")
+bunnyHopDirectionSlow = true
 double_jump_enabled = false
-dash_enabled = false
+dash_time = 0.2
 wave_dash_enabled = false
 exit_dash_forced_gravity_enabled = false
 slide_enabled = false
@@ -729,7 +730,7 @@ wait_time = 0.4
 one_shot = true
 
 [node name="DashTimer" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 0.3
 one_shot = true
 
 [node name="WallGrabStamina" type="Timer" parent="Timers"]

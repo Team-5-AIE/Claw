@@ -55,16 +55,15 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 
 func Inputs(event):
 	# Check if we have pressed the jump key during dash
-	if player.finite_state_machine.check_key(event, player.key_jump): return 
-	if Input.is_key_pressed(player.key_jump) && player.wall_jump_enabled && player.wall_jump_available:
+	if Input.is_action_just_pressed("Jump") && player.wall_jump_enabled && player.wall_jump_available:
 		if player.finite_state_machine.can_we_wall_jump(event):
 			player.finite_state_machine.ChangeState(player.state_wall_jump)
 			return
-	if Input.is_key_pressed(player.key_jump) && player.jump_enabled:
+	if Input.is_action_just_pressed("Jump") && player.jump_enabled:
 		if player.coyote_jump_timer.time_left > 0.0 || player.is_on_floor() || player.can_always_jump:
 			PressedJumpWhileDashing()
 			return
-	if Input.is_key_pressed(player.key_jump) && player.double_jump_enabled:
+	if Input.is_action_just_pressed("Jump") && player.double_jump_enabled:
 		PressedDoubleJumpWhileDashing()
 		return
 

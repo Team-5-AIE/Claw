@@ -95,9 +95,9 @@ func ExitState() -> void:
 func BunnyHopMovement(input):
 	if input > 0: #Right
 		if sign(initVel.x) == -1:
-			player.velocity.x = -initVel.x/2
-			if player.velocity.x > player.run_speed:
-				player.velocity.x = -player.run_speed
+			player.velocity.x = -initVel.x
+			#if player.velocity.x > player.run_speed:
+			#	player.velocity.x = player.run_speed
 		elif sign(initVel.x) == 1:
 			pass
 		
@@ -107,7 +107,7 @@ func BunnyHopMovement(input):
 		if sign(initVel.x) == -1:
 			pass
 		elif sign(initVel.x) == 1:
-			player.velocity.x = -initVel.x/2
-			if player.velocity.x < player.run_speed:
-				player.velocity.x = player.run_speed
+			player.velocity.x = -initVel.x
+			#if player.velocity.x < player.run_speed:
+			#	player.velocity.x = player.run_speed
 		print("LEFT")

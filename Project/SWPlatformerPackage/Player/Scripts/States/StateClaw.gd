@@ -23,7 +23,7 @@ func EnterState() -> void:
 		print("Debug: Claw State")
 	player.animation_player.play("ShootClaw")
 	# Get direction to shoot in
-	shootDirection = (player.get_global_mouse_position() - player.claw_marker.global_position)
+	shootDirection = Vector2(player.last_input_direction.x,-1)
 	# Update sprite flip to the shoot direction
 	player.finite_state_machine.sprite_flip_lock = true
 	if sign(shootDirection.x) == 1:
@@ -39,14 +39,12 @@ func EnterState() -> void:
 
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	if clawInstance.hooked:
-		#player.finite_state_machine.disable_gravity = true
-		# Dangle physics
-		
 		ProcessVelocity(delta)
 	else:
 		# We haven't hooked the claw - free movement
 		if player.is_on_floor():
 			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.acceleration * delta)
+
 func Inputs(event) -> void:
 	pass
 
@@ -54,7 +52,6 @@ func ExitState() -> void:
 	clawInstance.queue_free()
 	player.finite_state_machine.sprite_flip_lock = false
 	pivotPoint = Vector2.ZERO
-	#player.finite_state_machine.disable_gravity = false
 
 func SetStartPosition(start:Vector2,end:Vector2) -> void:
 	pass
@@ -68,7 +65,8 @@ func SetStartPosition(start:Vector2,end:Vector2) -> void:
 
 func ProcessVelocity(delta:float) -> void:
 	if Input.is_action_pressed("ClawPull"):
-		clawInstance.ropeLength -= delta * 150
+		if clawInstance.ropeLength > 16:
+			clawInstance.ropeLength -= delta * 150
 	
 	var clawToPlayer = player.claw_marker.global_position - clawInstance.global_position
 	var ropeDirection : Vector2 = clawToPlayer
@@ -100,12 +98,9 @@ func ProcessVelocity(delta:float) -> void:
 		if ropeDirection.dot(player.velocity) > 0:
 			player.velocity = player.velocity.dot(circularArcDirection) * circularArcDirection
 		
-		
-		
-		
 		#player.velocity = vel
 	if player.input_axis.x != 0:
-		player.velocity += circularArcDirection * player.input_axis.x * 10
+		player.velocity += circularArcDirection * player.input_axis.x * 8
 	
 	#angularAcceleration = ((gravity*delta) / clawInstance.ropeLength) * sin(angle)
 	#angularVel += angularAcceleration
