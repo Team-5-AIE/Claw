@@ -1,12 +1,10 @@
 @tool
-extends EditorPlugin
+extends GraphEdit
 
-var testDock : Node
+func _on_graph_opened():
+	if ! visible:
+		visible = true
 
-func _enter_tree():
-	testDock = preload("res://addons/scenetree/SceneTreeDock.tscn").instantiate()
-	add_control_to_bottom_panel(testDock, "Scene Tree")
-
-func _exit_tree():
-	remove_control_from_bottom_panel(testDock)
-	testDock.queue_free()
+func _on_file_tree_graph_closed():
+	if visible:
+		visible = false

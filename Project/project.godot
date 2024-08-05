@@ -37,7 +37,7 @@ movie_writer/fps=160
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/scenetree/plugin.cfg")
+enabled=PackedStringArray("res://addons/scenegraph/plugin.cfg")
 
 [file_customization]
 

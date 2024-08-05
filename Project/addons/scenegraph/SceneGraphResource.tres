@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://jojlgxlxky5k"]
+[gd_resource type="Resource" script_class="SceneGraph" load_steps=3 format=3 uid="uid://jojlgxlxky5k"]
 
-[ext_resource type="Script" path="res://addons/scenetree/ScTrResource.gd" id="1_gr3v6"]
+[ext_resource type="PackedScene" uid="uid://caybpfw35gqqw" path="res://SWPlatformerPackage/example_world.tscn" id="1_21vk8"]
+[ext_resource type="Script" path="res://addons/scenegraph/SceneGraphResource.gd" id="1_gr3v6"]
 
 [resource]
 script = ExtResource("1_gr3v6")
+scenes = Array[PackedScene]([ExtResource("1_21vk8")])
