@@ -17,5 +17,11 @@ maxDistance = 200
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_t58d4")
 
-[node name="Claw" type="Sprite2D" parent="."]
+[node name="ClawRight" type="Sprite2D" parent="."]
+position = Vector2(-5, 4)
 texture = ExtResource("1_lh05u")
+
+[node name="ClawLeft" type="Sprite2D" parent="."]
+position = Vector2(5, 4)
+texture = ExtResource("1_lh05u")
+flip_h = true
