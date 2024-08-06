@@ -15,6 +15,7 @@ run/main_scene="res://SWPlatformerPackage/example_world.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/max_fps=60
 config/icon="res://icon.svg"
+boot_splash/assembly_name="MoverInThePlane_Prototype_demo"
 
 [debug]
 
@@ -34,6 +35,10 @@ project/assembly_name="ModularCharacterControllerDemo"
 [editor]
 
 movie_writer/fps=160
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/scenegraph/plugin.cfg")
 
 [file_customization]
 
@@ -91,6 +96,16 @@ ClawPull={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(172, 2),"global_position":Vector2(176, 43),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+Dash={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":86,"key_label":0,"unicode":118,"echo":false,"script":null)
+]
+}
+C={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":67,"key_label":0,"unicode":99,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -101,8 +116,6 @@ ClawPull={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
 
 [threading]
 
