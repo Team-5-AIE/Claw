@@ -7,6 +7,8 @@ var clawInstance
 @export var clawVelSpeed : float = 0.7
 var shootDirection : Vector2 = Vector2.ZERO
 @export var swingSpeed : float = 50
+@export var pullJumpStrength : float = 350
+@export var pullJumpStopFraction : float = 1
 #Physics pendulum stuff
 var pivotPoint : Vector2 = Vector2.ZERO #point the pengulum rotates around
 var endPos : Vector2 #global_position
@@ -87,13 +89,15 @@ func SetStartPosition(start:Vector2,end:Vector2) -> void:
 	#angularAcceleration = 0.0
 
 func ProcessVelocity(delta:float) -> void:
-	if Input.is_action_pressed("ClawPull"):
-		if clawInstance.ropeLength > 16:
-			clawInstance.ropeLength -= delta * 150
-	
 	var clawToPlayer = player.claw_marker.global_position - clawInstance.global_position
 	var ropeDirection : Vector2 = clawToPlayer
 	
+	if Input.is_action_just_pressed("ClawPull"):
+		clawInstance.released = true
+		#if clawInstance.ropeLength > 16:
+		#	clawInstance.ropeLength -= delta * 150
+		player.velocity *= (1.0 - pullJumpStopFraction)
+		player.velocity += -clawToPlayer.normalized() * pullJumpStrength
 	
 	#var currentRopeLength : float = sqrt(ropeDirection.x * ropeDirection.x + ropeDirection.y * ropeDirection.y)
 	#ropeDirection /= currentRopeLength
