@@ -56,24 +56,7 @@ func _drop_data(at_position : Vector2, data : Variant) -> void:
 	# Drop data can contain multiple files. We've previously made sure that
 	# all of these files are .tscn files
 	for file : String in data.get("files"):
-		# To avoid duplicates, we check all of our currently loaded files
-		# against whatever files we're importing
-		var existingItemIndex : int = -1
-		for i : int in item_count:
-			# Metadata is expected to be a string containing the full path of the file
-			var metadata : SceneGraphMetadata = get_item_metadata(i)
-			if metadata.filePath == file:
-				existingItemIndex = i
-				break
-		
-		# If the file already exists as a treeItem, simply select and open it
-		if existingItemIndex >= 0:
-			SelectGraph(existingItemIndex)
-			OpenGraph(existingItemIndex)
-		else:
-			var newListItem = AddGraphToTree(file)
-			SelectGraph(newListItem)
-			OpenGraph(newListItem)
+		LoadGraphFromFile(file)
 
 # Notifications
 func _notification(notif) -> void:
@@ -84,96 +67,100 @@ func _on_predelete() -> void:
 	m_saveFileDialogue.free()
 	m_loadFileDialogue.free()
 
-# FileTree signals
-func _on_item_selected() -> void:
-	var activatedItem : TreeItem = get_selected()
-	OpenGraph(activatedItem)
+# FileList signals
+func _on_item_selected(index : int) -> void:
+	OpenGraph(index)
 
 # FileSystemDock signals
 func _on_file_removed(path : String) -> void:
-	for item : TreeItem in m_treeRoot.get_children():
-		if item.get_metadata(0).filePath == path:
-			CloseGraphWithoutSaving(item)
+	for index : int in item_count:
+		if get_item_metadata(index).filePath == path:
+			CloseGraphWithoutSaving(index)
 			break
 
 func _on_file_moved(oldPath : String, newPath : String) -> void:
-	for item : TreeItem in m_treeRoot.get_children():
-		var metadata : SceneGraphMetadata = item.get_metadata(0)
+	for index : int in item_count:
+		var metadata : SceneGraphMetadata = get_item_metadata(index)
 		if metadata.filePath == oldPath:
 			metadata.filePath = newPath
-			item.set_metadata(0, metadata)
+			set_item_metadata(index, metadata)
 			
-			item.set_tooltip_text(0, newPath)
-			item.set_text(0, newPath.get_file())
+			set_item_tooltip(index, newPath)
+			set_item_text(index, newPath.get_file())
 			break
 
 # FileMenu signals
-func _on_new_graph() -> void:
+func _on_file_menu_new_graph() -> void:
 	var newGraph : SceneGraph = MakeNewGraph()
-	var newTreeItem : TreeItem = AddGraphToTree("", newGraph)
-	newTreeItem.set_text(0, "[New Graph]")
-	SelectGraph(newTreeItem)
-	OpenGraph(newTreeItem)
+	var newListItemIndex : int = AddGraphToList("", newGraph)
+	set_item_text(newListItemIndex, "[New Graph]")
+	SelectGraph(newListItemIndex)
+	OpenGraph(newListItemIndex)
 
-func _on_load_graph() -> void:
+func _on_file_menu_load_graph() -> void:
 	m_loadFileDialogue.file_mode = EditorFileDialog.FILE_MODE_OPEN_FILES
 	m_loadFileDialogue.popup()
 
-func _on_save_graph() -> void:
-	var selectedTreeItem : TreeItem = get_selected()
-	var metadata : SceneGraphMetadata = selectedTreeItem.get_metadata(0)
+func _on_file_menu_save_graph() -> void:
+	var selectedListItemIndex : int = get_selected_items()[0]
+	var metadata : SceneGraphMetadata = get_item_metadata(selectedListItemIndex)
 	
 	if metadata.sceneGraph.resource_path == "":
-		_on_save_graph_as()
+		_on_file_menu_save_graph_as()
 	else:
 		ResourceSaver.save(metadata.sceneGraph, metadata.sceneGraph.resource_path)
 
-func _on_save_graph_as() -> void:
+func _on_file_menu_save_graph_as() -> void:
 	m_saveFileDialogue.file_mode = EditorFileDialog.FILE_MODE_SAVE_FILE
 	m_saveFileDialogue.popup()
 
-func _on_close_graph() -> void:
-	var selectedTreeItem : TreeItem = get_selected()
-	CloseGraph(selectedTreeItem)
+func _on_file_menu_close_graph() -> void:
+	var selectedListItemIndex : int = get_selected_items()[0]
+	CloseGraph(selectedListItemIndex)
 
 # FileDialogue signals
 # This function will only be triggered by m_saveFileDialogue
 func _on_save_file_dialogue_file_selected(path : String) -> void:
-	var selectedTreeItem : TreeItem = get_selected()
-	var metadata : SceneGraphMetadata = selectedTreeItem.get_metadata(0)
+	var selectedListItemIndex : int = get_selected_items()[0]
+	var metadata : SceneGraphMetadata = get_item_metadata(selectedListItemIndex)
 	
 	ResourceSaver.save(metadata.sceneGraph, path, ResourceSaver.FLAG_CHANGE_PATH)
 	
 	metadata.filePath = path
-	selectedTreeItem.set_metadata(0, metadata)
+	set_item_metadata(selectedListItemIndex, metadata)
 	
-	selectedTreeItem.set_tooltip_text(0, path)
-	selectedTreeItem.set_text(0, path.get_file())
+	set_item_tooltip(selectedListItemIndex, path)
+	set_item_text(selectedListItemIndex, path.get_file())
 
 # This function will only be triggered by m_loadFileDialogue
 func _on_load_file_dialogue_files_selected(paths : Array[String]) -> void:
 	# Modified from _drop_data
 	for file : String in paths:
-		var existingItemIndex : int = -1
-		for i : int in item_count:
-			# Metadata is expected to be a string containing the full path of the file
-			var metadata : SceneGraphMetadata = get_item_metadata(i)
-			if metadata.filePath == file:
-				existingItemIndex = i
-				break
-		
-		# If the file already exists as a treeItem, simply select and open it
-		if existingItemIndex >= 0:
-			SelectGraph(existingItemIndex)
-			OpenGraph(existingItemIndex)
-		else:
-			var newListItem = AddGraphToList(file)
-			SelectGraph(newListItem)
-			OpenGraph(newListItem)
+		LoadGraphFromFile(file)
 
 # Custom Functions
 func MakeNewGraph(scenes_ : Array[PackedScene] = []) -> SceneGraph:
 	return SceneGraph.new(scenes_)
+
+func LoadGraphFromFile(path : String):
+	# To avoid duplicates, we check all of our currently loaded files
+	# against whatever files we're importing
+	var existingItemIndex : int = -1
+	for i : int in item_count:
+		# Metadata is expected to be a string containing the full path of the file
+		var metadata : SceneGraphMetadata = get_item_metadata(i)
+		if metadata.filePath == path:
+			existingItemIndex = i
+			break
+	
+	# If the file already exists as a treeItem, simply select and open it
+	if existingItemIndex >= 0:
+		SelectGraph(existingItemIndex)
+		OpenGraph(existingItemIndex)
+	else:
+		var newListItem = AddGraphToList(path)
+		SelectGraph(newListItem)
+		OpenGraph(newListItem)
 
 func AddGraphToList(filePath_ : String = "", graph_ : SceneGraph = null) -> int:
 	assert(filePath_ != "" || graph_ != null)

@@ -2,13 +2,13 @@
 extends EditorPlugin
 
 var m_sceneGraphDock : Node
-var m_fileTree : Tree
+var m_fileList : ItemList
 
 func _enter_tree() -> void:
 	m_sceneGraphDock = preload("res://addons/scenegraph/SceneGraphDock.tscn").instantiate()
 	add_control_to_bottom_panel(m_sceneGraphDock, "Scene Graph")
 	
-	m_fileTree = m_sceneGraphDock.get_node("%FileTree")
+	m_fileList = m_sceneGraphDock.get_node("%FileList")
 	
 	var fileSystem : FileSystemDock = get_editor_interface().get_file_system_dock()
 	
@@ -20,7 +20,7 @@ func _exit_tree() -> void:
 	m_sceneGraphDock.free()
 
 func fileRemoved(path : String) -> void:
-	m_fileTree._on_file_removed(path)
+	m_fileList._on_file_removed(path)
 
 func fileMoved(oldPath : String, newPath : String) -> void:
-	m_fileTree._on_file_moved(oldPath, newPath)
+	m_fileList._on_file_moved(oldPath, newPath)

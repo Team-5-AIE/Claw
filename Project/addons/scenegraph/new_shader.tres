@@ -1,0 +1,16 @@
+[gd_resource type="VisualShader" load_steps=2 format=3 uid="uid://8br44cf8vohs"]
+
+[sub_resource type="VisualShaderNodeRandomRange" id="VisualShaderNodeRandomRange_hwmrt"]
+output_port_for_preview = 0
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/2/node = SubResource("VisualShaderNodeRandomRange_hwmrt")
+nodes/fragment/2/position = Vector2(120.37, 160.85)
