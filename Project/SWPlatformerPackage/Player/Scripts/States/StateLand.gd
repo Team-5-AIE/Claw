@@ -23,7 +23,7 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 		return
 
 func Inputs(event):
-	if Input.is_action_just_pressed("Claw"):
+	if Input.is_action_just_pressed("Claw") && player.spearCooldownTimer.time_left <= 0.0:
 		player.finite_state_machine.ChangeState(player.state_claw)
 	var just_pressed = event.is_pressed() && !event.is_echo()
 	# Change to Slide state - !!Important: This must be before Jump state.

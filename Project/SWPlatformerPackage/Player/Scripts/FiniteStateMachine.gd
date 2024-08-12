@@ -202,9 +202,10 @@ func can_we_wall_slide() -> bool:
 	return false
 
 func can_we_ledge_climb() -> bool:
-	if player.ledge_climb_enabled && player.finite_state_machine.get_ledge_on_wall() != Vector2.ZERO:
-		return true
 	return false
+	#if player.ledge_climb_enabled && player.finite_state_machine.get_ledge_on_wall() != Vector2.ZERO:
+	#	return true
+	#return false
 
 func check_key(event, key) -> bool:
 	var target_event = InputEventKey.new()
