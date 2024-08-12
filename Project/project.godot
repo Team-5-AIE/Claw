@@ -13,7 +13,7 @@ config_version=5
 config/name="Claw"
 run/main_scene="res://SWPlatformerPackage/example_world.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-run/max_fps=60
+run/max_fps=144
 config/icon="res://icon.svg"
 boot_splash/assembly_name="MoverInThePlane_Prototype_demo"
 
@@ -25,8 +25,11 @@ settings/canvas_textures/default_texture_filter=3
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/window_width_override=1920
-window/size/window_height_override=1080
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/scale=2.0
+window/stretch/scale_mode="integer"
+window/screen_space_roughness_limiter/enabled=true
 
 [dotnet]
 
