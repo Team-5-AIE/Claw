@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddbhcmjxuh73m"]
+
+[ext_resource type="Script" path="res://DesignPrototypes/TraveenProposals/TraveenClawEdits.gd" id="1_nkpjk"]
+[ext_resource type="Texture2D" uid="uid://nq3odiky7bqs" path="res://Sprites/Claw.png" id="2_8sydy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t58d4"]
+radius = 4.5
+height = 13.0
+
+[node name="Claw" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_nkpjk")
+retractedClawForceWhilePulled = 500.0
+SPEED = 15.0
+maxDistance = 200
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_t58d4")
+
+[node name="Claw" type="Sprite2D" parent="."]
+texture = ExtResource("2_8sydy")

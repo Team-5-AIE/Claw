@@ -1,3 +1,4 @@
+class_name Claw
 extends CharacterBody2D
 @onready var claw_right = $ClawRight
 @onready var claw_left = $ClawLeft
