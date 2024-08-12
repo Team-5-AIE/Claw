@@ -14,7 +14,8 @@ func EnterState() -> void:
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	player.animation_player.play("Fall")
 	if player.finite_state_machine.previous_state == player.state_claw:
-		pass
+		if player.input_axis != Vector2.ZERO:
+			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
 	else:
 		if player.input_axis != Vector2.ZERO:
 			if !player.state_jump.bunnyhop:
