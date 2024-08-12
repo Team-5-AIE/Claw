@@ -5,8 +5,8 @@ var m_sceneGraphDock : Node
 var m_fileList : ItemList
 
 func _enter_tree() -> void:
-	m_sceneGraphDock = preload("res://addons/scenegraph/SceneGraphDock.tscn").instantiate()
-	add_control_to_bottom_panel(m_sceneGraphDock, "Scene Graph")
+	m_sceneGraphDock = preload("res://addons/scenegraph/RoomGraphDock.tscn").instantiate()
+	add_control_to_bottom_panel(m_sceneGraphDock, "Room Graph")
 	
 	m_fileList = m_sceneGraphDock.get_node("%FileList")
 	

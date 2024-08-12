@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://bajqn8rjoqf33"]
 
-[ext_resource type="Script" path="res://addons/scenegraph/FileMenuButton.gd" id="1_0te1b"]
-[ext_resource type="Script" path="res://addons/scenegraph/SceneGraph.gd" id="2_ccofw"]
-[ext_resource type="Script" path="res://addons/scenegraph/SceneFileList.gd" id="2_mypva"]
+[ext_resource type="Script" path="res://addons/scenegraph/FileMenuButton.gd" id="1_y65k3"]
+[ext_resource type="Script" path="res://addons/scenegraph/GraphFileList.gd" id="2_5md10"]
+[ext_resource type="Script" path="res://addons/scenegraph/RoomGraphElement.gd" id="3_xdmpl"]
 
-[node name="SceneGraphDock" type="HBoxContainer"]
+[node name="RoomGraphDock" type="HBoxContainer"]
 offset_right = 640.0
 offset_bottom = 360.0
 size_flags_vertical = 3
@@ -26,7 +26,24 @@ layout_mode = 2
 layout_mode = 2
 text = "File"
 alignment = 0
-script = ExtResource("1_0te1b")
+item_count = 7
+popup/item_0/text = "New Scene Graph"
+popup/item_0/id = 0
+popup/item_1/text = ""
+popup/item_1/id = -1
+popup/item_1/separator = true
+popup/item_2/text = "Open Scene Graph"
+popup/item_2/id = 1
+popup/item_3/text = "Save"
+popup/item_3/id = 2
+popup/item_4/text = "Save As..."
+popup/item_4/id = 3
+popup/item_5/text = ""
+popup/item_5/id = -1
+popup/item_5/separator = true
+popup/item_6/text = "Close"
+popup/item_6/id = 4
+script = ExtResource("1_y65k3")
 
 [node name="FileList" type="ItemList" parent="HSplitContainer/FileTreeMargin/FileTreeContainer"]
 unique_name_in_owner = true
@@ -35,18 +52,18 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 allow_rmb_select = true
-script = ExtResource("2_mypva")
+script = ExtResource("2_5md10")
 
-[node name="SceneTreeMargin" type="MarginContainer" parent="HSplitContainer"]
+[node name="RoomGraphMargin" type="MarginContainer" parent="HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SceneGraph" type="GraphEdit" parent="HSplitContainer/SceneTreeMargin"]
+[node name="RoomGraph" type="GraphEdit" parent="HSplitContainer/RoomGraphMargin"]
 visible = false
 layout_mode = 2
 minimap_enabled = false
 show_zoom_label = true
-script = ExtResource("2_ccofw")
+script = ExtResource("3_xdmpl")
 
 [connection signal="CloseGraph" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileMenu" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" method="_on_file_menu_close_graph"]
 [connection signal="LoadGraph" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileMenu" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" method="_on_file_menu_load_graph"]
@@ -55,4 +72,6 @@ script = ExtResource("2_ccofw")
 [connection signal="SaveGraphAs" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileMenu" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" method="_on_file_menu_save_graph_as"]
 [connection signal="about_to_popup" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileMenu" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileMenu" method="_on_about_to_popup"]
 [connection signal="empty_clicked" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileMenu" method="_on_file_list_empty_clicked"]
+[connection signal="graphClosed" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" to="HSplitContainer/RoomGraphMargin/RoomGraph" method="_on_file_list_graph_closed"]
+[connection signal="graphOpened" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" to="HSplitContainer/RoomGraphMargin/RoomGraph" method="_on_file_list_graph_opened"]
 [connection signal="item_selected" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" method="_on_item_selected"]

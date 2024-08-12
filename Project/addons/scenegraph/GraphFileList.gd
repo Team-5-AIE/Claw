@@ -47,7 +47,7 @@ func _can_drop_data(at_position : Vector2, data : Variant) -> bool:
 			if (file.get_extension() != "tres" and file.get_extension() != "res"):
 				return false
 			
-			if ! load(file) is SceneGraph:
+			if ! load(file) is RoomGraph:
 				return false
 	
 	return true
@@ -80,7 +80,7 @@ func _on_file_removed(path : String) -> void:
 
 func _on_file_moved(oldPath : String, newPath : String) -> void:
 	for index : int in item_count:
-		var metadata : SceneGraphMetadata = get_item_metadata(index)
+		var metadata : RoomGraphMetadata = get_item_metadata(index)
 		if metadata.filePath == oldPath:
 			metadata.filePath = newPath
 			set_item_metadata(index, metadata)
@@ -91,7 +91,7 @@ func _on_file_moved(oldPath : String, newPath : String) -> void:
 
 # FileMenu signals
 func _on_file_menu_new_graph() -> void:
-	var newGraph : SceneGraph = MakeNewGraph()
+	var newGraph : RoomGraph = MakeNewGraph()
 	var newListItemIndex : int = AddGraphToList("", newGraph)
 	set_item_text(newListItemIndex, "[New Graph]")
 	SelectGraph(newListItemIndex)
@@ -103,12 +103,12 @@ func _on_file_menu_load_graph() -> void:
 
 func _on_file_menu_save_graph() -> void:
 	var selectedListItemIndex : int = get_selected_items()[0]
-	var metadata : SceneGraphMetadata = get_item_metadata(selectedListItemIndex)
+	var metadata : RoomGraphMetadata = get_item_metadata(selectedListItemIndex)
 	
-	if metadata.sceneGraph.resource_path == "":
+	if metadata.LevelGraph.resource_path == "":
 		_on_file_menu_save_graph_as()
 	else:
-		ResourceSaver.save(metadata.sceneGraph, metadata.sceneGraph.resource_path)
+		ResourceSaver.save(metadata.LevelGraph, metadata.LevelGraph.resource_path)
 
 func _on_file_menu_save_graph_as() -> void:
 	m_saveFileDialogue.file_mode = EditorFileDialog.FILE_MODE_SAVE_FILE
@@ -122,9 +122,9 @@ func _on_file_menu_close_graph() -> void:
 # This function will only be triggered by m_saveFileDialogue
 func _on_save_file_dialogue_file_selected(path : String) -> void:
 	var selectedListItemIndex : int = get_selected_items()[0]
-	var metadata : SceneGraphMetadata = get_item_metadata(selectedListItemIndex)
+	var metadata : RoomGraphMetadata = get_item_metadata(selectedListItemIndex)
 	
-	ResourceSaver.save(metadata.sceneGraph, path, ResourceSaver.FLAG_CHANGE_PATH)
+	ResourceSaver.save(metadata.LevelGraph, path, ResourceSaver.FLAG_CHANGE_PATH)
 	
 	metadata.filePath = path
 	set_item_metadata(selectedListItemIndex, metadata)
@@ -139,8 +139,8 @@ func _on_load_file_dialogue_files_selected(paths : Array[String]) -> void:
 		LoadGraphFromFile(file)
 
 # Custom Functions
-func MakeNewGraph(scenes_ : Array[PackedScene] = []) -> SceneGraph:
-	return SceneGraph.new(scenes_)
+func MakeNewGraph(scenes_ : Array[PackedScene] = []) -> RoomGraph:
+	return RoomGraph.new(scenes_)
 
 func LoadGraphFromFile(path : String):
 	# To avoid duplicates, we check all of our currently loaded files
@@ -148,7 +148,7 @@ func LoadGraphFromFile(path : String):
 	var existingItemIndex : int = -1
 	for i : int in item_count:
 		# Metadata is expected to be a string containing the full path of the file
-		var metadata : SceneGraphMetadata = get_item_metadata(i)
+		var metadata : RoomGraphMetadata = get_item_metadata(i)
 		if metadata.filePath == path:
 			existingItemIndex = i
 			break
@@ -162,12 +162,12 @@ func LoadGraphFromFile(path : String):
 		SelectGraph(newListItem)
 		OpenGraph(newListItem)
 
-func AddGraphToList(filePath_ : String = "", graph_ : SceneGraph = null) -> int:
+func AddGraphToList(filePath_ : String = "", graph_ : RoomGraph = null) -> int:
 	assert(filePath_ != "" || graph_ != null)
 	
 	var itemIndex = add_item(filePath_.get_file())
 	
-	var metadata : SceneGraphMetadata = SceneGraphMetadata.new(filePath_, graph_)
+	var metadata : RoomGraphMetadata = RoomGraphMetadata.new(filePath_, graph_)
 	set_item_metadata(itemIndex, metadata)
 	
 	set_item_tooltip(itemIndex, filePath_)
@@ -180,9 +180,9 @@ func SelectGraph(index_ : int) -> void:
 func OpenGraph(index_ : int) -> void:
 	graphOpened.emit()
 	
-	var metadata : SceneGraphMetadata = get_item_metadata(index_)
-	if metadata.sceneGraph == null:
-		metadata.sceneGraph = load(metadata.filePath)
+	var metadata : RoomGraphMetadata = get_item_metadata(index_)
+	if metadata.LevelGraph == null:
+		metadata.LevelGraph = load(metadata.filePath)
 	set_item_metadata(index_, metadata)
 
 # TODO: Add a check if the user has unsaved work
