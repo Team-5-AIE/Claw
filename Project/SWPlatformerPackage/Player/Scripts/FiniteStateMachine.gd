@@ -24,7 +24,6 @@ func _process(_delta) -> void:
 	manage_grab_stamina()
 	get_input()
 	update_sprite_flip()
-	print(player.velocity.x)
 
 func reset_grounded_variables() -> void:
 	player.state_jump.bunnyhop = false
@@ -63,8 +62,8 @@ func ChangeState(newState: State) -> void:
 	if state is State: # Wont run this if state is null
 		state.ExitState()
 	if newState is State:
-		newState.EnterState()
 		previous_state = state
+		newState.EnterState()
 		state = newState
 
 #Movement=====================================================================
@@ -160,9 +159,7 @@ func can_we_crouch_move() -> bool:
 	return false
 
 func can_we_dash(event) -> bool:
-	return false
-	if check_key(event, player.key_dash): return false
-	if Input.is_key_pressed(player.key_dash) && player.dash_enabled && player.dash_available:
+	if Input.is_action_just_pressed("Dash") && player.dash_enabled && player.dash_available:
 		if player.current_dashes > 0:
 			if player.dash_cooldown.time_left <= 0.0:
 				if !player.dash_only_in_air:

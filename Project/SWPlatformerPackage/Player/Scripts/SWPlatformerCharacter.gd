@@ -1,6 +1,11 @@
 class_name SWPlatformerCharacter
 extends CharacterBody2D
 
+
+@onready var legs_air = $LegsAir
+@onready var legs_ground = $LegsGround
+
+
 # Node references
 @onready var coyote_jump_timer = $Timers/CoyoteJumpTimer
 @onready var slide_timer = $Timers/SlideTimer
@@ -26,6 +31,7 @@ extends CharacterBody2D
 ### Input
 ##Show console outputs of entering and exiting states
 @export var debug_mode = true
+@export var lockclaw45direction : bool = true
 @export var out_of_stamina_color : Color = Color(1.00, 0.15, 0.33, 1.00)
 @export var low_stamina_flash_color : GradientTexture1D
 
@@ -211,6 +217,8 @@ func _ready() -> void:
 	current_max_gravity = max_gravity
 	create_state_nodes()
 	finite_state_machine.ChangeState(state_idle) # Set the player's state to free on start.
+	legs_air.visible = false
+	legs_ground.visible = false
 func animation_finished(_anim_name):
 	animation_end = true
 	
