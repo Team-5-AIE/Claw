@@ -6,6 +6,8 @@ extends Camera2D
 
 var m_lookDirection : Vector2
 
+var m_currentRoomManager
+
 func _process(delta):
 	#if m_player.input_axis.x != 0 and m_player.input_axis.x != m_player.last_input_direction.x:
 	if m_player.input_axis.x:
