@@ -672,6 +672,8 @@ slide_enabled = false
 crouch_jump_height = 300.0
 glide_enabled = false
 wall_jump_speed = 100.0
+acceleration = 3000.0
+friction = 300.0
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)
@@ -717,7 +719,9 @@ script = ExtResource("7_mqss4")
 
 [node name="StateClaw" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("8_h64g1")
-clawVelSpeed = 30.0
+clawVelSpeed = 1.7
+pullJumpStrength = 500.0
+pullJumpStopFraction = 0.7
 
 [node name="SpearCooldownTimer" type="Timer" parent="FiniteStateMachine/StateClaw"]
 one_shot = true
