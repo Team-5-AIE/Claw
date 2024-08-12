@@ -1,7 +1,8 @@
 class_name SWPlatformerCharacter
 extends CharacterBody2D
+@onready var spearCooldownTimer = $FiniteStateMachine/StateClaw/SpearCooldownTimer
 
-
+@export var throwSpearCooldown : float = 0.2
 @onready var legs_air = $LegsAir
 @onready var legs_ground = $LegsGround
 
@@ -204,6 +205,7 @@ var current_max_gravity : float
 var jump_buffer : bool = false
 
 func _ready() -> void:
+	spearCooldownTimer.wait_time = throwSpearCooldown
 	coyote_jump_timer.wait_time = coyote_jump_time_delay
 	slide_timer.wait_time = slide_time
 	dash_timer.wait_time = dash_time

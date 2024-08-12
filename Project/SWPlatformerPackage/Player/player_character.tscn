@@ -719,6 +719,9 @@ script = ExtResource("7_mqss4")
 script = ExtResource("8_h64g1")
 clawVelSpeed = 30.0
 
+[node name="SpearCooldownTimer" type="Timer" parent="FiniteStateMachine/StateClaw"]
+one_shot = true
+
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13.5)
 shape = SubResource("RectangleShape2D_ohly0")

@@ -79,6 +79,7 @@ func ExitState() -> void:
 	player.legs_air.visible = false
 	player.legs_ground.visible = false
 	#player.finite_state_machine.disable_gravity = false
+	player.spearCooldownTimer.start()
 
 func SetStartPosition(start:Vector2,end:Vector2) -> void:
 	
