@@ -53,6 +53,9 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 			# Change to Fall state
 			player.finite_state_machine.ChangeState(player.state_fall)
 			return
+	if player.animation_end && player.is_on_floor():
+		player.finite_state_machine.ChangeState(player.state_idle)
+		return
 	## Change to Wall Climb state
 	#if player.finite_state_machine.can_we_wall_climb():
 		#player.finite_state_machine.ChangeState(player.state_wall_climb)
@@ -60,7 +63,7 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 
 
 func Inputs(event):
-	if Input.is_action_just_pressed("Claw"):
+	if Input.is_action_just_pressed("Claw") && player.spearCooldownTimer.time_left <= 0.0:
 		player.finite_state_machine.ChangeState(player.state_claw)
 	var just_pressed = event.is_pressed() && !event.is_echo()
 	# Change to Wall Jump State

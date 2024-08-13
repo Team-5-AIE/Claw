@@ -169,8 +169,7 @@ func can_we_dash(event) -> bool:
 	return false
 
 func can_we_slide(event) -> bool:
-	return false
-	if player.slide_enabled && Input.is_action_just_pressed("Slide") && Input.is_action_just_pressed("Down"):
+	if player.slide_enabled && Input.is_action_just_pressed("Slide") && Input.is_action_pressed("Down"):
 		return true
 	return false
 
@@ -202,9 +201,10 @@ func can_we_wall_slide() -> bool:
 	return false
 
 func can_we_ledge_climb() -> bool:
-	if player.ledge_climb_enabled && player.finite_state_machine.get_ledge_on_wall() != Vector2.ZERO:
-		return true
 	return false
+	#if player.ledge_climb_enabled && player.finite_state_machine.get_ledge_on_wall() != Vector2.ZERO:
+	#	return true
+	#return false
 
 func check_key(event, key) -> bool:
 	var target_event = InputEventKey.new()

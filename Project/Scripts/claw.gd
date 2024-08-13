@@ -34,7 +34,6 @@ func _draw():
 	draw_line(Vector2.ZERO, startPos,Color.WHITE,1,false)
 	var clawToPlayer = player.claw_marker.global_position - global_position
 	draw_line(Vector2.ZERO, - clawToPlayer.normalized()*50, Color.DARK_ORCHID)
-	print(clawToPlayer.normalized())
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	queue_redraw()
@@ -54,7 +53,6 @@ func _physics_process(delta):
 	#NOTE: UNCOMMENT
 	if distanceToPlayer > maxDistance && !hooked:
 		released = true
-		return
 	if Input.is_action_just_pressed("Jump") && !extending:
 		released = true
 	if released:
@@ -69,11 +67,11 @@ func Shoot(dir : Vector2) -> void:
 	
 
 func Release() -> void:
+	print("release")
 	var clawToPlayer = player.claw_marker.global_position - global_position
 	global_position += clawToPlayer.normalized() * SPEED
-	if distanceToPlayer <= 50:
-		if player.is_on_floor():
-			player.finite_state_machine.ChangeState(player.state_idle)
-		else:
-			player.finite_state_machine.ChangeState(player.state_fall)
-		retracted = true
+	if player.is_on_floor():
+		player.finite_state_machine.ChangeState(player.state_idle)
+	else:
+		player.finite_state_machine.ChangeState(player.state_fall)
+	retracted = true
