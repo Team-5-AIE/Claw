@@ -39,12 +39,6 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 		player.finite_state_machine.ChangeState(player.state_fall)
 	# Are we in the air and finished jumping?
 	if !player.is_on_floor() && player.velocity.y >= 0:
-		# Can we glide?
-		if player.finite_state_machine.can_we_glide():
-			# Change to Glide state
-			player.finite_state_machine.ChangeState(player.state_glide)
-			return
-		else:
 			# Change to Fall state
 			player.finite_state_machine.ChangeState(player.state_fall)
 			return
@@ -60,8 +54,10 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	
 
 func Inputs(event):
-	if Input.is_action_just_pressed("Claw") && player.spearCooldownTimer.time_left <= 0.0:
+	# Change to Spear Throw state
+	if player.finite_state_machine.can_we_throw_spear():
 		player.finite_state_machine.ChangeState(player.state_claw)
+		return
 	var just_pressed = event.is_pressed() && !event.is_echo()
 	
 	# Variable Jump
@@ -76,16 +72,8 @@ func Inputs(event):
 					player.velocity.y = -player.jump_height/2
 					half_jump = true
 	# Change to Wall Jump State
-	if player.finite_state_machine.can_we_wall_jump(event) && just_pressed:
+	if player.finite_state_machine.can_we_wall_jump() && just_pressed:
 		player.finite_state_machine.ChangeState(player.state_wall_jump)
-		return
-	# Change to Double Jump state
-	if player.finite_state_machine.can_we_double_jump(event) && just_pressed:
-		player.finite_state_machine.ChangeState(player.state_double_jump)
-		return
-	# Change to Dash state
-	if player.finite_state_machine.can_we_dash(event) && just_pressed:
-		player.finite_state_machine.ChangeState(player.state_dash)
 		return
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=42 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
@@ -7,13 +7,19 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateMove.gd" id="5_wvydp"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateFall.gd" id="6_8mfgh"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateLand.gd" id="7_mqss4"]
+[ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateJump.gd" id="7_uq31w"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateClaw.gd" id="8_h64g1"]
+[ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateCrouch.gd" id="9_gut04"]
+[ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallClimb.gd" id="10_hwp3x"]
+[ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallJump.gd" id="11_r1ntv"]
+[ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallSlide.gd" id="12_q8x25"]
+[ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
 
-[sub_resource type="Gradient" id="Gradient_p7qc1"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 0.156863, 0.337255, 1)
+[sub_resource type="Gradient" id="Gradient_62wi8"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.14902, 0.329412, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_3ovwb"]
-gradient = SubResource("Gradient_p7qc1")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rlb5p"]
+gradient = SubResource("Gradient_62wi8")
 
 [sub_resource type="Animation" id="Animation_sjq3i"]
 resource_name = "Crouch"
@@ -662,17 +668,9 @@ floor_constant_speed = true
 floor_block_on_wall = false
 floor_snap_length = 3.0
 script = ExtResource("1_qfw28")
-lockclaw45direction = false
-low_stamina_flash_color = SubResource("GradientTexture1D_3ovwb")
-double_jump_enabled = false
-dash_enabled = false
-dash_time = 0.2
-wave_dash_enabled = false
-exit_dash_forced_gravity_enabled = false
 crouch_jump_height = 300.0
-glide_enabled = false
-wall_jump_speed = 100.0
-ledge_climb_enabled = false
+low_stamina_flash_color = SubResource("GradientTexture1D_rlb5p")
+wall_grab_stamina_enabled = false
 acceleration = 3000.0
 friction = 300.0
 
@@ -715,6 +713,9 @@ script = ExtResource("5_wvydp")
 [node name="StateFall" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("6_8mfgh")
 
+[node name="StateJump" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("7_uq31w")
+
 [node name="StateLand" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("7_mqss4")
 
@@ -724,8 +725,20 @@ clawVelSpeed = 1.7
 pullJumpStrength = 500.0
 pullJumpStopFraction = 0.7
 
-[node name="SpearCooldownTimer" type="Timer" parent="FiniteStateMachine/StateClaw"]
-one_shot = true
+[node name="StateCrouch" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("9_gut04")
+
+[node name="StateWallClimb" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("10_hwp3x")
+
+[node name="StateWallJump" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("11_r1ntv")
+
+[node name="StateWallSlide" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("12_q8x25")
+
+[node name="StateSlide" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("13_nh8it")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13.5)
@@ -750,14 +763,10 @@ one_shot = true
 wait_time = 0.4
 one_shot = true
 
-[node name="DashTimer" type="Timer" parent="Timers"]
-wait_time = 0.3
-one_shot = true
-
 [node name="WallGrabStamina" type="Timer" parent="Timers"]
 one_shot = true
 
-[node name="DashCooldown" type="Timer" parent="Timers"]
+[node name="SpearCooldownTimer" type="Timer" parent="Timers"]
 one_shot = true
 
 [node name="RaycastSlideLeft" type="RayCast2D" parent="."]
