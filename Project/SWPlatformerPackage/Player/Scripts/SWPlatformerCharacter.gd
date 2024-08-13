@@ -3,6 +3,7 @@ extends CharacterBody2D
 # Node references
 #Markers
 @onready var claw_marker = $Marker2D
+@onready var bloomieMarker2D = $BloomieMarker2D
 
 # States
 @onready var finite_state_machine = $FiniteStateMachine as FiniteStateMachine
@@ -76,6 +77,7 @@ var jump_buffer : bool = false
 ## The distance added to the jump when exiting Slide is enabled in pixels.
 ## How long after slide must the player wait until they are able to jump? Time in seconds.
 @export var slide_jump_time_lockout : float = 0.1
+@export var slide_friction : float = 1500.0
 
 
 @export_group("Enable|Disable Character states/Crouch")

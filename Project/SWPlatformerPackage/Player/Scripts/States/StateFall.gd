@@ -14,11 +14,10 @@ func EnterState() -> void:
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	player.animation_player.play("Fall") #NOTE: not needed? need test
 	if player.finite_state_machine.previous_state == player.state_claw:
-		pass
 		#NOTE: below stops momentum when holding - check only if holding oposite direction of
 		#current velocity
-		#if player.input_axis != Vector2.ZERO:
-		#	player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
+		if player.input_axis.x != sign(player.velocity.x):
+			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
 	else:
 		if player.input_axis != Vector2.ZERO:
 			if !player.state_jump.bunnyhop:
@@ -44,7 +43,7 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 		return
 
 
-func Inputs(event):
+func Inputs(_event):
 	# Change to Spear Throw state
 	if player.finite_state_machine.can_we_throw_spear():
 		player.finite_state_machine.ChangeState(player.state_claw)

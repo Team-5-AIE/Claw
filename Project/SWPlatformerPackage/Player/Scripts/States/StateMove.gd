@@ -17,13 +17,13 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 		player.finite_state_machine.ChangeState(player.state_fall)
 		return
 		
-func Update(delta) -> void:
+func Update(_delta) -> void:
 	# Change to Idle state
 	if player.input_axis.x == 0:
 		player.finite_state_machine.ChangeState(player.state_idle)
 		return
 
-func Inputs(event):
+func Inputs(_event):
 	# Change to Spear Throw state
 	if player.finite_state_machine.can_we_throw_spear():
 		player.finite_state_machine.ChangeState(player.state_claw)

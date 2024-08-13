@@ -21,7 +21,7 @@ var flash_time = 0
 var sprite_flip_lock = false
 var disable_gravity = false
 var air_resistance_lock = false
-var friction_lock = false
+@export var friction_lock = false
 
 #=================================Functions===================================================
 func _ready() -> void:
@@ -112,7 +112,10 @@ func update_sprite_flip() -> void:
 
 func apply_friction(delta) -> void:
 	if player.input_axis.x == 0 && player.is_on_floor() && !friction_lock:
-		player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)
+		if player.finite_state_machine.previous_state == player.state_slide:
+			player.velocity.x = move_toward(player.velocity.x, 0, player.slide_friction * delta)
+		else:
+			player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)
 
 func apply_gravity(delta) -> void:
 	if !player.is_on_floor() && player.velocity.y < player.current_max_gravity:

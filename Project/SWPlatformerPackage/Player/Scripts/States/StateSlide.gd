@@ -46,11 +46,12 @@ func UpdatePhysics(_delta)-> void:  # Runs in _physics_process()
 		player.finite_state_machine.ChangeState(player.state_fall)
 		return
 
-func Inputs(event):
+func Inputs(_event):
 	# Change to Jump state
 	if player.finite_state_machine.can_we_jump() && player.slide_timer.time_left <= player.slide_time - player.slide_jump_time_lockout:
 		if !player.raycast_slide_left.is_colliding() && !player.raycast_slide_right.is_colliding():
 			sliding = false
+			player.state_jump.bunnyhop = true
 			player.finite_state_machine.ChangeState(player.state_jump)
 			return
 	# Change to Crouch state

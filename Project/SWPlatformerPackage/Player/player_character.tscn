@@ -663,16 +663,20 @@ size = Vector2(10, 27)
 size = Vector2(10, 21)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 2
+collision_mask = 10
 floor_constant_speed = true
 floor_block_on_wall = false
 floor_snap_length = 3.0
 script = ExtResource("1_qfw28")
+slide_speed = 240.0
+slide_time = 0.3
+slide_friction = 600.0
 crouch_jump_height = 300.0
 low_stamina_flash_color = SubResource("GradientTexture1D_rlb5p")
+wall_climb_enabled = false
 wall_grab_stamina_enabled = false
 acceleration = 3000.0
-friction = 300.0
+friction = 600.0
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)
@@ -811,6 +815,9 @@ collision_mask = 2
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -29)
+
+[node name="BloomieMarker2D" type="Marker2D" parent="."]
+position = Vector2(0, -40)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]

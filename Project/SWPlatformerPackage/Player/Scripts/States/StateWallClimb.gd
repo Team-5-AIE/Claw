@@ -51,7 +51,7 @@ func UpdatePhysics(_delta)-> void:  # Runs in _physics_process()
 			player.finite_state_machine.ChangeState(player.state_wall_slide)
 			return
 
-func Inputs(event) -> void:  # Runs in _process()
+func Inputs(_event) -> void:  # Runs in _process()
 	# Change to Spear Throw state
 	if player.finite_state_machine.can_we_throw_spear():
 		player.finite_state_machine.ChangeState(player.state_claw)
