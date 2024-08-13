@@ -9,6 +9,10 @@ var initVel : Vector2 = Vector2.ZERO
 # This state happens if we have pressed the Jump key.
 
 func EnterState() -> void:
+	var dust_instance = player.instance_create(player.RUN_DUST_PARTICLES,player)
+	dust_instance.scale.x = sign(-player.velocity.x)
+	dust_instance.set_as_top_level(true)
+	dust_instance.global_position = player.dustMarker2D.global_position + Vector2(sign(player.velocity.x) * 3,0)
 	if bunnyhop:
 		print("bunnyhop")
 	else:

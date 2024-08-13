@@ -46,7 +46,8 @@ func _physics_process(delta) -> void:
 		apply_gravity(delta)
 	if !player.state_jump.bunnyhop:
 		apply_friction(delta)
-		apply_air_resistance(delta)
+		if player.finite_state_machine.state != player.state_claw:
+			apply_air_resistance(delta)
 	# Coyote jump timing
 	var was_on_floor = player.is_on_floor()
 	player.move_and_slide() # This apllies movement to the player

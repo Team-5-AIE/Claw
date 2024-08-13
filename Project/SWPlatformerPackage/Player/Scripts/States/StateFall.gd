@@ -10,6 +10,12 @@ func EnterState() -> void:
 		player.animation_player.play("Jump")
 	else:
 		player.animation_player.play("Fall")
+	
+	if player.finite_state_machine.previous_state == player.state_claw:
+		var dust_instance = player.instance_create(player.RUN_DUST_PARTICLES,player)
+		dust_instance.scale.x = sign(-player.velocity.x)
+		dust_instance.set_as_top_level(true)
+		dust_instance.global_position = player.dustMarker2D.global_position
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	player.animation_player.play("Fall") #NOTE: not needed? need test
