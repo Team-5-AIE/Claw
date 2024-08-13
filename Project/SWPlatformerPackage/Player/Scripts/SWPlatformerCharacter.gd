@@ -301,3 +301,7 @@ func create_state_nodes():
 		finite_state_machine.add_child(stateNode)
 		state_ledge_climb = $FiniteStateMachine/StateLedgeClimb 
 
+
+
+func _on_room_area_ready():
+	pass # Replace with function body.

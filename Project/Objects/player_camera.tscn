@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://v1wytnyk4207"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="1_e3k37"]
+
+[node name="PlayerCamera" type="Camera2D"]
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+script = ExtResource("1_e3k37")
