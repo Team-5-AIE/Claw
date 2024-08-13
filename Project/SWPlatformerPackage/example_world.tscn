@@ -10,7 +10,8 @@ layer_0/tile_data = PackedInt32Array(655362, 65536, 0, 655363, 65536, 0, 655364,
 
 [node name="Player" parent="." instance=ExtResource("2_ayit3")]
 position = Vector2(-326, -48)
+low_stamina_flash_color = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-54, -67)
+position = Vector2(-264, -35)
 process_callback = 0

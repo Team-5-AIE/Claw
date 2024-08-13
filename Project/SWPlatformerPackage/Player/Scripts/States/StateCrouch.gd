@@ -23,14 +23,15 @@ func UpdatePhysics(_delta) -> void: # Runs in _physics_process()
 		if player.input_axis.x != 0 && !Input.is_action_pressed("Crouch"):
 			player.finite_state_machine.ChangeState(player.state_move)
 			return
-		# Change to Crouch Move State
-		if player.finite_state_machine.can_we_crouch_move() :
-			player.finite_state_machine.ChangeState(player.state_crouch_move)
-			return
-	else: # Crouch move even if we aren't holding down crouch because we are under something
-		if player.input_axis.x != 0 && player.crouch_walk_enabled:
-			player.finite_state_machine.ChangeState(player.state_crouch_move)
-			return
+	#NOTE: remove but need a new case for under something and not sliding
+	#	# Change to Crouch Move State
+	#	if player.finite_state_machine.can_we_crouch_move() :
+	#		player.finite_state_machine.ChangeState(player.state_crouch_move)
+	#		return
+	#else: # Crouch move even if we aren't holding down crouch because we are under something
+	#	if player.input_axis.x != 0 && player.crouch_walk_enabled:
+	#		player.finite_state_machine.ChangeState(player.state_crouch_move)
+	#		return
 
 func Inputs(event) -> void:
 	var just_pressed = event.is_pressed() && !event.is_echo()

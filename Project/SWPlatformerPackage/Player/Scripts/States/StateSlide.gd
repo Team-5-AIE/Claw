@@ -47,15 +47,14 @@ func UpdatePhysics(_delta)-> void:  # Runs in _physics_process()
 		return
 
 func Inputs(event):
-	var just_pressed = event.is_pressed() && !event.is_echo()
 	# Change to Jump state
-	if player.finite_state_machine.can_we_jump(event) && just_pressed && player.slide_timer.time_left <= player.slide_time - player.slide_jump_time_lockout:
+	if player.finite_state_machine.can_we_jump() && player.slide_timer.time_left <= player.slide_time - player.slide_jump_time_lockout:
 		if !player.raycast_slide_left.is_colliding() && !player.raycast_slide_right.is_colliding():
 			sliding = false
 			player.finite_state_machine.ChangeState(player.state_jump)
 			return
 	# Change to Crouch state
-	if player.finite_state_machine.can_we_crouch(event) && just_pressed && player.cancel_slide_to_crouch_enabled:
+	if player.finite_state_machine.can_we_crouch() && player.cancel_slide_to_crouch_enabled:
 		player.velocity.x = 0
 		player.finite_state_machine.ChangeState(player.state_crouch)
 		return

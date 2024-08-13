@@ -1,7 +1,7 @@
 class_name StateFall
 extends State
 @onready var player = $"../.."
-# This state can transition to: Land, Glide, Dash, Jump, Double Jump
+# This state can transition to: Land, Jump, 
 # This state happens if we are not grounded.
 func EnterState() -> void:
 	if player.debug_mode:
@@ -12,33 +12,32 @@ func EnterState() -> void:
 		player.animation_player.play("Fall")
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
-	player.animation_player.play("Fall")
+	player.animation_player.play("Fall") #NOTE: not needed? need test
 	if player.finite_state_machine.previous_state == player.state_claw:
-		if player.input_axis != Vector2.ZERO:
-			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
+		pass
+		#NOTE: below stops momentum when holding - check only if holding oposite direction of
+		#current velocity
+		#if player.input_axis != Vector2.ZERO:
+		#	player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
 	else:
 		if player.input_axis != Vector2.ZERO:
 			if !player.state_jump.bunnyhop:
 				player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
-	# Jump buffer 
+	
+	# Jump buffer #NOTE: why is this here?
 	if player.finite_state_machine.jump_buffer_jump():
 		return
-	# Change to Ledge Climb State
-	if player.finite_state_machine.can_we_ledge_climb():
-		player.finite_state_machine.ChangeState(player.state_ledge_climb)
-		return
+	
 	# Change to Land state
 	if player.is_on_floor():
 		player.finite_state_machine.ChangeState(player.state_land)
 		return
-	# Change to Glide state 
-	if player.finite_state_machine.can_we_glide():
-		player.finite_state_machine.ChangeState(player.state_glide)
-		return
+
 	# Change to Wall Climb state
 	if player.finite_state_machine.can_we_wall_climb():
 		player.finite_state_machine.ChangeState(player.state_wall_climb)
 		return
+	
 	# Change to Wall Slide state
 	if player.finite_state_machine.can_we_wall_slide():
 		player.finite_state_machine.ChangeState(player.state_wall_slide)
@@ -46,27 +45,24 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 
 
 func Inputs(event):
-	if Input.is_action_just_pressed("Claw") && player.spearCooldownTimer.time_left <= 0.0:
+	# Change to Spear Throw state
+	if player.finite_state_machine.can_we_throw_spear():
 		player.finite_state_machine.ChangeState(player.state_claw)
-	var just_pressed = event.is_pressed() && !event.is_echo()	
+		return
+	
 	# Jump buffer Check
-	if player.finite_state_machine.jump_buffer_check(event) && just_pressed:
+	if player.finite_state_machine.jump_buffer_check():
 		player.jump_buffer = true
 		player.jump_buffer_timer.start()
-	# Change to Dash state
-	if player.finite_state_machine.can_we_dash(event) && just_pressed:
-		player.finite_state_machine.ChangeState(player.state_dash)
+	
 	# Change to Wall Jump State
-	if player.finite_state_machine.can_we_wall_jump(event) && just_pressed:
+	if player.finite_state_machine.can_we_wall_jump():
 		player.finite_state_machine.ChangeState(player.state_wall_jump)
 		return
+	
 	# Change to Jump state
-	if player.finite_state_machine.can_we_jump(event) && just_pressed:
+	if player.finite_state_machine.can_we_jump():
 		player.finite_state_machine.ChangeState(player.state_jump)
-		return
-	# Change to Double Jump state
-	if player.finite_state_machine.can_we_double_jump(event) && just_pressed:
-		player.finite_state_machine.ChangeState(player.state_double_jump)
 		return
 
 func ExitState() -> void:

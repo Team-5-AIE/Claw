@@ -14,15 +14,9 @@ func EnterState() -> void:
 	player.animation_player.play("WallSlide")
 	
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
-	player.animation_player.play("WallSlide")
-	if player.wall_grab_stamina.time_left <= 0.0 && !player.finite_state_machine.can_grab_wall:
-		player.finite_state_machine.ChangeState(player.state_fall)
-		return
+	player.animation_player.play("WallSlide") #NOTE: Needed? or can just loop the animation?
 	player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.acceleration * delta)
-	# Change to Ledge Climb State
-	if player.finite_state_machine.can_we_ledge_climb():
-		player.finite_state_machine.ChangeState(player.state_ledge_climb)
-		return
+	
 	# Change to Land state
 	if player.is_on_floor():
 		player.finite_state_machine.ChangeState(player.state_land)
@@ -32,6 +26,9 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 		player.finite_state_machine.ChangeState(player.state_fall)
 		return
 	if !player.finite_state_machine.wall_grab_input && !player.finite_state_machine.wall_jump_input:
+		player.finite_state_machine.ChangeState(player.state_fall)
+		return
+	if player.wall_grab_stamina.time_left <= 0.0 && !player.finite_state_machine.can_grab_wall:
 		player.finite_state_machine.ChangeState(player.state_fall)
 		return
 	# Change to Wall Climb state 
@@ -44,15 +41,13 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 		player.velocity.y *= player.wall_slide_friction
 
 func Inputs(event) -> void:  # Runs in _process()
-	if Input.is_action_just_pressed("Claw") && player.spearCooldownTimer.time_left <= 0.0:
+	# Change to Spear Throw state
+	if player.finite_state_machine.can_we_throw_spear():
 		player.finite_state_machine.ChangeState(player.state_claw)
-	var just_pressed = event.is_pressed() && !event.is_echo()
-	# Change to Dash State
-	if player.finite_state_machine.can_we_dash(event) && just_pressed:
-		player.finite_state_machine.ChangeState(player.state_dash)
 		return
+	
 	# Change to Wall Jump State
-	if player.finite_state_machine.can_we_wall_jump(event) && just_pressed:
+	if player.finite_state_machine.can_we_wall_jump():
 		player.finite_state_machine.ChangeState(player.state_wall_jump)
 		return
 

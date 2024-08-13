@@ -7,6 +7,9 @@ func EnterState() -> void:
 func UpdatePhysics(_delta)-> void:  # Runs in _physics_process()
 	pass
 
+func Update(_delta)-> void:  # Runs in _process()
+	pass
+
 func Inputs(_event) -> void:  # Runs in _process()
 	return
 
