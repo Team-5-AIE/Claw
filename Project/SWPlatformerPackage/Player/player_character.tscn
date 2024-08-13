@@ -669,7 +669,6 @@ dash_enabled = false
 dash_time = 0.2
 wave_dash_enabled = false
 exit_dash_forced_gravity_enabled = false
-slide_enabled = false
 crouch_jump_height = 300.0
 glide_enabled = false
 wall_jump_speed = 100.0

@@ -169,8 +169,7 @@ func can_we_dash(event) -> bool:
 	return false
 
 func can_we_slide(event) -> bool:
-	return false
-	if player.slide_enabled && Input.is_action_just_pressed("Slide") && Input.is_action_just_pressed("Down"):
+	if player.slide_enabled && Input.is_action_just_pressed("Slide") && Input.is_action_pressed("Down"):
 		return true
 	return false
 
