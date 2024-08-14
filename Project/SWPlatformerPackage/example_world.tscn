@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://caybpfw35gqqw"]
+[gd_scene load_steps=4 format=3 uid="uid://caybpfw35gqqw"]
 
 [ext_resource type="PackedScene" uid="uid://davl4ykchpfr3" path="res://SWPlatformerPackage/Tilemap/tilemap.tscn" id="1_ccb8h"]
 [ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="2_ayit3"]
+[ext_resource type="PackedScene" path="res://Objects/bloomie.tscn" id="3_g4pha"]
 
 [node name="ExampleWorld" type="Node2D"]
 
@@ -16,3 +17,12 @@ low_stamina_flash_color = null
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-66, -59)
 process_callback = 0
+
+[node name="Bloomie" parent="." instance=ExtResource("3_g4pha")]
+position = Vector2(-175, -55)
+
+[node name="Bloomie2" parent="." instance=ExtResource("3_g4pha")]
+position = Vector2(15, -89)
+
+[node name="Bloomie3" parent="." instance=ExtResource("3_g4pha")]
+position = Vector2(83, -32)
