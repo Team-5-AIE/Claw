@@ -13,3 +13,4 @@ layer_0/tile_data = PackedInt32Array(655360, 196608, 0, 720895, 196608, 0, 72087
 position = Vector2(1, 28)
 
 [node name="CustomCamera" parent="Player" instance=ExtResource("3_36658")]
+zoom = Vector2(1, 1)
