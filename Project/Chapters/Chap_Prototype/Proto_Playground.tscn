@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0hpg045ehyf"]
+[gd_scene load_steps=5 format=3 uid="uid://c0hpg045ehyf"]
 
 [ext_resource type="PackedScene" uid="uid://davl4ykchpfr3" path="res://SWPlatformerPackage/Tilemap/tilemap.tscn" id="1_028r1"]
 [ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="2_2yd10"]
 [ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="3_36658"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_010lk"]
+font_size = 12
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Proto_Level_01" type="Node2D"]
 
@@ -14,3 +19,18 @@ position = Vector2(1, 28)
 
 [node name="CustomCamera" parent="Player" instance=ExtResource("3_36658")]
 zoom = Vector2(1, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/CustomCamera"]
+
+[node name="ExitLabel" type="Label" parent="Player/CustomCamera/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "WASD - Move
+Space - Jump
+Left Click - Shoot spear/Pull
+S - Slide
+"
+label_settings = SubResource("LabelSettings_010lk")
