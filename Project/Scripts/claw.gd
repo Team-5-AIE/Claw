@@ -35,10 +35,10 @@ func _draw():
 	var clawToPlayer = player.claw_marker.global_position - global_position
 	draw_line(Vector2.ZERO, - clawToPlayer.normalized()*50, Color.DARK_ORCHID)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	queue_redraw()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if extending:
 		if move_and_collide(direction * SPEED):
 			#var offset = player.global_position - player.claw_marker.global_position

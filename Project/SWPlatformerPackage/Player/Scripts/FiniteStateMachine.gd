@@ -1,11 +1,14 @@
 class_name FiniteStateMachine
 extends Node
+#References
+@onready var player = $".."
 
+#States
 @export var state : State
 var previous_state : State
-@onready var player = $".."
-var sprite_flip_lock = false
-var disable_gravity = false
+
+#State variables
+#Wall
 var wall_climb_input : bool = false
 var wall_grab_input : bool = false
 var wall_jump_input : bool = false
@@ -13,30 +16,23 @@ var can_grab_wall : bool = true
 var low_grab_stamina : bool = false
 var out_of_stamina : bool = false
 var flash_time = 0
-var air_resistance_lock = false
-var friction_lock = false
 
-# Called when the node enters the scene tree for the first time.
+#Others
+var sprite_flip_lock = false
+var disable_gravity = false
+var air_resistance_lock = false
+@export var friction_lock = false
+
+#=================================Functions===================================================
 func _ready() -> void:
 	ChangeState(state)
 
-func _process(_delta) -> void:
+func _process(delta) -> void:
+	if state is State:
+		state.Update(delta) # Run the UpdatePhysics function in our current state
 	manage_grab_stamina()
 	get_input()
 	update_sprite_flip()
-
-func reset_grounded_variables() -> void:
-	player.state_jump.bunnyhop = false
-	player.dash_available = true
-	player.current_dashes = player.max_dashes
-	player.wall_jump_available = true
-	player.current_wall_jumps = player.max_wall_jumps
-	player.jump_available = true
-	player.double_jump_available = true
-	player.finite_state_machine.can_grab_wall = true
-	player.finite_state_machine.low_grab_stamina = false
-	player.finite_state_machine.out_of_stamina = false
-	
 
 func _input(event) -> void:
 	if state is State:
@@ -50,7 +46,8 @@ func _physics_process(delta) -> void:
 		apply_gravity(delta)
 	if !player.state_jump.bunnyhop:
 		apply_friction(delta)
-		apply_air_resistance(delta)
+		if player.finite_state_machine.state != player.state_claw:
+			apply_air_resistance(delta)
 	# Coyote jump timing
 	var was_on_floor = player.is_on_floor()
 	player.move_and_slide() # This apllies movement to the player
@@ -66,7 +63,15 @@ func ChangeState(newState: State) -> void:
 		newState.EnterState()
 		state = newState
 
-#Movement=====================================================================
+func reset_grounded_variables() -> void:
+	player.state_jump.bunnyhop = false
+	player.wall_jump_available = true
+	player.current_wall_jumps = player.max_wall_jumps
+	player.jump_available = true
+	player.finite_state_machine.can_grab_wall = true
+	player.finite_state_machine.low_grab_stamina = false
+	player.finite_state_machine.out_of_stamina = false
+#====================================Apply Movement Functions========================================
 func get_input() -> void:
 	if !player.move_lock:
 		# Wall climb key input
@@ -108,19 +113,20 @@ func update_sprite_flip() -> void:
 
 func apply_friction(delta) -> void:
 	if player.input_axis.x == 0 && player.is_on_floor() && !friction_lock:
-		player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)
+		if player.finite_state_machine.previous_state == player.state_slide:
+			player.velocity.x = move_toward(player.velocity.x, 0, player.slide_friction * delta)
+		else:
+			player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)
 
 func apply_gravity(delta) -> void:
 	if !player.is_on_floor() && player.velocity.y < player.current_max_gravity:
 		player.velocity.y += player.current_gravity * delta
 
 func apply_air_resistance(delta):
-	if state == player.state_glide:
-		player.velocity.x = move_toward(player.velocity.x, 0, player.glide_resistance * delta)
-	elif !player.is_on_floor() && !air_resistance_lock:
+	if !player.is_on_floor() && !air_resistance_lock:
 		player.velocity.x = move_toward(player.velocity.x, 0, player.air_resistance * delta)
 
-#================State change checks=========================================
+#===========================State change checks=========================================
 func jump_buffer_jump() -> bool:
 	if player.jump_buffer && player.is_on_floor():
 		if state == player.state_jump || state == player.state_fall || state == player.state_claw:
@@ -130,91 +136,53 @@ func jump_buffer_jump() -> bool:
 		return true
 	return false
 
-func jump_buffer_check(event) -> bool:
+func can_we_throw_spear() -> bool:
+	if Input.is_action_just_pressed("Claw") && player.spearCooldownTimer.time_left <= 0.0:
+		return true
+	return false
+
+func jump_buffer_check() -> bool:
 	if Input.is_action_pressed("Jump") && player.jump_enabled:
 		return true
 	return false
 
-func can_we_jump(event) -> bool:
+func can_we_jump() -> bool:
 	if Input.is_action_just_pressed("Jump") && player.jump_enabled && player.jump_available:
 		if player.coyote_jump_timer.time_left > 0.0 || player.is_on_floor() || player.can_always_jump:
 			return true
 	return false
 
-func can_we_wall_jump(event) -> bool:
-	if Input.is_action_just_pressed("Jump") && player.finite_state_machine.get_next_to_wall() != Vector2.ZERO && player.wall_jump_enabled && player.wall_jump_available:
+func can_we_wall_jump() -> bool:
+	if Input.is_action_just_pressed("Jump") && get_next_to_wall() != Vector2.ZERO && player.wall_jump_enabled && player.wall_jump_available:
 		if player.current_wall_jumps > 0 || player.always_allow_wall_jumps:
 			if player.wall_grab_stamina.time_left > 0.0 || !player.wall_grab_stamina_enabled:
 				return true
 	return false
 
-func can_we_crouch(event) -> bool:
+func can_we_crouch() -> bool:
 	if Input.is_action_pressed("Crouch") && player.crouch_enabled:
 		return true
 	return false
 
-func can_we_crouch_move() -> bool:
-	if Input.is_action_pressed("Crouch") && player.crouch_walk_enabled && player.input_axis.x != 0:
-		return true
-	return false
-
-func can_we_dash(event) -> bool:
-	if Input.is_action_just_pressed("Dash") && player.dash_enabled && player.dash_available:
-		if player.current_dashes > 0:
-			if player.dash_cooldown.time_left <= 0.0:
-				if !player.dash_only_in_air:
-					return true
-				if player.dash_only_in_air && !player.is_on_floor():
-					return true
-	return false
-
-func can_we_slide(event) -> bool:
-	return false
-	if player.slide_enabled && Input.is_action_just_pressed("Slide") && Input.is_action_just_pressed("Down"):
-		return true
-	return false
-
-func can_we_glide() -> bool:
-	return false
-	if player.glide_enabled && Input.is_key_pressed(player.key_glide):
-		if !out_of_stamina || !player.wall_grab_stamina_enabled:
-			return true
-	return false
-
-func can_we_double_jump(event) -> bool:
-	return false
-	if check_key(event, player.key_double_jump): return false
-	if Input.is_key_pressed(player.key_jump) && player.double_jump_enabled && player.double_jump_available && !player.is_on_floor(): 
+func can_we_slide() -> bool:
+	if player.slide_enabled && Input.is_action_just_pressed("Slide") && Input.is_action_pressed("Down"):
 		return true
 	return false
 
 func can_we_wall_climb() -> bool:
-	if player.finite_state_machine.get_next_to_wall() != Vector2.ZERO && player.wall_climb_enabled:
+	if get_next_to_wall() != Vector2.ZERO && player.wall_climb_enabled:
 		if wall_grab_input:
-			if player.finite_state_machine.can_grab_wall || player.wall_grab_stamina.time_left > 0.0:
+			if can_grab_wall || player.wall_grab_stamina.time_left > 0.0:
 				return true
 	return false
 
 func can_we_wall_slide() -> bool:
-	if wall_jump_input && player.finite_state_machine.get_next_to_wall() != Vector2.ZERO && player.wall_slide_enabled:
-		if player.finite_state_machine.can_grab_wall || player.wall_grab_stamina.time_left > 0.0:
+	if wall_jump_input && get_next_to_wall() != Vector2.ZERO && player.wall_slide_enabled:
+		if can_grab_wall || player.wall_grab_stamina.time_left > 0.0:
 			return true
 	return false
 
-func can_we_ledge_climb() -> bool:
-	return false
-	#if player.ledge_climb_enabled && player.finite_state_machine.get_ledge_on_wall() != Vector2.ZERO:
-	#	return true
-	#return false
-
-func check_key(event, key) -> bool:
-	var target_event = InputEventKey.new()
-	target_event.keycode = key
-	if event.is_match(target_event): 
-		return false # The key pressed is not our key
-	return true
-
-#=============================================================================
+#==========================================Wall functions============================================
 func manage_grab_stamina() -> void:
 	if player.wall_climb_enabled:
 		# Start Grab stamina timer if enabled
@@ -232,14 +200,8 @@ func manage_grab_stamina() -> void:
 		elif player.finite_state_machine.low_grab_stamina:
 			flash_player()
 		else:
-			if !player.dash_available:
-				solid_colour_player(Color.BLUE_VIOLET)
-			else:
-				reset_colour_player()
-	else:
-		if !player.dash_available:
-				solid_colour_player(Color.BLUE_VIOLET)
-
+			reset_colour_player()
+	
 
 func get_next_to_wall() -> Vector2:
 	if player.raycast_top_left.is_colliding():
@@ -277,6 +239,6 @@ func reset_colour_player() -> void:
 	player.sprite_sheet.modulate = Color.WHITE
 	flash_time = 0
 
-
+#=========================================Timer timeouts====================================
 func _on_jump_buffer_timer_timeout():
 	player.jump_buffer = false

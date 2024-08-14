@@ -5,6 +5,11 @@ extends State
 # This state happens if we have pressed the Jump key.
 var jump_direction : Vector2 = Vector2(1,0)
 func EnterState() -> void:
+	var dust_instance = player.instance_create(player.RUN_DUST_PARTICLES,player)
+	dust_instance.scale.x = sign(-player.velocity.x)
+	dust_instance.set_as_top_level(true)
+	dust_instance.global_position = player.dustMarker2D.global_position + Vector2(sign(player.velocity.x) * 3,0)
+	
 	if !player.always_allow_wall_jumps:
 		player.current_wall_jumps -= 1
 		if player.current_wall_jumps == 0:
@@ -38,47 +43,31 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	if player.is_on_ceiling():
 		player.finite_state_machine.ChangeState(player.state_fall)
 	
-	# Change to Ledge Climb State
-	if player.finite_state_machine.can_we_ledge_climb():
-		player.finite_state_machine.ChangeState(player.state_ledge_climb)
-		return
 	# Are we in the air and finished jumping?
 	if !player.is_on_floor() && player.velocity.y > 0:
-		# Can we glide?
-		if player.finite_state_machine.can_we_glide():
-			# Change to Glide state
-			player.finite_state_machine.ChangeState(player.state_glide)
-			return
-		else:
-			# Change to Fall state
-			player.finite_state_machine.ChangeState(player.state_fall)
-			return
+		# Change to Fall state
+		player.finite_state_machine.ChangeState(player.state_fall)
+		return
+		
 	if player.animation_end && player.is_on_floor():
 		player.finite_state_machine.ChangeState(player.state_idle)
 		return
-	## Change to Wall Climb state
+	## Change to Wall Climb state #NOTE: test if needed or can be nuked
 	#if player.finite_state_machine.can_we_wall_climb():
 		#player.finite_state_machine.ChangeState(player.state_wall_climb)
 		#return
 
 
-func Inputs(event):
-	if Input.is_action_just_pressed("Claw") && player.spearCooldownTimer.time_left <= 0.0:
+func Inputs(_event):
+	# Change to Spear Throw state
+	if player.finite_state_machine.can_we_throw_spear():
 		player.finite_state_machine.ChangeState(player.state_claw)
-	var just_pressed = event.is_pressed() && !event.is_echo()
+		return
+	
 	# Change to Wall Jump State
-	if player.finite_state_machine.can_we_wall_jump(event) && just_pressed:
+	if player.finite_state_machine.can_we_wall_jump():
 		player.finite_state_machine.ChangeState(player.state_wall_jump)
 		return
-	# Change to Double Jump state
-	if player.finite_state_machine.can_we_double_jump(event) && just_pressed:
-		player.finite_state_machine.ChangeState(player.state_double_jump)
-		return
-	# Change to Dash state
-	if player.finite_state_machine.can_we_dash(event) && just_pressed:
-		player.finite_state_machine.ChangeState(player.state_dash)
-		return
-
 
 func ExitState() -> void:
 	pass

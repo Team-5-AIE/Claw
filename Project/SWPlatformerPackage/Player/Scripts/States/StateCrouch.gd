@@ -23,27 +23,27 @@ func UpdatePhysics(_delta) -> void: # Runs in _physics_process()
 		if player.input_axis.x != 0 && !Input.is_action_pressed("Crouch"):
 			player.finite_state_machine.ChangeState(player.state_move)
 			return
-		# Change to Crouch Move State
-		if player.finite_state_machine.can_we_crouch_move() :
-			player.finite_state_machine.ChangeState(player.state_crouch_move)
-			return
-	else: # Crouch move even if we aren't holding down crouch because we are under something
-		if player.input_axis.x != 0 && player.crouch_walk_enabled:
-			player.finite_state_machine.ChangeState(player.state_crouch_move)
-			return
+	#NOTE: remove but need a new case for under something and not sliding
+	#	# Change to Crouch Move State
+	#	if player.finite_state_machine.can_we_crouch_move() :
+	#		player.finite_state_machine.ChangeState(player.state_crouch_move)
+	#		return
+	#else: # Crouch move even if we aren't holding down crouch because we are under something
+	#	if player.input_axis.x != 0 && player.crouch_walk_enabled:
+	#		player.finite_state_machine.ChangeState(player.state_crouch_move)
+	#		return
 
 func Inputs(event) -> void:
-	var just_pressed = event.is_pressed() && !event.is_echo()
 	# Make sure we aren't under a collision that would get us stuck in the wall 
 	# Before changing to jump
 	if !player.raycast_slide_left.is_colliding() && !player.raycast_slide_right.is_colliding():
 		# Change to Jump state
-		if player.finite_state_machine.can_we_jump(event) && just_pressed:
+		if player.finite_state_machine.can_we_jump():
 			player.state_jump.crouch_jumping = true
 			player.finite_state_machine.ChangeState(player.state_jump)
 			return
 	# Change to Slide state
-	if player.finite_state_machine.can_we_slide(event) && just_pressed:
+	if player.finite_state_machine.can_we_slide():
 		player.finite_state_machine.ChangeState(player.state_slide)
 		return
 
