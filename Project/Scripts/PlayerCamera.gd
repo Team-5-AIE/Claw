@@ -2,10 +2,11 @@ extends Camera2D
 
 # ---Variables---
 # Editor variables
-@export var m_offset : int
+@export var m_frontOffset : int
 
 # Scene nodes
 @onready var m_player = $".."
+var m_roomArea : Area2D
 var m_roomBounds : CollisionShape2D
 
 # Public members
@@ -14,10 +15,10 @@ var m_lookDirection : Vector2
 
 # ---Functions---
 # Godot functions
-func _process(delta):
+func _process(_delta):
 	if m_player.input_axis.x:
 		m_lookDirection = Vector2(m_player.input_axis.x, 0)
-		position = m_offset * m_lookDirection
+		position = m_frontOffset * m_lookDirection
 	
 	# Clamp camera x
 	var clampedX = ClampCameraAxis(m_roomBounds.global_position.x, m_roomBounds.shape.size.x,
@@ -33,7 +34,7 @@ func _process(delta):
 
 # Custom functions
 func ClampCameraAxis(boundsPos : float, boundsSize : float, camSize : float) -> Vector2:
-	var clamped : Vector2
+	var clamped : Vector2 = Vector2(0, 0)
 	
 	if boundsSize <= camSize:
 		var halfCamSizeY = camSize / 2

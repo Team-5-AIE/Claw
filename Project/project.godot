@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Claw"
-run/main_scene="res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 1.tscn"
+run/main_scene="res://Chapters/Chap_Prototype/Scene Transition Prototype/SceneTransitionBase.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/max_fps=144
 config/icon="res://icon.svg"
