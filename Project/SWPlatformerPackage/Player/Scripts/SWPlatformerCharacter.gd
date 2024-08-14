@@ -203,3 +203,6 @@ func instance_create(preloaded_scene, parent_node):
 	else:
 		add_child(preloaded_scene_instance)
 	return preloaded_scene_instance
+	
+func _on_room_area_ready():
+	pass # Replace with function body.
