@@ -69,7 +69,7 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 		if player.is_on_floor():
 			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.acceleration * delta)
 
-func Inputs(event) -> void:
+func Inputs(_event) -> void:
 	pass
 
 func ExitState() -> void:
