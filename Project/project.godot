@@ -10,12 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Claw"
-run/main_scene="res://SWPlatformerPackage/example_world.tscn"
+config/name="Spearloom"
+run/main_scene="res://Rooms/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/max_fps=144
 config/icon="res://icon.svg"
-boot_splash/assembly_name="MoverInThePlane_Prototype_demo"
+boot_splash/assembly_name="Spearloom_Prototype"
 
 [autoload]
 
@@ -52,6 +52,10 @@ folder_colors={
 "res://Sprites/": "blue"
 }
 
+[gui]
+
+theme/default_font_antialiasing=0
+
 [input]
 
 Jump={
@@ -62,8 +66,7 @@ Jump={
 }
 Crouch={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194326,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":70,"key_label":0,"unicode":102,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":70,"key_label":0,"unicode":102,"echo":false,"script":null)
 ]
 }
 WallGrab={
@@ -120,8 +123,9 @@ C={
 }
 Slide={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":90,"key_label":0,"unicode":122,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 
@@ -129,7 +133,9 @@ Slide={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="World"
-2d_physics/layer_3="Claw"
+2d_physics/layer_3="Spear/GrapplePointTile"
+2d_physics/layer_4="Bloomies"
+2d_physics/layer_5="Spikes"
 
 [rendering]
 

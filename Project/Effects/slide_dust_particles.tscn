@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://ytospkh7wil5"]
+
+[ext_resource type="Texture2D" uid="uid://dk4eyv3ew4agq" path="res://Sprites/DustSolid.png" id="1_3nhts"]
+[ext_resource type="Script" path="res://Scripts/ParticleTimeout.gd" id="2_7ft4o"]
+
+[sub_resource type="Curve" id="Curve_csnwl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x6cd5"]
+curve = SubResource("Curve_csnwl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a5b45"]
+particle_flag_disable_z = true
+direction = Vector3(-45, -5, 0)
+spread = 20.0
+initial_velocity_min = 80.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.8
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_x6cd5")
+
+[node name="SlideDustParticles" type="GPUParticles2D"]
+emitting = false
+amount = 18
+process_material = SubResource("ParticleProcessMaterial_a5b45")
+texture = ExtResource("1_3nhts")
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.5
+script = ExtResource("2_7ft4o")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
