@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2lkjdbk2gifg"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_u5mcf"]
+[ext_resource type="PackedScene" uid="uid://c0hpg045ehyf" path="res://Chapters/Chap_Prototype/Proto_Playground.tscn" id="2_jg86o"]
+[ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="2_u8qgk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k8s0j"]
+font_size = 18
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_u5mcf")
+startGameScene = ExtResource("2_jg86o")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 639.0
+offset_bottom = 358.0
+color = Color(0.26833, 0.194799, 0.294845, 1)
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(327, 116)
+scale = Vector2(0.684028, 0.59375)
+texture = ExtResource("2_u8qgk")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 272.0
+offset_top = 194.0
+offset_right = 375.0
+offset_bottom = 216.0
+
+[node name="StartLabel" type="Label" parent="StartButton"]
+offset_left = 3.0
+offset_top = -2.0
+offset_right = 101.0
+offset_bottom = 24.0
+text = "Start Game"
+label_settings = SubResource("LabelSettings_k8s0j")
+horizontal_alignment = 1
+
+[node name="OptionsButton" type="Button" parent="."]
+offset_left = 273.0
+offset_top = 226.0
+offset_right = 375.0
+offset_bottom = 248.0
+
+[node name="OptionsLabel" type="Label" parent="OptionsButton"]
+offset_left = 8.0
+offset_top = -3.0
+offset_right = 96.0
+offset_bottom = 23.0
+text = "Options"
+label_settings = SubResource("LabelSettings_k8s0j")
+horizontal_alignment = 1
+
+[node name="ExitButton" type="Button" parent="."]
+offset_left = 272.0
+offset_top = 258.0
+offset_right = 375.0
+offset_bottom = 280.0
+
+[node name="ExitLabel" type="Label" parent="ExitButton"]
+offset_left = 7.0
+offset_top = -2.0
+offset_right = 95.0
+offset_bottom = 24.0
+text = "Exit Game"
+label_settings = SubResource("LabelSettings_k8s0j")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

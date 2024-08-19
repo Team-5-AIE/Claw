@@ -143,7 +143,7 @@ texture = ExtResource("1_ishsc")
 3:4/0/physics_layer_2/polygon_0/points = PackedVector2Array(8, 8, 8, -8, -1.625, -3.375, 6.625, 0.375, -1.375, 4.375)
 
 [resource]
-physics_layer_0/collision_layer = 2
+physics_layer_0/collision_layer = 6
 physics_layer_0/collision_mask = 7
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_kw5l1")
 physics_layer_1/collision_layer = 4
