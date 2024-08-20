@@ -1,20 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2lkjdbk2gifg"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_u5mcf"]
-[ext_resource type="PackedScene" uid="uid://c0hpg045ehyf" path="res://Chapters/Chap_Prototype/Proto_Playground.tscn" id="2_jg86o"]
+[ext_resource type="PackedScene" uid="uid://bboq3kevixd0r" path="res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 2.tscn" id="2_aticp"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="2_u8qgk"]
-[ext_resource type="Script" path="res://Scripts/RoomManager.gd" id="4_hexht"]
+[ext_resource type="Script" path="res://Scripts/RoomLoader.gd" id="4_hexht"]
 
 [node name="GameRoot" type="Node"]
 
-[node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("roomManager")]
+[node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("roomLoader")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 639.0
 offset_bottom = 358.0
 script = ExtResource("1_u5mcf")
-startGameScene = ExtResource("2_jg86o")
-roomManager = NodePath("../RoomManager")
+startGameScene = ExtResource("2_aticp")
+roomLoader = NodePath("../RoomLoader")
 
 [node name="ColorRect" type="ColorRect" parent="MainMenu"]
 layout_mode = 2
@@ -70,7 +70,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 18
 text = "Exit Game"
 
-[node name="RoomManager" type="Node2D" parent="."]
+[node name="RoomLoader" type="Node2D" parent="."]
 script = ExtResource("4_hexht")
 
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_pressed"]
