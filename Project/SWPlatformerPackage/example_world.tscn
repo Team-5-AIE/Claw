@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://caybpfw35gqqw"]
+[gd_scene load_steps=5 format=3 uid="uid://caybpfw35gqqw"]
 
 [ext_resource type="PackedScene" uid="uid://davl4ykchpfr3" path="res://SWPlatformerPackage/Tilemap/tilemap.tscn" id="1_ccb8h"]
 [ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="2_ayit3"]
 [ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="3_lhhdu"]
+[ext_resource type="PackedScene" uid="uid://ox0nops7jyvb" path="res://Objects/oneway_platform.tscn" id="4_dqluw"]
 
 [node name="ExampleWorld" type="Node2D"]
 
@@ -26,3 +27,7 @@ position = Vector2(152, 115)
 
 [node name="Bloomie3" parent="." instance=ExtResource("3_lhhdu")]
 position = Vector2(119, -194)
+
+[node name="Oneway-Platform" parent="." instance=ExtResource("4_dqluw")]
+position = Vector2(-120, 16)
+scale = Vector2(5.64, 1)

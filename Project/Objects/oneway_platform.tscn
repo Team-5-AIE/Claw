@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://ox0nops7jyvb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cu1x4"]
+size = Vector2(16, 4)
+
+[node name="Oneway-Platform" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 16.0
+offset_bottom = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 2)
+shape = SubResource("RectangleShape2D_cu1x4")
+one_way_collision = true
+one_way_collision_margin = 16.0
