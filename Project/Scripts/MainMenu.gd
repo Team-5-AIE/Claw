@@ -2,15 +2,13 @@ extends Control
 
 @export var startGameScene : PackedScene
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+@export var roomManager : Node2D
 
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file(startGameScene.resource_path)
+	# Spawn player, and give roomManager a reference to them
+	# Then, from somewhere, move the player to the spawn point after the level has loaded
+	
+	var gameScene = startGameScene.instantiate()
+	roomManager.add_child(gameScene)
+	
+	queue_free()
