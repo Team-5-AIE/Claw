@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bboq3kevixd0r"]
 
-[ext_resource type="Script" path="res://Chapters/Chap_Prototype/Scene Transition Prototype/PlayerSpawn.gd" id="1_1lwgb"]
+[ext_resource type="Script" path="res://Scripts/PlayerSpawn.gd" id="1_1lwgb"]
 [ext_resource type="PackedScene" uid="uid://davl4ykchpfr3" path="res://SWPlatformerPackage/Tilemap/tilemap.tscn" id="1_evnui"]
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_toxar"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_dcw0c"]
@@ -38,7 +38,6 @@ roomGlobals = NodePath("..")
 roomBounds = NodePath("RoomBounds")
 
 [node name="RoomBounds" parent="RoomArea" index="0"]
-visible = false
 shape = SubResource("RectangleShape2D_nwh43")
 
 [connection signal="roomInit" from="." to="RoomArea" method="_on_room_init"]

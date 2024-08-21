@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2lkjdbk2gifg"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_u5mcf"]
-[ext_resource type="PackedScene" uid="uid://bboq3kevixd0r" path="res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 2.tscn" id="2_aticp"]
+[ext_resource type="PackedScene" uid="uid://dpslsxv46ohxu" path="res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 1.tscn" id="2_u1sds"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="2_u8qgk"]
 [ext_resource type="Script" path="res://Scripts/RoomLoader.gd" id="4_hexht"]
 
@@ -13,7 +13,7 @@ anchors_preset = 0
 offset_right = 639.0
 offset_bottom = 358.0
 script = ExtResource("1_u5mcf")
-startGameScene = ExtResource("2_aticp")
+startGameScene = ExtResource("2_u1sds")
 roomLoader = NodePath("../RoomLoader")
 
 [node name="ColorRect" type="ColorRect" parent="MainMenu"]
