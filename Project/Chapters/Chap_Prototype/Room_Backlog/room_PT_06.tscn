@@ -6,7 +6,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
-size = Vector2(640, 432)
+size = Vector2(640, 384)
 
 [node name="Room006" type="Node2D"]
 
@@ -18,7 +18,7 @@ layer_1/tile_data = PackedInt32Array(-720904, 65536, 0, -720903, 65536, 0, -3932
 [node name="RoomArea" parent="." instance=ExtResource("2_yvjmu")]
 
 [node name="RoomBounds" parent="RoomArea" index="0"]
-position = Vector2(0, -8)
+position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="Oneway-Platform" parent="." instance=ExtResource("3_rtalb")]
