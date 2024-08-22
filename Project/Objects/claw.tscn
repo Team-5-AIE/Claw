@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddbhcmjxuh73m"]
+[gd_scene load_steps=5 format=3 uid="uid://ddbhcmjxuh73m"]
 
 [ext_resource type="Script" path="res://Scripts/claw.gd" id="1_37xf6"]
 [ext_resource type="Texture2D" uid="uid://nq3odiky7bqs" path="res://Sprites/Claw.png" id="1_lh05u"]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t58d4"]
 radius = 4.5
 height = 13.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5i8b4"]
+size = Vector2(11, 14)
 
 [node name="Claw" type="CharacterBody2D"]
 collision_layer = 4
@@ -24,3 +27,13 @@ texture = ExtResource("1_lh05u")
 position = Vector2(5, 4)
 texture = ExtResource("1_lh05u")
 flip_h = true
+
+[node name="AutoGrappleArea" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoGrappleArea"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_5i8b4")
+
+[connection signal="body_entered" from="AutoGrappleArea" to="." method="_on_auto_grapple_area_body_entered"]

@@ -155,8 +155,8 @@ func can_we_jump() -> bool:
 func can_we_wall_jump() -> bool:
 	if Input.is_action_just_pressed("Jump") && get_next_to_wall() != Vector2.ZERO && player.wall_jump_enabled && player.wall_jump_available:
 		if player.current_wall_jumps > 0 || player.always_allow_wall_jumps:
-			if player.wall_grab_stamina.time_left > 0.0 || !player.wall_grab_stamina_enabled:
-				return true
+			#if player.wall_grab_stamina.time_left > 0.0 || !player.wall_grab_stamina_enabled:
+			return true
 	return false
 
 func can_we_crouch() -> bool:
