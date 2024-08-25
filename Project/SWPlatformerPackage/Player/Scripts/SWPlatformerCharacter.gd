@@ -3,7 +3,10 @@ extends CharacterBody2D
 # Node references
 #Markers
 @onready var claw_marker = $Marker2D
-
+@onready var bloomieMarker2D = $BloomieMarker2D
+@onready var dustMarker2D = $DustMarker2D
+const RUN_DUST_PARTICLES = preload("res://Effects/run_dust_particles.tscn")
+const SLIDE_DUST_PARTICLES = preload("res://Effects/slide_dust_particles.tscn")
 # States
 @onready var finite_state_machine = $FiniteStateMachine as FiniteStateMachine
 @onready var state_idle = $FiniteStateMachine/StateIdle as StateIdle
@@ -76,6 +79,7 @@ var jump_buffer : bool = false
 ## The distance added to the jump when exiting Slide is enabled in pixels.
 ## How long after slide must the player wait until they are able to jump? Time in seconds.
 @export var slide_jump_time_lockout : float = 0.1
+@export var slide_friction : float = 1500.0
 
 
 @export_group("Enable|Disable Character states/Crouch")
@@ -187,3 +191,18 @@ func animation_finished(_anim_name):
 
 func animation_started(_anim_name):
 	animation_end = false
+
+
+func _on_spike_area_body_entered(body):
+	print("Restart")
+
+func instance_create(preloaded_scene, parent_node):
+	var preloaded_scene_instance = preloaded_scene.instantiate()
+	if parent_node:
+		parent_node.add_child(preloaded_scene_instance)
+	else:
+		add_child(preloaded_scene_instance)
+	return preloaded_scene_instance
+	
+func _on_room_area_ready():
+	pass # Replace with function body.

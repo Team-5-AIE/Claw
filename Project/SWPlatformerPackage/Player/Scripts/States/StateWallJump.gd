@@ -5,6 +5,11 @@ extends State
 # This state happens if we have pressed the Jump key.
 var jump_direction : Vector2 = Vector2(1,0)
 func EnterState() -> void:
+	var dust_instance = player.instance_create(player.RUN_DUST_PARTICLES,player)
+	dust_instance.scale.x = sign(-player.velocity.x)
+	dust_instance.set_as_top_level(true)
+	dust_instance.global_position = player.dustMarker2D.global_position + Vector2(sign(player.velocity.x) * 3,0)
+	
 	if !player.always_allow_wall_jumps:
 		player.current_wall_jumps -= 1
 		if player.current_wall_jumps == 0:
@@ -53,7 +58,7 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 		#return
 
 
-func Inputs(event):
+func Inputs(_event):
 	# Change to Spear Throw state
 	if player.finite_state_machine.can_we_throw_spear():
 		player.finite_state_machine.ChangeState(player.state_claw)

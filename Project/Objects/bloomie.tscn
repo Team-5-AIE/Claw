@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgw3eujb45oi8"]
+
+[ext_resource type="Texture2D" path="res://Sprites/Bloomie.png" id="1_mwvca"]
+[ext_resource type="Script" path="res://Scripts/bloomie.gd" id="1_ou05q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yqcc"]
+atlas = ExtResource("1_mwvca")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8pr4"]
+atlas = ExtResource("1_mwvca")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfq47"]
+atlas = ExtResource("1_mwvca")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgl0j"]
+atlas = ExtResource("1_mwvca")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwjfy"]
+atlas = ExtResource("1_mwvca")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tdlx3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yqcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8pr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfq47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgl0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwjfy")
+}],
+"loop": true,
+"name": &"Bloomie",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6sv0p"]
+radius = 6.0
+
+[node name="Bloomie" type="Node2D"]
+z_index = 1
+script = ExtResource("1_ou05q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tdlx3")
+animation = &"Bloomie"
+autoplay = "Bloomie"
+frame_progress = 0.211903
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6sv0p")
+
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

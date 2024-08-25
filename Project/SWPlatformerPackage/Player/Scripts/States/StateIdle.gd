@@ -14,7 +14,7 @@ func EnterState() -> void:
 		print("Debug: Idle State")
 	player.animation_player.play("Idle")
 
-func UpdatePhysics(delta) -> void: # Runs in _physics_process()
+func UpdatePhysics(_delta) -> void: # Runs in _physics_process()
 	# Change to Fall state
 	if !player.is_on_floor():
 		player.finite_state_machine.ChangeState(player.state_fall)
@@ -26,7 +26,7 @@ func Update(_delta)-> void:  # Runs in _process()
 		player.finite_state_machine.ChangeState(player.state_move)
 		return
 
-func Inputs(event):
+func Inputs(_event):
 	# Change to Spear Throw state
 	if player.finite_state_machine.can_we_throw_spear():
 		player.finite_state_machine.ChangeState(player.state_claw)

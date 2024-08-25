@@ -21,7 +21,7 @@ var flash_time = 0
 var sprite_flip_lock = false
 var disable_gravity = false
 var air_resistance_lock = false
-var friction_lock = false
+@export var friction_lock = false
 
 #=================================Functions===================================================
 func _ready() -> void:
@@ -46,7 +46,8 @@ func _physics_process(delta) -> void:
 		apply_gravity(delta)
 	if !player.state_jump.bunnyhop:
 		apply_friction(delta)
-		apply_air_resistance(delta)
+		if player.finite_state_machine.state != player.state_claw:
+			apply_air_resistance(delta)
 	# Coyote jump timing
 	var was_on_floor = player.is_on_floor()
 	player.move_and_slide() # This apllies movement to the player
@@ -112,7 +113,10 @@ func update_sprite_flip() -> void:
 
 func apply_friction(delta) -> void:
 	if player.input_axis.x == 0 && player.is_on_floor() && !friction_lock:
-		player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)
+		if player.finite_state_machine.previous_state == player.state_slide:
+			player.velocity.x = move_toward(player.velocity.x, 0, player.slide_friction * delta)
+		else:
+			player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)
 
 func apply_gravity(delta) -> void:
 	if !player.is_on_floor() && player.velocity.y < player.current_max_gravity:
@@ -151,8 +155,8 @@ func can_we_jump() -> bool:
 func can_we_wall_jump() -> bool:
 	if Input.is_action_just_pressed("Jump") && get_next_to_wall() != Vector2.ZERO && player.wall_jump_enabled && player.wall_jump_available:
 		if player.current_wall_jumps > 0 || player.always_allow_wall_jumps:
-			if player.wall_grab_stamina.time_left > 0.0 || !player.wall_grab_stamina_enabled:
-				return true
+			#if player.wall_grab_stamina.time_left > 0.0 || !player.wall_grab_stamina_enabled:
+			return true
 	return false
 
 func can_we_crouch() -> bool:

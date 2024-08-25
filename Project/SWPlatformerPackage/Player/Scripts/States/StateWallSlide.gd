@@ -1,6 +1,7 @@
 class_name StateWallSlide
 extends State
 @onready var player = $"../.."
+@onready var wall_dust_timer = $WallDustTimer
 
 func EnterState() -> void:
 	player.wall_grab_stamina.paused = false
@@ -12,7 +13,16 @@ func EnterState() -> void:
 		player.sprite_sheet.flip_h = false
 	player.finite_state_machine.sprite_flip_lock = true
 	player.animation_player.play("WallSlide")
-	
+
+func Update(_delta) -> void:
+	if wall_dust_timer.time_left <= 0.0:
+		var dust_instance = player.instance_create(player.SLIDE_DUST_PARTICLES,player)
+		dust_instance.scale.y = sign(player.velocity.y)
+		dust_instance.scale.x = 0
+		dust_instance.set_as_top_level(true)
+		dust_instance.global_position = player.dustMarker2D.global_position + Vector2(player.last_input_direction.x*3,0) + Vector2(randi_range(0,1),0)
+		wall_dust_timer.start()
+
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	player.animation_player.play("WallSlide") #NOTE: Needed? or can just loop the animation?
 	player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.acceleration * delta)
@@ -40,7 +50,7 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	if !player.input_axis.y > 0:
 		player.velocity.y *= player.wall_slide_friction
 
-func Inputs(event) -> void:  # Runs in _process()
+func Inputs(_event) -> void:  # Runs in _process()
 	# Change to Spear Throw state
 	if player.finite_state_machine.can_we_throw_spear():
 		player.finite_state_machine.ChangeState(player.state_claw)

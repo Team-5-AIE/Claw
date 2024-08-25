@@ -19,7 +19,10 @@ var damping = 0.995
 var angularVel : float = 0.0
 var angularAcceleration : float = 0.0
 var correctionNeeded = true
+var autoGrapple : bool = false
+#=================================================================================
 func EnterState() -> void:
+	autoGrapple = false
 	#player.finite_state_machine.disable_gravity = true
 	correctionNeeded = true
 	if player.debug_mode:
@@ -58,7 +61,7 @@ func EnterState() -> void:
 	clawInstance.player = player
 	clawInstance.global_position = player.claw_marker.global_position
 	clawInstance.Shoot(shootDirection)
-
+#=================================================================================
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	if clawInstance.hooked:
 		ProcessVelocity(delta)
@@ -69,7 +72,7 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 		if player.is_on_floor():
 			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.acceleration * delta)
 
-func Inputs(event) -> void:
+func Inputs(_event) -> void:
 	pass
 
 func ExitState() -> void:
@@ -80,29 +83,13 @@ func ExitState() -> void:
 	player.legs_ground.visible = false
 	#player.finite_state_machine.disable_gravity = false
 	player.spearCooldownTimer.start()
-
-func SetStartPosition(start:Vector2,end:Vector2) -> void:
-	
-	print("startpos")
-	pivotPoint = start
-	endPos = end
-	length = clawInstance.ropeLength
-	angle = -start.angle_to_point(end) + deg_to_rad(-90)
-	angularVel = 0.0
-	angularAcceleration = 0.0
-
+#=================================================================================
 func ProcessVelocity(delta:float) -> void:
-	FinnsMovement(delta)
-	
-
-func AddAngularVelocity(force:float)-> void:
-	angularVel += force
-
-func FinnsMovement(delta) -> void:
 	var clawToPlayer = player.claw_marker.global_position - clawInstance.global_position
 	var ropeDirection : Vector2 = clawToPlayer
 	
-	if Input.is_action_just_pressed("ClawPull"):
+	#AutoGrapple
+	if Input.is_action_just_pressed("ClawPull") || autoGrapple:
 		clawInstance.released = true
 		#if clawInstance.ropeLength > 16:
 		#	clawInstance.ropeLength -= delta * 150
@@ -131,45 +118,6 @@ func FinnsMovement(delta) -> void:
 		#player.velocity = vel
 	if player.input_axis.x != 0:
 		player.velocity += circularArcDirection * player.input_axis.x * 8
-	
-func PendulumMovement(delta) -> void:
-	angularAcceleration = ((gravity*delta) / clawInstance.ropeLength) * sin(angle)
-	angularVel += angularAcceleration
-	angularVel *= damping
-	angle += angularVel
-	#endPos only used for drawing the white line - 
-	# -- player should be at the end of it with correct velocity calculations
-	endPos = pivotPoint - Vector2(sin(angle), cos(angle)) * clawInstance.ropeLength
-	
-	#player.global_position = endPos
-	# If the player is holding down left or right - add force for swing
-	if player.input_axis.x != 0:
-		AddAngularVelocity(sign(player.input_axis.x)* 0.001)
-	
-	# Apply velocity to player based on calculations
-	var tanSpeed = angularVel * clawInstance.ropeLength
-	var velDir = Vector2(-cos(angle),sin(angle)) 
-	player.velocity = velDir * tanSpeed * swingSpeed
-	
-	var clawToPlayer = player.claw_marker.global_position - clawInstance.global_position
-	
-
-	
-	if Input.is_action_just_pressed("ClawPull"):
-		clawInstance.released = true
-		#if clawInstance.ropeLength > 16:
-		#	clawInstance.ropeLength -= delta * 150
-		player.velocity *= (1.0 - pullJumpStopFraction)
-		player.velocity += -clawToPlayer.normalized() * pullJumpStrength
-	
-	
-	
-	
-	if Input.is_action_pressed("Down"):
-	#if correctionNeeded:
-		var offsetVelocity = (pivotPoint - endPos).normalized() * length
-		player.velocity.x += offsetVelocity.x
-		# check if we have corrected the movement
-		#if #position is corrected:
-		#	correctionNeeded = false
-		#	print("correction finished")
+#=================================================================================
+func AddAngularVelocity(force:float)-> void:
+	angularVel += force

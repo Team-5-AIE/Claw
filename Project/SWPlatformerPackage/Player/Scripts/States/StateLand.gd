@@ -24,7 +24,7 @@ func Update(_delta) -> void: # Runs in _process()
 		player.finite_state_machine.ChangeState(player.state_move)
 		return
 
-func Inputs(event):
+func Inputs(_event):
 	# Change to Spear Throw state
 	if player.finite_state_machine.can_we_throw_spear():
 		player.finite_state_machine.ChangeState(player.state_claw)

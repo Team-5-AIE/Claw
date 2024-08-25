@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=43 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
@@ -220,6 +220,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_cnfvd"]
 resource_name = "Idle"
+length = 0.7
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -228,10 +229,10 @@ tracks/0/path = NodePath("SpriteSheet:frame")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+"values": [0, 1, 2, 3, 4, 5, 6]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -275,7 +276,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ohb0t"]
 resource_name = "Land"
-length = 0.9
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -283,10 +284,10 @@ tracks/0/path = NodePath("SpriteSheet:frame")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [40, 41, 42, 43, 44, 45, 46, 47, 48]
+"values": [0, 0, 1, 2, 3, 4, 5]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -403,7 +404,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_q1qge"]
 resource_name = "Slide"
-length = 0.8
+length = 0.1
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -546,7 +547,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_gavbd"]
 resource_name = "WallJump"
-length = 0.2
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -554,10 +555,10 @@ tracks/0/path = NodePath("SpriteSheet:frame")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [130, 131]
+"values": [20, 21, 22]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -574,7 +575,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_etpra"]
 resource_name = "WallSlide"
-length = 0.4
+length = 0.1
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -662,17 +663,25 @@ size = Vector2(10, 27)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eo6j1"]
 size = Vector2(10, 21)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xieor"]
+size = Vector2(19, 40)
+
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 2
+z_index = 1
+collision_mask = 10
 floor_constant_speed = true
 floor_block_on_wall = false
 floor_snap_length = 3.0
 script = ExtResource("1_qfw28")
+slide_speed = 240.0
+slide_time = 0.3
+slide_friction = 600.0
 crouch_jump_height = 300.0
 low_stamina_flash_color = SubResource("GradientTexture1D_rlb5p")
+wall_climb_enabled = false
 wall_grab_stamina_enabled = false
 acceleration = 3000.0
-friction = 300.0
+friction = 600.0
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)
@@ -682,6 +691,7 @@ hframes = 10
 vframes = 14
 
 [node name="LegsAir" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -16)
 texture = ExtResource("2_rrav3")
 hframes = 10
@@ -689,6 +699,7 @@ vframes = 14
 frame = 32
 
 [node name="LegsGround" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -16)
 texture = ExtResource("2_rrav3")
 hframes = 10
@@ -709,6 +720,10 @@ script = ExtResource("4_kiun4")
 
 [node name="StateMove" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("5_wvydp")
+
+[node name="RunDustTimer" type="Timer" parent="FiniteStateMachine/StateMove"]
+wait_time = 0.3
+one_shot = true
 
 [node name="StateFall" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("6_8mfgh")
@@ -737,8 +752,16 @@ script = ExtResource("11_r1ntv")
 [node name="StateWallSlide" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("12_q8x25")
 
+[node name="WallDustTimer" type="Timer" parent="FiniteStateMachine/StateWallSlide"]
+wait_time = 0.1
+one_shot = true
+
 [node name="StateSlide" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("13_nh8it")
+
+[node name="SlideDustTimer" type="Timer" parent="FiniteStateMachine/StateSlide"]
+wait_time = 0.05
+one_shot = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13.5)
@@ -812,6 +835,22 @@ collision_mask = 2
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -29)
 
+[node name="BloomieMarker2D" type="Marker2D" parent="."]
+position = Vector2(0, -40)
+
+[node name="SpikeArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeArea"]
+position = Vector2(0.5, -20)
+shape = SubResource("RectangleShape2D_xieor")
+debug_color = Color(1, 0.800359, 0.969968, 0.42)
+
+[node name="DustMarker2D" type="Marker2D" parent="."]
+position = Vector2(0, -3)
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
 [connection signal="timeout" from="Timers/JumpBufferTimer" to="FiniteStateMachine" method="_on_jump_buffer_timer_timeout"]
+[connection signal="body_entered" from="SpikeArea" to="." method="_on_spike_area_body_entered"]

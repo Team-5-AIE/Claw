@@ -35,19 +35,14 @@ func _draw():
 	var clawToPlayer = player.claw_marker.global_position - global_position
 	draw_line(Vector2.ZERO, - clawToPlayer.normalized()*50, Color.DARK_ORCHID)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	queue_redraw()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if extending:
-		if move_and_collide(direction * SPEED):
-			#var offset = player.global_position - player.claw_marker.global_position
-			#var startPos = player.global_position-global_position - offset
-			#var endPos = Vector2.ZERO
-			#startPos.distance_to(endPos)
+		if move_and_collide(direction * SPEED):	
 			print("A hook thing just happened!")
 			ropeLength = player.claw_marker.global_position.distance_to(global_position)
-			player.state_claw.SetStartPosition(global_position,player.claw_marker.global_position)
 			hooked = true
 			extending = false
 	#NOTE: UNCOMMENT
@@ -75,3 +70,19 @@ func Release() -> void:
 	else:
 		player.finite_state_machine.ChangeState(player.state_fall)
 	retracted = true
+
+#func RetriveCustomData(mouseTilePos,customDataString,layer):
+#	#Auto Grapple Hook
+#	var customDataName = "AutoGrapple"
+#	var tileData : TileData = tilemap.get_cell_tile_data(layer,mouseTilePos)
+#	if tileData:
+#		#print("TileData: " + str(tileData))
+#		return tileData.get_custom_data(customDataString)
+#	else:
+#		#print("No tile data.")
+#		return false
+
+func _on_auto_grapple_area_body_entered(body):
+	print("AutoGrapple point grabbed")
+	player.state_claw.autoGrapple = true
+	pass # Replace with function body.

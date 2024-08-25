@@ -10,15 +10,21 @@ func EnterState() -> void:
 		player.animation_player.play("Jump")
 	else:
 		player.animation_player.play("Fall")
+	
+	if player.finite_state_machine.previous_state == player.state_claw:
+		var dust_instance = player.instance_create(player.RUN_DUST_PARTICLES,player)
+		dust_instance.scale.x = sign(-player.velocity.x)
+		dust_instance.set_as_top_level(true)
+		dust_instance.global_position = player.dustMarker2D.global_position
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	player.animation_player.play("Fall") #NOTE: not needed? need test
 	if player.finite_state_machine.previous_state == player.state_claw:
-		pass
 		#NOTE: below stops momentum when holding - check only if holding oposite direction of
 		#current velocity
-		#if player.input_axis != Vector2.ZERO:
-		#	player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
+		if player.input_axis.x != 0 && player.input_axis.x != sign(player.velocity.x):
+			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
+			print("input")
 	else:
 		if player.input_axis != Vector2.ZERO:
 			if !player.state_jump.bunnyhop:
@@ -44,7 +50,7 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 		return
 
 
-func Inputs(event):
+func Inputs(_event):
 	# Change to Spear Throw state
 	if player.finite_state_machine.can_we_throw_spear():
 		player.finite_state_machine.ChangeState(player.state_claw)
