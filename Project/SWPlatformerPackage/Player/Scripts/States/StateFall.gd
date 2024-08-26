@@ -1,15 +1,15 @@
 class_name StateFall
 extends State
 @onready var player = $"../.."
+var jumpedFromClaw = false
 # This state can transition to: Land, Jump, 
 # This state happens if we are not grounded.
 func EnterState() -> void:
 	if player.debug_mode:
 		print("Debug: Fall State")
-	if player.finite_state_machine.previous_state == player.state_claw:
-		player.animation_player.play("Jump")
-	else:
-		player.animation_player.play("Fall")
+	if jumpedFromClaw:
+		player.velocity.y = -player.jump_height
+	player.animation_player.play("Fall")
 	
 	if player.finite_state_machine.previous_state == player.state_claw:
 		var dust_instance = player.instance_create(player.RUN_DUST_PARTICLES,player)
@@ -18,11 +18,10 @@ func EnterState() -> void:
 		dust_instance.global_position = player.dustMarker2D.global_position
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
-	player.animation_player.play("Fall") #NOTE: not needed? need test
 	if player.finite_state_machine.previous_state == player.state_claw:
-		#NOTE: below stops momentum when holding - check only if holding oposite direction of
+		#NOTE: below stops momentum when holding - check only if holding opposite direction of
 		#current velocity
-		if player.input_axis.x != 0 && player.input_axis.x != sign(player.velocity.x):
+		if player.input_axis.x != 0: #&& player.input_axis.x != sign(player.velocity.x):
 			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
 			print("input")
 	else:
@@ -72,5 +71,5 @@ func Inputs(_event):
 		return
 
 func ExitState() -> void:
-	pass
+	jumpedFromClaw = false
 
