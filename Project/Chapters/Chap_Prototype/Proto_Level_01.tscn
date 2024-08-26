@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqoinenq630dp"]
+[gd_scene load_steps=12 format=3 uid="uid://bqoinenq630dp"]
 
 [ext_resource type="PackedScene" uid="uid://bopty78xd6id4" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_01.tscn" id="1_srfjq"]
 [ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="2_2yd10"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b0y8ydfoqoir8" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_05.tscn" id="5_n07ar"]
 [ext_resource type="PackedScene" uid="uid://bug15qn4sre77" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_06.tscn" id="6_jaiv2"]
 [ext_resource type="PackedScene" uid="uid://fp1jvcdkpsb6" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_07.tscn" id="7_v78ak"]
+[ext_resource type="PackedScene" uid="uid://btcxo5e0rkfmv" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_08.tscn" id="8_8hcxd"]
 
 [node name="Proto_Level_01" type="Node2D"]
 
@@ -34,6 +35,9 @@ position = Vector2(2720, 416)
 
 [node name="Room007" parent="LoadedRooms" instance=ExtResource("7_v78ak")]
 position = Vector2(2720, -672)
+
+[node name="Room008" parent="LoadedRooms" instance=ExtResource("8_8hcxd")]
+position = Vector2(2048, -672)
 
 [node name="Player" parent="." instance=ExtResource("2_2yd10")]
 unique_name_in_owner = true
