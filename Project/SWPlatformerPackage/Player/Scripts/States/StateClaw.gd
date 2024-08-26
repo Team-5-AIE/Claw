@@ -27,13 +27,8 @@ func EnterState() -> void:
 	correctionNeeded = true
 	if player.debug_mode:
 		print("Debug: Claw State")
-	player.animation_player.play("ShootClaw")
-	if player.is_on_floor():
-		player.legs_air.visible = false
-		player.legs_ground.visible = true
-	else:
-		player.legs_air.visible = true
-		player.legs_ground.visible = false
+	
+	player.animation_player.play("Idle") #TODO: Look less jank - calulate movement and animations
 	# Get direction to shoot in
 	if player.lockclaw45direction || Input.is_action_just_pressed("C"):
 		shootDirection = Vector2(player.last_input_direction.x,-1)
@@ -46,14 +41,11 @@ func EnterState() -> void:
 		player.claw_marker.global_position = player.global_position + Vector2(-6,-28)
 		player.sprite_sheet.flip_h = false
 		clawInstance.flipped = false
-		player.legs_air.flip_h = false
-		player.legs_ground.flip_h = false
 	else:
 		player.claw_marker.global_position = player.global_position + Vector2(6,-28)
 		player.sprite_sheet.flip_h = true
 		clawInstance.flipped = true
-		player.legs_air.flip_h = true
-		player.legs_ground.flip_h = true
+
 	#Create claw and set it up
 	
 	
@@ -64,9 +56,8 @@ func EnterState() -> void:
 #=================================================================================
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	if clawInstance.hooked:
+		player.animation_player.play("ShootClaw")
 		ProcessVelocity(delta)
-		player.legs_air.visible = true
-		player.legs_ground.visible = false
 	else:
 		# We haven't hooked the claw - free movement
 		if player.is_on_floor():
@@ -76,11 +67,9 @@ func Inputs(_event) -> void:
 	pass
 
 func ExitState() -> void:
-	clawInstance.queue_free()
+	clawInstance = null
 	player.finite_state_machine.sprite_flip_lock = false
 	pivotPoint = Vector2.ZERO
-	player.legs_air.visible = false
-	player.legs_ground.visible = false
 	#player.finite_state_machine.disable_gravity = false
 	player.spearCooldownTimer.start()
 #=================================================================================
@@ -90,7 +79,7 @@ func ProcessVelocity(delta:float) -> void:
 	
 	#AutoGrapple
 	if Input.is_action_just_pressed("ClawPull") || autoGrapple:
-		clawInstance.released = true
+		clawInstance.pullReleased = true
 		#if clawInstance.ropeLength > 16:
 		#	clawInstance.ropeLength -= delta * 150
 		player.velocity *= (1.0 - pullJumpStopFraction)

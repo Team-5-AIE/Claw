@@ -80,5 +80,6 @@ unique_name_in_owner = true
 position = Vector2(-1, 69)
 
 [node name="PlayerCamera" parent="Player" instance=ExtResource("4_18au6")]
+offset = Vector2(1, 0)
 zoom = Vector2(1, 1)
 script = ExtResource("5_h47yn")
