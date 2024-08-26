@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="SceneGraph" load_steps=19 format=3 uid="uid://b3wa3ufarlyhq"]
+
+[ext_resource type="PackedScene" uid="uid://cucqduto0ri2x" path="res://Chapters/Chapter_Test/Rooms/room_0_01.tscn" id="1_dpgoe"]
+[ext_resource type="Script" path="res://addons/scenegraph/SceneGraphResource.gd" id="1_vgu1x"]
+[ext_resource type="PackedScene" uid="uid://cq7qljxeh6r5f" path="res://Chapters/Chapter_Test/Rooms/room_0_02.tscn" id="2_o4icx"]
+[ext_resource type="PackedScene" uid="uid://oxg001o7i4ki" path="res://Chapters/Chapter_Test/Rooms/room_0_03.tscn" id="3_8u62o"]
+[ext_resource type="PackedScene" uid="uid://rm207swmgbth" path="res://Chapters/Chapter_Test/Rooms/room_0_04.tscn" id="4_h0wca"]
+[ext_resource type="PackedScene" uid="uid://cpetcxgtlr4si" path="res://Chapters/Chapter_Test/Rooms/room_0_05.tscn" id="5_pi1sf"]
+[ext_resource type="PackedScene" uid="uid://b0ier4o6d5egj" path="res://Chapters/Chapter_Test/Rooms/room_0_06.tscn" id="6_t2sln"]
+[ext_resource type="PackedScene" uid="uid://d2cdmdaubcfff" path="res://Chapters/Chapter_Test/Rooms/room_0_07.tscn" id="7_m1po0"]
+[ext_resource type="PackedScene" uid="uid://mdbgr6am0m7b" path="res://Chapters/Chapter_Test/Rooms/room_0_08.tscn" id="8_yjx5j"]
+[ext_resource type="PackedScene" uid="uid://bq6l3tmdfmnn7" path="res://Chapters/Chapter_Test/Rooms/room_0_09.tscn" id="9_fd3l3"]
+[ext_resource type="PackedScene" uid="uid://cevcnpmqkhlsg" path="res://Chapters/Chapter_Test/Rooms/room_0_10.tscn" id="10_cml13"]
+[ext_resource type="PackedScene" uid="uid://cphqd7iwt5ihf" path="res://Chapters/Chapter_Test/Rooms/room_0_11.tscn" id="11_cjt7v"]
+[ext_resource type="PackedScene" uid="uid://ccbj2l1kxwqrj" path="res://Chapters/Chapter_Test/Rooms/room_0_12.tscn" id="12_8qxdu"]
+[ext_resource type="PackedScene" uid="uid://44estvvwphxv" path="res://Chapters/Chapter_Test/Rooms/room_0_13.tscn" id="13_b8gge"]
+[ext_resource type="PackedScene" uid="uid://bjj8jhx67pmni" path="res://Chapters/Chapter_Test/Rooms/room_0_14.tscn" id="14_f4fu1"]
+[ext_resource type="PackedScene" uid="uid://d0t6oy2yg4yxo" path="res://Chapters/Chapter_Test/Rooms/room_0_15.tscn" id="15_p4ksd"]
+[ext_resource type="PackedScene" uid="uid://ccc2noirtdb81" path="res://Chapters/Chapter_Test/Rooms/room_0_16.tscn" id="16_rreid"]
+[ext_resource type="PackedScene" uid="uid://bqbodduptb5og" path="res://Chapters/Chapter_Test/Rooms/room_0_17.tscn" id="17_fwbnj"]
+
+[resource]
+script = ExtResource("1_vgu1x")
+scenes = Array[PackedScene]([ExtResource("1_dpgoe"), ExtResource("2_o4icx"), ExtResource("3_8u62o"), ExtResource("4_h0wca"), ExtResource("5_pi1sf"), ExtResource("6_t2sln"), ExtResource("7_m1po0"), ExtResource("8_yjx5j"), ExtResource("9_fd3l3"), ExtResource("10_cml13"), ExtResource("11_cjt7v"), ExtResource("12_8qxdu"), ExtResource("13_b8gge"), ExtResource("14_f4fu1"), ExtResource("15_p4ksd"), ExtResource("16_rreid"), ExtResource("17_fwbnj")])
