@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SceneGraph" load_steps=3 format=3 uid="uid://iinhd3wcggsd"]
 
 [ext_resource type="PackedScene" uid="uid://caybpfw35gqqw" path="res://SWPlatformerPackage/example_world.tscn" id="1_d83py"]
-[ext_resource type="Script" path="res://addons/scenegraph/SceneGraphResource.gd" id="2_88884"]
+[ext_resource type="Script" path="res://addons/scenegraph/RoomGraph.gd" id="2_88884"]
 
 [resource]
 script = ExtResource("2_88884")
