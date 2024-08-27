@@ -15,4 +15,3 @@ func Inputs(_event) -> void:  # Runs in _process()
 
 func ExitState() -> void:
 	pass
-

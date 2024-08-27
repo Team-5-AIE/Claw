@@ -1,14 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqoinenq630dp"]
+[gd_scene load_steps=15 format=3 uid="uid://bqoinenq630dp"]
 
-[ext_resource type="PackedScene" uid="uid://davl4ykchpfr3" path="res://SWPlatformerPackage/Tilemap/tilemap.tscn" id="1_028r1"]
+[ext_resource type="PackedScene" uid="uid://bopty78xd6id4" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_01.tscn" id="1_srfjq"]
 [ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="2_2yd10"]
+[ext_resource type="PackedScene" uid="uid://dciet1p57tqsp" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_02.tscn" id="2_83h3q"]
 [ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="3_36658"]
+[ext_resource type="PackedScene" uid="uid://0g2eqon6fx34" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_03.tscn" id="3_y6woc"]
+[ext_resource type="PackedScene" uid="uid://chy7xo52105a8" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_04.tscn" id="4_bisco"]
+[ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="4_r3ojs"]
+[ext_resource type="PackedScene" uid="uid://b0y8ydfoqoir8" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_05.tscn" id="5_n07ar"]
+[ext_resource type="PackedScene" uid="uid://bug15qn4sre77" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_06.tscn" id="6_jaiv2"]
+[ext_resource type="PackedScene" uid="uid://fp1jvcdkpsb6" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_07.tscn" id="7_v78ak"]
+[ext_resource type="PackedScene" uid="uid://btcxo5e0rkfmv" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_08.tscn" id="8_8hcxd"]
+[ext_resource type="PackedScene" uid="uid://c3woce6kqsywi" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_09.tscn" id="9_lkidb"]
+[ext_resource type="PackedScene" uid="uid://caas8vj3t6p4d" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_10.tscn" id="10_ypycs"]
+[ext_resource type="PackedScene" uid="uid://dtk7fplblwo6i" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_11.tscn" id="11_gpyr8"]
 
 [node name="Proto_Level_01" type="Node2D"]
 
-[node name="TileMap" parent="." instance=ExtResource("1_028r1")]
-layer_0/tile_data = PackedInt32Array(786411, 65536, 0, 720875, 65536, 0, 655339, 65536, 0, 589803, 65536, 0, 524267, 65536, 0, 458731, 65536, 0, 393195, 65536, 0, 327659, 65536, 0, 262123, 65536, 0, 196587, 65536, 0, 131051, 65536, 0, 65515, 65536, 0, -21, 65536, 0, -65557, 65536, 0, -131093, 65536, 0, -196629, 65536, 0, -262165, 65536, 0, -327701, 65536, 0, -393237, 65536, 0, -458773, 65536, 0, -524309, 65536, 0, -589845, 65536, 0, -655381, 65536, 0, -720917, 65536, 0, -786412, 65536, 0, -786413, 65536, 0, -786414, 65536, 0, -786415, 65536, 0, -786416, 65536, 0, -786417, 65536, 0, -786418, 65536, 0, -786419, 65536, 0, -786420, 65536, 0, -786421, 65536, 0, -786422, 65536, 0, -786423, 65536, 0, -786424, 65536, 0, -786425, 65536, 0, -786426, 65536, 0, -786427, 65536, 0, -786428, 65536, 0, -786429, 65536, 0, -786430, 65536, 0, -786431, 65536, 0, -786432, 65536, 0, -720897, 65536, 0, -720898, 65536, 0, -720899, 65536, 0, -720900, 65536, 0, -720901, 65536, 0, -720902, 65536, 0, -720903, 65536, 0, -720904, 65536, 0, -720905, 65536, 0, -720906, 65536, 0, -720907, 65536, 0, -720908, 65536, 0, -720909, 65536, 0, -720910, 65536, 0, -720911, 65536, 0, -720912, 65536, 0, -720913, 65536, 0, -720914, 65536, 0, -720915, 65536, 0, -720916, 65536, 0, 786412, 65536, 0, 786413, 65536, 0, 786414, 65536, 0, 786415, 65536, 0, 786416, 65536, 0, 786417, 65536, 0, 786418, 65536, 0, 786419, 65536, 0, 786420, 65536, 0, 786421, 65536, 0, 786422, 65536, 0, 786423, 65536, 0, 786424, 65536, 0, 786425, 65536, 0, 786426, 65536, 0, 786427, 65536, 0, 786428, 65536, 0, 786429, 65536, 0, 786430, 65536, 0, 786431, 65536, 0, 720896, 65536, 0, 720897, 65536, 0, 720898, 65536, 0, 720899, 65536, 0, 720900, 65536, 0, 720901, 65536, 0, 720902, 65536, 0, 720903, 65536, 0, 720904, 65536, 0, 720905, 65536, 0, 720906, 65536, 0, 720907, 65536, 0, 720908, 65536, 0, 720909, 65536, 0, 720910, 65536, 0, 720911, 65536, 0, 720912, 65536, 0, 720913, 65536, 0, 720914, 65536, 0, 720915, 65536, 0, 720916, 65536, 0, 655380, 65536, 0, 589844, 65536, 0, 524308, 65536, 0, 458772, 65536, 0, 393236, 65536, 0, 327700, 65536, 0, 262164, 65536, 0, 196628, 65536, 0, 131092, 65536, 0, 65556, 65536, 0, 20, 65536, 0, -65516, 65536, 0, -131052, 65536, 0, -196588, 65536, 0, -262124, 65536, 0, -327660, 65536, 0, -393196, 65536, 0, -458732, 65536, 0, -524268, 65536, 0, -589804, 65536, 0, -655340, 65536, 0, -720876, 65536, 0, 65544, 65536, 536870915, 65545, 0, 3, 196612, 65536, 3, 131077, 65536, 3, 196613, 0, 536870915, 65542, 65536, 3, 131078, 0, 536870915, 7, 65536, 3, 65543, 0, 536870915, 8, 0, 3, 131081, 65536, 536870915, 131082, 0, 3, 196618, 65536, 536870915, 196619, 0, 3, 131062, 65536, 3, 131063, 0, 536870915, 262132, 65536, 3, 327668, 65536, 0, 393204, 65536, 0, 458740, 65536, 0, 524276, 65536, 0, 589812, 65536, 0, 655348, 65536, 0, 720884, 65536, 0, 196597, 65536, 3, 262133, 0, 536870915, 196598, 0, 536870915, 65527, 65536, 3, 65528, 0, 3, 131064, 65536, 536870915, 131065, 0, 3, 196601, 65536, 536870915, 196602, 0, 3, 262138, 65536, 536870915, 262139, 0, 3, 327675, 65536, 0, 393211, 65536, 0, 458747, 65536, 0, 524283, 65536, 0, 589819, 65536, 0, 655355, 65536, 0, 720891, 65536, 0, 262148, 65536, 0, 327684, 65536, 0, 393220, 65536, 0, 458756, 65536, 0, 524292, 65536, 0, 589828, 65536, 0, 655364, 65536, 0, 262155, 65536, 0, 327691, 65536, 0, 393227, 65536, 0, 458763, 65536, 0, 524299, 65536, 0, 589835, 65536, 0, 655371, 65536, 0)
+[node name="LoadedRooms" type="Node2D" parent="."]
 
-[node name="CustomCamera" parent="." instance=ExtResource("3_36658")]
+[node name="Room001" parent="LoadedRooms" instance=ExtResource("1_srfjq")]
+
+[node name="Room002" parent="LoadedRooms" instance=ExtResource("2_83h3q")]
+position = Vector2(640, 0)
+
+[node name="Room003" parent="LoadedRooms" instance=ExtResource("3_y6woc")]
+position = Vector2(1280, 0)
+
+[node name="Room004" parent="LoadedRooms" instance=ExtResource("4_bisco")]
+position = Vector2(1920, 0)
+
+[node name="Room005" parent="LoadedRooms" instance=ExtResource("5_n07ar")]
+position = Vector2(2720, 0)
+
+[node name="Room006" parent="LoadedRooms" instance=ExtResource("6_jaiv2")]
+position = Vector2(2720, 416)
+
+[node name="Room007" parent="LoadedRooms" instance=ExtResource("7_v78ak")]
+position = Vector2(2720, -672)
+
+[node name="Room008" parent="LoadedRooms" instance=ExtResource("8_8hcxd")]
+position = Vector2(2048, -672)
+
+[node name="Room009" parent="LoadedRooms" instance=ExtResource("9_lkidb")]
+position = Vector2(2720, 800)
+
+[node name="Room010" parent="LoadedRooms" instance=ExtResource("10_ypycs")]
+position = Vector2(2048, 400)
+
+[node name="Room011" parent="LoadedRooms" instance=ExtResource("11_gpyr8")]
+position = Vector2(1376, 400)
 
 [node name="Player" parent="." instance=ExtResource("2_2yd10")]
+unique_name_in_owner = true
+position = Vector2(-1, 69)
+
+[node name="PlayerCamera" parent="Player" instance=ExtResource("3_36658")]
+offset = Vector2(1, 0)
+zoom = Vector2(1, 1)
+script = ExtResource("4_r3ojs")
