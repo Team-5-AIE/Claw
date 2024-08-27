@@ -1,6 +1,6 @@
 @tool
 extends Resource
-class_name SceneGraph
+class_name RoomGraph
 
 @export var scenes : Array[PackedScene]
 
