@@ -72,4 +72,3 @@ func Inputs(_event):
 
 func ExitState() -> void:
 	jumpedFromClaw = false
-
