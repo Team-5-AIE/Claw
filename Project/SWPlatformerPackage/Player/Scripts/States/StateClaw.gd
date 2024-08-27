@@ -22,6 +22,8 @@ var correctionNeeded = true
 var autoGrapple : bool = false
 #=================================================================================
 func EnterState() -> void:
+	if clawInstance != null:
+		print("Claw already exists while we entered claw state - not retracted")
 	autoGrapple = false
 	#player.finite_state_machine.disable_gravity = true
 	correctionNeeded = true

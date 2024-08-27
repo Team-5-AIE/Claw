@@ -21,7 +21,6 @@ var flipped = false
 
 func _draw():
 	var clawToPlayer = player.claw_marker.global_position - global_position
-	distanceToPlayer = clawToPlayer.distance_to(Vector2.ZERO)
 	draw_line(Vector2.ZERO, clawToPlayer,Color.WHITE,1,false)
 	draw_line(Vector2.ZERO, - clawToPlayer.normalized()*50, Color.DARK_ORCHID)
 
@@ -33,24 +32,38 @@ func _process(_delta):
 func _physics_process(_delta):
 	if Retract(): return
 	if extending:
-		if move_and_collide(direction * SPEED):
+		var collision = move_and_collide(direction * SPEED)
+		if collision:
+			print(collision.get_collider().name)
 			print("A hook thing just happened!")
 			ropeLength = player.claw_marker.global_position.distance_to(global_position)
 			hooked = true
 			extending = false
+	tip = global_position
 	#Auto release the hook if you're grounded
 	if player.is_on_floor() && !extending:
+		print("Grounded release")
 		Release()
 		return
 	#NOTE: UNCOMMENT
+	#var clawToPlayer = player.claw_marker.global_position - global_position
+	distanceToPlayer = global_position.distance_to(player.claw_marker.global_position)
 	if distanceToPlayer > maxDistance && !hooked:
+		print("Rope snap release")
+		print(global_position)
+		print(player.claw_marker.global_position)
+		print(distanceToPlayer)
 		Release()
+		return
 	if pullReleased:
+		print("Pull release")
 		Release()
+		return
 	if Input.is_action_just_pressed("Jump") && !extending:
 		JumpRelease()
+		return
 		
-	tip = global_position
+	
 
 func Shoot(dir : Vector2) -> void:
 	direction = dir.normalized()
@@ -59,7 +72,7 @@ func Shoot(dir : Vector2) -> void:
 	
 	
 func Release() -> void:
-	#print("Release")
+	print("Release")
 	if player.is_on_floor():
 		player.finite_state_machine.ChangeState(player.state_idle)
 	else:
@@ -67,7 +80,7 @@ func Release() -> void:
 	retracted = true
 
 func JumpRelease() -> void:
-	#print("Jump Release")
+	print("Jump Release")
 	if player.is_on_floor():
 		player.state_fall.jumpedFromClaw = true
 		player.finite_state_machine.ChangeState(player.state_idle)
@@ -77,8 +90,8 @@ func JumpRelease() -> void:
 	retracted = true
 
 func Retract() -> bool:
-	#print("Retract")
 	if retracted:
+		print("Retract")
 		var clawToPlayer = player.claw_marker.global_position - global_position
 		global_position += clawToPlayer.normalized() * SPEED
 		
@@ -86,9 +99,12 @@ func Retract() -> bool:
 	return false
 
 func _on_auto_grapple_area_body_entered(body):
+	if body.name == "Claw":
+		print("Problem!")
 	if body.name == "Player":
 		if retracted:
 			queue_free()
+			retracted = false
 			return
 	else:
 		print("AutoGrapple point grabbed")

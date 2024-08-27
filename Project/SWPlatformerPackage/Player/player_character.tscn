@@ -792,6 +792,9 @@ one_shot = true
 [node name="SpearCooldownTimer" type="Timer" parent="Timers"]
 one_shot = true
 
+[node name="SnapRopeTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+
 [node name="RaycastSlideLeft" type="RayCast2D" parent="."]
 position = Vector2(-5, 0)
 target_position = Vector2(0, -27)
