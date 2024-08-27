@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4jes5u2y84h1"]
+[gd_scene load_steps=6 format=3 uid="uid://d4jes5u2y84h1"]
 
 [ext_resource type="PackedScene" uid="uid://dpslsxv46ohxu" path="res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 1.tscn" id="1_s5s36"]
+[ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="1_tut2c"]
+[ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="2_bnndv"]
 [ext_resource type="PackedScene" uid="uid://bboq3kevixd0r" path="res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 2.tscn" id="2_glsag"]
+[ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="3_k8hcm"]
 
 [node name="SceneTransitionBase" type="Node2D"]
 
@@ -11,3 +14,11 @@
 
 [node name="SceneTransition2" parent="LoadedRooms" instance=ExtResource("2_glsag")]
 position = Vector2(657, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_tut2c")]
+unique_name_in_owner = true
+position = Vector2(-1, 69)
+
+[node name="PlayerCamera" parent="Player" instance=ExtResource("2_bnndv")]
+zoom = Vector2(1, 1)
+script = ExtResource("3_k8hcm")

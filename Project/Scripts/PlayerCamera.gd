@@ -2,35 +2,35 @@ extends Camera2D
 
 # ---Variables---
 # Editor variables
-@export var frontOffset : int
+@export var m_frontOffset : int
 
 # Scene nodes
-@onready var player = $".."
-var roomBounds : CollisionShape2D
+@onready var m_player = $".."
+var m_roomArea : Area2D
+var m_roomBounds : CollisionShape2D
 
 # Public members
-var lookDirection : Vector2
+var m_lookDirection : Vector2
 
 
 # ---Functions---
 # Godot functions
 func _process(_delta):
-	if player != null and roomBounds != null:
-		if player.input_axis.x:
-			lookDirection = Vector2(player.input_axis.x, 0)
-			position = frontOffset * lookDirection
-		
-		# Clamp camera x
-		var clampedX = ClampCameraAxis(roomBounds.global_position.x, roomBounds.shape.size.x,
-									   get_viewport_rect().size.x)
-		limit_right = clampedX.x
-		limit_left = clampedX.y
-		
-		# Clamp camera y
-		var clampedY = ClampCameraAxis(roomBounds.global_position.y, roomBounds.shape.size.y,
-									   get_viewport_rect().size.y)
-		limit_bottom = clampedY.x
-		limit_top = clampedY.y
+	if m_player.input_axis.x:
+		m_lookDirection = Vector2(m_player.input_axis.x, 0)
+		position = m_frontOffset * m_lookDirection
+	
+	# Clamp camera x
+	var clampedX = ClampCameraAxis(m_roomBounds.global_position.x, m_roomBounds.shape.size.x,
+								   get_viewport_rect().size.x)
+	limit_right = clampedX.x
+	limit_left = clampedX.y
+	
+	# Clamp camera y
+	var clampedY = ClampCameraAxis(m_roomBounds.global_position.y, m_roomBounds.shape.size.y,
+								   get_viewport_rect().size.y)
+	limit_bottom = clampedY.x
+	limit_top = clampedY.y
 
 # Custom functions
 func ClampCameraAxis(boundsPos : float, boundsSize : float, camSize : float) -> Vector2:
@@ -41,7 +41,7 @@ func ClampCameraAxis(boundsPos : float, boundsSize : float, camSize : float) -> 
 		clamped.x = boundsPos + halfCamSizeY
 		clamped.y = boundsPos - halfCamSizeY
 	else:
-		var halfBoundsSizeY = boundsSize / 2
+		var halfBoundsSizeY = boundsSize / 2		
 		clamped.x = boundsPos + halfBoundsSizeY
 		clamped.y = boundsPos - halfBoundsSizeY
 	
