@@ -66,7 +66,9 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.acceleration * delta)
 
 func Inputs(_event) -> void:
-	pass
+	if Input.is_action_just_pressed("Down"):
+		clawInstance.retracted = true
+		player.finite_state_machine.ChangeState(player.state_fall)
 
 func ExitState() -> void:
 	clawInstance = null
