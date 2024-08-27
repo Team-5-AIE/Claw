@@ -64,4 +64,3 @@ func Inputs(_event) -> void:  # Runs in _process()
 func ExitState() -> void:
 	player.finite_state_machine.sprite_flip_lock = false
 	player.wall_grab_stamina.paused = true
-
