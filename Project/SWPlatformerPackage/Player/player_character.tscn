@@ -795,6 +795,7 @@ one_shot = true
 
 [node name="SnapRopeTimer" type="Timer" parent="Timers"]
 wait_time = 0.5
+one_shot = true
 
 [node name="RaycastSlideLeft" type="RayCast2D" parent="."]
 position = Vector2(-5, 0)

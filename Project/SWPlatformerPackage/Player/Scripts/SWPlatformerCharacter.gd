@@ -27,6 +27,7 @@ const SLIDE_DUST_PARTICLES = preload("res://Effects/slide_dust_particles.tscn")
 @onready var jump_buffer_timer = $Timers/JumpBufferTimer
 @onready var wall_grab_stamina = $Timers/WallGrabStamina
 @onready var spearCooldownTimer = $Timers/SpearCooldownTimer
+@onready var snap_rope_timer: Timer = $Timers/SnapRopeTimer
 
 #Visuals
 @onready var animation_player = $AnimationPlayer

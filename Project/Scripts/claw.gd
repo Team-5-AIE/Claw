@@ -17,7 +17,7 @@ var distanceToPlayer : float = 0
 var ropeLength : float = 0
 var pullReleased = false
 var flipped = false
-
+var ropeSnapTimerStarted = false
 
 func _draw():
 	var clawToPlayer = player.claw_marker.global_position - global_position
@@ -41,9 +41,17 @@ func _physics_process(_delta):
 			extending = false
 	tip = global_position
 	#Auto release the hook if you're grounded
-	if player.is_on_floor() && !extending:
+	if player.is_on_floor() && !extending && !ropeSnapTimerStarted:
+		player.snap_rope_timer.start()
+		ropeSnapTimerStarted = true
+	if !player.is_on_floor():
+		ropeSnapTimerStarted = false
+	
+	if player.snap_rope_timer.time_left == 0.00 && ropeSnapTimerStarted:
 		Release()
+		ropeSnapTimerStarted = false
 		return
+	
 	distanceToPlayer = global_position.distance_to(player.claw_marker.global_position)
 	if distanceToPlayer > maxDistance && !hooked:
 		Release()
