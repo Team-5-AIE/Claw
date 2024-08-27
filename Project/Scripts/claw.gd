@@ -59,7 +59,7 @@ func Shoot(dir : Vector2) -> void:
 	
 	
 func Release() -> void:
-	#print("Release")
+	print("Release")
 	if player.is_on_floor():
 		player.finite_state_machine.ChangeState(player.state_idle)
 	else:
@@ -67,7 +67,7 @@ func Release() -> void:
 	retracted = true
 
 func JumpRelease() -> void:
-	#print("Jump Release")
+	print("Jump Release")
 	if player.is_on_floor():
 		player.state_fall.jumpedFromClaw = true
 		player.finite_state_machine.ChangeState(player.state_idle)
@@ -77,7 +77,7 @@ func JumpRelease() -> void:
 	retracted = true
 
 func Retract() -> bool:
-	#print("Retract")
+	print("Retract")
 	if retracted:
 		var clawToPlayer = player.claw_marker.global_position - global_position
 		global_position += clawToPlayer.normalized() * SPEED
