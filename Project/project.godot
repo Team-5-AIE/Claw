@@ -130,9 +130,11 @@ Slide={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="World"
-2d_physics/layer_3="Spear/GrapplePointTile"
+2d_physics/layer_3="GrapplePoint"
 2d_physics/layer_4="Bloomies"
 2d_physics/layer_5="Spikes"
+2d_physics/layer_6="AutoGrapplePoint"
+2d_physics/layer_7="Spear"
 
 [rendering]
 

@@ -790,6 +790,7 @@ one_shot = true
 one_shot = true
 
 [node name="SpearCooldownTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
 one_shot = true
 
 [node name="SnapRopeTimer" type="Timer" parent="Timers"]

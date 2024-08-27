@@ -11,7 +11,7 @@ height = 13.0
 size = Vector2(11, 14)
 
 [node name="Claw" type="CharacterBody2D"]
-collision_layer = 4
+collision_layer = 64
 collision_mask = 4
 script = ExtResource("1_37xf6")
 SPEED = 15.0
