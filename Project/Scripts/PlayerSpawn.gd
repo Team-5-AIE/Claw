@@ -1,10 +1,6 @@
 @tool
 extends Node2D
 
-# ---Variables---
-# Editor variables
-@export var roomBounds : CollisionShape2D
-
 # ---Functions---
 func _ready():
 	if ! Engine.is_editor_hint():

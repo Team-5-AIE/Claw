@@ -15,8 +15,9 @@ func _on_room_init():
 	player = roomGlobals.player
 	playerCamera = player.get_node("PlayerCamera")
 	
-	if playerCamera.roomBounds == null:
-		playerCamera.roomBounds = roomBounds
+	#if playerCamera.roomBounds == null:
+		#playerCamera.roomBounds = roomBounds
+	playerCamera.roomBounds = roomBounds
 
 # Godot functions
 func _on_tree_entered():
@@ -24,5 +25,5 @@ func _on_tree_entered():
 		get_parent().set_editable_instance(self, true)
 
 # RoomTransition signals
-func _on_player_entered_room(_player):
-	playerCamera.roomBounds = roomBounds
+#func _on_player_entered_room(_player):
+	#playerCamera.roomBounds = roomBounds

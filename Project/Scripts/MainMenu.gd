@@ -1,6 +1,6 @@
 extends Control
 
-@export var startGameScene : PackedScene
+@export_file("*.tscn") var startGameScene : String
 
 @export var roomLoader : Node2D
 

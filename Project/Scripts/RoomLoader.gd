@@ -1,16 +1,13 @@
 extends Node2D
 
-# ---Variables---
-var currentRoom : Node2D
-var lastRoom : Node2D
-
 # ---Functions---
 # Custom functions
-func LoadRoom(roomScene : PackedScene) -> void:
-	lastRoom = currentRoom
+func LoadRoom(roomScenePath_ : String, player_ : SWPlatformerCharacter = null) -> Node2D:
+	assert(roomScenePath_ != "")
 	
-	var room = roomScene.instantiate()
+	var room = load(roomScenePath_).instantiate()
 	add_child(room)
-	currentRoom = room
 	
-	room.Init(get_parent(), self, null)
+	room.Init(get_parent(), self, player_)
+	
+	return room

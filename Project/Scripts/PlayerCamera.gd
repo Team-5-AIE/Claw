@@ -6,7 +6,9 @@ extends Camera2D
 
 # Scene nodes
 @onready var player = $".."
-var roomBounds : CollisionShape2D
+var roomBounds : CollisionShape2D:
+	set(value):
+		roomBounds = value
 
 # Public members
 var lookDirection : Vector2
