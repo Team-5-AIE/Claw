@@ -15,3 +15,6 @@ func _on_change_scenes_timeout() -> void:
 func _on_animation_looped() -> void:
 	getSprite.stop()
 	$"../Change Scenes".start()
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(getSprite, "modulate", Color(1,1,1,0),1.5).set_delay(1).set_ease(Tween.EASE_OUT)
