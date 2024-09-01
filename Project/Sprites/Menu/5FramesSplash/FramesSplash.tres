@@ -1,0 +1,74 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://dnu8babgfvnje"]
+
+[ext_resource type="Texture2D" uid="uid://dtbqmrbgikpec" path="res://Sprites/Menu/5FramesSplash/5-Frames Games1.png" id="1_2y5gh"]
+[ext_resource type="Texture2D" uid="uid://br3l3ebonmggt" path="res://Sprites/Menu/5FramesSplash/5-Frames Games2.png" id="2_gngk3"]
+[ext_resource type="Texture2D" uid="uid://btokqpy66q28n" path="res://Sprites/Menu/5FramesSplash/5-Frames Games3.png" id="3_4f2me"]
+[ext_resource type="Texture2D" uid="uid://hdbrfmna6v4p" path="res://Sprites/Menu/5FramesSplash/5-Frames Games4.png" id="4_bn4iu"]
+[ext_resource type="Texture2D" uid="uid://b77f0cq8k5mmc" path="res://Sprites/Menu/5FramesSplash/5-Frames Games5.png" id="5_54kyo"]
+[ext_resource type="Texture2D" uid="uid://d0cbkcuerg48i" path="res://Sprites/Menu/5FramesSplash/5-Frames Games6.png" id="6_yoh0u"]
+[ext_resource type="Texture2D" uid="uid://cc7emgjmhmpxn" path="res://Sprites/Menu/5FramesSplash/5-Frames Games7.png" id="7_5gyna"]
+[ext_resource type="Texture2D" uid="uid://rwrkx26yq7hb" path="res://Sprites/Menu/5FramesSplash/5-Frames Games8.png" id="8_3qu6n"]
+[ext_resource type="Texture2D" uid="uid://fkvggi65b81s" path="res://Sprites/Menu/5FramesSplash/5-Frames Games9.png" id="9_f62hr"]
+[ext_resource type="Texture2D" uid="uid://d4j48bv0d2g5l" path="res://Sprites/Menu/5FramesSplash/5-Frames Games10.png" id="10_f8pv7"]
+[ext_resource type="Texture2D" uid="uid://bxk2c17o1u24k" path="res://Sprites/Menu/5FramesSplash/5-Frames Games11.png" id="11_hwud6"]
+[ext_resource type="Texture2D" uid="uid://xfyxkws3ryik" path="res://Sprites/Menu/5FramesSplash/5-Frames Games12.png" id="12_gt60q"]
+[ext_resource type="Texture2D" uid="uid://dq788ldlbm7mb" path="res://Sprites/Menu/5FramesSplash/5-Frames Games13.png" id="13_jm8es"]
+[ext_resource type="Texture2D" uid="uid://clf56p28uygv4" path="res://Sprites/Menu/5FramesSplash/5-Frames Games14.png" id="14_2b73d"]
+[ext_resource type="Texture2D" uid="uid://123g6k41pvb0" path="res://Sprites/Menu/5FramesSplash/5-Frames Games15.png" id="15_8qw0w"]
+[ext_resource type="Texture2D" uid="uid://ddbnucdh3p1cp" path="res://Sprites/Menu/5FramesSplash/5-Frames Games16.png" id="16_h2w5a"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2y5gh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gngk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4f2me")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bn4iu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_54kyo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yoh0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5gyna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3qu6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_f62hr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_f8pv7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hwud6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_gt60q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jm8es")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_2b73d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_8qw0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_h2w5a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
