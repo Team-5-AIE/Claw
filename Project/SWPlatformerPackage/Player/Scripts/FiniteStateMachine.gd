@@ -33,6 +33,9 @@ func _process(delta) -> void:
 	manage_grab_stamina()
 	get_input()
 	update_sprite_flip()
+	#print(player.claw_marker.global_position)
+	#if player.state_claw.clawInstance != null:
+	#	print("***" + str(player.state_claw.clawInstance.global_position))
 
 func _input(event) -> void:
 	if state is State:
