@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Spearloom"
-run/main_scene="res://Rooms/splash_screen_frames.tscn"
+run/main_scene="res://Chapters/Chap_Prototype/Proto_Level_01.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=144
 boot_splash/bg_color=Color(0.909804, 0.756863, 0.439216, 1)

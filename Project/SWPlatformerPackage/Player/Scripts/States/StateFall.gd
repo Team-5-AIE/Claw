@@ -21,9 +21,10 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	if player.finite_state_machine.previous_state == player.state_claw:
 		#NOTE: below stops momentum when holding - check only if holding opposite direction of
 		#current velocity
-		if player.input_axis.x != 0: #&& player.input_axis.x != sign(player.velocity.x):
-			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
-			print("input")
+		if player.input_axis.x != 0:
+			if player.input_axis.x != sign(player.velocity.x) || absf(player.velocity.x) < player.run_speed:
+				player.velocity.x += player.air_acceleration * player.input_axis.x * delta
+				print("Slow down")
 	else:
 		if player.input_axis != Vector2.ZERO:
 			if !player.state_jump.bunnyhop:

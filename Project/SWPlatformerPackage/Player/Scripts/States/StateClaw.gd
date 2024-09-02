@@ -20,8 +20,14 @@ var angularVel : float = 0.0
 var angularAcceleration : float = 0.0
 var correctionNeeded = true
 var autoGrapple : bool = false
+var hookSoundPlayed = false
+@onready var audio_stream_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
+const HOOK1 = preload("res://Sounds/Effects/click (1).wav")
+const HOOK2 = preload("res://Sounds/Effects/click.wav")
 #=================================================================================
 func EnterState() -> void:
+	player.finite_state_machine.air_resistance_lock = true
+	hookSoundPlayed = false
 	if clawInstance != null:
 		print("Claw already exists while we entered claw state - not retracted")
 	autoGrapple = false
@@ -58,6 +64,13 @@ func EnterState() -> void:
 #=================================================================================
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	if clawInstance.hooked:
+		if !hookSoundPlayed:
+			var randSound = randi_range(0,1)
+			match randSound:
+				0: audio_stream_player.stream = HOOK1
+				1: audio_stream_player.stream = HOOK2
+			audio_stream_player.play()
+			hookSoundPlayed = true
 		player.animation_player.play("ShootClaw")
 		ProcessVelocity(delta)
 	else:
@@ -114,3 +127,7 @@ func ProcessVelocity(delta:float) -> void:
 #=================================================================================
 func AddAngularVelocity(force:float)-> void:
 	angularVel += force
+
+
+func _on_pull_speed_decrease_timeout() -> void:
+	player.finite_state_machine.air_resistance_lock = false
