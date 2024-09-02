@@ -2,15 +2,9 @@ extends Control
 
 @export_file("*.tscn") var startGameScene : String
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+@export var roomLoader : Node2D
 
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file(startGameScene.resource_path)
+	roomLoader.LoadRoom(startGameScene)
+	
+	queue_free()
