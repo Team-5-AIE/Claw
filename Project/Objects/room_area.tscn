@@ -6,9 +6,8 @@
 resource_local_to_scene = true
 size = Vector2(160, 160)
 
-[node name="RoomArea" type="Area2D" node_paths=PackedStringArray("m_roomBounds")]
+[node name="RoomArea" type="Area2D" groups=["RoomInitListeners"]]
 script = ExtResource("1_8fpn8")
-m_roomBounds = NodePath("RoomBounds")
 
 [node name="RoomBounds" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jsrs6")

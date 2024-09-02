@@ -1,6 +1,6 @@
 extends Control
 
-@export var startGameScene : PackedScene
+@export_file("*.tscn") var startGameScene : String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
