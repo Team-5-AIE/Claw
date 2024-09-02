@@ -1,9 +1,11 @@
 extends Node
 @onready var getSprite: AnimatedSprite2D = $"."
+@onready var getrect: ColorRect = $"../Control/CanvasLayer/ColorRect"
 
 func _ready():
 	var tween = get_tree().create_tween()
-	tween.tween_property(getSprite, "modulate", Color.WHITE, 1.5).set_ease(Tween.EASE_IN)
+	tween.tween_property(getrect, "color", Color8(218, 134, 62, 255), 1.3)
+	tween.tween_property(getSprite, "modulate", Color.WHITE, 1).set_ease(Tween.EASE_IN)
 
 func _on_animation_start_timeout() -> void:
 	getSprite.play()
@@ -18,3 +20,6 @@ func _on_animation_looped() -> void:
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(getSprite, "modulate", Color(1,1,1,0),1.5).set_delay(1).set_ease(Tween.EASE_OUT)
+	
+	var tween2 = get_tree().create_tween()
+	tween2.tween_property(getrect, "color", Color8(9,10,20,255), 1.8).set_delay(1).set_ease(Tween.EASE_OUT)
