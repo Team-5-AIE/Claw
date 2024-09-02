@@ -64,7 +64,6 @@ shape = SubResource("RectangleShape2D_mslrm")
 
 [node name="RoomTransitionRight" parent="Room Triggers" instance=ExtResource("5_0rqc2")]
 position = Vector2(312, -72)
-nextScene = "res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 2.tscn"
 
 [node name="CollisionShape2D" parent="Room Triggers/RoomTransitionRight" index="0"]
 shape = SubResource("SegmentShape2D_cj0k7")
@@ -75,7 +74,6 @@ flipSpawnDir = true
 
 [node name="RoomTransitionDown" parent="Room Triggers" instance=ExtResource("5_0rqc2")]
 position = Vector2(-264, 168)
-nextScene = "res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 3.tscn"
 exitDirection = "Down"
 
 [node name="CollisionShape2D" parent="Room Triggers/RoomTransitionDown" index="0"]

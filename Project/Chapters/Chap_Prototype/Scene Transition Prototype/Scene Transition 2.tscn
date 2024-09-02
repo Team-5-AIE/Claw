@@ -58,7 +58,6 @@ shape = SubResource("RectangleShape2D_nwh43")
 
 [node name="RoomTransition" parent="RoomTriggers" instance=ExtResource("6_1xxrs")]
 position = Vector2(-312, -72)
-nextScene = "res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 1.tscn"
 exitDirection = "Left"
 
 [node name="CollisionShape2D" parent="RoomTriggers/RoomTransition" index="0"]

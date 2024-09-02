@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_u5mcf"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="2_u8qgk"]
-[ext_resource type="Script" path="res://Scripts/RoomLoader.gd" id="4_hexht"]
+[ext_resource type="Script" path="res://Scripts/RoomContainer.gd" id="4_hexht"]
 
 [node name="GameRoot" type="Node"]
 
@@ -13,7 +13,7 @@ offset_right = 639.0
 offset_bottom = 358.0
 script = ExtResource("1_u5mcf")
 startGameScene = "res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 1.tscn"
-roomLoader = NodePath("../RoomLoader")
+roomLoader = NodePath("../RoomContainer")
 
 [node name="ColorRect" type="ColorRect" parent="MainMenu"]
 layout_mode = 2
@@ -69,7 +69,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 18
 text = "Exit Game"
 
-[node name="RoomLoader" type="Node2D" parent="."]
+[node name="RoomContainer" type="Node2D" parent="."]
 script = ExtResource("4_hexht")
 
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_pressed"]

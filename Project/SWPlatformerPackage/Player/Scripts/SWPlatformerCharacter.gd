@@ -199,7 +199,7 @@ func animation_started(_anim_name):
 	animation_end = false
 
 
-func _on_spike_area_body_entered(body):
+func _on_spike_area_body_entered(_body):
 	restartPlayer.emit()
 
 func instance_create(preloaded_scene, parent_node):
