@@ -24,8 +24,7 @@ var hookSoundPlayed = false
 @onready var audio_stream_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
 const HOOK1 = preload("res://Sounds/Effects/click (1).wav")
 const HOOK2 = preload("res://Sounds/Effects/click.wav")
-
-
+const PULLJUMP = preload("res://Sounds/Effects/pullJump.wav")
 #=================================================================================
 func EnterState() -> void:
 	hookSoundPlayed = false
@@ -54,7 +53,7 @@ func EnterState() -> void:
 		player.spear_marker.global_position = player.global_position + Vector2(6,-28)
 		player.sprite_sheet.flip_h = true
 		spearInstance.flipped = true
-
+	spearInstance.audio_stream_player = player.audio_stream_player
 	#Create Spear and set it up
 	
 	
@@ -80,7 +79,7 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.acceleration * delta)
 
 func Inputs(_event) -> void:
-	if Input.is_action_just_pressed("Down"):
+	if Input.is_action_just_pressed("LetGoOfSpear"):
 		spearInstance.retracted = true
 		player.finite_state_machine.ChangeState(player.state_fall)
 
@@ -96,12 +95,24 @@ func ProcessVelocity(delta:float) -> void:
 	var ropeDirection : Vector2 = spearToPlayer
 	
 	#AutoGrapple
-	if Input.is_action_just_pressed("SpearPull") || autoGrapple:
+	if Input.is_action_just_pressed("SpearPull"):
+		audio_stream_player.stream = PULLJUMP
+		audio_stream_player.play()
 		spearInstance.pullReleased = true
 		#if spearInstance.ropeLength > 16:
 		#	spearInstance.ropeLength -= delta * 150
 		player.velocity *= (1.0 - pullJumpStopFraction)
 		player.velocity += -spearToPlayer.normalized() * pullJumpStrength
+		
+	if autoGrapple:
+		audio_stream_player.stream = PULLJUMP #TODO: change this 
+		audio_stream_player.play()
+		spearInstance.pullReleased = true
+		#if spearInstance.ropeLength > 16:
+		#	spearInstance.ropeLength -= delta * 150
+		player.velocity *= (1.0 - pullJumpStopFraction)
+		player.velocity += -spearToPlayer.normalized() * pullJumpStrength
+		
 		
 	var currentRopeLength : float = ropeDirection.length()
 	ropeDirection /= currentRopeLength

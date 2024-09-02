@@ -19,6 +19,9 @@ var pullReleased = false
 var flipped = false
 var ropeSnapTimerStarted = false
 
+var audio_stream_player: AudioStreamPlayer
+const JUMP1 = preload("res://Sounds/Effects/jump (2).wav")
+const JUMP2 = preload("res://Sounds/Effects/jump (3).wav")
 func _draw():
 	var spearToPlayer = player.spear_marker.global_position - global_position
 	draw_line(Vector2.ZERO, spearToPlayer,Color.WHITE,1,false)
@@ -80,6 +83,11 @@ func Release() -> void:
 
 func JumpRelease() -> void:
 	#print("Jump Release")
+	var randSound = randi_range(0,1)
+	match randSound:
+		0: audio_stream_player.stream = JUMP1
+		1: audio_stream_player.stream = JUMP2
+	audio_stream_player.play()
 	if player.is_on_floor():
 		player.state_fall.jumpedFromSpear = true
 		player.finite_state_machine.ChangeState(player.state_idle)

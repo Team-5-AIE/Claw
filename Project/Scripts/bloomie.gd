@@ -4,6 +4,10 @@ var follow : bool = false
 var player = null
 var collected = false
 @onready var destroy_timer = $DestroyTimer
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+const COLLECT_BLOOMIE = preload("res://Sounds/Effects/collectBloomie.wav")
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,11 +22,15 @@ func _process(delta)-> void:
 			collected = true
 			follow = false
 			destroy_timer.start()
+			audio_stream_player.stream = COLLECT_BLOOMIE
+			audio_stream_player.play()
 	if collected:
 		if destroy_timer.time_left > 0.0:
 			global_position.y -= 1
 		else:
-			queue_free()
+			animated_sprite_2d.modulate.a -= 5
+			if !audio_stream_player.playing:
+				queue_free()
 
 
 func _on_area_2d_body_entered(body) -> void:

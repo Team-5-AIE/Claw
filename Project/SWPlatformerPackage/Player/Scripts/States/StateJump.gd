@@ -7,11 +7,10 @@ var bunnyhop = false
 var initVel : Vector2 = Vector2.ZERO
 # This state can transition to: Double jump, Dash, Fall.
 # This state happens if we have pressed the Jump key.
-const JUMP = preload("res://Sounds/Effects/Jump.wav")
-const JUMP1 = preload("res://Sounds/Effects/jump (1).wav")
-const JUMP2 = preload("res://Sounds/Effects/jump (2).wav")
+const JUMP  = preload("res://Sounds/Effects/jump (1).wav")
+const JUMP1 = preload("res://Sounds/Effects/jump (2).wav")
+const JUMP2 = preload("res://Sounds/Effects/jump (3).wav")
 @onready var audio_stream_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
-
 func EnterState() -> void:
 	
 	

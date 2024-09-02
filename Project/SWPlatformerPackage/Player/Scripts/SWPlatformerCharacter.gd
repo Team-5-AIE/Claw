@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var dustMarker2D = $DustMarker2D
 const RUN_DUST_PARTICLES = preload("res://Effects/run_dust_particles.tscn")
 const SLIDE_DUST_PARTICLES = preload("res://Effects/slide_dust_particles.tscn")
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
 # States
 @onready var finite_state_machine = $FiniteStateMachine as FiniteStateMachine
 @onready var state_idle = $FiniteStateMachine/StateIdle as StateIdle
