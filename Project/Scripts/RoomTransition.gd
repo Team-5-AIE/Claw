@@ -1,9 +1,26 @@
+@tool
 extends Area2D
+class_name RoomTransition
 
 # ---Variables---
 # Editor variables
+@export var playerSpawn : Node2D
+
 @export var roomGraph : RoomGraph
 @export_file("*.tscn") var nextScene : String
+@export_enum("Right", "Left", "Down", "Up") var exitDirection : String = "Right":
+	set(value):
+		exitDirection = value
+		
+		match value:
+			"Right":
+				_exitDirInternal = Vector2.RIGHT
+			"Left":
+				_exitDirInternal = Vector2.LEFT
+			"Down":
+				_exitDirInternal = Vector2.DOWN
+			"Up":
+				_exitDirInternal = Vector2.UP
 
 # Public variables
 @onready var roomGlobals : Node2D = get_owner()
@@ -13,6 +30,8 @@ var playerCamera : Camera2D
 
 # Private variables
 #@onready var _resourcePreviewer : EditorResourcePreview = EditorInterface.get_resource_previewer()
+
+var _exitDirInternal : Vector2
 
 var _previewCanvasItem : RID
 var _previewCanvasTexture : RID
@@ -28,28 +47,39 @@ func _on_room_init():
 
 # Godot functions
 func _ready():
-	print_debug("Just loaded = true")
-	_justLoaded = true
-	#if ! Engine.is_editor_hint():
-		#set_physics_process(false)
+	match exitDirection:
+			"Right":
+				_exitDirInternal = Vector2.RIGHT
+			"Left":
+				_exitDirInternal = Vector2.LEFT
+			"Down":
+				_exitDirInternal = Vector2.DOWN
+			"Up":
+				_exitDirInternal = Vector2.UP
+	
+	if ! Engine.is_editor_hint():
+		print_debug("Just loaded = true")
+		_justLoaded = true
+	else:
+		get_parent().set_editable_instance(self, true)
 
 func _process(_delta):
-	# This is awful, but is the hacky way I'm making it so that the player isn't seen as leaving
-	# the room the moment they enter
-	if _justLoaded == true:
-		if _justLoaded == true and _justLoadedLeewayCounter < 3:
-			print_debug("Just loaded leeway: " + str(_justLoadedLeewayCounter))
-			_justLoadedLeewayCounter += 1
-		else:
-			print_debug("Just loaded = false")
-			_justLoaded = false
-		
-	#if Engine.is_editor_hint():
-		#queue_redraw()
+	if ! Engine.is_editor_hint():
+		# This is awful, but is the hacky way I'm making it so that the player isn't seen as leaving
+		# the room the moment they enter
+		if _justLoaded == true:
+			if _justLoaded == true and _justLoadedLeewayCounter < 3:
+				print_debug("Just loaded leeway: " + str(_justLoadedLeewayCounter))
+				_justLoadedLeewayCounter += 1
+			else:
+				print_debug("Just loaded = false")
+				_justLoaded = false
+	else:
+		queue_redraw()
 
-#func _draw():
-	#if Engine.is_editor_hint():
-		#DrawArrow(Vector2.RIGHT, 30, 3, Color(1, 0, 0, 0.5))
+func _draw():
+	if Engine.is_editor_hint():
+		DrawArrow(_exitDirInternal, 30, 3, Color(1, 0, 0, 0.5))
 		#_resourcePreviewer.queue_resource_preview(nextScene.resource_path, self, "DrawRoomPreview", null)
 
 # RoomTransition signals
@@ -81,6 +111,8 @@ func _on_body_entered(body_):
 	
 	else:
 		print_debug("Body entered when just loaded = true")
+		
+		roomGlobals.currentSpawner = playerSpawn
 
 # EditorResourcePreview reciever function
 func DrawRoomPreview(path : String, preview : Texture2D, thumbnail_preview : Texture2D,

@@ -1,5 +1,8 @@
 class_name SWPlatformerCharacter
 extends CharacterBody2D
+# Signals
+signal restartPlayer
+
 # Node references
 #Markers
 @onready var claw_marker = $Marker2D
@@ -194,7 +197,7 @@ func animation_started(_anim_name):
 
 
 func _on_spike_area_body_entered(body):
-	print("Restart")
+	restartPlayer.emit()
 
 func instance_create(preloaded_scene, parent_node):
 	var preloaded_scene_instance = preloaded_scene.instantiate()

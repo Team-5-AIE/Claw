@@ -4,14 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_dnnk1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqbup"]
-resource_local_to_scene = true
 atlas = ExtResource("2_dnnk1")
 region = Rect2(0, 0, 44, 48)
 
-[node name="PlayerSpawn" type="Node2D" node_paths=PackedStringArray("roomBounds")]
-position = Vector2(-8, 24)
+[node name="PlayerSpawn" type="Node2D" node_paths=PackedStringArray("spawnPreview") groups=["PlayerSpawns"]]
+position = Vector2(0, 24)
 script = ExtResource("1_vjj3a")
-roomBounds = NodePath("")
+spawnPreview = NodePath("SpawnPreview")
 
 [node name="SpawnPreview" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.470588)

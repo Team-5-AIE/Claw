@@ -3,9 +3,9 @@ extends Area2D
 
 # ---Variables---
 # Editor variables
-@export var roomGlobals : Node2D
 @export var roomBounds : CollisionShape2D
 
+@onready var roomGlobals : Node2D = get_owner()
 var player : SWPlatformerCharacter
 var playerCamera : Camera2D
 
