@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://fkc1lnft0m58"]
+[gd_scene load_steps=18 format=3 uid="uid://fkc1lnft0m58"]
 
 [ext_resource type="PackedScene" uid="uid://dtk1udtlgd7wl" path="res://Chapters/Chapter_01/Rooms/room_101.tscn" id="1_e51it"]
+[ext_resource type="PackedScene" uid="uid://cx8yupbecd16e" path="res://Chapters/Chapter_01/Rooms/room_101a.tscn" id="2_61h31"]
 [ext_resource type="PackedScene" uid="uid://di5pyrhnagytf" path="res://Chapters/Chapter_01/Rooms/room_102.tscn" id="2_wl13y"]
 [ext_resource type="PackedScene" uid="uid://bjnd175k7b6s4" path="res://Chapters/Chapter_01/Rooms/room_103.tscn" id="3_ygf5a"]
 [ext_resource type="PackedScene" uid="uid://c125te5sb6x2p" path="res://Chapters/Chapter_01/Rooms/room_104.tscn" id="4_fvyyf"]
@@ -22,6 +23,10 @@
 [node name="LoadedRooms" type="Node2D" parent="."]
 
 [node name="Room101" parent="LoadedRooms" instance=ExtResource("1_e51it")]
+position = Vector2(-976, 0)
+
+[node name="Room101a" parent="LoadedRooms" instance=ExtResource("2_61h31")]
+position = Vector2(-320, 0)
 
 [node name="Room102" parent="LoadedRooms" instance=ExtResource("2_wl13y")]
 position = Vector2(640, 0)
@@ -61,7 +66,7 @@ position = Vector2(1232, -400)
 
 [node name="Player" parent="." instance=ExtResource("14_73boq")]
 unique_name_in_owner = true
-position = Vector2(-256, -144)
+position = Vector2(-1248, -128)
 
 [node name="PlayerCamera" parent="Player" instance=ExtResource("15_4jbt0")]
 offset = Vector2(1, 0)
