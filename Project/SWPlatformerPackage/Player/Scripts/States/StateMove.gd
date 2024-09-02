@@ -40,7 +40,7 @@ func Update(_delta) -> void:
 func Inputs(_event):
 	# Change to Spear Throw state
 	if player.finite_state_machine.can_we_throw_spear():
-		player.finite_state_machine.ChangeState(player.state_claw)
+		player.finite_state_machine.ChangeState(player.state_spear)
 		return
 
 	# Change to Crouch state

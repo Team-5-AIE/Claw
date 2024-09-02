@@ -1,6 +1,6 @@
-class_name Claw
+class_name Spear
 extends CharacterBody2D
-@onready var claw = $Claw
+@onready var spear: Sprite2D = $Spear
 
 
 @onready var direction : Vector2
@@ -20,14 +20,14 @@ var flipped = false
 var ropeSnapTimerStarted = false
 
 func _draw():
-	var clawToPlayer = player.claw_marker.global_position - global_position
-	draw_line(Vector2.ZERO, clawToPlayer,Color.WHITE,1,false)
-	draw_line(Vector2.ZERO, - clawToPlayer.normalized()*50, Color.DARK_ORCHID)
+	var spearToPlayer = player.spear_marker.global_position - global_position
+	draw_line(Vector2.ZERO, spearToPlayer,Color.WHITE,1,false)
+	draw_line(Vector2.ZERO, - spearToPlayer.normalized()*50, Color.DARK_ORCHID)
 
 func _process(_delta):
 	queue_redraw()
 	if extending:
-		claw.rotation = player.get_angle_to(tip) - deg_to_rad(-45)
+		spear.rotation = player.get_angle_to(tip) - deg_to_rad(-45)
 
 func _physics_process(_delta):
 	if Retract(): return
@@ -36,7 +36,7 @@ func _physics_process(_delta):
 		if collision:
 			remove_collision_exception_with(self)
 			print("A hook thing just happened!")
-			ropeLength = player.claw_marker.global_position.distance_to(global_position)
+			ropeLength = player.spear_marker.global_position.distance_to(global_position)
 			hooked = true
 			extending = false
 	tip = global_position
@@ -52,7 +52,7 @@ func _physics_process(_delta):
 		ropeSnapTimerStarted = false
 		return
 	
-	distanceToPlayer = global_position.distance_to(player.claw_marker.global_position)
+	distanceToPlayer = global_position.distance_to(player.spear_marker.global_position)
 	if distanceToPlayer > maxDistance && !hooked:
 		Release()
 		return
@@ -81,18 +81,18 @@ func Release() -> void:
 func JumpRelease() -> void:
 	#print("Jump Release")
 	if player.is_on_floor():
-		player.state_fall.jumpedFromClaw = true
+		player.state_fall.jumpedFromSpear = true
 		player.finite_state_machine.ChangeState(player.state_idle)
 	else:
-		player.state_fall.jumpedFromClaw = true
+		player.state_fall.jumpedFromSpear = true
 		player.finite_state_machine.ChangeState(player.state_fall)
 	retracted = true
 
 func Retract() -> bool:
 	if retracted:
 		#print("Retract")
-		var clawToPlayer = player.claw_marker.global_position - global_position
-		global_position += clawToPlayer.normalized() * SPEED
+		var spearToPlayer = player.spear_marker.global_position - global_position
+		global_position += spearToPlayer.normalized() * SPEED
 		return true
 	return false
 
@@ -104,4 +104,4 @@ func _on_auto_grapple_area_body_entered(body):
 			return
 	else:
 		print("AutoGrapple point grabbed")
-		player.state_claw.autoGrapple = true
+		player.state_spear.autoGrapple = true

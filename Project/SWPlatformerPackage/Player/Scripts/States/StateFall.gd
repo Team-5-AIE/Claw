@@ -1,34 +1,27 @@
 class_name StateFall
 extends State
 @onready var player = $"../.."
-var jumpedFromClaw = false
+var jumpedFromSpear = false
 # This state can transition to: Land, Jump, 
 # This state happens if we are not grounded.
 func EnterState() -> void:
 	if player.debug_mode:
 		print("Debug: Fall State")
-	if jumpedFromClaw:
+	if jumpedFromSpear:
 		player.velocity.y = -player.jump_height
 	player.animation_player.play("Fall")
 	
-	if player.finite_state_machine.previous_state == player.state_claw:
+	if player.finite_state_machine.previous_state == player.state_spear:
 		var dust_instance = player.instance_create(player.RUN_DUST_PARTICLES,player)
 		dust_instance.scale.x = sign(-player.velocity.x)
 		dust_instance.set_as_top_level(true)
 		dust_instance.global_position = player.dustMarker2D.global_position
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
-	if player.finite_state_machine.previous_state == player.state_claw:
-		#NOTE: below stops momentum when holding - check only if holding opposite direction of
-		#current velocity
-		if player.input_axis.x != 0:
-			if player.input_axis.x != sign(player.velocity.x) || absf(player.velocity.x) < player.run_speed:
-				player.velocity.x += player.air_acceleration * player.input_axis.x * delta
-				print("Slow down")
-	else:
-		if player.input_axis != Vector2.ZERO:
-			if !player.state_jump.bunnyhop:
-				player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
+	if player.input_axis.x != 0:
+		if player.input_axis.x != sign(player.velocity.x) || absf(player.velocity.x) < player.run_speed:
+			player.velocity.x += player.air_acceleration * player.input_axis.x * delta
+			print("Slow down")
 	
 	# Jump buffer #NOTE: why is this here?
 	if player.finite_state_machine.jump_buffer_jump():
@@ -53,7 +46,7 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 func Inputs(_event):
 	# Change to Spear Throw state
 	if player.finite_state_machine.can_we_throw_spear():
-		player.finite_state_machine.ChangeState(player.state_claw)
+		player.finite_state_machine.ChangeState(player.state_spear)
 		return
 	
 	# Jump buffer Check
@@ -72,4 +65,4 @@ func Inputs(_event):
 		return
 
 func ExitState() -> void:
-	jumpedFromClaw = false
+	jumpedFromSpear = false

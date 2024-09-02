@@ -27,7 +27,7 @@ func Update(_delta) -> void: # Runs in _process()
 func Inputs(_event):
 	# Change to Spear Throw state
 	if player.finite_state_machine.can_we_throw_spear():
-		player.finite_state_machine.ChangeState(player.state_claw)
+		player.finite_state_machine.ChangeState(player.state_spear)
 		return
 	
 	# Change to Slide state - !!Important: This must be before Jump state.

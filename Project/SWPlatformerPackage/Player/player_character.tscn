@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateFall.gd" id="6_8mfgh"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateLand.gd" id="7_mqss4"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateJump.gd" id="7_uq31w"]
-[ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateClaw.gd" id="8_h64g1"]
+[ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSpear.gd" id="8_h64g1"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateCrouch.gd" id="9_gut04"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallClimb.gd" id="10_hwp3x"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallJump.gd" id="11_r1ntv"]
@@ -387,22 +387,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_foffa"]
-resource_name = "ShootClaw"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteSheet:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [30, 31]
-}
-
 [sub_resource type="Animation" id="Animation_q1qge"]
 resource_name = "Slide"
 length = 0.1
@@ -632,6 +616,22 @@ tracks/1/keys = {
 "values": [Color(1, 0.321569, 0.290196, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_foffa"]
+resource_name = "ShootSpear"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [30, 31]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tk1i5"]
 _data = {
 "Crouch": SubResource("Animation_sjq3i"),
@@ -647,7 +647,7 @@ _data = {
 "LedgeClimb": SubResource("Animation_vgrig"),
 "RESET": SubResource("Animation_6cbom"),
 "Run": SubResource("Animation_w7045"),
-"ShootClaw": SubResource("Animation_foffa"),
+"ShootSpear": SubResource("Animation_foffa"),
 "Slide": SubResource("Animation_q1qge"),
 "WallClimb": SubResource("Animation_0ss5m"),
 "WallClimbLowStamina": SubResource("Animation_6dtpx"),
@@ -735,9 +735,8 @@ script = ExtResource("7_uq31w")
 [node name="StateLand" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("7_mqss4")
 
-[node name="StateClaw" type="Node" parent="FiniteStateMachine"]
+[node name="StateSpear" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("8_h64g1")
-clawVelSpeed = 1.7
 pullJumpStrength = 500.0
 pullJumpStopFraction = 0.7
 
