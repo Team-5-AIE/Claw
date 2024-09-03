@@ -33,6 +33,9 @@ func _process(delta) -> void:
 	manage_grab_stamina()
 	get_input()
 	update_sprite_flip()
+	#print(player.claw_marker.global_position)
+	#if player.state_claw.clawInstance != null:
+	#	print("***" + str(player.state_claw.clawInstance.global_position))
 
 func _input(event) -> void:
 	if state is State:
@@ -46,8 +49,8 @@ func _physics_process(delta) -> void:
 		apply_gravity(delta)
 	if !player.state_jump.bunnyhop:
 		apply_friction(delta)
-		#if player.finite_state_machine.state != player.state_spear:
-		apply_air_resistance(delta)
+		#if player.finite_state_machine.state != player.state_claw:
+		#	apply_air_resistance(delta)
 	# Coyote jump timing
 	var was_on_floor = player.is_on_floor()
 	player.move_and_slide() # This apllies movement to the player
@@ -129,7 +132,7 @@ func apply_air_resistance(delta):
 #===========================State change checks=========================================
 func jump_buffer_jump() -> bool:
 	if player.jump_buffer && player.is_on_floor():
-		if state == player.state_jump || state == player.state_fall || state == player.state_spear:
+		if state == player.state_jump || state == player.state_fall || state == player.state_claw:
 			if player.velocity.x >= player.run_speed || player.velocity.x <= -player.run_speed:
 				player.state_jump.bunnyhop = true
 		ChangeState(player.state_jump)
@@ -137,7 +140,7 @@ func jump_buffer_jump() -> bool:
 	return false
 
 func can_we_throw_spear() -> bool:
-	if Input.is_action_just_pressed("Spear") && player.spearCooldownTimer.time_left <= 0.0:
+	if Input.is_action_just_pressed("Claw") && player.spearCooldownTimer.time_left <= 0.0:
 		return true
 	return false
 

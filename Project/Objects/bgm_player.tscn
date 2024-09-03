@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddpsmd40t8qe1"]
-
-[ext_resource type="AudioStream" uid="uid://bplxl3sh8u3jc" path="res://Sounds/BGM/Wolf - Jeremy L  Chiptune [No Copyright Music].mp3" id="1_n6wkb"]
-
-[node name="BGMPlayer" type="AudioStreamPlayer"]
-stream = ExtResource("1_n6wkb")
-autoplay = true

@@ -1,5 +1,5 @@
 class_name TraveenStateClawEdits
-extends StateSpear
+extends StateClaw
 
 const NEW_CLAW = preload("res://DesignPrototypes/TraveenProposals/TraveenProtoClaw.tscn")
 

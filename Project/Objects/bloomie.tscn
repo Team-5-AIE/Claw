@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgw3eujb45oi8"]
+[gd_scene load_steps=10 format=3 uid="uid://bgw3eujb45oi8"]
 
-[ext_resource type="Texture2D" uid="uid://dbver6tbuv0bv" path="res://Sprites/Bloomie.png" id="1_mwvca"]
+[ext_resource type="Texture2D" path="res://Sprites/Bloomie.png" id="1_mwvca"]
 [ext_resource type="Script" path="res://Scripts/bloomie.gd" id="1_ou05q"]
-[ext_resource type="AudioStream" uid="uid://ybnshgeeo1uv" path="res://Sounds/Effects/collectBloomie.wav" id="3_ss4g6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0yqcc"]
 atlas = ExtResource("1_mwvca")
@@ -69,8 +68,5 @@ shape = SubResource("CircleShape2D_6sv0p")
 [node name="DestroyTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_ss4g6")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
