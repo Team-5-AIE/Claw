@@ -96,6 +96,11 @@ func _process(delta: float) -> void:
 	
 	if control_config == ControlConfig.HOLD:
 		_held_joystick_config(delta)
+	elif control_config == ControlConfig.TOGGLE && !is_mouse_used:
+		if aim_direction == Vector2.ZERO:
+			player.lockspear45direction = true
+		else:
+			player.lockspear45direction = false
 	
 	#if Input.is_action_just_pressed("Debug Toggle"):
 		#match (control_config):
@@ -106,7 +111,8 @@ func _process(delta: float) -> void:
 		#_display_label()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion && aim_direction != Vector2.ZERO:
-		is_mouse_used = true
-	else:
-		is_mouse_used = false
+	if event is InputEventMouseMotion:
+		if aim_direction == Vector2.ZERO:
+			is_mouse_used = true
+		else:
+			is_mouse_used = false
