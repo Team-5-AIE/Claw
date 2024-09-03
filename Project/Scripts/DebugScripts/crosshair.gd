@@ -3,7 +3,7 @@ extends Node2D
 enum ControlConfig {HOLD, TOGGLE}
 
 @export var control_config: ControlConfig = ControlConfig.TOGGLE
-@export var crosshair_reach: float = 50
+@export var crosshair_reach: float = 60
 @export var aim_crosshair_delay_time: float = 0.1
 
 var aim_direction: Vector2
@@ -83,11 +83,9 @@ func _held_joystick_config(delta: float):
 			player.velocity *= (1.0 - player.state_spear.pullJumpStopFraction)
 			player.velocity += -spearToPlayer.normalized() * player.state_spear.pullJumpStrength
 
-#func _ready() -> void:
-	#_display_label()
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	self.global_position = player.spear_marker.global_position
 	aim_direction = Input.get_vector("Aim Left", "Aim Right", "Aim Up", "Aim Down")
 	
 	_set_crosshair_visibility()
@@ -96,8 +94,9 @@ func _process(delta: float) -> void:
 	
 	if control_config == ControlConfig.HOLD:
 		_held_joystick_config(delta)
-	elif control_config == ControlConfig.TOGGLE && !is_mouse_used:
-		if aim_direction == Vector2.ZERO:
+	
+	if control_config == ControlConfig.TOGGLE:
+		if aim_direction == Vector2.ZERO && not is_mouse_used:
 			player.lockspear45direction = true
 		else:
 			player.lockspear45direction = false
