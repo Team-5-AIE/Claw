@@ -16,6 +16,7 @@ var can_grab_wall : bool = true
 var low_grab_stamina : bool = false
 var out_of_stamina : bool = false
 var flash_time = 0
+var spearThrown = false
 
 #Others
 var sprite_flip_lock = false
@@ -28,6 +29,7 @@ func _ready() -> void:
 	ChangeState(state)
 
 func _process(delta) -> void:
+	can_we_throw_spear()
 	if state is State:
 		state.Update(delta) # Run the UpdatePhysics function in our current state
 	manage_grab_stamina()
@@ -39,6 +41,9 @@ func _input(event) -> void:
 		state.Inputs(event)
 
 func _physics_process(delta) -> void:
+	if spearThrown:
+		ClawPhysicsProcess()
+	
 	if state is State:
 		state.UpdatePhysics(delta) # Run the UpdatePhysics function in our current state
 	
@@ -136,10 +141,10 @@ func jump_buffer_jump() -> bool:
 		return true
 	return false
 
-func can_we_throw_spear() -> bool:
-	if Input.is_action_just_pressed("Spear") && player.spearCooldownTimer.time_left <= 0.0:
-		return true
-	return false
+func can_we_throw_spear():
+	if state != player.state_spear && player.state_spear.spearInstance == null:
+		if Input.is_action_just_pressed("Spear") && player.spearCooldownTimer.time_left <= 0.0:
+			spearThrown = true
 
 func jump_buffer_check() -> bool:
 	if Input.is_action_pressed("Jump") && player.jump_enabled:
@@ -242,3 +247,29 @@ func reset_colour_player() -> void:
 #=========================================Timer timeouts====================================
 func _on_jump_buffer_timer_timeout():
 	player.jump_buffer = false
+
+func ClawPhysicsProcess() -> void:
+	#Create Spear
+	player.state_spear.spearInstance = player.state_spear.SPEAR.instantiate()
+	# Get direction to shoot in
+	if player.lockspear45direction || Input.is_action_just_pressed("C"):
+		player.state_spear.shootDirection = Vector2(player.last_input_direction.x,-1)
+	else:
+		player.state_spear.shootDirection = (player.get_global_mouse_position() - player.spear_marker.global_position)
+	
+	if sign(player.state_spear.shootDirection.x) == 1:
+		player.spear_marker.global_position = player.global_position + Vector2(-6,-28)
+		player.sprite_sheet.flip_h = false
+		player.state_spear.spearInstance.flipped = false
+	else:
+		player.spear_marker.global_position = player.global_position + Vector2(6,-28)
+		player.sprite_sheet.flip_h = true
+		player.state_spear.spearInstance.flipped = true
+	
+	# Spear Set up
+	player.state_spear.add_child(player.state_spear.spearInstance)
+	player.state_spear.spearInstance.audio_stream_player = player.audio_stream_player
+	player.state_spear.spearInstance.player = player
+	player.state_spear.spearInstance.global_position = player.spear_marker.global_position
+	player.state_spear.spearInstance.Shoot(player.state_spear.shootDirection)
+	spearThrown = false

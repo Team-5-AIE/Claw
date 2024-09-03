@@ -42,6 +42,7 @@ func _physics_process(_delta):
 			ropeLength = player.spear_marker.global_position.distance_to(global_position)
 			hooked = true
 			extending = false
+			player.finite_state_machine.ChangeState(player.state_spear)
 	tip = global_position
 	#Auto release the hook if you're grounded
 	if player.is_on_floor() && !extending && !ropeSnapTimerStarted:
