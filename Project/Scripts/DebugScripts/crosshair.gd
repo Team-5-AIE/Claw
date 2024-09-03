@@ -106,7 +106,7 @@ func _process(delta: float) -> void:
 		#_display_label()
 
 func _input(event: InputEvent) -> void:
-	if Input.get_vector("Aim Left", "Aim Right", "Aim Up", "Aim Down") != Vector2.ZERO:
-		is_mouse_used = false
-	elif event is InputEventMouseMotion:
+	if event is InputEventMouseMotion && aim_direction != Vector2.ZERO:
 		is_mouse_used = true
+	else:
+		is_mouse_used = false
