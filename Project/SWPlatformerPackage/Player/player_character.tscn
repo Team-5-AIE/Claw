@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=48 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
@@ -16,6 +16,9 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
 [ext_resource type="AudioStream" uid="uid://dvgj8oqo664q0" path="res://Sounds/Effects/jump (1).wav" id="15_pytux"]
 [ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="16_atdeq"]
+[ext_resource type="Script" path="res://Scripts/DebugScripts/crosshair.gd" id="17_c5rv7"]
+[ext_resource type="Texture2D" uid="uid://djb1vwql28tww" path="res://Sprites/Debug/crosshair.png" id="18_iltxp"]
+[ext_resource type="Texture2D" uid="uid://4oobdepu5fu8" path="res://Sprites/Debug/crosshair_point.png" id="19_s68wg"]
 
 [sub_resource type="Gradient" id="Gradient_62wi8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.14902, 0.329412, 1)
@@ -867,6 +870,27 @@ stream = ExtResource("15_pytux")
 
 [node name="BGMPlayer" parent="." instance=ExtResource("16_atdeq")]
 volume_db = -10.085
+
+[node name="Debug" type="Node2D" parent="."]
+
+[node name="Crosshairs" type="Node2D" parent="Debug"]
+script = ExtResource("17_c5rv7")
+
+[node name="AimCrosshair" type="Sprite2D" parent="Debug/Crosshairs"]
+modulate = Color(0.827451, 0.00784314, 0.239216, 0.815686)
+texture = ExtResource("18_iltxp")
+
+[node name="AimPoint" type="Sprite2D" parent="Debug/Crosshairs"]
+modulate = Color(0.827451, 0.00784314, 0.239216, 1)
+texture = ExtResource("19_s68wg")
+
+[node name="SwingCrosshair" type="Sprite2D" parent="Debug/Crosshairs"]
+modulate = Color(0.00559999, 0.56, 0.03332, 0.815686)
+texture = ExtResource("18_iltxp")
+
+[node name="SwingPoint" type="Sprite2D" parent="Debug/Crosshairs"]
+modulate = Color(0.00559999, 0.56, 0.03332, 1)
+texture = ExtResource("19_s68wg")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
