@@ -1,14 +1,27 @@
-[gd_scene load_steps=5 format=4 uid="uid://cx8yupbecd16e"]
+[gd_scene load_steps=9 format=4 uid="uid://cx8yupbecd16e"]
 
+[ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_0f6et"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="1_qdlxf"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="2_jrgki"]
 [ext_resource type="PackedScene" uid="uid://b8wxnef8hlq7q" path="res://Objects/pitfall.tscn" id="3_oslwx"]
+[ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_cm1ma"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
 size = Vector2(976, 368)
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_r45iv"]
+resource_local_to_scene = true
+a = Vector2(0, 24)
+b = Vector2(0, -264)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ga1i2"]
+resource_local_to_scene = true
+a = Vector2(0, 24)
+b = Vector2(0, -264)
+
 [node name="Room101a" type="Node2D"]
+script = ExtResource("1_0f6et")
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -37,7 +50,8 @@ z_index = -2
 use_parent_material = true
 tile_set = ExtResource("1_qdlxf")
 
-[node name="RoomArea" parent="." instance=ExtResource("2_jrgki")]
+[node name="RoomArea" parent="." node_paths=PackedStringArray("roomBounds") instance=ExtResource("2_jrgki")]
+roomBounds = NodePath("RoomBounds")
 
 [node name="RoomBounds" parent="RoomArea" index="0"]
 position = Vector2(152, -8)
@@ -46,7 +60,32 @@ shape = SubResource("RectangleShape2D_l72mg")
 [node name="Pitfall" parent="." instance=ExtResource("3_oslwx")]
 
 [node name="CollisionShape2D" parent="Pitfall" index="0"]
-position = Vector2(152, 208)
+position = Vector2(151, 208)
+scale = Vector2(30.5, 1)
+
+[node name="RoomTransition" parent="." instance=ExtResource("4_cm1ma")]
+position = Vector2(-328, 88)
+nextScene = "res://Chapters/Chapter_01/Rooms/room_101.tscn"
+exitDirection = "Left"
+
+[node name="CollisionShape2D" parent="RoomTransition" index="0"]
+shape = SubResource("SegmentShape2D_r45iv")
+
+[node name="PlayerSpawn" parent="RoomTransition" index="1"]
+position = Vector2(24, 24)
+
+[node name="RoomTransition2" parent="." instance=ExtResource("4_cm1ma")]
+position = Vector2(632, 88)
+nextScene = "res://Chapters/Chapter_01/Rooms/room_102.tscn"
+
+[node name="CollisionShape2D" parent="RoomTransition2" index="0"]
+shape = SubResource("SegmentShape2D_ga1i2")
+
+[node name="PlayerSpawn" parent="RoomTransition2" index="1"]
+position = Vector2(-24, 24)
+flipSpawnDir = true
 
 [editable path="RoomArea"]
 [editable path="Pitfall"]
+[editable path="RoomTransition"]
+[editable path="RoomTransition2"]

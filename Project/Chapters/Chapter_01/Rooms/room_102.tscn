@@ -1,13 +1,26 @@
-[gd_scene load_steps=4 format=4 uid="uid://di5pyrhnagytf"]
+[gd_scene load_steps=8 format=4 uid="uid://di5pyrhnagytf"]
 
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="1_opomt"]
+[ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_snq06"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="2_so7sr"]
+[ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="3_1vmtc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
 size = Vector2(640, 368)
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_s0xrr"]
+resource_local_to_scene = true
+a = Vector2(0, 24)
+b = Vector2(0, -248)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1r3s6"]
+resource_local_to_scene = true
+a = Vector2(0, 24)
+b = Vector2(0, -152)
+
 [node name="Room102" type="Node2D"]
+script = ExtResource("1_snq06")
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -36,10 +49,35 @@ z_index = -2
 use_parent_material = true
 tile_set = ExtResource("1_opomt")
 
-[node name="RoomArea" parent="." instance=ExtResource("2_so7sr")]
+[node name="RoomArea" parent="." node_paths=PackedStringArray("roomBounds") instance=ExtResource("2_so7sr")]
+roomBounds = NodePath("RoomBounds")
 
 [node name="RoomBounds" parent="RoomArea" index="0"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_l72mg")
 
+[node name="RoomTransition" parent="." instance=ExtResource("3_1vmtc")]
+position = Vector2(-312, 72)
+nextScene = "res://Chapters/Chapter_01/Rooms/room_101a.tscn"
+exitDirection = "Left"
+
+[node name="CollisionShape2D" parent="RoomTransition" index="0"]
+shape = SubResource("SegmentShape2D_s0xrr")
+
+[node name="PlayerSpawn" parent="RoomTransition" index="1"]
+position = Vector2(32, 24)
+
+[node name="RoomTransition2" parent="." instance=ExtResource("3_1vmtc")]
+position = Vector2(312, -24)
+nextScene = "res://Chapters/Chapter_01/Rooms/room_103.tscn"
+
+[node name="CollisionShape2D" parent="RoomTransition2" index="0"]
+shape = SubResource("SegmentShape2D_1r3s6")
+
+[node name="PlayerSpawn" parent="RoomTransition2" index="1"]
+position = Vector2(-24, 24)
+flipSpawnDir = true
+
 [editable path="RoomArea"]
+[editable path="RoomTransition"]
+[editable path="RoomTransition2"]
