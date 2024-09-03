@@ -16,7 +16,7 @@ func _on_animation_start_timeout() -> void:
 	$"../AudioStreamPlayer2D".play()
 
 func _on_change_scenes_timeout() -> void:
-	get_tree().change_scene_to_file("res://Chapters/Chap_Prototype/Proto_Level_01.tscn")
+	get_tree().change_scene_to_file("res://Rooms/main_menu.tscn")
 
 func _on_animation_looped() -> void:
 	getSprite.stop()
@@ -32,4 +32,4 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.keycode == KEY_SPACE && event.is_pressed():
 			print("Skipped")
-			get_tree().change_scene_to_file("res://Chapters/Chap_Prototype/Proto_Level_01.tscn")
+			get_tree().change_scene_to_file("res://Rooms/main_menu.tscn")

@@ -6,6 +6,6 @@ extends Control
 
 func _on_start_button_pressed():
 	var room = roomLoader.LoadRoom(startGameScene)
-	room.call_deferred("StartingRoomSetup")
+	room.StartingRoomSetup()
 	
 	queue_free()

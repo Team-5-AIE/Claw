@@ -3,6 +3,10 @@ extends Node2D
 # ---Variables---
 # Member variables
 var loadedRooms : Array[Node2D]
+var currentRoom : Node2D :
+	set(value):
+		assert(loadedRooms.has(value))
+		currentRoom = value
 
 # ---Functions---
 # Custom functions
@@ -10,9 +14,9 @@ func LoadRoom(roomScenePath_ : String, player_ : SWPlatformerCharacter = null) -
 	assert(roomScenePath_ != "")
 	
 	var room = load(roomScenePath_).instantiate()
-	call_deferred("add_child", room)
+	add_child(room)
 	
-	room.call_deferred("Init", get_parent(), self, player_)
+	room.Init(get_parent(), self, player_)
 	
 	loadedRooms.append(room)
 	
@@ -21,3 +25,39 @@ func LoadRoom(roomScenePath_ : String, player_ : SWPlatformerCharacter = null) -
 func FreeRoom(room_ : Node2D) -> void:
 	loadedRooms.erase(room_)
 	room_.queue_free()
+
+func LoadAdjacentRooms() -> void:
+	var rtnArray = get_tree().get_nodes_in_group("RoomTransitionNodes")
+	var roomTransitionNodesArray : Array[Area2D]
+	roomTransitionNodesArray.assign(rtnArray)
+	
+	for roomTransitionNode in roomTransitionNodesArray:
+		if roomTransitionNode.owner == currentRoom:
+			var roomAlreadyExists : bool = false
+			for loadedRoom in loadedRooms:
+				if roomTransitionNode.nextRoom == loadedRoom.scene_file_path:
+					roomAlreadyExists = true
+					break
+			
+			if !roomAlreadyExists:
+				var room = LoadRoom(roomTransitionNode.nextRoom, currentRoom.player)
+				
+				# Even though we did this earlier to get roomTransitionNodesArray,
+				# we've now loaded a new room, so we have to get this array
+				# again, and, since the number of nodes here differ from the
+				# array that we are currently looping through, we also have
+				# to store the new array in a new variable
+				rtnArray = get_tree().get_nodes_in_group("RoomTransitionNodes")
+				var newRoomTransitionNodesArray : Array[Area2D]
+				newRoomTransitionNodesArray.assign(rtnArray)
+				
+				for otherRoomTransitionNode : Area2D in newRoomTransitionNodesArray:
+					if otherRoomTransitionNode.owner == room:
+						if otherRoomTransitionNode.nextRoom == currentRoom.scene_file_path:
+							room.position += roomTransitionNode.global_position - otherRoomTransitionNode.global_position
+							break
+
+func FreeAdjacentRooms(excludedRooms_ : Array[String]) -> void:
+	for room : Node2D in loadedRooms:
+		if not excludedRooms_.has(room.scene_file_path):
+			FreeRoom(room)

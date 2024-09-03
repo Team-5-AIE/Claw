@@ -24,9 +24,9 @@ class_name RoomTransition
 
 # Public variables
 @onready var roomGlobals : Node2D = get_owner()
-@onready var roomContainer : Node2D = roomGlobals.roomContainer
 
 var player : SWPlatformerCharacter
+var roomContainer : Node2D
 
 # Private variables
 var _exitDirInternal : Vector2
@@ -38,6 +38,7 @@ var _justLoaded : bool
 # Init
 func _on_room_init():
 	player = roomGlobals.player
+	roomContainer = roomGlobals.roomContainer
 
 # Godot functions
 func _ready():
@@ -67,21 +68,49 @@ func _on_body_entered(body_):
 	if body_ == player:
 		# Dot the exit's facing direction with the player's velocity to see
 		# whether they are entering or exiting the room
-		var facingDotVelocity = _exitDirInternal.dot(player.velocity)
+		var facingDotVelocity = _exitDirInternal.dot(player.velocity.normalized())
 		if facingDotVelocity > 0:
 			# Player just exited the room
 			print_debug("Player exited room")
 			
-			var excludedRooms : Array[String] = [scene_file_path, nextRoom]
+			var excludedRooms : Array[String] = [roomGlobals.scene_file_path, nextRoom]
 			roomContainer.FreeAdjacentRooms(excludedRooms)
+			
+			roomGlobals.playerExitedRoom.emit()
 		
 		else:
 			# Player just entered the room
 			print_debug("Player entered room")
 			
+			roomContainer.currentRoom = roomGlobals
+			roomContainer.LoadAdjacentRooms()
+			
 			roomGlobals.currentSpawner = playerSpawn
 			
+			roomGlobals.playerEnteredRoom.emit()
+
+func _on_body_exited(body_):
+	if body_ == player:
+		var facingDotVelocity = _exitDirInternal.dot(player.velocity.normalized())
+		if facingDotVelocity > 0:
+			# Player just exited the room
+			print_debug("Player exited room")
+			
+			var excludedRooms : Array[String] = [roomGlobals.scene_file_path, nextRoom]
+			roomContainer.FreeAdjacentRooms(excludedRooms)
+			
+			roomGlobals.playerExitedRoom.emit()
+		
+		else:
+			# Player just entered the room
+			print_debug("Player entered room")
+			
+			roomContainer.currentRoom = roomGlobals
 			roomContainer.LoadAdjacentRooms()
+			
+			roomGlobals.currentSpawner = playerSpawn
+			
+			roomGlobals.playerEnteredRoom.emit()
 
 # Custom functions
 func DrawArrow(direction_ : Vector2, length_ : float, lineWidth_ : float, colour_ : Color) -> void:
