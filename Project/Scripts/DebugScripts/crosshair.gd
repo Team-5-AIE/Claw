@@ -51,12 +51,12 @@ func _set_crosshair_position(delta: float):
 		launch_visual.position = player.velocity.normalized() * crosshair_reach
 		swing_visual.position = launch_velocity.normalized() * crosshair_reach
 
-func _display_label():
-	match (control_config):
-			ControlConfig.TOGGLE:
-				$"../../../CanvasLayer/ExitLabel".text = "TOGGLE (Press P to switch configs)\nLeft Stick - Move\nRight Stick - Aim Spear\nB/RB - Shoot/Pull Spear\nA/LB - Jump\nX - Slide"
-			ControlConfig.HOLD:
-				$"../../../CanvasLayer/ExitLabel".text = "HOLD (Press P to switch configs)\nLeft Stick - Move\nRight Stick - Shoot/pull Spear\nA/LB - Jump\nX - Slide"
+#func _display_label():
+	#match (control_config):
+			#ControlConfig.TOGGLE:
+				#$"../../../CanvasLayer/ExitLabel".text = "TOGGLE (Press P to switch configs)\nLeft Stick - Move\nRight Stick - Aim Spear\nB/RB - Shoot/Pull Spear\nA/LB - Jump\nX - Slide"
+			#ControlConfig.HOLD:
+				#$"../../../CanvasLayer/ExitLabel".text = "HOLD (Press P to switch configs)\nLeft Stick - Move\nRight Stick - Shoot/pull Spear\nA/LB - Jump\nX - Slide"
 
 func _held_joystick_config(delta: float):
 	if aim_direction != Vector2.ZERO:
@@ -79,8 +79,8 @@ func _held_joystick_config(delta: float):
 			player.velocity *= (1.0 - player.state_spear.pullJumpStopFraction)
 			player.velocity += -spearToPlayer.normalized() * player.state_spear.pullJumpStrength
 
-func _ready() -> void:
-	_display_label()
+#func _ready() -> void:
+	#_display_label()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -96,13 +96,13 @@ func _process(delta: float) -> void:
 	if control_config == ControlConfig.HOLD:
 		_held_joystick_config(delta)
 	
-	if Input.is_action_just_pressed("Debug Toggle"):
-		match (control_config):
-			ControlConfig.HOLD:
-				control_config = ControlConfig.TOGGLE
-			ControlConfig.TOGGLE:
-				control_config = ControlConfig.HOLD
-		_display_label()
+	#if Input.is_action_just_pressed("Debug Toggle"):
+		#match (control_config):
+			#ControlConfig.HOLD:
+				#control_config = ControlConfig.TOGGLE
+			#ControlConfig.TOGGLE:
+				#control_config = ControlConfig.HOLD
+		#_display_label()
 
 func _input(event: InputEvent) -> void:
 	if Input.get_vector("Aim Left", "Aim Right", "Aim Up", "Aim Down") != Vector2.ZERO:
