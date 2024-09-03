@@ -1,6 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c754aq07xarlj"]
 
 [ext_resource type="SpriteFrames" uid="uid://dnu8babgfvnje" path="res://Sprites/Menu/5FramesSplash/FramesSplash.tres" id="1_knp4v"]
+[ext_resource type="FontFile" uid="uid://baawprjkjoitp" path="res://addons/Fonts/Gamer.ttf" id="1_ow7nj"]
 [ext_resource type="Script" path="res://Scripts/MenuScripts/SplashScreen.gd" id="2_hutxu"]
 [ext_resource type="PackedScene" uid="uid://c2lkjdbk2gifg" path="res://Rooms/main_menu.tscn" id="3_1gs1i"]
 [ext_resource type="AudioStream" uid="uid://btoekee4wk2ve" path="res://Sounds/SplashScreenSound.wav" id="3_wxxin"]
@@ -26,7 +27,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.909804, 0.756863, 0.439216, 1)
+color = Color(0.0352941, 0.0392157, 0.0784314, 1)
+
+[node name="Label" type="RichTextLabel" parent="Control/CanvasLayer"]
+modulate = Color(1, 1, 1, 0.509804)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -135.5
+offset_top = -58.0
+offset_right = 135.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("1_ow7nj")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[center]Skip with Space"
+tab_size = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -40,7 +60,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="Animation Start" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 2.9
 one_shot = true
 autostart = true
 
