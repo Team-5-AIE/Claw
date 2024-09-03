@@ -53,10 +53,10 @@ position = Vector2(2720, 800)
 position = Vector2(2048, 400)
 
 [node name="Room011" parent="LoadedRooms" instance=ExtResource("11_gpyr8")]
-position = Vector2(1376, 400)
+position = Vector2(1344, 400)
 
 [node name="Room012" parent="LoadedRooms" instance=ExtResource("12_7yg8p")]
-position = Vector2(1920, 800)
+position = Vector2(1888, 800)
 
 [node name="Room013" parent="LoadedRooms" instance=ExtResource("13_hd416")]
 position = Vector2(1232, -400)
