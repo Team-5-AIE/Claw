@@ -7,9 +7,9 @@ signal playerEnteredRoom
 signal playerExitedRoom
 
 # ---Variables---
-@export var playerSpawn : Node2D
+@export var standaloneSpawner : Node2D
 
-@onready var currentSpawner : Node2D = playerSpawn
+@onready var currentSpawner : Node2D = standaloneSpawner
 
 var gameRoot : Node
 var roomContainer : Node2D
@@ -25,6 +25,7 @@ func Init(gameRoot_ : Node, roomContainer_ : Node2D, player_ : SWPlatformerChara
 	roomContainer = roomContainer_
 	
 	if player_ == null:
+		assert(currentSpawner != null)
 		player = currentSpawner.SpawnPlayer(gameRoot)
 	else:
 		player = player_
@@ -38,7 +39,6 @@ func Init(gameRoot_ : Node, roomContainer_ : Node2D, player_ : SWPlatformerChara
 			roomInit.connect(roomInitListener._on_room_init)
 	
 	playerEnteredRoom.connect(_on_player_entered_room)
-	playerExitedRoom.connect(_on_player_exited_room)
 	
 	roomInit.emit()
 
@@ -48,14 +48,21 @@ func StartingRoomSetup():
 	
 	playerEnteredRoom.emit()
 
+# Custom functions
+func ConnectRestartPlayerSignal():
+	player.restartPlayer.connect(_on_restart_player)
+
+func DisconnectRestartPlayerSignal():
+	player.restartPlayer.disconnect(_on_restart_player)
+
 # RoomTransition signals
 func _on_player_entered_room():
-	player.restartPlayer.connect(on_restart_player)
-
-func _on_player_exited_room():
-	player.restartPlayer.disconnect(on_restart_player)
+	if roomContainer.lastRoom != null:
+		roomContainer.lastRoom.player.restartPlayer.disconnect(roomContainer.lastRoom._on_restart_player)
+	
+	player.restartPlayer.connect(_on_restart_player)
 
 # Player signals
-func on_restart_player():
+func _on_restart_player():
 	player.global_position = currentSpawner.global_position
 	player.velocity = Vector2.ZERO

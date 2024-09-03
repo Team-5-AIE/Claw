@@ -3,9 +3,11 @@ extends Node2D
 # ---Variables---
 # Member variables
 var loadedRooms : Array[Node2D]
+var lastRoom : Node2D
 var currentRoom : Node2D :
 	set(value):
 		assert(loadedRooms.has(value))
+		lastRoom = currentRoom
 		currentRoom = value
 
 # ---Functions---

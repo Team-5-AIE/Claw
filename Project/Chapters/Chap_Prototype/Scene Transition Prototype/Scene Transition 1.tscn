@@ -20,9 +20,9 @@ resource_local_to_scene = true
 a = Vector2(24, 0)
 b = Vector2(-24, 0)
 
-[node name="SceneTransition1" type="Node2D" node_paths=PackedStringArray("playerSpawn")]
+[node name="SceneTransition1" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_iplff")
-playerSpawn = NodePath("PlayerSpawn")
+standaloneSpawner = NodePath("PlayerSpawn")
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("2_s00hj")]
 position = Vector2(-128, 80)

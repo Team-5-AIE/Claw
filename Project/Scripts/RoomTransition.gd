@@ -31,9 +31,6 @@ var roomContainer : Node2D
 # Private variables
 var _exitDirInternal : Vector2
 
-var _justLoadedLeewayCounter : int = 0
-var _justLoaded : bool
-
 # ---Functions---
 # Init
 func _on_room_init():
@@ -83,7 +80,7 @@ func _on_body_entered(body_):
 			print_debug("Player entered room")
 			
 			roomContainer.currentRoom = roomGlobals
-			roomContainer.LoadAdjacentRooms()
+			roomContainer.call_deferred("LoadAdjacentRooms")
 			
 			roomGlobals.currentSpawner = playerSpawn
 			
@@ -106,7 +103,7 @@ func _on_body_exited(body_):
 			print_debug("Player entered room")
 			
 			roomContainer.currentRoom = roomGlobals
-			roomContainer.LoadAdjacentRooms()
+			roomContainer.call_deferred("LoadAdjacentRooms")
 			
 			roomGlobals.currentSpawner = playerSpawn
 			
