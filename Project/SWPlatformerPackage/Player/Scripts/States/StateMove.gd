@@ -5,8 +5,15 @@ extends State
 
 # This state can transition to: Fall, Idle, Jump, Slide, Crouch
 # This state happens if we are grounded and there IS movement input.
+@onready var audio_stream_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
+@onready var footstep_sound_timer: Timer = $"../../Timers/FootstepSoundTimer"
+const STEPS1 = preload("res://Sounds/Effects/steps1.wav")
+const STEPS2 = preload("res://Sounds/Effects/steps2.wav")
+const STEPS3 = preload("res://Sounds/Effects/steps3.wav")
 
 func EnterState() -> void: 
+	PlayFootsteps()
+	footstep_sound_timer.start()
 	if player.debug_mode:
 		print("Debug: Move State")
 	player.animation_player.play("Run")
@@ -33,7 +40,7 @@ func Update(_delta) -> void:
 func Inputs(_event):
 	# Change to Spear Throw state
 	if player.finite_state_machine.can_we_throw_spear():
-		player.finite_state_machine.ChangeState(player.state_claw)
+		player.finite_state_machine.ChangeState(player.state_spear)
 		return
 
 	# Change to Crouch state
@@ -53,4 +60,15 @@ func Inputs(_event):
 		return
 
 func ExitState() -> void:
-	pass
+	audio_stream_player.stop()
+	footstep_sound_timer.stop()
+
+func PlayFootsteps():
+	var randSound = randi_range(0,2)
+	match randSound:
+		0: audio_stream_player.stream = STEPS1
+		1: audio_stream_player.stream = STEPS2
+		2: audio_stream_player.stream = STEPS3
+	audio_stream_player.play()
+	if player.finite_state_machine.state == player.state_move:
+		footstep_sound_timer.start()

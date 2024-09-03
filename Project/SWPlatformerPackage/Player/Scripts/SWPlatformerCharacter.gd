@@ -1,12 +1,17 @@
 class_name SWPlatformerCharacter
 extends CharacterBody2D
+# Signals
+signal restartPlayer
+
 # Node references
 #Markers
-@onready var claw_marker = $Marker2D
+@onready var spear_marker = $Marker2D
 @onready var bloomieMarker2D = $BloomieMarker2D
 @onready var dustMarker2D = $DustMarker2D
 const RUN_DUST_PARTICLES = preload("res://Effects/run_dust_particles.tscn")
 const SLIDE_DUST_PARTICLES = preload("res://Effects/slide_dust_particles.tscn")
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
 # States
 @onready var finite_state_machine = $FiniteStateMachine as FiniteStateMachine
 @onready var state_idle = $FiniteStateMachine/StateIdle as StateIdle
@@ -14,7 +19,7 @@ const SLIDE_DUST_PARTICLES = preload("res://Effects/slide_dust_particles.tscn")
 @onready var state_fall = $FiniteStateMachine/StateFall as StateFall
 @onready var state_land = $FiniteStateMachine/StateLand as StateLand
 @onready var state_jump = $FiniteStateMachine/StateJump as StateJump
-@onready var state_claw = $FiniteStateMachine/StateClaw as StateClaw
+@onready var state_spear = $FiniteStateMachine/StateSpear as StateSpear
 @onready var state_crouch = $FiniteStateMachine/StateCrouch as StateCrouch
 @onready var state_wall_climb = $FiniteStateMachine/StateWallClimb  as StateWallClimb
 @onready var state_wall_jump = $FiniteStateMachine/StateWallJump as StateWallJump
@@ -27,6 +32,7 @@ const SLIDE_DUST_PARTICLES = preload("res://Effects/slide_dust_particles.tscn")
 @onready var jump_buffer_timer = $Timers/JumpBufferTimer
 @onready var wall_grab_stamina = $Timers/WallGrabStamina
 @onready var spearCooldownTimer = $Timers/SpearCooldownTimer
+@onready var snap_rope_timer: Timer = $Timers/SnapRopeTimer
 
 #Visuals
 @onready var animation_player = $AnimationPlayer
@@ -51,7 +57,7 @@ const SLIDE_DUST_PARTICLES = preload("res://Effects/slide_dust_particles.tscn")
 ### Input
 ##Show console outputs of entering and exiting states
 @export var debug_mode = true
-@export var lockclaw45direction : bool = false #NOTE: Remove later - keep for testing
+@export var lockspear45direction : bool = false #NOTE: Remove later - keep for testing
 
 ### Enable|Disable Character states Settings
 @export_group("Enable|Disable Character states/Jump")
@@ -194,7 +200,10 @@ func animation_started(_anim_name):
 
 
 func _on_spike_area_body_entered(body):
-	print("Restart")
+	if state_spear.spearInstance != null:
+		state_spear.spearInstance.Release()
+		state_spear.spearInstance = null
+	restartPlayer.emit()
 
 func instance_create(preloaded_scene, parent_node):
 	var preloaded_scene_instance = preloaded_scene.instantiate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=45 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
@@ -8,12 +8,14 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateFall.gd" id="6_8mfgh"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateLand.gd" id="7_mqss4"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateJump.gd" id="7_uq31w"]
-[ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateClaw.gd" id="8_h64g1"]
+[ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSpear.gd" id="8_h64g1"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateCrouch.gd" id="9_gut04"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallClimb.gd" id="10_hwp3x"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallJump.gd" id="11_r1ntv"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallSlide.gd" id="12_q8x25"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
+[ext_resource type="AudioStream" uid="uid://dvgj8oqo664q0" path="res://Sounds/Effects/jump (1).wav" id="15_pytux"]
+[ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="16_atdeq"]
 
 [sub_resource type="Gradient" id="Gradient_62wi8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.14902, 0.329412, 1)
@@ -387,7 +389,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_foffa"]
-resource_name = "ShootClaw"
+resource_name = "ShootSpear"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -646,7 +648,7 @@ _data = {
 "LedgeClimb": SubResource("Animation_vgrig"),
 "RESET": SubResource("Animation_6cbom"),
 "Run": SubResource("Animation_w7045"),
-"ShootClaw": SubResource("Animation_foffa"),
+"ShootSpear": SubResource("Animation_foffa"),
 "Slide": SubResource("Animation_q1qge"),
 "WallClimb": SubResource("Animation_0ss5m"),
 "WallClimbLowStamina": SubResource("Animation_6dtpx"),
@@ -736,9 +738,8 @@ script = ExtResource("7_uq31w")
 [node name="StateLand" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("7_mqss4")
 
-[node name="StateClaw" type="Node" parent="FiniteStateMachine"]
+[node name="StateSpear" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("8_h64g1")
-clawVelSpeed = 1.7
 pullJumpStrength = 500.0
 pullJumpStopFraction = 0.3
 
@@ -792,6 +793,15 @@ one_shot = true
 one_shot = true
 
 [node name="SpearCooldownTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="SnapRopeTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="FootstepSoundTimer" type="Timer" parent="Timers"]
+wait_time = 0.3
 one_shot = true
 
 [node name="RaycastSlideLeft" type="RayCast2D" parent="."]
@@ -852,7 +862,14 @@ debug_color = Color(1, 0.800359, 0.969968, 0.42)
 [node name="DustMarker2D" type="Marker2D" parent="."]
 position = Vector2(0, -3)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_pytux")
+
+[node name="BGMPlayer" parent="." instance=ExtResource("16_atdeq")]
+volume_db = -10.085
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
 [connection signal="timeout" from="Timers/JumpBufferTimer" to="FiniteStateMachine" method="_on_jump_buffer_timer_timeout"]
+[connection signal="timeout" from="Timers/FootstepSoundTimer" to="FiniteStateMachine/StateMove" method="PlayFootsteps"]
 [connection signal="body_entered" from="SpikeArea" to="." method="_on_spike_area_body_entered"]
