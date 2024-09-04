@@ -6,6 +6,10 @@ extends Control
 @onready var dialogue_manager: Control = $"../CanvasLayer/DialogueManager"
 @onready var start_button: Button = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton
 
+func _ready() -> void:
+	pass
+	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	#DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
 
 func _on_start_button_pressed():
 	start_button.disabled = true
@@ -19,7 +23,7 @@ func _on_start_button_pressed():
 	
 	await FadeTransitions.on_fade_out_finished
 	FadeTransitions.lockPlayer = true
-	dialogue_manager.AddDialougeTextBox("I have to find the cure...")
-	dialogue_manager.AddDialougeTextBox("I know someone here will have some information.\n Just have to find them.")
+	dialogue_manager.AddDialougeTextBox("I have to find the cure... for Izumo.")
+	dialogue_manager.AddDialougeTextBox("I know someone here has information.\n Just have to find them.")
 	
 	queue_free()
