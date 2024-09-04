@@ -35,7 +35,7 @@ func EnterState() -> void:
 	if player.finite_state_machine.get_next_to_wall() == Vector2.LEFT:
 		player.velocity.x = horizontalSpeedOfThisWallJump
 	if player.finite_state_machine.get_next_to_wall() == Vector2.RIGHT:
-		player.velocity.x = -horizontalSpeedOfThisWallJump
+		player.velocity.x = -horizontalSpeedOfThisWallJump #NOTE: Invalid assignment of property or key 'x' with value of type Vector2 on base object of type "Vector2"
 	player.velocity.y = -player.jump_height
 	if player.finite_state_machine.get_next_to_wall() == Vector2.RIGHT:
 		player.sprite_sheet.flip_h = true
