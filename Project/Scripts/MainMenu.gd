@@ -15,7 +15,7 @@ func _on_start_button_pressed():
 	room.StartingRoomSetup()
 	await FadeTransitions.on_fade_out_finished
 	FadeTransitions.lockPlayer = true
-	dialogue_manager.AddDialougeTextBox("I have to find the cure...")
-	dialogue_manager.AddDialougeTextBox("I know someone here will have some information.\n Just have to find them.")
+	dialogue_manager.AddDialougeTextBox("I have to find the cure... for Izumo.")
+	dialogue_manager.AddDialougeTextBox("I know someone here has information.\n Just have to find them.")
 	
 	queue_free()
