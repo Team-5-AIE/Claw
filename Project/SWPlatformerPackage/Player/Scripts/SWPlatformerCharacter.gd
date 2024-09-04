@@ -203,7 +203,6 @@ func _on_spike_area_body_entered(body):
 	if state_spear.spearInstance != null:
 		state_spear.spearInstance.Release()
 		state_spear.spearInstance = null
-		FadeTransitions.restart = true
 	restartPlayer.emit()
 
 func instance_create(preloaded_scene, parent_node):
