@@ -28,9 +28,9 @@ func EnterState() -> void:
 	if player.state_jump.bunnyhop:
 		var signCheckVelocity = sign(player.velocity.x)
 		if signCheckVelocity == 1:
-			horizontalSpeedOfThisWallJump = -player.state_jump.initVel
+			horizontalSpeedOfThisWallJump = -player.state_jump.initVel.x
 		elif signCheckVelocity == -1:
-			horizontalSpeedOfThisWallJump = player.state_jump.initVel
+			horizontalSpeedOfThisWallJump = player.state_jump.initVel.x
 	# Get direction to jump in
 	if player.finite_state_machine.get_next_to_wall() == Vector2.LEFT:
 		player.velocity.x = horizontalSpeedOfThisWallJump
