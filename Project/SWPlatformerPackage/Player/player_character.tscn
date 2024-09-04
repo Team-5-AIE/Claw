@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=47 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
@@ -649,6 +649,22 @@ tracks/1/keys = {
 "values": [Color(1, 0.321569, 0.290196, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_ln15y"]
+resource_name = "RestartReverse"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [75, 74, 73, 72, 71, 70]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tk1i5"]
 _data = {
 "Crouch": SubResource("Animation_sjq3i"),
@@ -664,6 +680,7 @@ _data = {
 "LedgeClimb": SubResource("Animation_vgrig"),
 "RESET": SubResource("Animation_6cbom"),
 "Restart": SubResource("Animation_5a7rm"),
+"RestartReverse": SubResource("Animation_ln15y"),
 "Run": SubResource("Animation_w7045"),
 "ShootSpear": SubResource("Animation_foffa"),
 "Slide": SubResource("Animation_q1qge"),
