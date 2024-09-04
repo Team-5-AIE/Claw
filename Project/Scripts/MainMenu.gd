@@ -9,10 +9,14 @@ extends Control
 
 func _on_start_button_pressed():
 	start_button.disabled = true
+	
 	FadeTransitions.Transition()
 	await FadeTransitions.on_fade_in_finished
+	
 	var room = roomLoader.LoadRoom(startGameScene)
 	room.StartingRoomSetup()
+	visible = false
+	
 	await FadeTransitions.on_fade_out_finished
 	FadeTransitions.lockPlayer = true
 	dialogue_manager.AddDialougeTextBox("I have to find the cure...")
