@@ -45,10 +45,9 @@ position = Vector2(-80, 24)
 shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="Oneway-Platform" parent="." instance=ExtResource("3_ds5xh")]
-visible = false
-position = Vector2(192, 0)
+position = Vector2(184, 0)
 rotation = -1.5708
-scale = Vector2(10, 4)
+scale = Vector2(10, 8)
 
 [node name="Oneway-Platform2" parent="." instance=ExtResource("3_ds5xh")]
 visible = false
