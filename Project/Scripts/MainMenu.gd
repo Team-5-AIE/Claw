@@ -5,6 +5,7 @@ extends Control
 @export var roomLoader : Node2D
 
 func _on_start_button_pressed():
-	roomLoader.LoadRoom(startGameScene)
+	var room = roomLoader.LoadRoom(startGameScene)
+	room.StartingRoomSetup()
 	
 	queue_free()

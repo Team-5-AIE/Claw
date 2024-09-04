@@ -33,7 +33,7 @@ func UpdatePhysics(_delta) -> void: # Runs in _physics_process()
 	#		player.finite_state_machine.ChangeState(player.state_crouch_move)
 	#		return
 
-func Inputs(event) -> void:
+func Inputs(_event) -> void:
 	# Make sure we aren't under a collision that would get us stuck in the wall 
 	# Before changing to jump
 	if !player.raycast_slide_left.is_colliding() && !player.raycast_slide_right.is_colliding():

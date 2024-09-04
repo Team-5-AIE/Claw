@@ -3,39 +3,66 @@ extends Node2D
 # ---Signals---
 signal roomInit
 
+signal playerEnteredRoom
+signal playerExitedRoom
+
 # ---Variables---
-@export var playerSpawn : Node2D
+@export var standaloneSpawner : Node2D
 
-@onready var currentSpawner : Node2D = playerSpawn
+@onready var currentSpawner : Node2D = standaloneSpawner
 
-var roomInitListenersArray : Array[Area2D]
 var gameRoot : Node
-var roomLoader : Node2D
+var roomContainer : Node2D
 var player : SWPlatformerCharacter
+
+#var adjacentRoomPaths : Array[String]
 
 # ---Functions---
 # Init
-func Init(gameRoot_ : Node, roomLoader_ : Node2D, player_ : SWPlatformerCharacter):
+func Init(gameRoot_ : Node, roomContainer_ : Node2D, player_ : SWPlatformerCharacter):
 	gameRoot = gameRoot_
 	
-	roomLoader = roomLoader_
+	roomContainer = roomContainer_
 	
 	if player_ == null:
+		assert(currentSpawner != null)
 		player = currentSpawner.SpawnPlayer(gameRoot)
 	else:
 		player = player_
 	
-	player.restartPlayer.connect(on_restart_player)
-	
 	var rtnArray = get_tree().get_nodes_in_group("RoomInitListeners")
+	var roomInitListenersArray : Array[Area2D]
 	roomInitListenersArray.assign(rtnArray)
 	
 	for roomInitListener : Area2D in roomInitListenersArray:
-		roomInit.connect(roomInitListener._on_room_init)
+		if roomInitListener.owner == self:
+			roomInit.connect(roomInitListener._on_room_init)
+	
+	playerEnteredRoom.connect(_on_player_entered_room)
 	
 	roomInit.emit()
 
-# Player Signals
-func on_restart_player():
+func StartingRoomSetup():
+	roomContainer.currentRoom = self
+	roomContainer.LoadAdjacentRooms()
+	
+	playerEnteredRoom.emit()
+
+# Custom functions
+func ConnectRestartPlayerSignal():
+	player.restartPlayer.connect(_on_restart_player)
+
+func DisconnectRestartPlayerSignal():
+	player.restartPlayer.disconnect(_on_restart_player)
+
+# RoomTransition signals
+func _on_player_entered_room():
+	if roomContainer.lastRoom != null:
+		roomContainer.lastRoom.player.restartPlayer.disconnect(roomContainer.lastRoom._on_restart_player)
+	
+	player.restartPlayer.connect(_on_restart_player)
+
+# Player signals
+func _on_restart_player():
 	player.global_position = currentSpawner.global_position
 	player.velocity = Vector2.ZERO

@@ -19,3 +19,4 @@ debug_color = Color(0, 0.643137, 0.286275, 0.588235)
 [node name="PlayerSpawn" parent="." instance=ExtResource("2_mesai")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
