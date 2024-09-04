@@ -671,13 +671,8 @@ floor_constant_speed = true
 floor_block_on_wall = false
 floor_snap_length = 3.0
 script = ExtResource("2_du4oh")
-low_stamina_flash_color = SubResource("GradientTexture1D_3ovwb")
-double_jump_enabled = false
-dash_enabled = false
-wave_dash_enabled = false
-exit_dash_forced_gravity_enabled = false
 slide_enabled = false
-glide_enabled = false
+low_stamina_flash_color = SubResource("GradientTexture1D_3ovwb")
 
 [node name="SpriteSheet" type="Sprite2D" parent="Player"]
 modulate = Color(1, 0.321569, 0.290196, 1)
@@ -709,7 +704,6 @@ script = ExtResource("8_afics")
 
 [node name="StateClaw" type="Node" parent="Player/FiniteStateMachine"]
 script = ExtResource("9_n8m2s")
-clawVelSpeed = 30.0
 
 [node name="Hitbox" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, -13)
