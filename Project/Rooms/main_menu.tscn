@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2lkjdbk2gifg"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_u5mcf"]
-[ext_resource type="PackedScene" uid="uid://c0hpg045ehyf" path="res://Chapters/Chap_Prototype/Proto_Playground.tscn" id="2_jg86o"]
+[ext_resource type="PackedScene" uid="uid://bqoinenq630dp" path="res://Chapters/Chap_Prototype/Proto_Level_01.tscn" id="2_6mi62"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="2_u8qgk"]
 
 [node name="GameRoot" type="Node"]
@@ -12,7 +12,7 @@ anchors_preset = 0
 offset_right = 639.0
 offset_bottom = 358.0
 script = ExtResource("1_u5mcf")
-startGameScene = ExtResource("2_jg86o")
+startGameScene = ExtResource("2_6mi62")
 
 [node name="ColorRect" type="ColorRect" parent="MainMenu"]
 layout_mode = 2
