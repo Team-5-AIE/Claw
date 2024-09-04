@@ -359,6 +359,22 @@ tracks/1/keys = {
 "values": [Color(1, 0.321569, 0.290196, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_5a7rm"]
+resource_name = "Reset"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [70, 71, 72, 73, 74, 75]
+}
+
 [sub_resource type="Animation" id="Animation_w7045"]
 resource_name = "Run"
 length = 0.6
@@ -631,22 +647,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 0.321569, 0.290196, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_5a7rm"]
-resource_name = "Reset"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteSheet:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [70, 71, 72, 73, 74, 75]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tk1i5"]

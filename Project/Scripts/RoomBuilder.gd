@@ -68,3 +68,4 @@ func _on_restart_player():
 	await FadeTransitions.on_fade_in_finished
 	player.global_position = currentSpawner.global_position
 	player.velocity = Vector2.ZERO
+	

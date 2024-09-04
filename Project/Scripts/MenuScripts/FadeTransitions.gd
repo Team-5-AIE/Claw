@@ -7,8 +7,7 @@ signal on_fade_out_finished
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var lockPlayer = false
-
-var restart
+var restart = false
 func _ready():
 	color_rect.visible = false
 	animation_player.animation_finished.connect(_on_animation_finished)
@@ -24,6 +23,7 @@ func _on_animation_finished(anim_name):
 	#Restart
 	elif anim_name == "FadeInRestart":
 		on_fade_in_finished.emit()
+		restart = false
 		animation_player.play("FadeOutRestart")
 	elif anim_name == "FadeOutRestart":
 		on_fade_out_finished.emit()
@@ -37,5 +37,6 @@ func Transition():
 
 func TransitionRestart():
 	lockPlayer = true
+	restart = true
 	color_rect.visible = true
 	animation_player.play("FadeInRestart")
