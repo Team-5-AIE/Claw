@@ -13,24 +13,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_tst8m")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 169.0
-offset_top = 223.0
-offset_right = 500.0
-offset_bottom = 293.0
+offset_left = 176.0
+offset_top = 282.0
+offset_right = 507.0
+offset_bottom = 352.0
 
 [node name="KimikoPortrait" type="Sprite2D" parent="."]
-position = Vector2(166, 243)
+position = Vector2(173, 302)
 texture = ExtResource("1_bpr6d")
 
 [node name="Text" type="Label" parent="."]
 layout_mode = 0
-offset_left = 205.0
-offset_top = 228.0
-offset_right = 494.0
-offset_bottom = 287.0
+offset_left = 209.0
+offset_top = 280.0
+offset_right = 502.0
+offset_bottom = 352.0
 text = "Hello this is test text"
 label_settings = SubResource("LabelSettings_qoxb6")
+autowrap_mode = 2
+
+[node name="TextSpeedTimer" type="Timer" parent="."]
+wait_time = 0.01
+one_shot = true

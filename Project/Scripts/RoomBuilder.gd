@@ -64,5 +64,7 @@ func _on_player_entered_room():
 
 # Player signals
 func _on_restart_player():
+	FadeTransitions.TransitionRestart()
+	await FadeTransitions.on_fade_in_finished
 	player.global_position = currentSpawner.global_position
 	player.velocity = Vector2.ZERO

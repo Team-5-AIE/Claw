@@ -29,6 +29,10 @@ func _ready() -> void:
 	ChangeState(state)
 
 func _process(delta) -> void:
+	if FadeTransitions.lockPlayer: 
+		player.velocity = Vector2.ZERO
+		player.animation_player.play("Idle")
+		return
 	can_we_throw_spear()
 	if state is State:
 		state.Update(delta) # Run the UpdatePhysics function in our current state
@@ -37,10 +41,12 @@ func _process(delta) -> void:
 	update_sprite_flip()
 
 func _input(event) -> void:
+	if FadeTransitions.lockPlayer: return
 	if state is State:
 		state.Inputs(event)
 
 func _physics_process(delta) -> void:
+	if FadeTransitions.lockPlayer: return
 	if spearThrown:
 		ClawPhysicsProcess()
 	
