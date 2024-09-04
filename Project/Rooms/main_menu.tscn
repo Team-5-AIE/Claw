@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2lkjdbk2gifg"]
+[gd_scene load_steps=6 format=3 uid="uid://c2lkjdbk2gifg"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_u5mcf"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="2_u8qgk"]
 [ext_resource type="PackedScene" uid="uid://clhj20ryjsiow" path="res://Objects/dialogue_manager.tscn" id="4_bd2tu"]
 [ext_resource type="Script" path="res://Scripts/RoomContainer.gd" id="4_hexht"]
+[ext_resource type="PackedScene" uid="uid://b1x7tuyiokmqg" path="res://Effects/cherry_blossom_petal.tscn" id="5_yig42"]
 
 [node name="GameRoot" type="Node"]
 
@@ -78,5 +79,7 @@ script = ExtResource("4_hexht")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DialogueManager" parent="CanvasLayer" instance=ExtResource("4_bd2tu")]
+
+[node name="CherryBlossomPetal" parent="CanvasLayer" instance=ExtResource("5_yig42")]
 
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_pressed"]

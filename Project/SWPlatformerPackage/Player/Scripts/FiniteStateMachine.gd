@@ -179,7 +179,7 @@ func can_we_crouch() -> bool:
 	return false
 
 func can_we_slide() -> bool:
-	if player.slide_enabled && Input.is_action_just_pressed("Slide") && Input.is_action_pressed("Down"):
+	if player.slide_enabled && Input.is_action_just_pressed("Slide"):
 		return true
 	return false
 

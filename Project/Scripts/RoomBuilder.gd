@@ -68,8 +68,4 @@ func _on_restart_player():
 	await FadeTransitions.on_fade_in_finished
 	player.global_position = currentSpawner.global_position
 	player.velocity = Vector2.ZERO
-	player.visible = false
 	await FadeTransitions.on_fade_out_finished
-	player.animation_player.play("RestartReverse")
-	player.visible = true
-	
