@@ -6,6 +6,10 @@ extends Control
 @onready var dialogue_manager: Control = $"../CanvasLayer/DialogueManager"
 @onready var start_button: Button = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton
 
+func _ready() -> void:
+	pass
+	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	#DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
 
 func _on_start_button_pressed():
 	start_button.disabled = true

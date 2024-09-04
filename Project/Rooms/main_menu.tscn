@@ -9,9 +9,11 @@
 
 [node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("roomLoader")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 639.0
-offset_bottom = 358.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_u5mcf")
 startGameScene = "res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 1.tscn"
 roomLoader = NodePath("../RoomContainer")
