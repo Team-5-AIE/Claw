@@ -31,7 +31,10 @@ func _ready() -> void:
 func _process(delta) -> void:
 	if FadeTransitions.lockPlayer: 
 		player.velocity = Vector2.ZERO
-		player.animation_player.play("Idle")
+		if FadeTransitions.restart:
+			player.animation_player.play("Restart")
+		else:
+			player.animation_player.play("Idle")
 		return
 	can_we_throw_spear()
 	if state is State:
