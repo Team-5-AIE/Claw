@@ -16,11 +16,11 @@ func EnterState() -> void:
 	else:
 		player.sprite_sheet.flip_h = true
 	#Create claw and set it up
-	clawInstance = NEW_CLAW.instantiate()
-	add_child(clawInstance)
-	clawInstance.player = player
-	clawInstance.global_position = player.claw_marker.global_position
-	clawInstance.Shoot(shootDirection)
+	spearInstance = NEW_CLAW.instantiate()
+	add_child(spearInstance)
+	spearInstance.player = player
+	spearInstance.global_position = player.spear_marker.global_position
+	spearInstance.Shoot(shootDirection)
 
 # Moved queue free into claw because of new functionality
 func ExitState() -> void:

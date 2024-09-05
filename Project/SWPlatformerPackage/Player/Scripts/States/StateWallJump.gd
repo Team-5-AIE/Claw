@@ -28,14 +28,14 @@ func EnterState() -> void:
 	if player.state_jump.bunnyhop:
 		var signCheckVelocity = sign(player.velocity.x)
 		if signCheckVelocity == 1:
-			horizontalSpeedOfThisWallJump = -player.state_jump.initVel
+			horizontalSpeedOfThisWallJump = -player.state_jump.initVel.x
 		elif signCheckVelocity == -1:
-			horizontalSpeedOfThisWallJump = player.state_jump.initVel
+			horizontalSpeedOfThisWallJump = player.state_jump.initVel.x
 	# Get direction to jump in
 	if player.finite_state_machine.get_next_to_wall() == Vector2.LEFT:
 		player.velocity.x = horizontalSpeedOfThisWallJump
 	if player.finite_state_machine.get_next_to_wall() == Vector2.RIGHT:
-		player.velocity.x = -horizontalSpeedOfThisWallJump
+		player.velocity.x = -horizontalSpeedOfThisWallJump #NOTE: Invalid assignment of property or key 'x' with value of type Vector2 on base object of type "Vector2"
 	player.velocity.y = -player.jump_height
 	if player.finite_state_machine.get_next_to_wall() == Vector2.RIGHT:
 		player.sprite_sheet.flip_h = true
@@ -69,11 +69,6 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 
 
 func Inputs(_event):
-	# Change to Spear Throw state
-	if player.finite_state_machine.can_we_throw_spear():
-		player.finite_state_machine.ChangeState(player.state_spear)
-		return
-	
 	# Change to Wall Jump State
 	if player.finite_state_machine.can_we_wall_jump():
 		player.finite_state_machine.ChangeState(player.state_wall_jump)

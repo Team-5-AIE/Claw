@@ -1,19 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2lkjdbk2gifg"]
+[gd_scene load_steps=6 format=3 uid="uid://c2lkjdbk2gifg"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_u5mcf"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="2_u8qgk"]
-[ext_resource type="Script" path="res://Scripts/RoomLoader.gd" id="4_hexht"]
+[ext_resource type="PackedScene" uid="uid://clhj20ryjsiow" path="res://Objects/dialogue_manager.tscn" id="4_bd2tu"]
+[ext_resource type="Script" path="res://Scripts/RoomContainer.gd" id="4_hexht"]
+[ext_resource type="PackedScene" uid="uid://b1x7tuyiokmqg" path="res://Effects/cherry_blossom_petal.tscn" id="5_yig42"]
 
 [node name="GameRoot" type="Node"]
 
 [node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("roomLoader")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 639.0
-offset_bottom = 358.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_u5mcf")
 startGameScene = "res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 1.tscn"
-roomLoader = NodePath("../RoomLoader")
+roomLoader = NodePath("../RoomContainer")
 
 [node name="ColorRect" type="ColorRect" parent="MainMenu"]
 layout_mode = 2
@@ -69,7 +73,13 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 18
 text = "Exit Game"
 
-[node name="RoomLoader" type="Node2D" parent="."]
+[node name="RoomContainer" type="Node2D" parent="."]
 script = ExtResource("4_hexht")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueManager" parent="CanvasLayer" instance=ExtResource("4_bd2tu")]
+
+[node name="CherryBlossomPetal" parent="CanvasLayer" instance=ExtResource("5_yig42")]
 
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_pressed"]

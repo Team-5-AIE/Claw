@@ -18,7 +18,6 @@ var angle
 var damping = 0.995
 var angularVel : float = 0.0
 var angularAcceleration : float = 0.0
-var correctionNeeded = true
 var autoGrapple : bool = false
 var hookSoundPlayed = false
 @onready var audio_stream_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
@@ -28,55 +27,25 @@ const PULLJUMP = preload("res://Sounds/Effects/pullJump.wav")
 #=================================================================================
 func EnterState() -> void:
 	hookSoundPlayed = false
-	if spearInstance != null:
-		print("Spear already exists while we entered spear state - not retracted")
 	autoGrapple = false
-	#player.finite_state_machine.disable_gravity = true
-	correctionNeeded = true
 	if player.debug_mode:
 		print("Debug: Spear State")
-	
-	player.animation_player.play("Idle") #TODO: Look less jank - calulate movement and animations
-	# Get direction to shoot in
-	if player.lockspear45direction || Input.is_action_just_pressed("C"):
-		shootDirection = Vector2(player.last_input_direction.x,-1)
-	else:
-		shootDirection = (player.get_global_mouse_position() - player.spear_marker.global_position)
 	# Update sprite flip to the shoot direction
 	player.finite_state_machine.sprite_flip_lock = true
-	spearInstance = SPEAR.instantiate()
-	if sign(shootDirection.x) == 1:
-		player.spear_marker.global_position = player.global_position + Vector2(-6,-28)
-		player.sprite_sheet.flip_h = false
-		spearInstance.flipped = false
-	else:
-		player.spear_marker.global_position = player.global_position + Vector2(6,-28)
-		player.sprite_sheet.flip_h = true
-		spearInstance.flipped = true
-	spearInstance.audio_stream_player = player.audio_stream_player
-	#Create Spear and set it up
+	player.animation_player.play("ShootSpear")
 	
 	
-	add_child(spearInstance)
-	spearInstance.player = player
-	spearInstance.global_position = player.spear_marker.global_position
-	spearInstance.Shoot(shootDirection)
 #=================================================================================
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
-	if spearInstance.hooked:
-		if !hookSoundPlayed:
-			var randSound = randi_range(0,1)
-			match randSound:
-				0: audio_stream_player.stream = HOOK1
-				1: audio_stream_player.stream = HOOK2
-			audio_stream_player.play()
-			hookSoundPlayed = true
-		player.animation_player.play("ShootSpear")
-		ProcessVelocity(delta)
-	else:
-		# We haven't hooked the spear - free movement
-		if player.is_on_floor():
-			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.acceleration * delta)
+	if !hookSoundPlayed:
+		var randSound = randi_range(0,1)
+		match randSound:
+			0: audio_stream_player.stream = HOOK1
+			1: audio_stream_player.stream = HOOK2
+		audio_stream_player.play()
+		hookSoundPlayed = true
+	
+	ProcessVelocity(delta)
 
 func Inputs(_event) -> void:
 	if Input.is_action_just_pressed("LetGoOfSpear"):

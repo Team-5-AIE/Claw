@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1x7tuyiokmqg"]
+
+[ext_resource type="Texture2D" uid="uid://cyhi2xjmofe4i" path="res://Sprites/CherryBlossomPetal.png" id="1_o3xho"]
+[ext_resource type="Script" path="res://Effects/cherry_blossom_petal.gd" id="2_qbmkj"]
+
+[sub_resource type="Curve" id="Curve_gjw0q"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.596899, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2re58"]
+curve = SubResource("Curve_gjw0q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ha2hv"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(-400, 1, 1)
+direction = Vector3(0.5, 1, 0)
+spread = 20.0
+initial_velocity_min = 60.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_2re58")
+
+[node name="CherryBlossomPetal" type="GPUParticles2D"]
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_ha2hv")
+texture = ExtResource("1_o3xho")
+lifetime = 8.0
+script = ExtResource("2_qbmkj")

@@ -3,8 +3,27 @@ extends Control
 @export_file("*.tscn") var startGameScene : String
 
 @export var roomLoader : Node2D
+@onready var dialogue_manager: Control = $"../CanvasLayer/DialogueManager"
+@onready var start_button: Button = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton
+
+func _ready() -> void:
+	pass
+	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	#DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
 
 func _on_start_button_pressed():
-	roomLoader.LoadRoom(startGameScene)
+	start_button.disabled = true
+	
+	FadeTransitions.Transition()
+	await FadeTransitions.on_fade_in_finished
+	
+	var room = roomLoader.LoadRoom(startGameScene)
+	room.StartingRoomSetup()
+	visible = false
+	
+	await FadeTransitions.on_fade_out_finished
+	FadeTransitions.lockPlayer = true
+	dialogue_manager.AddDialougeTextBox("I have to find the cure... for Izumo.")
+	dialogue_manager.AddDialougeTextBox("I know someone here has information.\n Just have to find them.")
 	
 	queue_free()
