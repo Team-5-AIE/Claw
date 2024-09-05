@@ -105,3 +105,9 @@ func _process(delta: float) -> void:
 			ControlConfig.TOGGLE:
 				print("Hold Controls")
 				control_config = ControlConfig.HOLD
+	
+	if Input.is_action_just_pressed("InstaRestart"):
+		if player.state_spear.spearInstance != null:
+			player.state_spear.spearInstance.Release()
+			player.state_spear.spearInstance = null
+		player.restartPlayer.emit()
