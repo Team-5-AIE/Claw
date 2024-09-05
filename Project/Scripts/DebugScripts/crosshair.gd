@@ -47,11 +47,12 @@ func _set_crosshair_position(delta: float):
 	throw_visual.position = spear_direction * crosshair_reach
 	
 	if player.finite_state_machine.state == player.state_spear:
-		var spearToPlayer = player.spear_marker.global_position - player.state_spear.spearInstance.global_position
-		var launch_velocity = player.velocity * (1.0 - player.state_spear.pullJumpStopFraction) - spearToPlayer.normalized() * player.state_spear.pullJumpStrength
-		
 		launch_visual.position = player.velocity.normalized() * crosshair_reach
-		swing_visual.position = launch_velocity.normalized() * crosshair_reach
+		if is_instance_valid(player.state_spear.spearInstance):
+			var spearToPlayer = player.spear_marker.global_position - player.state_spear.spearInstance.global_position
+			var launch_velocity = player.velocity * (1.0 - player.state_spear.pullJumpStopFraction) - spearToPlayer.normalized() * player.state_spear.pullJumpStrength
+			
+			swing_visual.position = launch_velocity.normalized() * crosshair_reach
 
 #func _display_label():
 	#match (control_config):

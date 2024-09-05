@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8wxnef8hlq7q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63ewf"]
+size = Vector2(32, 32)
 
 [node name="Pitfall" type="Area2D"]
 collision_layer = 16
