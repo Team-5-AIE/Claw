@@ -908,11 +908,11 @@ volume_db = -10.085
 
 [node name="Controls" type="Label" parent="DebugHUD"]
 modulate = Color(1, 1, 1, 0.705882)
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 148.0
+offset_bottom = 157.0
 theme = ExtResource("17_l1jw6")
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 10
 text = "TOGGLE MODE
 XBox Gamepad:
 L Stick - Move
@@ -921,24 +921,29 @@ A/LB - Jump
 B/RB - Use/Release Spear
 X/LT - Slide
 Y/RT - Launch from Swing"
+autowrap_mode = 2
 
 [node name="DebugControls" type="Label" parent="DebugHUD"]
 modulate = Color(1, 1, 1, 0.705882)
-offset_left = 531.0
+offset_left = 502.0
 offset_right = 640.0
-offset_bottom = 89.0
+offset_bottom = 137.0
 theme = ExtResource("17_l1jw6")
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 12
-text = "Debug Controls:
-R key - Restart
-O key - Toggle MnK or Gamepad controls
-P key - Cycle Hold/Toggle configs"
+theme_override_font_sizes/font_size = 10
+text = "Toggles:
+I key - Spear controls
+O key - Hold/Toggle
+P key - Controller/MnK
+K key - Crosshairs Display
+L key - Control Display
+\\ key - Debug Labels
+
+R key - Restart room"
 horizontal_alignment = 2
 autowrap_mode = 2
 
 [node name="Crosshairs" type="Node2D" parent="."]
-script = ExtResource("17_c5rv7")
 
 [node name="AimCrosshair" type="Sprite2D" parent="Crosshairs"]
 modulate = Color(0.827451, 0.00784314, 0.239216, 0.815686)
@@ -948,13 +953,16 @@ texture = ExtResource("18_iltxp")
 modulate = Color(0.827451, 0.00784314, 0.239216, 1)
 texture = ExtResource("19_s68wg")
 
-[node name="SwingCrosshair" type="Sprite2D" parent="Crosshairs"]
-modulate = Color(0.00559999, 0.56, 0.03332, 0.815686)
+[node name="SwingJumpCrosshair" type="Sprite2D" parent="Crosshairs"]
+modulate = Color(0.678431, 0.533333, 0.00784314, 1)
 texture = ExtResource("18_iltxp")
 
-[node name="SwingPoint" type="Sprite2D" parent="Crosshairs"]
-modulate = Color(0.00559999, 0.56, 0.03332, 1)
+[node name="SwingLaunchPoint" type="Sprite2D" parent="Crosshairs"]
+modulate = Color(0.68, 0.53414, 0.00679999, 1)
 texture = ExtResource("19_s68wg")
+
+[node name="ControlOverride" type="Node2D" parent="."]
+script = ExtResource("17_c5rv7")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
