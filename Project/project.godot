@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Spearloom"
-run/main_scene="res://Rooms/main_menu.tscn"
+run/main_scene="res://Rooms/splash_screen_frames.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=144
 boot_splash/bg_color=Color(0.0352941, 0.0392157, 0.0784314, 1)
@@ -65,6 +65,10 @@ folder_colors={
 RoomInitListeners=""
 RoomTransitionNodes=""
 PlayerSpawns=""
+
+[gui]
+
+theme/custom_font="res://addons/Fonts/Gamer.ttf"
 
 [input]
 

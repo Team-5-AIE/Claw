@@ -1,10 +1,43 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2lkjdbk2gifg"]
+[gd_scene load_steps=21 format=3 uid="uid://c2lkjdbk2gifg"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_u5mcf"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="2_u8qgk"]
-[ext_resource type="PackedScene" path="res://Objects/dialogue_manager.tscn" id="4_bd2tu"]
+[ext_resource type="Texture2D" uid="uid://bpbnpy3g434o" path="res://Sprites/Menu/BoxSelected.png" id="3_emd1a"]
+[ext_resource type="PackedScene" uid="uid://clhj20ryjsiow" path="res://Objects/dialogue_manager.tscn" id="4_bd2tu"]
 [ext_resource type="Script" path="res://Scripts/RoomContainer.gd" id="4_hexht"]
-[ext_resource type="PackedScene" path="res://Effects/cherry_blossom_petal.tscn" id="5_yig42"]
+[ext_resource type="Texture2D" uid="uid://cyvhepmaupi24" path="res://Sprites/Menu/BoxDefault.png" id="4_ncfom"]
+[ext_resource type="PackedScene" uid="uid://b1x7tuyiokmqg" path="res://Effects/cherry_blossom_petal.tscn" id="5_yig42"]
+[ext_resource type="PackedScene" uid="uid://220whnswt3p2" path="res://Objects/time_tracker.tscn" id="6_cf7u0"]
+[ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="7_qykg7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_besrm"]
+texture = ExtResource("4_ncfom")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xmybh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tcddm"]
+texture = ExtResource("4_ncfom")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uptl3"]
+texture = ExtResource("4_ncfom")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x8len"]
+texture = ExtResource("4_ncfom")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_64dr8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qqxr0"]
+texture = ExtResource("3_emd1a")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pak0m"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_12hfj"]
+texture = ExtResource("4_ncfom")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tapik"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w5g8m"]
+texture = ExtResource("4_ncfom")
 
 [node name="GameRoot" type="Node"]
 
@@ -16,7 +49,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u5mcf")
-startGameScene = "res://Chapters/Chapter_01/Rooms/room_101.tscn"
+startGameScene = "res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 1.tscn"
 roomLoader = NodePath("../RoomContainer")
 
 [node name="ColorRect" type="ColorRect" parent="MainMenu"]
@@ -53,25 +86,64 @@ theme_override_constants/margin_right = 125
 layout_mode = 2
 
 [node name="StartButton" type="Button" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 18
-text = "Start Game"
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxTexture_besrm")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_xmybh")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_tcddm")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_uptl3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_x8len")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_64dr8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qqxr0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_pak0m")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_12hfj")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tapik")
+theme_override_styles/normal = SubResource("StyleBoxTexture_w5g8m")
+text = "START"
 
-[node name="OptionsButton" type="Button" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Options" type="Button" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 18
-text = "Options"
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxTexture_besrm")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_xmybh")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_tcddm")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_uptl3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_x8len")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_64dr8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qqxr0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_pak0m")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_12hfj")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tapik")
+theme_override_styles/normal = SubResource("StyleBoxTexture_w5g8m")
+text = "OPTIONS"
 
-[node name="ExitButton" type="Button" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 18
-text = "Exit Game"
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxTexture_besrm")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_xmybh")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_tcddm")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_uptl3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_x8len")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_64dr8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qqxr0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_pak0m")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_12hfj")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tapik")
+theme_override_styles/normal = SubResource("StyleBoxTexture_w5g8m")
+text = "QUIT"
 
 [node name="RoomContainer" type="Node2D" parent="."]
 script = ExtResource("4_hexht")
@@ -79,7 +151,17 @@ script = ExtResource("4_hexht")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DialogueManager" parent="CanvasLayer" instance=ExtResource("4_bd2tu")]
+visible = false
 
 [node name="CherryBlossomPetal" parent="CanvasLayer" instance=ExtResource("5_yig42")]
+
+[node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("6_cf7u0")]
+offset_left = 523.0
+offset_top = 4.0
+offset_right = 523.0
+offset_bottom = 3.88
+
+[node name="BGMPlayer" parent="." instance=ExtResource("7_qykg7")]
+volume_db = -10.085
 
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_pressed"]
