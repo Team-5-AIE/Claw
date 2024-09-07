@@ -907,16 +907,35 @@ volume_db = -10.085
 [node name="DebugHUD" type="CanvasLayer" parent="."]
 
 [node name="Controls" type="Label" parent="DebugHUD"]
+modulate = Color(1, 1, 1, 0.705882)
 offset_right = 40.0
 offset_bottom = 23.0
 theme = ExtResource("17_l1jw6")
-text = "XBox Gamepad:
-Left Stick - Move
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 12
+text = "TOGGLE MODE
+XBox Gamepad:
+L Stick - Move
+R Stick - Aim
 A/LB - Jump
-X/LT - Slide
-Right Stick - Aim
 B/RB - Use/Release Spear
-Y/RT - Launch from Swing "
+X/LT - Slide
+Y/RT - Launch from Swing"
+
+[node name="DebugControls" type="Label" parent="DebugHUD"]
+modulate = Color(1, 1, 1, 0.705882)
+offset_left = 531.0
+offset_right = 640.0
+offset_bottom = 89.0
+theme = ExtResource("17_l1jw6")
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 12
+text = "Debug Controls:
+R key - Restart
+O key - Toggle MnK or Gamepad controls
+P key - Cycle Hold/Toggle configs"
+horizontal_alignment = 2
+autowrap_mode = 2
 
 [node name="Crosshairs" type="Node2D" parent="."]
 script = ExtResource("17_c5rv7")
