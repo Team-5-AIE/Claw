@@ -5,6 +5,7 @@ extends Control
 @export var roomLoader : Node2D
 @onready var dialogue_manager: Control = $"../CanvasLayer/DialogueManager"
 @onready var start_button: Button = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton
+@onready var time_tracker: Control = $"../CanvasLayer/TimeTracker"
 
 func _ready() -> void:
 	pass
@@ -25,5 +26,5 @@ func _on_start_button_pressed():
 	FadeTransitions.lockPlayer = true
 	dialogue_manager.AddDialougeTextBox("I have to find the cure... for Izumo.")
 	dialogue_manager.AddDialougeTextBox("I know someone here has information.\n Just have to find them.")
-	
+	time_tracker.StartTimer()
 	queue_free()
