@@ -235,4 +235,4 @@ func _change_label_description():
 	if control_labels_enabled && debug_labels_enabled:
 		debug_label.text = "Toggles:\nI key - Spear controls\nO key - Hold/Toggle\nP key - Controller/MnK\nK key - Crosshairs Display\nL key - Control Display\n\\ key - Debug Labels\n\nR key - Restart room"
 	elif control_labels_enabled:
-		debug_label.text = "K key - Crosshairs Display\nL key - Control Display\nR key - Restart room"
+		debug_label.text = "K key - Show/Hide Crosshairs\nL key - Show/Hide Controls\nR key - Restart room"
