@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2ekgehdp223i"]
+[gd_scene load_steps=4 format=3 uid="uid://d2ekgehdp223i"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_daabb"]
-[ext_resource type="PackedScene" uid="uid://c0hpg045ehyf" path="res://Chapters/Chap_Prototype/Proto_Playground.tscn" id="2_d88c7"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="3_ng0wf"]
 [ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="4_70cel"]
 
@@ -17,7 +16,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_daabb")
-startGameScene = ExtResource("2_d88c7")
 
 [node name="BackgroundList" type="Control" parent="MainMenu"]
 layout_mode = 1

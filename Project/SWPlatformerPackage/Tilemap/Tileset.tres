@@ -28,11 +28,11 @@ tile_data = PackedInt32Array(0, 327681, 2, 1, 393217, 2)
 [sub_resource type="TileMapPattern" id="TileMapPattern_6hjmm"]
 tile_data = PackedInt32Array(0, 196609, 2, 1, 262145, 2)
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_v8apc"]
-tile_data = PackedInt32Array(65536, 655361, 9, 1, 720897, 8, 65537, 720897, 9, 2, 786433, 8, 65538, 786433, 9, 3, 851969, 8, 65539, 851969, 9, 4, 917505, 8, 65540, 917505, 9, 5, 983041, 8, 65541, 983041, 9, 65542, 1048577, 9)
+[sub_resource type="TileMapPattern" id="TileMapPattern_etyo4"]
+tile_data = PackedInt32Array(0, 196609, 8, 65536, 393217, 4, 131072, 655361, 9, 1, 458753, 3, 65537, 720897, 8, 131073, 720897, 9, 2, 917505, 2, 65538, 786433, 8, 131074, 786433, 9, 3, 917505, 2, 65539, 851969, 8, 131075, 851969, 9, 4, 917505, 2, 65540, 917505, 8, 131076, 917505, 9, 5, 196609, 3, 65541, 983041, 8, 131077, 983041, 9, 6, 196609, 8, 65542, 262145, 4, 131078, 1048577, 9)
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_g576w"]
-tile_data = PackedInt32Array(65536, 524289, 17, 1, 589825, 16, 65537, 589825, 17, 2, 655361, 16, 65538, 655361, 17, 3, 720897, 16, 65539, 720897, 17, 4, 786433, 16, 65540, 786433, 17, 5, 851969, 16, 65541, 851969, 17, 65542, 917505, 17)
+[sub_resource type="TileMapPattern" id="TileMapPattern_o42se"]
+tile_data = PackedInt32Array(0, 262145, 20, 65536, 1310721, 14, 131072, 524289, 17, 1, 1376257, 13, 65537, 589825, 16, 131073, 589825, 17, 2, 327681, 17, 65538, 655361, 16, 131074, 655361, 17, 3, 327681, 17, 65539, 720897, 16, 131075, 720897, 17, 4, 327681, 17, 65540, 786433, 16, 131076, 786433, 17, 5, 1114113, 13, 65541, 851969, 16, 131077, 851969, 17, 6, 262145, 20, 65542, 1179649, 14, 131078, 917505, 17)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kw5l1"]
 
@@ -1786,11 +1786,11 @@ physics_layer_2/collision_mask = 16
 physics_layer_3/collision_layer = 32
 physics_layer_3/collision_mask = 32
 terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "Castle Exterior"
+terrain_set_0/terrain_0/name = "Castle Exterior (Do not use)"
 terrain_set_0/terrain_0/color = Color(0.687716, 0.350983, 0.602608, 1)
 terrain_set_0/terrain_1/name = "Castle Interior"
 terrain_set_0/terrain_1/color = Color(0.307465, 0.380757, 0.860174, 1)
-terrain_set_0/terrain_2/name = "Wood Exterior"
+terrain_set_0/terrain_2/name = "Wood Exterior (Do not use)"
 terrain_set_0/terrain_2/color = Color(0.425019, 0.466815, 0.43785, 1)
 terrain_set_0/terrain_3/name = "Wood Interior"
 terrain_set_0/terrain_3/color = Color(0.176975, 0.546438, 0.455606, 1)
@@ -1800,7 +1800,7 @@ terrain_set_1/terrain_0/color = Color(0.657178, 0.207181, 0.148345, 1)
 terrain_set_1/terrain_1/name = "Backwall Interior"
 terrain_set_1/terrain_1/color = Color(0.294062, 0.506045, 0.193189, 1)
 terrain_set_2/mode = 0
-terrain_set_2/terrain_0/name = "Spikes Exterior"
+terrain_set_2/terrain_0/name = "Spikes Exterior (Do not use)"
 terrain_set_2/terrain_0/color = Color(0.595312, 0.278222, 0.174428, 1)
 terrain_set_2/terrain_1/name = "Spikes Interior"
 terrain_set_2/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
@@ -1817,5 +1817,5 @@ pattern_4 = SubResource("TileMapPattern_gc886")
 pattern_5 = SubResource("TileMapPattern_l33kp")
 pattern_6 = SubResource("TileMapPattern_0hl4c")
 pattern_7 = SubResource("TileMapPattern_6hjmm")
-pattern_8 = SubResource("TileMapPattern_v8apc")
-pattern_9 = SubResource("TileMapPattern_g576w")
+pattern_8 = SubResource("TileMapPattern_etyo4")
+pattern_9 = SubResource("TileMapPattern_o42se")
