@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://220whnswt3p2"]
+
+[ext_resource type="Script" path="res://Scripts/MenuScripts/time_tracker.gd" id="1_5ptep"]
+[ext_resource type="Texture2D" uid="uid://cyvhepmaupi24" path="res://Sprites/Menu/BoxDefault.png" id="2_lhesd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lgnu5"]
+font_size = 24
+
+[node name="TimeTracker" type="Control"]
+layout_mode = 3
+anchor_right = 0.175
+anchor_bottom = 0.092
+offset_bottom = -0.120003
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5ptep")
+
+[node name="BoxDefault" type="Sprite2D" parent="."]
+position = Vector2(57, 17)
+texture = ExtResource("2_lhesd")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 108.0
+offset_bottom = 26.0
+text = "13:00"
+label_settings = SubResource("LabelSettings_lgnu5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SecondsTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="MinutesTimer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[connection signal="timeout" from="SecondsTimer" to="." method="_on_seconds_timer_timeout"]
+[connection signal="timeout" from="MinutesTimer" to="." method="_on_minutes_timer_timeout"]

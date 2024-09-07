@@ -1,5 +1,5 @@
 class_name TraveenClawEdits
-extends Claw
+extends Spear
 
 @export var pullSpeedMultiplier: float = 2
 @export var retractedClawForceWhilePulled: float = 300
@@ -7,7 +7,7 @@ extends Claw
 func _physics_process(delta):
 	if extending :
 		if move_and_collide(direction * SPEED):
-			player.state_claw.SetStartPosition(global_position,player.global_position)
+			player.state_spear.SetStartPosition(global_position,player.global_position)
 			hooked = true
 			extending = false
 	#NOTE: UNCOMMENT

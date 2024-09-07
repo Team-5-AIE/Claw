@@ -4,25 +4,34 @@ var follow : bool = false
 var player = null
 var collected = false
 @onready var destroy_timer = $DestroyTimer
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+const COLLECT_BLOOMIE = preload("res://Sounds/Effects/collectBloomie.wav")
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+var targetPosition = Vector2.ZERO
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	animation_player.play("Float")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta)-> void:
+	if player != null:
+		targetPosition = player.bloomieMarker2D.global_position
+		global_position.x = lerp(global_position.x, targetPosition.x, 0.1)
+		global_position.y = lerp(global_position.y, targetPosition.y, 0.1)
 	if follow:
-		global_position = player.bloomieMarker2D.global_position
 		if player.is_on_floor():
 			collected = true
 			follow = false
 			destroy_timer.start()
+			audio_stream_player.stream = COLLECT_BLOOMIE
+			audio_stream_player.play()
+			animation_player.play("Fade")
 	if collected:
-		if destroy_timer.time_left > 0.0:
-			global_position.y -= 1
-		else:
-			queue_free()
+		if destroy_timer.time_left <= 0.0:
+			if !audio_stream_player.playing:
+				queue_free()
 
 
 func _on_area_2d_body_entered(body) -> void:

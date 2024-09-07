@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=51 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
@@ -8,12 +8,18 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateFall.gd" id="6_8mfgh"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateLand.gd" id="7_mqss4"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateJump.gd" id="7_uq31w"]
-[ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateClaw.gd" id="8_h64g1"]
+[ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSpear.gd" id="8_h64g1"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateCrouch.gd" id="9_gut04"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallClimb.gd" id="10_hwp3x"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallJump.gd" id="11_r1ntv"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallSlide.gd" id="12_q8x25"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
+[ext_resource type="AudioStream" uid="uid://dvgj8oqo664q0" path="res://Sounds/Effects/jump (1).wav" id="15_pytux"]
+[ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="16_atdeq"]
+[ext_resource type="Script" path="res://Scripts/DebugScripts/crosshair.gd" id="17_c5rv7"]
+[ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="17_l1jw6"]
+[ext_resource type="Texture2D" uid="uid://djb1vwql28tww" path="res://Sprites/Debug/crosshair.png" id="18_iltxp"]
+[ext_resource type="Texture2D" uid="uid://4oobdepu5fu8" path="res://Sprites/Debug/crosshair_point.png" id="19_s68wg"]
 
 [sub_resource type="Gradient" id="Gradient_62wi8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.14902, 0.329412, 1)
@@ -357,6 +363,38 @@ tracks/1/keys = {
 "values": [Color(1, 0.321569, 0.290196, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_5a7rm"]
+resource_name = "Reset"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [70, 71, 72, 73, 74, 75]
+}
+
+[sub_resource type="Animation" id="Animation_ln15y"]
+resource_name = "RestartReverse"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [75, 74, 73, 72, 71, 70]
+}
+
 [sub_resource type="Animation" id="Animation_w7045"]
 resource_name = "Run"
 length = 0.6
@@ -387,7 +425,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_foffa"]
-resource_name = "ShootClaw"
+resource_name = "ShootSpear"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -404,7 +442,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_q1qge"]
 resource_name = "Slide"
-length = 0.1
+length = 0.05
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -575,7 +613,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_etpra"]
 resource_name = "WallSlide"
-length = 0.1
+length = 0.05
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -645,8 +683,10 @@ _data = {
 "Land": SubResource("Animation_ohb0t"),
 "LedgeClimb": SubResource("Animation_vgrig"),
 "RESET": SubResource("Animation_6cbom"),
+"Restart": SubResource("Animation_5a7rm"),
+"RestartReverse": SubResource("Animation_ln15y"),
 "Run": SubResource("Animation_w7045"),
-"ShootClaw": SubResource("Animation_foffa"),
+"ShootSpear": SubResource("Animation_foffa"),
 "Slide": SubResource("Animation_q1qge"),
 "WallClimb": SubResource("Animation_0ss5m"),
 "WallClimbLowStamina": SubResource("Animation_6dtpx"),
@@ -734,9 +774,8 @@ script = ExtResource("7_uq31w")
 [node name="StateLand" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("7_mqss4")
 
-[node name="StateClaw" type="Node" parent="FiniteStateMachine"]
+[node name="StateSpear" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("8_h64g1")
-clawVelSpeed = 1.7
 pullJumpStrength = 500.0
 pullJumpStopFraction = 0.7
 
@@ -797,6 +836,10 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
+[node name="FootstepSoundTimer" type="Timer" parent="Timers"]
+wait_time = 0.3
+one_shot = true
+
 [node name="RaycastSlideLeft" type="RayCast2D" parent="."]
 position = Vector2(-5, 0)
 target_position = Vector2(0, -27)
@@ -855,7 +898,47 @@ debug_color = Color(1, 0.800359, 0.969968, 0.42)
 [node name="DustMarker2D" type="Marker2D" parent="."]
 position = Vector2(0, -3)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_pytux")
+
+[node name="BGMPlayer" parent="." instance=ExtResource("16_atdeq")]
+volume_db = -10.085
+
+[node name="DebugHUD" type="CanvasLayer" parent="."]
+
+[node name="Controls" type="Label" parent="DebugHUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("17_l1jw6")
+text = "XBox Gamepad:
+Left Stick - Move
+A/LB - Jump
+X/LT - Slide
+Right Stick - Aim
+B/RB - Use/Release Spear
+Y/RT - Launch from Swing "
+
+[node name="Crosshairs" type="Node2D" parent="."]
+script = ExtResource("17_c5rv7")
+
+[node name="AimCrosshair" type="Sprite2D" parent="Crosshairs"]
+modulate = Color(0.827451, 0.00784314, 0.239216, 0.815686)
+texture = ExtResource("18_iltxp")
+
+[node name="AimPoint" type="Sprite2D" parent="Crosshairs"]
+modulate = Color(0.827451, 0.00784314, 0.239216, 1)
+texture = ExtResource("19_s68wg")
+
+[node name="SwingCrosshair" type="Sprite2D" parent="Crosshairs"]
+modulate = Color(0.00559999, 0.56, 0.03332, 0.815686)
+texture = ExtResource("18_iltxp")
+
+[node name="SwingPoint" type="Sprite2D" parent="Crosshairs"]
+modulate = Color(0.00559999, 0.56, 0.03332, 1)
+texture = ExtResource("19_s68wg")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
 [connection signal="timeout" from="Timers/JumpBufferTimer" to="FiniteStateMachine" method="_on_jump_buffer_timer_timeout"]
+[connection signal="timeout" from="Timers/FootstepSoundTimer" to="FiniteStateMachine/StateMove" method="PlayFootsteps"]
 [connection signal="body_entered" from="SpikeArea" to="." method="_on_spike_area_body_entered"]
