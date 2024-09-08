@@ -1,5 +1,5 @@
 extends Control
-
+class_name TimeTracker
 @onready var label: Label = $Label
 @onready var seconds_timer: Timer = $SecondsTimer
 @onready var minutes_timer: Timer = $MinutesTimer
@@ -7,7 +7,6 @@ extends Control
 var minutes : int = 0
 var seconds : int = 0
 var currentTimeString : String = "" #This can be saved into the Json files emma is working on for display.
-
 
 func _ready() -> void:
 	visible = false
@@ -26,6 +25,9 @@ func UpdateText() -> void:
 func StartTimer():
 	seconds_timer.start()
 	minutes_timer.start()
+	currentTimeString = ""
+	seconds = 0
+	minutes = 0
 	visible = true
 
 func _on_seconds_timer_timeout() -> void:
@@ -34,4 +36,10 @@ func _on_seconds_timer_timeout() -> void:
 
 func _on_minutes_timer_timeout() -> void:
 	minutes += 1
+	seconds = 0
 	minutes_timer.start()
+
+func AddTimeToList() -> void: #Call when level is finished.
+	seconds_timer.stop()
+	minutes_timer.stop()
+	Global.highscores.append(["Name",currentTimeString,minutes,seconds])
