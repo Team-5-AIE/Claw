@@ -1,0 +1,339 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2ekgehdp223i"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_daabb"]
+[ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="3_ng0wf"]
+[ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="4_70cel"]
+
+[node name="GameRoot" type="Node"]
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_daabb")
+
+[node name="BackgroundList" type="Control" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleBG" type="ColorRect" parent="MainMenu/BackgroundList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.26833, 0.194799, 0.294845, 1)
+
+[node name="ChapterOneBG" type="ColorRect" parent="MainMenu/BackgroundList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2015, 0.205117, 0.31, 1)
+
+[node name="ChapterTwoBG" type="ColorRect" parent="MainMenu/BackgroundList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1575, 0.25, 0.1945, 1)
+
+[node name="TitleScreen" type="MarginContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/TitleScreen"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/TitleScreen/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_ng0wf")
+stretch_mode = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MainMenu/TitleScreen/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_70cel")
+bbcode_enabled = true
+text = "[center]PRESS SPACE[/center]"
+fit_content = true
+
+[node name="LandingScreen" type="MarginContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 390
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/LandingScreen"]
+layout_mode = 2
+
+[node name="ChapterOne" type="PanelContainer" parent="MainMenu/LandingScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/LandingScreen/VBoxContainer/ChapterOne"]
+clip_contents = true
+layout_mode = 2
+
+[node name="BloomiesDisplay" type="VBoxContainer" parent="MainMenu/LandingScreen/VBoxContainer/ChapterOne/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="BloomiesIcon" type="ColorRect" parent="MainMenu/LandingScreen/VBoxContainer/ChapterOne/HBoxContainer/BloomiesDisplay"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BloomiesCount" type="RichTextLabel" parent="MainMenu/LandingScreen/VBoxContainer/ChapterOne/HBoxContainer/BloomiesDisplay"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("4_70cel")
+bbcode_enabled = true
+text = "[center]##[/center]"
+fit_content = true
+
+[node name="ChapterButton" type="Button" parent="MainMenu/LandingScreen/VBoxContainer/ChapterOne/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_70cel")
+text = "Chapter 1"
+
+[node name="ChapterTwo" type="PanelContainer" parent="MainMenu/LandingScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/LandingScreen/VBoxContainer/ChapterTwo"]
+clip_contents = true
+layout_mode = 2
+
+[node name="BloomiesDisplay" type="VBoxContainer" parent="MainMenu/LandingScreen/VBoxContainer/ChapterTwo/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="BloomiesIcon" type="ColorRect" parent="MainMenu/LandingScreen/VBoxContainer/ChapterTwo/HBoxContainer/BloomiesDisplay"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BloomiesCount" type="RichTextLabel" parent="MainMenu/LandingScreen/VBoxContainer/ChapterTwo/HBoxContainer/BloomiesDisplay"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[center]##[/center]"
+fit_content = true
+
+[node name="ChapterButton" type="Button" parent="MainMenu/LandingScreen/VBoxContainer/ChapterTwo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 18
+text = "Chapter 2"
+
+[node name="Options" type="HBoxContainer" parent="MainMenu/LandingScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionsIcon" type="ColorRect" parent="MainMenu/LandingScreen/VBoxContainer/Options"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="OptionsButton" type="Button" parent="MainMenu/LandingScreen/VBoxContainer/Options"]
+layout_mode = 2
+theme = ExtResource("4_70cel")
+text = "Options"
+
+[node name="Credits" type="HBoxContainer" parent="MainMenu/LandingScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="CreditsIcon" type="ColorRect" parent="MainMenu/LandingScreen/VBoxContainer/Credits"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CreditsButton" type="Button" parent="MainMenu/LandingScreen/VBoxContainer/Credits"]
+layout_mode = 2
+theme = ExtResource("4_70cel")
+text = "Credits"
+
+[node name="Exit" type="HBoxContainer" parent="MainMenu/LandingScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExitIcon" type="ColorRect" parent="MainMenu/LandingScreen/VBoxContainer/Exit"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ExitButton" type="Button" parent="MainMenu/LandingScreen/VBoxContainer/Exit"]
+layout_mode = 2
+theme = ExtResource("4_70cel")
+text = "Exit Game"
+
+[node name="ChapterOneScreen" type="MarginContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 390
+theme_override_constants/margin_bottom = 50
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="MainMenu/ChapterOneScreen"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/ChapterOneScreen/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/ChapterOneScreen/PanelContainer/VBoxContainer"]
+clip_contents = true
+layout_direction = 3
+layout_mode = 2
+
+[node name="ChapterButton" type="Button" parent="MainMenu/ChapterOneScreen/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_70cel")
+text = "Chapter 1"
+
+[node name="BloomiesDisplay" type="VBoxContainer" parent="MainMenu/ChapterOneScreen/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="BloomiesIcon" type="ColorRect" parent="MainMenu/ChapterOneScreen/PanelContainer/VBoxContainer/HBoxContainer/BloomiesDisplay"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BloomiesCount" type="RichTextLabel" parent="MainMenu/ChapterOneScreen/PanelContainer/VBoxContainer/HBoxContainer/BloomiesDisplay"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("4_70cel")
+bbcode_enabled = true
+text = "[center]##[/center]"
+fit_content = true
+
+[node name="TopTimeDisplay" type="RichTextLabel" parent="MainMenu/ChapterOneScreen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_70cel")
+text = "Top Times:
+Gold - HH:MM:SS.sss
+Silv - HH:MM:SS.sss
+Brnz - HH:MM:SS.sss
+You - HH:MM:SS.sss"
+fit_content = true
+
+[node name="StartButton" type="Button" parent="MainMenu/ChapterOneScreen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_70cel")
+text = "Play"
+
+[node name="ChapterTwoScreen" type="MarginContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 390
+theme_override_constants/margin_bottom = 50
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="MainMenu/ChapterTwoScreen"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/ChapterTwoScreen/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/ChapterTwoScreen/PanelContainer/VBoxContainer"]
+clip_contents = true
+layout_direction = 3
+layout_mode = 2
+
+[node name="ChapterButton" type="Button" parent="MainMenu/ChapterTwoScreen/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_70cel")
+text = "Chapter 2"
+
+[node name="BloomiesDisplay" type="VBoxContainer" parent="MainMenu/ChapterTwoScreen/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="BloomiesIcon" type="ColorRect" parent="MainMenu/ChapterTwoScreen/PanelContainer/VBoxContainer/HBoxContainer/BloomiesDisplay"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BloomiesCount" type="RichTextLabel" parent="MainMenu/ChapterTwoScreen/PanelContainer/VBoxContainer/HBoxContainer/BloomiesDisplay"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("4_70cel")
+bbcode_enabled = true
+text = "[center]##[/center]"
+fit_content = true
+
+[node name="TopTimeDisplay" type="RichTextLabel" parent="MainMenu/ChapterTwoScreen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_70cel")
+text = "Top Times:
+Gold - HH:MM:SS.sss
+Silv - HH:MM:SS.sss
+Brnz - HH:MM:SS.sss
+You - HH:MM:SS.sss"
+fit_content = true
+
+[node name="StartButton" type="Button" parent="MainMenu/ChapterTwoScreen/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_70cel")
+text = "Play"
+
+[connection signal="pressed" from="MainMenu/ChapterOneScreen/PanelContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/ChapterTwoScreen/PanelContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_pressed"]

@@ -7,15 +7,25 @@ var bunnyhop = false
 var initVel : Vector2 = Vector2.ZERO
 # This state can transition to: Double jump, Dash, Fall.
 # This state happens if we have pressed the Jump key.
-
+const JUMP  = preload("res://Sounds/Effects/jump (1).wav")
+const JUMP1 = preload("res://Sounds/Effects/jump (2).wav")
+const JUMP2 = preload("res://Sounds/Effects/jump (3).wav")
+@onready var audio_stream_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
 func EnterState() -> void:
+	
+	
 	var dust_instance = player.instance_create(player.RUN_DUST_PARTICLES,player)
 	dust_instance.scale.x = sign(-player.velocity.x)
 	dust_instance.set_as_top_level(true)
 	dust_instance.global_position = player.dustMarker2D.global_position + Vector2(sign(player.velocity.x) * 3,0)
 	if bunnyhop:
 		print("bunnyhop")
+		audio_stream_player.stream = JUMP
 	else:
+		var randSound = randi_range(0,1)
+		match randSound:
+			0: audio_stream_player.stream = JUMP1
+			1: audio_stream_player.stream = JUMP2
 		print("normal jump")
 	initVel = player.velocity
 	half_jump = false
@@ -27,6 +37,7 @@ func EnterState() -> void:
 	if player.debug_mode:
 		print("Debug: Jump State")
 	player.animation_player.play("Jump")
+	audio_stream_player.play()
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	
@@ -58,10 +69,6 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	
 
 func Inputs(event):
-	# Change to Spear Throw state
-	if player.finite_state_machine.can_we_throw_spear():
-		player.finite_state_machine.ChangeState(player.state_claw)
-		return
 	var just_pressed = event.is_pressed() && !event.is_echo()
 	
 	# Variable Jump

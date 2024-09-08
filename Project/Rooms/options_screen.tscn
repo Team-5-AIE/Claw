@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://1n7gaf38aipt"]
+
+[ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="1_0ix1y"]
+
+[node name="OptionsScreen" type="PanelContainer"]
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Title" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_0ix1y")
+theme_override_colors/default_color = Color(0.729412, 0.729412, 0.729412, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]OPTIONS[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlsSubheading" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_0ix1y")
+theme_override_colors/default_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[center]CONTROLS[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="ControlsOptions" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/ControlsOptions"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/ControlsOptions/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_0ix1y")
+text = "Keybinds"
