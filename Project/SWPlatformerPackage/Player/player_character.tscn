@@ -914,7 +914,7 @@ offset_right = 148.0
 offset_bottom = 157.0
 theme = ExtResource("17_l1jw6")
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 text = "TOGGLE MODE
 XBox Gamepad:
 L Stick - Move
@@ -928,11 +928,12 @@ autowrap_mode = 2
 [node name="DebugControls" type="Label" parent="DebugHUD"]
 modulate = Color(1, 1, 1, 0.705882)
 offset_left = 369.0
+offset_top = 37.0
 offset_right = 640.0
-offset_bottom = 150.0
+offset_bottom = 187.0
 theme = ExtResource("17_l1jw6")
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 text = "Toggles:
 I key - Spear controls
 O key - Hold/Toggle
@@ -944,6 +945,12 @@ L key - Control Display
 R key - Restart room"
 horizontal_alignment = 2
 autowrap_mode = 2
+
+[node name="Control" type="Control" parent="DebugHUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Crosshairs" type="Node2D" parent="."]
 
