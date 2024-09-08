@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddbhcmjxuh73m"]
+
+[ext_resource type="Script" path="res://Scripts/spear.gd" id="1_imvm8"]
+[ext_resource type="Texture2D" uid="uid://nq3odiky7bqs" path="res://Sprites/Claw.png" id="2_tudld"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t58d4"]
+radius = 4.5
+height = 13.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5i8b4"]
+size = Vector2(11, 14)
+
+[node name="Spear" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 4
+script = ExtResource("1_imvm8")
+SPEED = 15.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_t58d4")
+
+[node name="Spear" type="Sprite2D" parent="."]
+texture = ExtResource("2_tudld")
+
+[node name="AutoGrappleArea" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoGrappleArea"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_5i8b4")
+
+[connection signal="body_entered" from="AutoGrappleArea" to="." method="_on_auto_grapple_area_body_entered"]

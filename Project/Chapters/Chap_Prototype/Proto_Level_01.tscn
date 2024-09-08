@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bqoinenq630dp"]
+[gd_scene load_steps=19 format=3 uid="uid://bqoinenq630dp"]
 
 [ext_resource type="PackedScene" uid="uid://bopty78xd6id4" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_01.tscn" id="1_srfjq"]
 [ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="2_2yd10"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://wf367283qiuy" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_13.tscn" id="13_hd416"]
 [ext_resource type="PackedScene" uid="uid://dtd4rqtrmwgk4" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_14.tscn" id="14_kfeln"]
 [ext_resource type="PackedScene" uid="uid://wy33gllpxemu" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_15.tscn" id="15_p0whi"]
-[ext_resource type="PackedScene" uid="uid://dj4cfhq17q3b7" path="res://Chapters/Chap_Prototype/Room_Backlog/room_PT_16.tscn" id="16_21085"]
 
 [node name="Proto_Level_01" type="Node2D"]
 
@@ -54,10 +53,10 @@ position = Vector2(2720, 800)
 position = Vector2(2048, 400)
 
 [node name="Room011" parent="LoadedRooms" instance=ExtResource("11_gpyr8")]
-position = Vector2(1200, 400)
+position = Vector2(1376, 400)
 
 [node name="Room012" parent="LoadedRooms" instance=ExtResource("12_7yg8p")]
-position = Vector2(1888, 800)
+position = Vector2(1920, 800)
 
 [node name="Room013" parent="LoadedRooms" instance=ExtResource("13_hd416")]
 position = Vector2(1232, -400)
@@ -67,9 +66,6 @@ position = Vector2(1232, -928)
 
 [node name="Room015" parent="LoadedRooms" instance=ExtResource("15_p0whi")]
 position = Vector2(1904, -1328)
-
-[node name="Room016" parent="LoadedRooms" instance=ExtResource("16_21085")]
-position = Vector2(1216, 800)
 
 [node name="Player" parent="." instance=ExtResource("2_2yd10")]
 unique_name_in_owner = true

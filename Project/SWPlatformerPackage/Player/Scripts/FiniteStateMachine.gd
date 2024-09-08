@@ -264,8 +264,7 @@ func ClawPhysicsProcess() -> void:
 	if player.lockspear45direction || Input.is_action_just_pressed("C"):
 		player.state_spear.shootDirection = Vector2(player.last_input_direction.x,-1)
 	else:
-		#player.state_spear.shootDirection = (player.get_global_mouse_position() - player.spear_marker.global_position)
-		player.state_spear.shootDirection = ($"../ControlOverride".global_position - player.spear_marker.global_position)
+		player.state_spear.shootDirection = (player.get_global_mouse_position() - player.spear_marker.global_position)
 	
 	if sign(player.state_spear.shootDirection.x) == 1:
 		player.spear_marker.global_position = player.global_position + Vector2(-6,-28)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c2lkjdbk2gifg"]
+[gd_scene load_steps=21 format=3 uid="uid://c2lkjdbk2gifg"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_u5mcf"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="2_u8qgk"]
@@ -6,8 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://clhj20ryjsiow" path="res://Objects/dialogue_manager.tscn" id="4_bd2tu"]
 [ext_resource type="Script" path="res://Scripts/RoomContainer.gd" id="4_hexht"]
 [ext_resource type="Texture2D" uid="uid://cyvhepmaupi24" path="res://Sprites/Menu/BoxDefault.png" id="4_ncfom"]
-[ext_resource type="PackedScene" path="res://Effects/cherry_blossom_petal.tscn" id="5_yig42"]
-[ext_resource type="PackedScene" uid="uid://c3h5y1qp77ink" path="res://Effects/Shaders/Debug Colour Blindness Simulator/debug_colour_blindness_simulator.tscn" id="6_6u2o2"]
+[ext_resource type="PackedScene" uid="uid://b1x7tuyiokmqg" path="res://Effects/cherry_blossom_petal.tscn" id="5_yig42"]
 [ext_resource type="PackedScene" uid="uid://220whnswt3p2" path="res://Objects/time_tracker.tscn" id="6_cf7u0"]
 [ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="7_qykg7"]
 
@@ -50,7 +49,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u5mcf")
-startGameScene = "res://Chapters/Chapter_01/Rooms/room_101.tscn"
+startGameScene = "res://Chapters/Chap_Prototype/Scene Transition Prototype/Scene Transition 1.tscn"
 roomLoader = NodePath("../RoomContainer")
 
 [node name="ColorRect" type="ColorRect" parent="MainMenu"]
@@ -151,8 +150,6 @@ script = ExtResource("4_hexht")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="DebugColourBlindnessSimulator" parent="CanvasLayer" instance=ExtResource("6_6u2o2")]
-
 [node name="DialogueManager" parent="CanvasLayer" instance=ExtResource("4_bd2tu")]
 visible = false
 
@@ -166,6 +163,5 @@ offset_bottom = 3.88
 
 [node name="BGMPlayer" parent="." instance=ExtResource("7_qykg7")]
 volume_db = -10.085
-autoplay = false
 
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_pressed"]
