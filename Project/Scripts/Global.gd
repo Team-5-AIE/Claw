@@ -6,11 +6,11 @@ var chapterOneBloomieCount = 5
 
 #This holds all the data of score entry
 #first entry is the latest one.
-var lastScore = [] #[Name, Score as string, minutes, seconds] 
+var lastScore = [] #[Name, Score as string, time] 
 
 #This holds all the data of score entry
 #First entry is the fastest time - accending order. 
-var highscores = [] #[Name, Score as string, minutes, seconds]
+var highscores = [] #[Name, Score as string, time]
 
 var json = JSON.new()
 var path = "res://save_data.json"
@@ -58,31 +58,18 @@ func _ready():
 func _process(_delta):
 	pass
 
-#func GetHighscoresAsStringArray() -> Array: #TODO: Still need to test
-	#var stringHighscores = []
-	#for score in highscores:
-		#stringHighscores.append([str("Name:",score[0],"|Time:", score[1])])
-	#print(stringHighscores)
-	#return stringHighscores
 
-#func SortScores() -> void: #TODO: Still need to test
-	#var highscoresSorted = highscores.duplicate(true)
-	#print(str("unsorted:",highscores))
-	##Sort minutes
-	#for score in range(highscoresSorted.size()):
-		#if highscoresSorted.has([score+1]):
-			#if highscoresSorted[score][2] > highscoresSorted[score+1][2]: 
-				## The minutes of this score is more than the next score - swap
-				#var temp = highscoresSorted[score]
-				#highscoresSorted[score] = highscoresSorted[score+1]
-				#highscoresSorted[score+1] = temp
-	##Sort seconds
-	#for score in range(highscoresSorted.size()):
-		#if highscoresSorted.has([score+1]): 
-			#if highscoresSorted[score][3] > highscoresSorted[score+1][3]: 
-				## The seconds of this score is more than the next score - swap
-				#var temp = highscoresSorted[score]
-				#highscoresSorted[score] = highscoresSorted[score+1]
-				#highscoresSorted[score+1] = temp
-	#highscores = highscoresSorted.duplicate(true)
-	#print(str("sorted:",highscores))
+func BubbleSortScores() -> void: #TODO: Still need to test
+	var scoresToSort = highscores.duplicate(true)
+	print(str("unsorted:",scoresToSort))
+	#BSort by times
+	var arrSize = scoresToSort.size()
+	for i in range(arrSize-1):
+		for j in range(arrSize-i-1):
+			if scoresToSort[j][2] > scoresToSort[j+1][2]:
+				var temp = scoresToSort[j]
+				scoresToSort[j] = scoresToSort[j+1]
+				scoresToSort[j+1] = temp
+	
+	highscores = scoresToSort.duplicate(true)
+	print(str("sorted:",scoresToSort))
