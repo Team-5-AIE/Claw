@@ -1,8 +1,10 @@
 extends Control
 
-@export_file("*.tscn") var startGameScene : String
+@export_file("*.tscn") var startGameScenePath : String
 
-@export var roomLoader : Node2D
+@export var roomContainer : Node2D
+@export var pauseMenu : Node
+@export var startButton : Button
 @onready var dialogue_manager: Control = $"../CanvasLayer/DialogueManager"
 @onready var start_button: Button = $MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton
 @onready var time_tracker: Control = $"../CanvasLayer/TimeTracker"
@@ -18,8 +20,8 @@ func _on_start_button_pressed():
 	FadeTransitions.Transition()
 	await FadeTransitions.on_fade_in_finished
 	
-	var room = roomLoader.LoadRoom(startGameScene)
-	room.StartingRoomSetup()
+	var room = roomContainer.LoadRoom(startGameScenePath)
+	room.StartingRoomSetup(pauseMenu)
 	visible = false
 	
 	await FadeTransitions.on_fade_out_finished
