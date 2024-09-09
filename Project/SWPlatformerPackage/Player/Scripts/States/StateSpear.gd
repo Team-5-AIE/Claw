@@ -49,7 +49,8 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 
 func Inputs(_event) -> void:
 	if Input.is_action_just_pressed("LetGoOfSpear"):
-		spearInstance.retracted = true
+		if spearInstance != null:
+			spearInstance.retracted = true
 		player.finite_state_machine.ChangeState(player.state_fall)
 
 func ExitState() -> void:
@@ -60,6 +61,7 @@ func ExitState() -> void:
 	player.spearCooldownTimer.start()
 #=================================================================================
 func ProcessVelocity(delta:float) -> void:
+	if spearInstance == null: return
 	var spearToPlayer = player.spear_marker.global_position - spearInstance.global_position
 	var ropeDirection : Vector2 = spearToPlayer
 	
