@@ -7,7 +7,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
-size = Vector2(800, 368)
+size = Vector2(800, 360)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_g4lul"]
 resource_local_to_scene = true
@@ -55,7 +55,7 @@ tile_set = ExtResource("1_vkchk")
 roomBounds = NodePath("RoomBounds")
 
 [node name="RoomBounds" parent="RoomArea" index="0"]
-position = Vector2(80, -8)
+position = Vector2(80, -4)
 shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="RoomTransition" parent="." instance=ExtResource("3_4yhmn")]

@@ -8,7 +8,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
-size = Vector2(768, 432)
+size = Vector2(768, 424)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_fyp4w"]
 resource_local_to_scene = true
@@ -59,7 +59,7 @@ tile_set = ExtResource("1_71q3n")
 roomBounds = NodePath("RoomBounds")
 
 [node name="RoomBounds" parent="RoomArea" index="0"]
-position = Vector2(-64, 24)
+position = Vector2(-64, 28)
 shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="Oneway-Platform" parent="." instance=ExtResource("3_6bngn")]
