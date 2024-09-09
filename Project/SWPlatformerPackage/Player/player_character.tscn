@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=50 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallSlide.gd" id="12_q8x25"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
 [ext_resource type="AudioStream" uid="uid://dvgj8oqo664q0" path="res://Sounds/Effects/jump (1).wav" id="15_pytux"]
-[ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="16_atdeq"]
 [ext_resource type="Script" path="res://Scripts/DebugScripts/crosshair.gd" id="17_c5rv7"]
 [ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="17_l1jw6"]
 [ext_resource type="Texture2D" uid="uid://djb1vwql28tww" path="res://Sprites/Debug/crosshair.png" id="18_iltxp"]
@@ -900,9 +899,6 @@ position = Vector2(0, -3)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_pytux")
-
-[node name="BGMPlayer" parent="." instance=ExtResource("16_atdeq")]
-volume_db = -10.085
 
 [node name="DebugHUD" type="CanvasLayer" parent="."]
 

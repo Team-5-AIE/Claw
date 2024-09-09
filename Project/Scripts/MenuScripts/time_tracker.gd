@@ -43,3 +43,9 @@ func AddTimeToList() -> void: #Call when level is finished.
 	seconds_timer.stop()
 	minutes_timer.stop()
 	Global.highscores.append(["Name",currentTimeString,minutes,seconds])
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Slide"):
+		AddTimeToList()
+		StartTimer()
+		Global.SaveScoresToFile()
