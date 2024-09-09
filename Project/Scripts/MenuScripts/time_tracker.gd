@@ -29,6 +29,7 @@ func StartTimer():
 	seconds = 0
 	minutes = 0
 	wholeTime = 0
+	Global.lastScore.clear()
 	visible = true
 
 func _on_seconds_timer_timeout() -> void:
@@ -41,12 +42,17 @@ func _on_minutes_timer_timeout() -> void:
 	seconds = 0
 	minutes_timer.start()
 
-func AddTimeToList() -> void: #Call when level is finished.
+func StopTimerAddToLastScore() -> void: #Call when level is finished.
 	seconds_timer.stop()
 	minutes_timer.stop()
-	Global.highscores.append(["Name",currentTimeString,wholeTime])
+	#NOTE: change the "Name" to be whatever the player types.
 	Global.lastScore = ["Name",currentTimeString,wholeTime]
+
+func UpdateScoreName(name:String) -> void:
+	Global.lastScore[0] = name
 	AddTimeToList()
-	StartTimer()
+
+func AddTimeToList() -> void:
+	Global.highscores.append(Global.lastScore)
 	Global.BubbleSortScores()
 	Global.SaveScoresToFile()
