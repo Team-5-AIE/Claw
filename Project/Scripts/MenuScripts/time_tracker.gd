@@ -7,7 +7,7 @@ class_name TimeTracker
 var minutes : int = 0
 var seconds : int = 0
 var currentTimeString : String = "" #This can be saved into the Json files emma is working on for display.
-
+var wholeTime : int = 0 #Used for easier sorting.
 func _ready() -> void:
 	visible = false
 	UpdateText()
@@ -28,10 +28,12 @@ func StartTimer():
 	currentTimeString = ""
 	seconds = 0
 	minutes = 0
+	wholeTime = 0
 	visible = true
 
 func _on_seconds_timer_timeout() -> void:
 	seconds += 1
+	wholeTime += 1
 	seconds_timer.start()
 
 func _on_minutes_timer_timeout() -> void:
@@ -42,10 +44,9 @@ func _on_minutes_timer_timeout() -> void:
 func AddTimeToList() -> void: #Call when level is finished.
 	seconds_timer.stop()
 	minutes_timer.stop()
-	Global.highscores.append(["Name",currentTimeString,minutes,seconds])
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Slide"):
-		AddTimeToList()
-		StartTimer()
-		Global.SaveScoresToFile()
+	Global.highscores.append(["Name",currentTimeString,wholeTime])
+	Global.lastScore = ["Name",currentTimeString,wholeTime]
+	AddTimeToList()
+	StartTimer()
+	Global.BubbleSortScores()
+	Global.SaveScoresToFile()
