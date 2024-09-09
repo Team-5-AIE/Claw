@@ -42,7 +42,9 @@ func Init(gameRoot_ : Node, roomContainer_ : Node2D, player_ : SWPlatformerChara
 	
 	roomInit.emit()
 
-func StartingRoomSetup():
+func StartingRoomSetup(pauseMenu_ : Node):
+	pauseMenu_.player = player
+	
 	roomContainer.currentRoom = self
 	roomContainer.LoadAdjacentRooms()
 	
