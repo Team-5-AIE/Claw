@@ -1,14 +1,13 @@
-[gd_scene load_steps=9 format=4 uid="uid://boyfaasyqgudm"]
+[gd_scene load_steps=8 format=4 uid="uid://boyfaasyqgudm"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_hpk00"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="1_qoclc"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="2_omefc"]
-[ext_resource type="PackedScene" uid="uid://ox0nops7jyvb" path="res://Objects/oneway_platform.tscn" id="3_hy8r6"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="3_ycgdv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
-size = Vector2(640, 496)
+size = Vector2(640, 488)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_jtnhg"]
 resource_local_to_scene = true
@@ -36,7 +35,7 @@ tile_set = ExtResource("1_qoclc")
 [node name="GrapplePoints" type="TileMapLayer" parent="TileMap/CollisionLayers"]
 z_index = -1
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAQAAMAAAADAAIAAAAOAAMAAAADAAIAAAAPAAMAAAADAAIAAADt//P/AAADAAIAAADu//P/AAADAAIAAADv//P/AAADAAIAAADw//P/AAADAAIAAADx//P/AAADAAIAAADy//P/AAADAAIAAADy//z/AAADAAIAAADy//3/AAADAAIAAADy//7/AAADAAIAAADy////AAADAAIAAADy/wAAAAADAAIAAADy//T/AAADAAIAAADy//X/AAADAAIAAADy//b/AAADAAIAAADy//f/AAADAAIAAADy//j/AAADAAIAAADy//n/AAADAAIAAADy//r/AAADAAIAAADy//v/AAADAAIAAADx/wAAAAADAAIAAADw/wAAAAADAAIAAADv/wAAAAADAAIAAADu/wAAAAADAAIAAADt/wAAAAADAAIAAAD5//P/AAACAAMAAAD5//n/AAACAAMAAAD5////AAACAAMAAAD5/wUAAAACAAMAAAAEAPz/AAACAAMAAAAEAAIAAAACAAMAAAD///3/AAACAAMAAAAFAPb/AAACAAMAAAAGAPD/AAACAAMAAAA=")
+tile_map_data = PackedByteArray("AADt//P/AAADAAIAAADu//P/AAADAAIAAADv//P/AAADAAIAAADw//P/AAADAAIAAADx//P/AAADAAIAAADy//P/AAADAAIAAADy//z/AAADAAIAAADy//3/AAADAAIAAADy//7/AAADAAIAAADy////AAADAAIAAADy/wAAAAADAAIAAADy//T/AAADAAIAAADy//X/AAADAAIAAADy//b/AAADAAIAAADy//f/AAADAAIAAADy//j/AAADAAIAAADy//n/AAADAAIAAADy//r/AAADAAIAAADy//v/AAADAAIAAADx/wAAAAADAAIAAADw/wAAAAADAAIAAADv/wAAAAADAAIAAADu/wAAAAADAAIAAADt/wAAAAADAAIAAAD5//P/AAACAAMAAAD5//n/AAACAAMAAAD5////AAACAAMAAAD5/wUAAAACAAMAAAAEAPz/AAACAAMAAAAEAAIAAAACAAMAAAD///3/AAACAAMAAAAFAPb/AAACAAMAAAAGAPD/AAACAAMAAAA=")
 tile_set = ExtResource("1_qoclc")
 
 [node name="VisualLayers" type="Node2D" parent="TileMap"]
@@ -54,11 +53,11 @@ tile_set = ExtResource("1_qoclc")
 roomBounds = NodePath("RoomBounds")
 
 [node name="RoomBounds" parent="RoomArea" index="0"]
-position = Vector2(0, -72)
+position = Vector2(0, -68)
 shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="RoomTransition" parent="." instance=ExtResource("3_ycgdv")]
-position = Vector2(312, -224)
+position = Vector2(320, -224)
 nextRoom = "res://Chapters/Chapter_01/Rooms/room_108.tscn"
 
 [node name="CollisionShape2D" parent="RoomTransition" index="0"]
@@ -79,10 +78,6 @@ shape = SubResource("SegmentShape2D_6b4jm")
 
 [node name="PlayerSpawn" parent="RoomTransition2" index="1"]
 position = Vector2(0, 104)
-
-[node name="Oneway-Platform2" parent="." instance=ExtResource("3_hy8r6")]
-position = Vector2(224, 48)
-scale = Vector2(3, 4)
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]

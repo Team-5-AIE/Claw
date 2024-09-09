@@ -1,0 +1,261 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnei0kqq507xw"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_4b8s4"]
+[ext_resource type="Script" path="res://Rooms/PAX Menus/title_screen.gd" id="2_isglf"]
+[ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="3_3iaoi"]
+[ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="4_mjvbh"]
+[ext_resource type="Texture2D" uid="uid://ftbo74pnlnfr" path="res://Rooms/PAX Menus/Title_Small.png" id="5_fn36y"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_4b8s4")
+
+[node name="BackgroundList" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleBG" type="ColorRect" parent="BackgroundList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.26833, 0.194799, 0.294845, 1)
+
+[node name="ChapterOneBG" type="ColorRect" parent="BackgroundList"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2015, 0.205117, 0.31, 1)
+
+[node name="TitleScreen" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_isglf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="TitleScreen/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_3iaoi")
+stretch_mode = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TitleScreen/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+bbcode_enabled = true
+text = "[center]PRESS ANY BUTTON[/center]"
+fit_content = true
+
+[node name="ChapterScreen" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ChapterScreen"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("5_fn36y")
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ChapterScreen"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 25
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="ChapterScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChapterScreen/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TopTimeTitle" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+theme_override_colors/default_color = Color(0.729412, 0.729412, 0.729412, 1)
+theme_override_font_sizes/normal_font_size = 45
+text = "Top Times:"
+fit_content = true
+
+[node name="TopRecordsTable" type="VBoxContainer" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FirstPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_mjvbh")
+text = "1. AAA - HH:MM:SS.sss"
+fit_content = true
+
+[node name="SecondPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_mjvbh")
+text = "2. AAA - HH:MM:SS.sss"
+fit_content = true
+
+[node name="ThirdPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_mjvbh")
+text = "3. AAA - HH:MM:SS.sss"
+fit_content = true
+
+[node name="FourthPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_mjvbh")
+text = "4. AAA - HH:MM:SS.sss"
+fit_content = true
+
+[node name="FifthPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_mjvbh")
+text = "5. AAA - HH:MM:SS.sss"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+alignment = 1
+
+[node name="StartButton" type="Button" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+text = "Play Level"
+
+[node name="CreditsButton" type="Button" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Credits"
+
+[node name="CreditsScreen" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsScreen"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 53
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+theme_override_colors/default_color = Color(0.729412, 0.729412, 0.729412, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]CREDITS[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+bbcode_enabled = true
+text = "[center]Traveen[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+bbcode_enabled = true
+text = "[center]Cody[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+bbcode_enabled = true
+text = "[center]Javier[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+bbcode_enabled = true
+text = "[center]Sarah[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+bbcode_enabled = true
+text = "[center]Emma[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Button" type="Button" parent="CreditsScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+text = "Return"
+
+[connection signal="pressed" from="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
