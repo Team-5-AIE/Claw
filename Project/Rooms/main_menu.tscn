@@ -163,6 +163,5 @@ offset_bottom = 3.88
 
 [node name="BGMPlayer" parent="." instance=ExtResource("7_qykg7")]
 volume_db = -10.085
-autoplay = false
 
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton" to="MainMenu" method="_on_start_button_pressed"]
