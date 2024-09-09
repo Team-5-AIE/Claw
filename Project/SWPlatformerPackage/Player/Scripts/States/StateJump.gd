@@ -48,7 +48,8 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 		if bunnyhop:
 			BunnyHopMovement(player.input_axis.x)
 		else:
-			player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
+			if player.input_axis.x != 0 && absf(player.velocity.x) < player.run_speed:
+				player.velocity.x += player.air_acceleration * player.input_axis.x * delta
 	# Set to fall state if we hit the roof of a collision
 	if player.is_on_ceiling():
 		player.finite_state_machine.ChangeState(player.state_fall)

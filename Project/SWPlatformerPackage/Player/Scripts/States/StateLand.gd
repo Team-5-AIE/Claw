@@ -12,7 +12,8 @@ func EnterState() -> void:
 	player.animation_player.play("Land")
 	
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
-	player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.acceleration * delta)
+	if player.input_axis.x != 0 && absf(player.velocity.x) < player.run_speed:
+		player.velocity.x += player.acceleration * player.input_axis.x * delta
 
 func Update(_delta) -> void: # Runs in _process()
 	# Change state to Idle
