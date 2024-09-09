@@ -60,14 +60,14 @@ position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="RoomTransition" parent="." instance=ExtResource("4_j25nv")]
-position = Vector2(312, 88)
+position = Vector2(320, 88)
 nextRoom = "res://Chapters/Chapter_01/Rooms/room_101a.tscn"
 
 [node name="CollisionShape2D" parent="RoomTransition" index="0"]
 shape = SubResource("SegmentShape2D_n38vw")
 
 [node name="PlayerSpawn" parent="RoomTransition" index="1"]
-position = Vector2(-48, 72)
+position = Vector2(-56, 72)
 flipSpawnDir = true
 
 [node name="DebugCBSCanvas" type="CanvasLayer" parent="."]

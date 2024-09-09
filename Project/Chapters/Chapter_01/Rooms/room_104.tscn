@@ -59,7 +59,7 @@ position = Vector2(80, -4)
 shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="RoomTransition" parent="." instance=ExtResource("3_4yhmn")]
-position = Vector2(-312, 24)
+position = Vector2(-320, 24)
 nextRoom = "res://Chapters/Chapter_01/Rooms/room_103.tscn"
 exitDirection = "Left"
 
@@ -70,7 +70,7 @@ shape = SubResource("SegmentShape2D_g4lul")
 position = Vector2(32, 24)
 
 [node name="RoomTransition2" parent="." instance=ExtResource("3_4yhmn")]
-position = Vector2(472, 24)
+position = Vector2(480, 24)
 nextRoom = "res://Chapters/Chapter_01/Rooms/room_105.tscn"
 
 [node name="CollisionShape2D" parent="RoomTransition2" index="0"]

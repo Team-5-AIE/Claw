@@ -83,7 +83,7 @@ position = Vector2(-16, 32)
 scale = Vector2(5, 4)
 
 [node name="RoomTransition" parent="." instance=ExtResource("5_1ggr3")]
-position = Vector2(-312, 24)
+position = Vector2(-320, 24)
 nextRoom = "res://Chapters/Chapter_01/Rooms/room_104.tscn"
 exitDirection = "Left"
 
@@ -94,7 +94,7 @@ shape = SubResource("SegmentShape2D_pgyll")
 position = Vector2(32, 24)
 
 [node name="RoomTransition2" parent="." instance=ExtResource("5_1ggr3")]
-position = Vector2(256, 168)
+position = Vector2(256, 176)
 nextRoom = "res://Chapters/Chapter_01/Rooms/room_106.tscn"
 exitDirection = "Down"
 
@@ -103,7 +103,7 @@ rotation = 1.5708
 shape = SubResource("SegmentShape2D_nr38b")
 
 [node name="PlayerSpawn" parent="RoomTransition2" index="1"]
-position = Vector2(-80, -392)
+position = Vector2(-88, -400)
 flipSpawnDir = true
 
 [editable path="RoomArea"]
