@@ -1,14 +1,17 @@
 extends MarginContainer
 
-func _ready() -> void:
-	self.visible = true
-	$"../BackgroundList/TitleBG".visible = true
-	$"../ChapterScreen".visible = false
-	$"../BackgroundList/ChapterOneBG".visible = false
+@export var chapterScreen : Control
+@export var creditsScreen : Control
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is not InputEventMouseMotion and event is not InputEventJoypadMotion:
-		$"../ChapterScreen".visible = true
-		$"../BackgroundList/ChapterOneBG".visible = true
-		$"../BackgroundList/TitleBG".visible = false
+func _input(event: InputEvent) -> void:
+	if self.visible == true and event.is_pressed():
+		chapterScreen.visible = true
 		self.visible = false
+
+func _on_credits_button_pressed() -> void:
+	creditsScreen.visible = true
+	chapterScreen.visible = false
+
+func _on_credits_return_button_pressed() -> void:
+	chapterScreen.visible = true
+	creditsScreen.visible = false
