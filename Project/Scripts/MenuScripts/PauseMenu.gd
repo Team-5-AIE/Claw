@@ -24,10 +24,11 @@ func _on_retry_button_pressed() -> void:
 	TogglePause()
 	player._on_spike_area_body_entered(null)
 
-func _on_quit_button_pressed() -> void:	
+func _on_quit_button_pressed() -> void:
 	FadeTransitions.Transition()
 	await FadeTransitions.on_fade_in_finished
 	
+	TogglePause()
 	get_tree().change_scene_to_file(mainMenuScenePath)
 	
 	await FadeTransitions.on_fade_out_finished
