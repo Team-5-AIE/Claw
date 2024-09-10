@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://80ljbkxkaea4"]
 
-[ext_resource type="Texture2D" uid="uid://ftbo74pnlnfr" path="res://Rooms/PAX Menus/Title_Small.png" id="1_ms0xv"]
+[ext_resource type="Texture2D" path="res://Rooms/PAX Menus/Title_Small.png" id="1_ms0xv"]
 [ext_resource type="Script" path="res://Scripts/MenuScripts/score_menu.gd" id="1_xxyev"]
 [ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="2_8kep5"]
 [ext_resource type="Texture2D" uid="uid://dmwrlsg3xkgay" path="res://Sprites/Menu/highscoreBG.png" id="3_xl6sf"]
@@ -165,6 +165,7 @@ theme_override_font_sizes/font_size = 4
 
 [node name="TopTimeTitle" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(400, 100)
+layout_mode = 0
 offset_left = 127.0
 offset_top = 92.0
 offset_right = 527.0
@@ -177,6 +178,7 @@ text = "[center]BEST TIMES"
 fit_content = true
 
 [node name="TopRecordsTable" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 253.0
 offset_top = 124.0
 offset_right = 653.0
