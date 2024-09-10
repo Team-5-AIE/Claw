@@ -24,6 +24,7 @@ boot_splash/assembly_name="MoverInThePlane_Prototype_demo"
 
 Global="*res://Scripts/Global.gd"
 FadeTransitions="*res://Objects/fade_transitions.tscn"
+GlobalWorldEnvironment="*res://Objects/world_environment.tscn"
 
 [debug]
 
@@ -35,9 +36,9 @@ window/size/viewport_width=640
 window/size/viewport_height=360
 window/size/mode=3
 window/size/borderless=true
-window/size/window_width_override=1280
-window/size/window_height_override=720
-window/stretch/mode="viewport"
+window/size/window_width_override=1920
+window/size/window_height_override=1980
+window/stretch/scale=3.0
 window/screen_space_roughness_limiter/enabled=true
 
 [dotnet]
@@ -66,10 +67,6 @@ folder_colors={
 RoomInitListeners=""
 RoomTransitionNodes=""
 PlayerSpawns=""
-
-[gui]
-
-theme/custom_font="res://addons/Fonts/Gamer.ttf"
 
 [input]
 

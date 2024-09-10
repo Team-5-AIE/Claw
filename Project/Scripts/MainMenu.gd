@@ -8,6 +8,7 @@ extends Control
 @export var pauseMenu : Node
 @export var timeTracker : Control
 @export var dialogueManager: Control
+@onready var bloomieDisplay: Control = $"../CanvasLayer/BloomieDisplay"
 
 func _ready() -> void:
 	pauseMenu.startChapterScenePath = startChapterScenePath
@@ -28,11 +29,13 @@ func _on_start_button_pressed():
 	var room = roomContainer.LoadRoom(startChapterScenePath, timeTracker, pauseMenu)
 	room.StartingRoomSetup()
 	visible = false
-	
+	GlobalWorldEnvironment.StartLevel()
 	await FadeTransitions.on_fade_out_finished
 	FadeTransitions.lockPlayer = true
 	dialogueManager.AddDialougeTextBox("I have to find the cure... for Izumo.")
-	dialogueManager.AddDialougeTextBox("I know someone here has information.\n Just have to find them.")
+	dialogueManager.AddDialougeTextBox("Someone in town must know about it.\nI better start looking.")
+	bloomieDisplay.visible = true
 	timeTracker.StartTimer()
+	
 	
 	queue_free()

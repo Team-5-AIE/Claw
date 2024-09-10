@@ -25,7 +25,7 @@ const JUMP2 = preload("res://Sounds/Effects/jump (3).wav")
 func _draw():
 	var spearToPlayer = player.spear_marker.global_position - global_position
 	draw_line(Vector2.ZERO, spearToPlayer,Color.WHITE,1,false)
-	draw_line(Vector2.ZERO, - spearToPlayer.normalized()*50, Color.DARK_ORCHID)
+	#draw_line(Vector2.ZERO, - spearToPlayer.normalized()*50, Color.DARK_ORCHID)
 
 func _process(_delta):
 	queue_redraw()

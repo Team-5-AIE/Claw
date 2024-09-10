@@ -904,6 +904,7 @@ position = Vector2(0, -3)
 stream = ExtResource("15_pytux")
 
 [node name="DebugHUD" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Controls" type="Label" parent="DebugHUD"]
 visible = false
@@ -953,6 +954,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Crosshairs" type="Node2D" parent="."]
+visible = false
 
 [node name="AimCrosshair" type="Sprite2D" parent="Crosshairs"]
 modulate = Color(0.827451, 0.00784314, 0.239216, 0.815686)

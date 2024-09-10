@@ -6,13 +6,11 @@ var chapterOneBloomieCount = 5
 
 #This holds all the data of score entry
 #first entry is the latest one.
-var lastScore #[Name, Score as string, time]
+var lastScore = ["NAME","0:14",14]#[Name, Score as string, time]
 
 #This holds all the data of score entry
 #First entry is the fastest time - accending order. 
-var highscores = []: #[Name, Score as string, time]
-	set(value):
-		highscores = value
+var highscores = [] #[Name, Score as string, time]
 
 var json = JSON.new()
 var path = "res://save_data.json"
