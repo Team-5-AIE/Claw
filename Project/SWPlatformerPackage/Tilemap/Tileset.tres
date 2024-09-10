@@ -1730,6 +1730,8 @@ texture = ExtResource("2_ttpan")
 16:24/0 = 0
 17:24/0 = 0
 18:24/0 = 0
+20:24/0 = 0
+19:24/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5r85v"]
 texture = ExtResource("3_38f20")
