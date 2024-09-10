@@ -17,6 +17,8 @@ func _ready() -> void:
 func _on_body_entered(body_: Node2D) -> void:
 	if ! Engine.is_editor_hint():
 		if body_ == player:
+			roomGlobals.timeTracker.StopTimerAddToLastScore()
+			
 			FadeTransitions.Transition()
 			await FadeTransitions.on_fade_in_finished
 			

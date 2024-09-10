@@ -29,8 +29,9 @@ b = Vector2(-1.52588e-05, -32)
 resource_local_to_scene = true
 size = Vector2(16, 96)
 
-[node name="Room112" type="Node2D"]
+[node name="Room112" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_odo2b")
+standaloneSpawner = NodePath("")
 
 [node name="TileMap" type="Node2D" parent="."]
 
