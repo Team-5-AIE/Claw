@@ -972,6 +972,7 @@ texture = ExtResource("19_s68wg")
 
 [node name="ControlOverride" type="Node2D" parent="."]
 script = ExtResource("17_c5rv7")
+crosshairs_enabled = false
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
