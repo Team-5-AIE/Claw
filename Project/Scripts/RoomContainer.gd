@@ -24,9 +24,13 @@ func LoadRoom(roomScenePath_ : String, timeTracker_ : Node, player_ : SWPlatform
 	
 	return room
 
-func FreeRoom(room_ : Node2D) -> void:
+func QueueFreeRoom(room_ : Node2D) -> void:
 	loadedRooms.erase(room_)
 	room_.queue_free()
+
+func FreeRoom(room_ : Node2D) -> void:
+	loadedRooms.erase(room_)
+	room_.free()
 
 func LoadAdjacentRooms() -> void:
 	var rtnArray = get_tree().get_nodes_in_group("RoomTransitionNodes")
@@ -62,4 +66,4 @@ func LoadAdjacentRooms() -> void:
 func FreeAdjacentRooms(excludedRooms_ : Array[String]) -> void:
 	for room : Node2D in loadedRooms:
 		if not excludedRooms_.has(room.scene_file_path):
-			FreeRoom(room)
+			QueueFreeRoom(room)

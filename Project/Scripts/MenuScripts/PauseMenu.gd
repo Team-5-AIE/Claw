@@ -3,6 +3,14 @@ extends PanelContainer
 # ---Variables---
 # Resources
 @export_file("*.tscn") var mainMenuScenePath : String
+var startChapterScenePath : String
+
+# Editor variables
+@export var restartButton : Button
+
+var roomContainer : Node2D
+var timeTracker : Node
+var dialogueManager: Control
 
 # Member variables
 # - Public
@@ -23,6 +31,31 @@ func _on_resume_button_pressed() -> void:
 func _on_retry_button_pressed() -> void:
 	TogglePause()
 	player._on_spike_area_body_entered(null)
+
+func _on_restart_button_pressed() -> void:
+	restartButton.disabled = true
+	
+	FadeTransitions.Transition()
+	await FadeTransitions.on_fade_in_finished
+	
+	TogglePause()
+	
+	for room in roomContainer.get_children():
+		roomContainer.FreeRoom(room)
+	
+	player.free()
+	
+	var room = roomContainer.LoadRoom(startChapterScenePath, timeTracker)
+	room.StartingRoomSetup(self)
+	visible = false
+	
+	await FadeTransitions.on_fade_out_finished
+	FadeTransitions.lockPlayer = true
+	dialogueManager.AddDialougeTextBox("I have to find the cure... for Izumo.")
+	dialogueManager.AddDialougeTextBox("I know someone here has information.\n Just have to find them.")
+	timeTracker.StartTimer()
+	
+	
 
 func _on_quit_button_pressed() -> void:
 	FadeTransitions.Transition()

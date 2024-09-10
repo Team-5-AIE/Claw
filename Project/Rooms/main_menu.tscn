@@ -42,7 +42,7 @@ texture = ExtResource("4_ncfom")
 
 [node name="GameRoot" type="Node"]
 
-[node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu", "startButton")]
+[node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("startButton", "roomContainer", "pauseMenu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,10 +50,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u5mcf")
-startGameScenePath = "res://Chapters/Chapter_01/Rooms/room_101.tscn"
+startButton = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton")
 roomContainer = NodePath("../RoomContainer")
 pauseMenu = NodePath("../CanvasLayer/PauseMenu")
-startButton = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton")
 
 [node name="ColorRect" type="ColorRect" parent="MainMenu"]
 layout_mode = 2

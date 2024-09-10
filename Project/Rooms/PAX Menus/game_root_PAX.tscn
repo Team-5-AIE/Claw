@@ -10,11 +10,12 @@
 
 [node name="GameRoot" type="Node"]
 
-[node name="MainMenu" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu", "timeTracker") instance=ExtResource("1_7374e")]
-startGameScenePath = "res://Chapters/Chapter_01/Rooms/room_101.tscn"
+[node name="MainMenu" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu", "timeTracker", "dialogueManager") instance=ExtResource("1_7374e")]
+startChapterScenePath = "res://Chapters/Chapter_01/Rooms/room_101.tscn"
 roomContainer = NodePath("../RoomContainer")
 pauseMenu = NodePath("../CanvasLayer/PauseMenu")
 timeTracker = NodePath("../CanvasLayer/TimeTracker")
+dialogueManager = NodePath("../CanvasLayer/DialogueManager")
 
 [node name="RoomContainer" type="Node2D" parent="."]
 script = ExtResource("1_bu72f")
@@ -23,7 +24,6 @@ script = ExtResource("1_bu72f")
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_fov84")]
 visible = false
-mainMenuScenePath = "res://Rooms/PAX Menus/game_root_PAX.tscn"
 
 [node name="DialogueManager" parent="CanvasLayer" instance=ExtResource("3_y85if")]
 visible = false
