@@ -712,15 +712,18 @@ floor_constant_speed = true
 floor_block_on_wall = false
 floor_snap_length = 3.0
 script = ExtResource("1_qfw28")
+jump_height = 350.0
 slide_speed = 240.0
 slide_time = 0.3
-slide_friction = 600.0
 crouch_jump_height = 300.0
 low_stamina_flash_color = SubResource("GradientTexture1D_rlb5p")
 wall_climb_enabled = false
 wall_grab_stamina_enabled = false
-acceleration = 3000.0
-friction = 600.0
+wall_jump_speed = 250.0
+acceleration = 2000.0
+friction = 900.0
+air_resistance = 300.0
+air_acceleration = 1200.0
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)
@@ -776,7 +779,7 @@ script = ExtResource("7_mqss4")
 [node name="StateSpear" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("8_h64g1")
 pullJumpStrength = 500.0
-pullJumpStopFraction = 0.7
+pullJumpStopFraction = 0.6
 
 [node name="StateCrouch" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("9_gut04")
@@ -903,19 +906,50 @@ stream = ExtResource("15_pytux")
 [node name="DebugHUD" type="CanvasLayer" parent="."]
 
 [node name="Controls" type="Label" parent="DebugHUD"]
-offset_right = 40.0
-offset_bottom = 23.0
+modulate = Color(1, 1, 1, 0.705882)
+offset_right = 148.0
+offset_bottom = 157.0
 theme = ExtResource("17_l1jw6")
-text = "XBox Gamepad:
-Left Stick - Move
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 16
+text = "TOGGLE MODE
+XBox Gamepad:
+L Stick - Move
+R Stick - Aim
 A/LB - Jump
-X/LT - Slide
-Right Stick - Aim
 B/RB - Use/Release Spear
-Y/RT - Launch from Swing "
+X/LT - Slide
+Y/RT - Launch from Swing"
+autowrap_mode = 2
+
+[node name="DebugControls" type="Label" parent="DebugHUD"]
+modulate = Color(1, 1, 1, 0.705882)
+offset_left = 369.0
+offset_top = 37.0
+offset_right = 640.0
+offset_bottom = 187.0
+theme = ExtResource("17_l1jw6")
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 16
+text = "Toggles:
+I key - Spear controls
+O key - Hold/Toggle
+P key - Controller/MnK
+K key - Crosshairs Display
+L key - Control Display
+\\ key - Debug Labels
+
+R key - Restart room"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="DebugHUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Crosshairs" type="Node2D" parent="."]
-script = ExtResource("17_c5rv7")
 
 [node name="AimCrosshair" type="Sprite2D" parent="Crosshairs"]
 modulate = Color(0.827451, 0.00784314, 0.239216, 0.815686)
@@ -925,13 +959,16 @@ texture = ExtResource("18_iltxp")
 modulate = Color(0.827451, 0.00784314, 0.239216, 1)
 texture = ExtResource("19_s68wg")
 
-[node name="SwingCrosshair" type="Sprite2D" parent="Crosshairs"]
-modulate = Color(0.00559999, 0.56, 0.03332, 0.815686)
+[node name="SwingJumpCrosshair" type="Sprite2D" parent="Crosshairs"]
+modulate = Color(0.678431, 0.533333, 0.00784314, 1)
 texture = ExtResource("18_iltxp")
 
-[node name="SwingPoint" type="Sprite2D" parent="Crosshairs"]
-modulate = Color(0.00559999, 0.56, 0.03332, 1)
+[node name="SwingLaunchPoint" type="Sprite2D" parent="Crosshairs"]
+modulate = Color(0.68, 0.53414, 0.00679999, 1)
 texture = ExtResource("19_s68wg")
+
+[node name="ControlOverride" type="Node2D" parent="."]
+script = ExtResource("17_c5rv7")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
