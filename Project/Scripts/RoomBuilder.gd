@@ -20,11 +20,12 @@ var player : SWPlatformerCharacter
 
 # ---Functions---
 # Init
-func Init(gameRoot_ : Node, roomContainer_ : Node2D, player_ : SWPlatformerCharacter):
+func Init(gameRoot_ : Node, roomContainer_ : Node2D, timeTracker_ : Node, player_ : SWPlatformerCharacter):
 	gameRoot = gameRoot_
 	
 	roomContainer = roomContainer_
 	
+	timeTracker = timeTracker_
 	if player_ == null:
 		assert(currentSpawner != null)
 		player = currentSpawner.SpawnPlayer(gameRoot)
@@ -43,8 +44,7 @@ func Init(gameRoot_ : Node, roomContainer_ : Node2D, player_ : SWPlatformerChara
 	
 	roomInit.emit()
 
-func StartingRoomSetup(pauseMenu_ : Node, timeTracker_ : Node):
-	timeTracker = timeTracker_
+func StartingRoomSetup(pauseMenu_ : Node):
 	pauseMenu_.player = player
 	
 	roomContainer.currentRoom = self
