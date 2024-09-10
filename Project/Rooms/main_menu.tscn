@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c2lkjdbk2gifg"]
+[gd_scene load_steps=24 format=3 uid="uid://c2lkjdbk2gifg"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_u5mcf"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="2_u8qgk"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://b1x7tuyiokmqg" path="res://Effects/cherry_blossom_petal.tscn" id="5_yig42"]
 [ext_resource type="PackedScene" uid="uid://220whnswt3p2" path="res://Objects/time_tracker.tscn" id="6_cf7u0"]
 [ext_resource type="PackedScene" uid="uid://nelr0rw0cn6o" path="res://Rooms/pause_menu.tscn" id="6_nf4r0"]
+[ext_resource type="PackedScene" uid="uid://bwt0h1wy4cavo" path="res://Objects/parallaxing.tscn" id="6_qgjvj"]
 [ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="7_qykg7"]
+[ext_resource type="PackedScene" uid="uid://c3h5y1qp77ink" path="res://Effects/Shaders/Debug Colour Blindness Simulator/debug_colour_blindness_simulator.tscn" id="9_js1un"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_besrm"]
 texture = ExtResource("4_ncfom")
@@ -56,7 +58,7 @@ pauseMenu = NodePath("../CanvasLayer/PauseMenu")
 
 [node name="ColorRect" type="ColorRect" parent="MainMenu"]
 layout_mode = 2
-offset_right = 639.0
+offset_right = 640.0
 offset_bottom = 358.0
 color = Color(0.26833, 0.194799, 0.294845, 1)
 
@@ -150,6 +152,8 @@ text = "QUIT"
 [node name="RoomContainer" type="Node2D" parent="."]
 script = ExtResource("4_hexht")
 
+[node name="Parallaxing" parent="RoomContainer" instance=ExtResource("6_qgjvj")]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_nf4r0")]
@@ -159,6 +163,9 @@ visible = false
 visible = false
 
 [node name="CherryBlossomPetal" parent="CanvasLayer" instance=ExtResource("5_yig42")]
+
+[node name="DebugColourBlindnessSimulator" parent="CanvasLayer" instance=ExtResource("9_js1un")]
+material = null
 
 [node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("6_cf7u0")]
 offset_left = 523.0
