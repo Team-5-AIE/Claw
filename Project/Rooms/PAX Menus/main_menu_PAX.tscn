@@ -17,7 +17,7 @@ size_flags_vertical = 3
 script = ExtResource("1_4b8s4")
 startButton = NodePath("ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/StartButton")
 
-[node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("chapterScreen", "creditsScreen")]
+[node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("chapterScreen", "creditsScreen", "highscoreNames", "highscoreTimes")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,6 +27,8 @@ grow_vertical = 2
 script = ExtResource("2_isglf")
 chapterScreen = NodePath("../ChapterScreen")
 creditsScreen = NodePath("../CreditsScreen")
+highscoreNames = NodePath("../ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/NameSide2")
+highscoreTimes = NodePath("../ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/TimeSide")
 
 [node name="TitleBG" type="ColorRect" parent="TitleScreen"]
 layout_mode = 2
@@ -101,47 +103,22 @@ theme_override_font_sizes/normal_font_size = 45
 text = "Top Times:"
 fit_content = true
 
-[node name="TopRecordsTable" type="VBoxContainer" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="FirstPlace" type="RichTextLabel" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
+[node name="NameSide2" type="RichTextLabel" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 theme = ExtResource("4_mjvbh")
-text = "1. AAA - HH:MM:SS.sss"
+text = "1. AA"
 fit_content = true
+autowrap_mode = 0
 
-[node name="SecondPlace" type="RichTextLabel" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
+[node name="TimeSide" type="RichTextLabel" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_mjvbh")
-text = "2. AAA - HH:MM:SS.sss"
-fit_content = true
-
-[node name="ThirdPlace" type="RichTextLabel" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("4_mjvbh")
-text = "3. AAA - HH:MM:SS.sss"
-fit_content = true
-
-[node name="FourthPlace" type="RichTextLabel" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("4_mjvbh")
-text = "4. AAA - HH:MM:SS.sss"
-fit_content = true
-
-[node name="FifthPlace" type="RichTextLabel" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("4_mjvbh")
-text = "5. AAA - HH:MM:SS.sss"
+text = "| 0:33"
 fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
