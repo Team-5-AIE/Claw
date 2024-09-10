@@ -6,7 +6,7 @@ var chapterOneBloomieCount = 5
 
 #This holds all the data of score entry
 #first entry is the latest one.
-var lastScore = [] #[Name, Score as string, time] 
+var lastScore = [["ah","0:03",3]] #[Name, Score as string, time] 
 
 #This holds all the data of score entry
 #First entry is the fastest time - accending order. 
@@ -73,3 +73,17 @@ func BubbleSortScores() -> void: #TODO: Still need to test
 	
 	highscores = scoresToSort.duplicate(true)
 	print(str("sorted:",scoresToSort))
+
+func UpdateScoreName(name:String) -> void:
+	var scoreString = Global.lastScore[0][1]
+	var score = Global.lastScore[0][2]
+	Global.lastScore.clear()
+	Global.lastScore.append([name,scoreString,score])
+
+func AddTimeToList() -> void:
+	var name = Global.lastScore[0][0]
+	var timeString = Global.lastScore[0][1]
+	var time = Global.lastScore[0][2]
+	Global.highscores.append([name,timeString,time])
+	Global.BubbleSortScores()
+	Global.SaveScoresToFile()

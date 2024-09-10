@@ -47,12 +47,3 @@ func StopTimerAddToLastScore() -> void: #Call when level is finished.
 	minutes_timer.stop()
 	#NOTE: change the "Name" to be whatever the player types.
 	Global.lastScore = ["Name",currentTimeString,wholeTime]
-
-func UpdateScoreName(name:String) -> void:
-	Global.lastScore[0] = name
-	AddTimeToList()
-
-func AddTimeToList() -> void:
-	Global.highscores.append(Global.lastScore)
-	Global.BubbleSortScores()
-	Global.SaveScoresToFile()
