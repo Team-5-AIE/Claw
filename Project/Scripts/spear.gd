@@ -108,8 +108,9 @@ func Retract() -> bool:
 func _on_auto_grapple_area_body_entered(body):
 	if body.name == "Player":
 		if retracted:
-			queue_free()
+			extending = false
 			retracted = false
+			queue_free()
 			return
 	else:
 		print("AutoGrapple point grabbed")

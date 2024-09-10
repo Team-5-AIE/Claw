@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=50 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallSlide.gd" id="12_q8x25"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
 [ext_resource type="AudioStream" uid="uid://dvgj8oqo664q0" path="res://Sounds/Effects/jump (1).wav" id="15_pytux"]
-[ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="16_atdeq"]
 [ext_resource type="Script" path="res://Scripts/DebugScripts/crosshair.gd" id="17_c5rv7"]
 [ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="17_l1jw6"]
 [ext_resource type="Texture2D" uid="uid://djb1vwql28tww" path="res://Sprites/Debug/crosshair.png" id="18_iltxp"]
@@ -442,7 +441,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_q1qge"]
 resource_name = "Slide"
-length = 0.05
+length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -451,10 +450,10 @@ tracks/0/path = NodePath("SpriteSheet:frame")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [50, 51, 52, 53, 54, 55, 56, 57]
+"values": [50, 51, 52, 53, 54, 55]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -713,17 +712,18 @@ floor_constant_speed = true
 floor_block_on_wall = false
 floor_snap_length = 3.0
 script = ExtResource("1_qfw28")
+jump_height = 350.0
 slide_speed = 240.0
 slide_time = 0.3
-slide_friction = 800.0
 crouch_jump_height = 300.0
 low_stamina_flash_color = SubResource("GradientTexture1D_rlb5p")
 wall_climb_enabled = false
 wall_grab_stamina_enabled = false
-acceleration = 1500.0
+wall_jump_speed = 250.0
+acceleration = 2000.0
 friction = 900.0
-air_resistance = 90.0
-air_acceleration = 600.0
+air_resistance = 300.0
+air_acceleration = 1200.0
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)
@@ -779,7 +779,7 @@ script = ExtResource("7_mqss4")
 [node name="StateSpear" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("8_h64g1")
 pullJumpStrength = 500.0
-pullJumpStopFraction = 0.3
+pullJumpStopFraction = 0.6
 
 [node name="StateCrouch" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("9_gut04")
@@ -903,9 +903,6 @@ position = Vector2(0, -3)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_pytux")
 
-[node name="BGMPlayer" parent="." instance=ExtResource("16_atdeq")]
-volume_db = -10.085
-
 [node name="DebugHUD" type="CanvasLayer" parent="."]
 
 [node name="Controls" type="Label" parent="DebugHUD"]
@@ -914,7 +911,7 @@ offset_right = 148.0
 offset_bottom = 157.0
 theme = ExtResource("17_l1jw6")
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 16
 text = "TOGGLE MODE
 XBox Gamepad:
 L Stick - Move
@@ -933,7 +930,7 @@ offset_right = 640.0
 offset_bottom = 187.0
 theme = ExtResource("17_l1jw6")
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 16
 text = "Toggles:
 I key - Spear controls
 O key - Hold/Toggle

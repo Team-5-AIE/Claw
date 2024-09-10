@@ -9,6 +9,8 @@ signal on_fade_out_finished
 @export var lockPlayer = false
 var restart = false
 func _ready():
+	set_process_mode(ProcessMode.PROCESS_MODE_ALWAYS)
+	
 	color_rect.visible = false
 	animation_player.animation_finished.connect(_on_animation_finished)
 	lockPlayer = false
