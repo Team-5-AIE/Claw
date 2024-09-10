@@ -38,25 +38,25 @@ position = Vector2(1920, 0)
 position = Vector2(2720, 0)
 
 [node name="Room106" parent="LoadedRooms" instance=ExtResource("6_5syly")]
-position = Vector2(3232, 384)
+position = Vector2(3232, 376)
 
 [node name="Room113" parent="LoadedRooms" instance=ExtResource("13_uq27q")]
-position = Vector2(3232, 864)
+position = Vector2(3232, 840)
 
 [node name="Room108" parent="LoadedRooms" instance=ExtResource("8_t1of2")]
-position = Vector2(4000, 368)
+position = Vector2(4000, 360)
 
 [node name="Room107" parent="LoadedRooms" instance=ExtResource("7_bhf8w")]
-position = Vector2(4656, 368)
+position = Vector2(4656, 360)
 
 [node name="Room109" parent="LoadedRooms" instance=ExtResource("9_lwkbw")]
-position = Vector2(5312, -64)
+position = Vector2(5296, -72)
 
 [node name="Room110" parent="LoadedRooms" instance=ExtResource("10_2adm0")]
-position = Vector2(5840, -432)
+position = Vector2(5824, -424)
 
 [node name="Room111" parent="LoadedRooms" instance=ExtResource("11_ep0ke")]
-position = Vector2(6624, -432)
+position = Vector2(6608, -424)
 
 [node name="Room112" parent="LoadedRooms" instance=ExtResource("12_caxlp")]
-position = Vector2(6640, -64)
+position = Vector2(6624, -72)
