@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=18 format=3 uid="uid://k06gckh0bst4"]
+[gd_resource type="TileSet" load_steps=19 format=3 uid="uid://k06gckh0bst4"]
 
 [ext_resource type="Texture2D" uid="uid://bhjv0y3qf7mkr" path="res://SWPlatformerPackage/Tilemap/Tilemap.png" id="1_ishsc"]
 [ext_resource type="Texture2D" uid="uid://sbyk5q33xplj" path="res://Sprites/Tilesets/Castle Tileset Export.png" id="2_ttpan"]
@@ -9,6 +9,9 @@ tile_data = PackedInt32Array(0, 262145, 8, 1, 327681, 8)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_qtumm"]
 tile_data = PackedInt32Array(0, 393217, 8, 1, 458753, 8)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_o2jf1"]
+tile_data = PackedInt32Array(0, 1048577, 23, 1, 1114113, 23, 2, 1114113, 23, 3, 1114113, 23, 4, 1179649, 23)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_vn8br"]
 tile_data = PackedInt32Array(0, 131073, 4, 65536, 131073, 5)
@@ -1720,6 +1723,13 @@ texture = ExtResource("2_ttpan")
 4:26/0 = 0
 5:26/0 = 0
 5:25/0 = 0
+16:23/0 = 0
+17:23/0 = 0
+18:23/0 = 0
+19:23/0 = 0
+16:24/0 = 0
+17:24/0 = 0
+18:24/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5r85v"]
 texture = ExtResource("3_38f20")
@@ -2031,3 +2041,4 @@ pattern_6 = SubResource("TileMapPattern_0hl4c")
 pattern_7 = SubResource("TileMapPattern_6hjmm")
 pattern_8 = SubResource("TileMapPattern_etyo4")
 pattern_9 = SubResource("TileMapPattern_o42se")
+pattern_10 = SubResource("TileMapPattern_o2jf1")
