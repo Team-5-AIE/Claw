@@ -1,12 +1,12 @@
 [gd_scene load_steps=24 format=3 uid="uid://80ljbkxkaea4"]
 
-[ext_resource type="Texture2D" path="res://Rooms/PAX Menus/Title_Small.png" id="1_ms0xv"]
 [ext_resource type="Script" path="res://Scripts/MenuScripts/score_menu.gd" id="1_xxyev"]
 [ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="2_8kep5"]
 [ext_resource type="Texture2D" uid="uid://dmwrlsg3xkgay" path="res://Sprites/Menu/highscoreBG.png" id="3_xl6sf"]
 [ext_resource type="Texture2D" uid="uid://dxjvqs8qwyns2" path="res://Sprites/Menu/InsertNameBox.png" id="4_ed2pe"]
 [ext_resource type="Texture2D" uid="uid://cyvhepmaupi24" path="res://Sprites/Menu/BoxDefault.png" id="4_shn32"]
 [ext_resource type="Texture2D" uid="uid://bpbnpy3g434o" path="res://Sprites/Menu/BoxSelected.png" id="6_souod"]
+[ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="7_atyd5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_47wxp"]
 texture = ExtResource("3_xl6sf")
@@ -251,7 +251,8 @@ offset_top = 6.0
 offset_right = 640.0
 offset_bottom = 102.0
 size_flags_vertical = 0
-texture = ExtResource("1_ms0xv")
-stretch_mode = 3
+texture = ExtResource("7_atyd5")
+expand_mode = 1
+stretch_mode = 5
 
 [connection signal="pressed" from="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]

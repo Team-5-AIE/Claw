@@ -4,7 +4,7 @@ extends Node2D
 signal roomInit
 
 signal playerEnteredRoom
-signal playerExitedRoom
+#signal playerExitedRoom
 
 # ---Variables---
 @export var standaloneSpawner : Node2D

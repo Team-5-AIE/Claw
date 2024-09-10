@@ -12,7 +12,7 @@ func _ready() -> void:
 	visible = false
 	UpdateText()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	UpdateText()
 
 func UpdateText() -> void:

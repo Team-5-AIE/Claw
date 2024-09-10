@@ -6,7 +6,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 		visible = true
 		var canvas = get_canvas_transform()
 		var top_left = -canvas.origin / canvas.get_scale() 

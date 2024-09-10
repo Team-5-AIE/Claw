@@ -73,7 +73,7 @@ func _on_body_entered(body_):
 			var excludedRooms : Array[String] = [roomGlobals.scene_file_path, nextRoom]
 			roomContainer.FreeAdjacentRooms(excludedRooms)
 			
-			roomGlobals.playerExitedRoom.emit()
+			#roomGlobals.playerExitedRoom.emit()
 		
 		else:
 			# Player just entered the room
@@ -96,7 +96,7 @@ func _on_body_exited(body_):
 			var excludedRooms : Array[String] = [roomGlobals.scene_file_path, nextRoom]
 			roomContainer.FreeAdjacentRooms(excludedRooms)
 			
-			roomGlobals.playerExitedRoom.emit()
+			#roomGlobals.playerExitedRoom.emit()
 		
 		else:
 			# Player just entered the room
