@@ -21,6 +21,7 @@ grow_vertical = 2
 color = Color(0.2015, 0.205117, 0.31, 1)
 
 [node name="ChapterScreen" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 alignment = 1
