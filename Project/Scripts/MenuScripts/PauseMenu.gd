@@ -15,13 +15,15 @@ var dialogueManager: Control
 # Member variables
 # - Public
 var player : SWPlatformerCharacter
+
+var inGame : bool = false
 # - Private
 var _paused : bool = false
 
 # ---Functions---
 # Godot built ins
 func _input(event : InputEvent) -> void:
-	if event.is_action_pressed("TogglePause"):
+	if inGame and event.is_action_pressed("TogglePause"):
 		TogglePause()
 
 # Button signals
@@ -33,6 +35,7 @@ func _on_retry_button_pressed() -> void:
 	player._on_spike_area_body_entered(null)
 
 func _on_restart_button_pressed() -> void:
+	inGame = false
 	restartButton.disabled = true
 	
 	FadeTransitions.Transition()
@@ -55,9 +58,12 @@ func _on_restart_button_pressed() -> void:
 	dialogueManager.AddDialougeTextBox("I know someone here has information.\n Just have to find them.")
 	timeTracker.StartTimer()
 	
-	
+	restartButton.disabled = false
+	inGame = true
 
 func _on_quit_button_pressed() -> void:
+	inGame = false
+	
 	FadeTransitions.Transition()
 	await FadeTransitions.on_fade_in_finished
 	

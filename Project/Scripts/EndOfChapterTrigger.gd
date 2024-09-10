@@ -17,6 +17,7 @@ func _ready() -> void:
 func _on_body_entered(body_: Node2D) -> void:
 	if ! Engine.is_editor_hint():
 		if body_ == player:
+			roomGlobals.pauseMenu.inGame = false
 			roomGlobals.timeTracker.StopTimerAddToLastScore()
 			
 			FadeTransitions.Transition()

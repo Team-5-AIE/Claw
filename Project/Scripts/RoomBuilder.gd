@@ -13,6 +13,7 @@ signal playerEnteredRoom
 
 var gameRoot : Node
 var roomContainer : Node2D
+var pauseMenu : Node
 var timeTracker : Node
 var player : SWPlatformerCharacter
 
@@ -20,12 +21,14 @@ var player : SWPlatformerCharacter
 
 # ---Functions---
 # Init
-func Init(gameRoot_ : Node, roomContainer_ : Node2D, timeTracker_ : Node, player_ : SWPlatformerCharacter):
+func Init(gameRoot_ : Node, roomContainer_ : Node2D, timeTracker_ : Node, \
+		  pauseMenu_ : Node, player_ : SWPlatformerCharacter):
 	gameRoot = gameRoot_
 	
 	roomContainer = roomContainer_
-	
 	timeTracker = timeTracker_
+	pauseMenu = pauseMenu_
+	
 	if player_ == null:
 		assert(currentSpawner != null)
 		player = currentSpawner.SpawnPlayer(gameRoot)
@@ -44,11 +47,12 @@ func Init(gameRoot_ : Node, roomContainer_ : Node2D, timeTracker_ : Node, player
 	
 	roomInit.emit()
 
-func StartingRoomSetup(pauseMenu_ : Node):
-	pauseMenu_.player = player
-	
+func StartingRoomSetup():
 	roomContainer.currentRoom = self
 	roomContainer.LoadAdjacentRooms()
+	
+	pauseMenu.player = player
+	pauseMenu.inGame = true
 	
 	playerEnteredRoom.emit()
 

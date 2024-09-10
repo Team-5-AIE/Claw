@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="1_rid58"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="2_sg7pe"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="3_kpbym"]
-[ext_resource type="PackedScene" uid="uid://caudwsaw0pv0c" path="res://Objects/end_of_chapter_trigger.tscn" id="5_cy5m1"]
+[ext_resource type="PackedScene" path="res://Objects/end_of_chapter_trigger.tscn" id="5_cy5m1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true

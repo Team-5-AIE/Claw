@@ -25,8 +25,8 @@ func _on_start_button_pressed():
 	FadeTransitions.Transition()
 	await FadeTransitions.on_fade_in_finished
 	
-	var room = roomContainer.LoadRoom(startChapterScenePath, timeTracker)
-	room.StartingRoomSetup(pauseMenu)
+	var room = roomContainer.LoadRoom(startChapterScenePath, timeTracker, pauseMenu)
+	room.StartingRoomSetup()
 	visible = false
 	
 	await FadeTransitions.on_fade_out_finished

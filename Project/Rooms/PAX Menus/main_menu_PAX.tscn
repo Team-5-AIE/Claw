@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnei0kqq507xw"]
+[gd_scene load_steps=12 format=3 uid="uid://dnei0kqq507xw"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_4b8s4"]
 [ext_resource type="Script" path="res://Rooms/PAX Menus/title_screen.gd" id="2_isglf"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="3_3iaoi"]
 [ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="4_mjvbh"]
+[ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="5_2yjop"]
+[ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="6_jpmdu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yga4s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rycgk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x77qh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_otbmf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n1t5b"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("startButton")]
 layout_mode = 3
@@ -127,14 +139,42 @@ layout_mode = 2
 alignment = 1
 
 [node name="StartButton" type="Button" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(150, 32)
 layout_mode = 2
 theme = ExtResource("4_mjvbh")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("5_2yjop")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yga4s")
+theme_override_styles/disabled = ExtResource("5_2yjop")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rycgk")
+theme_override_styles/hover_pressed = ExtResource("5_2yjop")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_x77qh")
+theme_override_styles/hover = ExtResource("6_jpmdu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_otbmf")
+theme_override_styles/pressed = ExtResource("5_2yjop")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
+theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Play Level"
 
 [node name="CreditsButton" type="Button" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(150, 32)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("5_2yjop")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yga4s")
+theme_override_styles/disabled = ExtResource("5_2yjop")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rycgk")
+theme_override_styles/hover_pressed = ExtResource("5_2yjop")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_x77qh")
+theme_override_styles/hover = ExtResource("6_jpmdu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_otbmf")
+theme_override_styles/pressed = ExtResource("5_2yjop")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
+theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Credits"
 
 [node name="CreditsScreen" type="PanelContainer" parent="."]
@@ -296,9 +336,27 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="CreditsReturnButton" type="Button" parent="CreditsScreen/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsScreen/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_mjvbh")
+alignment = 1
+
+[node name="CreditsReturnButton" type="Button" parent="CreditsScreen/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 32)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("5_2yjop")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yga4s")
+theme_override_styles/disabled = ExtResource("5_2yjop")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rycgk")
+theme_override_styles/hover_pressed = ExtResource("5_2yjop")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_x77qh")
+theme_override_styles/hover = ExtResource("6_jpmdu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_otbmf")
+theme_override_styles/pressed = ExtResource("5_2yjop")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
+theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Return"
 
 [node name="MarginContainer" type="MarginContainer" parent="CreditsScreen/MarginContainer/VBoxContainer"]
@@ -306,4 +364,4 @@ layout_mode = 2
 
 [connection signal="pressed" from="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/CreditsButton" to="TitleScreen" method="_on_credits_button_pressed"]
-[connection signal="pressed" from="CreditsScreen/MarginContainer/VBoxContainer/CreditsReturnButton" to="TitleScreen" method="_on_credits_return_button_pressed"]
+[connection signal="pressed" from="CreditsScreen/MarginContainer/VBoxContainer/HBoxContainer/CreditsReturnButton" to="TitleScreen" method="_on_credits_return_button_pressed"]
