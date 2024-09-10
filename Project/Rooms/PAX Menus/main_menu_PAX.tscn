@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="4_mjvbh"]
 [ext_resource type="Texture2D" uid="uid://ftbo74pnlnfr" path="res://Rooms/PAX Menus/Title_Small.png" id="5_fn36y"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("roomContainer", "pauseMenu", "startButton")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("startButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,8 +17,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_4b8s4")
 startGameScenePath = "res://Chapters/Chapter_01/Rooms/room_101.tscn"
-roomContainer = NodePath("")
-pauseMenu = NodePath("")
 startButton = NodePath("ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/StartButton")
 
 [node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("chapterScreen", "creditsScreen")]
@@ -203,47 +201,120 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Programming" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_mjvbh")
+theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
-text = "[center]Traveen[/center]"
+text = "[center]Programming[/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="RichTextLabel4" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_mjvbh")
 bbcode_enabled = true
-text = "[center]Cody[/center]"
+text = "[center]Sarah W.[/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="RichTextLabel5" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_mjvbh")
 bbcode_enabled = true
-text = "[center]Javier[/center]"
+text = "[center]Emma S.[/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Design" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_mjvbh")
+theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
-text = "[center]Sarah[/center]"
+text = "[center]Design[/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_mjvbh")
 bbcode_enabled = true
-text = "[center]Emma[/center]"
+text = "[center]Traveen W.[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+bbcode_enabled = true
+text = "[center]Cody A.[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+bbcode_enabled = true
+text = "[center]Javier A.[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="MarginContainer3" type="MarginContainer" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Design" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[center]Art[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+bbcode_enabled = true
+text = "[center]Sarah W.[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_mjvbh")
+bbcode_enabled = true
+text = "[center]Cody A.[/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -252,6 +323,9 @@ autowrap_mode = 0
 layout_mode = 2
 theme = ExtResource("4_mjvbh")
 text = "Return"
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
 
 [connection signal="pressed" from="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/CreditsButton" to="TitleScreen" method="_on_credits_button_pressed"]
