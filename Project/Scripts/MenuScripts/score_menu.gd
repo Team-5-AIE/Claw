@@ -13,9 +13,9 @@ extends Control
 
 func _ready() -> void: 
 	first_place.text = ""
-	player_time.text = str("[center]","YOUR TIME: ",Global.lastScore[0][1],"[/center]")
-	var timeString = Global.lastScore[0][1]
-	var time = Global.lastScore[0][2]
+	player_time.text = str("[center]","YOUR TIME: ",Global.lastScore[1],"[/center]")
+	var timeString = Global.lastScore[1]
+	var time = Global.lastScore[2]
 	var newArr = Global.highscores.duplicate(true)
 	newArr.append(["YOU",timeString,time])
 	newArr = Sort(newArr)

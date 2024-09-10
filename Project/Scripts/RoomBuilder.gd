@@ -13,6 +13,7 @@ signal playerEnteredRoom
 
 var gameRoot : Node
 var roomContainer : Node2D
+var timeTracker : Node
 var player : SWPlatformerCharacter
 
 #var adjacentRoomPaths : Array[String]
@@ -42,7 +43,8 @@ func Init(gameRoot_ : Node, roomContainer_ : Node2D, player_ : SWPlatformerChara
 	
 	roomInit.emit()
 
-func StartingRoomSetup(pauseMenu_ : Node):
+func StartingRoomSetup(pauseMenu_ : Node, timeTracker_ : Node):
+	timeTracker = timeTracker_
 	pauseMenu_.player = player
 	
 	roomContainer.currentRoom = self

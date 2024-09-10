@@ -11,6 +11,7 @@
 [node name="GameRoot" type="Node"]
 
 [node name="MainMenu" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu") instance=ExtResource("1_7374e")]
+startGameScenePath = "res://Chapters/Chapter_01/Rooms/room_101.tscn"
 roomContainer = NodePath("../RoomContainer")
 pauseMenu = NodePath("../CanvasLayer/PauseMenu")
 
