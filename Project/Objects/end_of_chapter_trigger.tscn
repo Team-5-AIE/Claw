@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://caudwsaw0pv0c"]
+
+[ext_resource type="Script" path="res://Scripts/EndOfChapterTrigger.gd" id="1_jhox8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30kjk"]
+resource_local_to_scene = true
+
+[node name="EndOfChapterTrigger" type="Area2D" groups=["RoomInitListeners"]]
+script = ExtResource("1_jhox8")
+chapterEndScenePath = "res://Rooms/PAX Menus/score_menu_PAX.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_30kjk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

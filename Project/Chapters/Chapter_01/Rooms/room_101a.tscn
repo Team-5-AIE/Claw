@@ -60,9 +60,9 @@ position = Vector2(152, -4)
 shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="Pitfall" parent="." instance=ExtResource("3_oslwx")]
+position = Vector2(160, 204)
 
 [node name="CollisionShape2D" parent="Pitfall" index="0"]
-position = Vector2(160, 204)
 scale = Vector2(30, 1)
 
 [node name="RoomTransition" parent="." instance=ExtResource("4_cm1ma")]
