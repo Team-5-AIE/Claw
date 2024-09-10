@@ -9,7 +9,7 @@ func _ready():
 	HideDialouge()
 
 
-func _process(delta):
+func _process(_delta):
 	if textQueue.size() > 0: #there is text queued
 		if textQueue[0].length() != textAsPart.length(): #we haven't written all the text yet
 			

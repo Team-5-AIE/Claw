@@ -74,16 +74,16 @@ func BubbleSortScores() -> void: #TODO: Still need to test
 	highscores = scoresToSort.duplicate(true)
 	print(str("sorted:",scoresToSort))
 
-func UpdateScoreName(name:String) -> void:
+func UpdateScoreName(playerName:String) -> void:
 	var scoreString = Global.lastScore[0][1]
 	var score = Global.lastScore[0][2]
 	Global.lastScore.clear()
-	Global.lastScore.append([name,scoreString,score])
+	Global.lastScore.append([playerName,scoreString,score])
 
 func AddTimeToList() -> void:
-	var name = Global.lastScore[0][0]
+	var playerName = Global.lastScore[0][0]
 	var timeString = Global.lastScore[0][1]
 	var time = Global.lastScore[0][2]
-	Global.highscores.append([name,timeString,time])
+	Global.highscores.append([playerName,timeString,time])
 	Global.BubbleSortScores()
 	Global.SaveScoresToFile()

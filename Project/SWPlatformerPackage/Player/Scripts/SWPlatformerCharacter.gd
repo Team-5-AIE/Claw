@@ -198,7 +198,7 @@ func animation_finished(_anim_name):
 func animation_started(_anim_name):
 	animation_end = false
 
-func _on_spike_area_body_entered(body):
+func _on_spike_area_body_entered(_body):
 	if state_spear.spearInstance != null:
 		state_spear.spearInstance.Release()
 		state_spear.spearInstance = null

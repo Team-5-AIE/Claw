@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnei0kqq507xw"]
+[gd_scene load_steps=5 format=3 uid="uid://dnei0kqq507xw"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_4b8s4"]
 [ext_resource type="Script" path="res://Rooms/PAX Menus/title_screen.gd" id="2_isglf"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="3_3iaoi"]
 [ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="4_mjvbh"]
-[ext_resource type="Texture2D" path="res://Rooms/PAX Menus/Title_Small.png" id="5_fn36y"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("startButton")]
 layout_mode = 3
@@ -20,6 +19,7 @@ startGameScenePath = "res://Chapters/Chapter_01/Rooms/room_101.tscn"
 startButton = NodePath("ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/StartButton")
 
 [node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("chapterScreen", "creditsScreen")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,7 +51,6 @@ text = "[center]PRESS ANY BUTTON[/center]"
 fit_content = true
 
 [node name="ChapterScreen" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
@@ -64,11 +63,13 @@ color = Color(0.2015, 0.205117, 0.31, 1)
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="ChapterScreen/VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="ChapterScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 0
-texture = ExtResource("5_fn36y")
-stretch_mode = 3
+texture = ExtResource("3_3iaoi")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="ChapterScreen/VBoxContainer"]
 layout_mode = 2
