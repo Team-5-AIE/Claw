@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c2lkjdbk2gifg"]
+[gd_scene load_steps=24 format=3 uid="uid://c2lkjdbk2gifg"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_u5mcf"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="2_u8qgk"]
@@ -7,19 +7,11 @@
 [ext_resource type="Script" path="res://Scripts/RoomContainer.gd" id="4_hexht"]
 [ext_resource type="Texture2D" uid="uid://cyvhepmaupi24" path="res://Sprites/Menu/BoxDefault.png" id="4_ncfom"]
 [ext_resource type="PackedScene" uid="uid://b1x7tuyiokmqg" path="res://Effects/cherry_blossom_petal.tscn" id="5_yig42"]
-[ext_resource type="Texture2D" uid="uid://cq5qagp7xu76m" path="res://Sprites/Backgrounds/City Background 1/Layer 00.png" id="6_1244u"]
 [ext_resource type="PackedScene" uid="uid://220whnswt3p2" path="res://Objects/time_tracker.tscn" id="6_cf7u0"]
 [ext_resource type="PackedScene" uid="uid://nelr0rw0cn6o" path="res://Rooms/pause_menu.tscn" id="6_nf4r0"]
-[ext_resource type="Texture2D" uid="uid://b25bmjxha3q3r" path="res://Sprites/Backgrounds/City Background 1/Layer 01.png" id="7_m5a5b"]
+[ext_resource type="PackedScene" uid="uid://bwt0h1wy4cavo" path="res://Objects/parallaxing.tscn" id="6_qgjvj"]
 [ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="7_qykg7"]
-[ext_resource type="Texture2D" uid="uid://cla5kuagc1ja4" path="res://Sprites/Backgrounds/City Background 1/Layer 01-B.png" id="8_psnhd"]
-[ext_resource type="Texture2D" uid="uid://dkd8m06bigltc" path="res://Sprites/Backgrounds/City Background 1/Layer 02.png" id="8_t18pm"]
 [ext_resource type="PackedScene" uid="uid://c3h5y1qp77ink" path="res://Effects/Shaders/Debug Colour Blindness Simulator/debug_colour_blindness_simulator.tscn" id="9_js1un"]
-[ext_resource type="Texture2D" uid="uid://c87ktxyfdc5mk" path="res://Sprites/Backgrounds/City Background 1/Layer 03.png" id="9_x54pc"]
-[ext_resource type="Texture2D" uid="uid://qeoxrwrrcew2" path="res://Sprites/Backgrounds/City Background 1/Layer 04.png" id="10_3sg6p"]
-[ext_resource type="Texture2D" uid="uid://t3ad2u6aclla" path="res://Sprites/Backgrounds/City Background 1/Layer 02-B.png" id="10_w0773"]
-[ext_resource type="Texture2D" uid="uid://cfvkk7e5oyce4" path="res://Sprites/Backgrounds/City Background 1/Layer 05.png" id="11_728nr"]
-[ext_resource type="Texture2D" uid="uid://diwgidynrdhbn" path="res://Sprites/Backgrounds/City Background 1/Layer 04-B.png" id="12_1g84q"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_besrm"]
 texture = ExtResource("4_ncfom")
@@ -161,87 +153,7 @@ text = "QUIT"
 [node name="RoomContainer" type="Node2D" parent="."]
 script = ExtResource("4_hexht")
 
-[node name="Parallaxing" type="Node2D" parent="RoomContainer"]
-position = Vector2(0, 12)
-
-[node name="Sky" type="Parallax2D" parent="RoomContainer/Parallaxing"]
-z_index = -10
-scroll_scale = Vector2(0.1, 1)
-repeat_size = Vector2(640, 0)
-repeat_times = 3
-
-[node name="Layer 00" type="Sprite2D" parent="RoomContainer/Parallaxing/Sky"]
-texture = ExtResource("6_1244u")
-
-[node name="Clouds" type="Parallax2D" parent="RoomContainer/Parallaxing"]
-z_index = -10
-scroll_scale = Vector2(0.2, 1)
-repeat_size = Vector2(640, 0)
-repeat_times = 3
-
-[node name="Layer 01" type="Sprite2D" parent="RoomContainer/Parallaxing/Clouds"]
-texture = ExtResource("7_m5a5b")
-
-[node name="Layer 01-B" type="Sprite2D" parent="RoomContainer/Parallaxing/Clouds"]
-texture = ExtResource("8_psnhd")
-offset = Vector2(0, -360)
-
-[node name="Layer 01-C" type="Sprite2D" parent="RoomContainer/Parallaxing/Clouds"]
-texture = ExtResource("8_psnhd")
-offset = Vector2(0, -720)
-flip_v = true
-
-[node name="Tree" type="Parallax2D" parent="RoomContainer/Parallaxing"]
-z_index = -10
-scroll_scale = Vector2(0.3, 1)
-repeat_size = Vector2(640, 0)
-repeat_times = 3
-
-[node name="Layer 02" type="Sprite2D" parent="RoomContainer/Parallaxing/Tree"]
-texture = ExtResource("8_t18pm")
-
-[node name="Layer 02-B" type="Sprite2D" parent="RoomContainer/Parallaxing/Tree"]
-texture = ExtResource("10_w0773")
-offset = Vector2(0, -360)
-
-[node name="Mountains" type="Parallax2D" parent="RoomContainer/Parallaxing"]
-z_index = -10
-scroll_scale = Vector2(0.4, 1)
-repeat_size = Vector2(640, 0)
-repeat_times = 3
-
-[node name="Layer 03" type="Sprite2D" parent="RoomContainer/Parallaxing/Mountains"]
-texture = ExtResource("9_x54pc")
-
-[node name="City Back" type="Parallax2D" parent="RoomContainer/Parallaxing"]
-z_index = -10
-scroll_scale = Vector2(0.5, 1)
-repeat_size = Vector2(640, 0)
-repeat_times = 3
-
-[node name="Layer 04" type="Sprite2D" parent="RoomContainer/Parallaxing/City Back"]
-texture = ExtResource("10_3sg6p")
-
-[node name="Layer 04-B" type="Sprite2D" parent="RoomContainer/Parallaxing/City Back"]
-texture = ExtResource("12_1g84q")
-offset = Vector2(0, 360)
-
-[node name="Layer 04-C" type="Sprite2D" parent="RoomContainer/Parallaxing/City Back"]
-texture = ExtResource("12_1g84q")
-offset = Vector2(0, 720)
-
-[node name="Layer 04-D" type="Sprite2D" parent="RoomContainer/Parallaxing/City Back"]
-texture = ExtResource("12_1g84q")
-offset = Vector2(0, 1080)
-
-[node name="City Front" type="Parallax2D" parent="RoomContainer/Parallaxing"]
-z_index = -10
-scroll_scale = Vector2(0.6, 1)
-repeat_size = Vector2(640, 0)
-repeat_times = 3
-
-[node name="Layer 05" type="Sprite2D" parent="RoomContainer/Parallaxing/City Front"]
-texture = ExtResource("11_728nr")
+[node name="Parallaxing" parent="RoomContainer" instance=ExtResource("6_qgjvj")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -254,6 +166,7 @@ visible = false
 [node name="CherryBlossomPetal" parent="CanvasLayer" instance=ExtResource("5_yig42")]
 
 [node name="DebugColourBlindnessSimulator" parent="CanvasLayer" instance=ExtResource("9_js1un")]
+material = null
 
 [node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("6_cf7u0")]
 offset_left = 523.0
