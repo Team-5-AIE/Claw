@@ -10,7 +10,9 @@ var lastScore #[Name, Score as string, time]
 
 #This holds all the data of score entry
 #First entry is the fastest time - accending order. 
-var highscores = [] #[Name, Score as string, time]
+var highscores = []: #[Name, Score as string, time]
+	set(value):
+		highscores = value
 
 var json = JSON.new()
 var path = "res://save_data.json"
@@ -48,9 +50,8 @@ func _ready():
 	var file = FileAccess.open(path,FileAccess.READ)
 	if file == null:
 		CreateDefaultSave()
-	else:
-		LoadScoresFromFile()
-		
+	LoadScoresFromFile()
+	
 	#Bloomies
 	chapterOneBloomies.resize(chapterOneBloomieCount)
 	chapterOneBloomies.fill(false)
@@ -72,7 +73,9 @@ func BubbleSortScores() -> void: #TODO: Still need to test
 				scoresToSort[j+1] = temp
 	
 	highscores = scoresToSort.duplicate(true)
-	print(str("sorted:",scoresToSort))
+	if highscores.size() > 5:
+		highscores.resize(5)
+	print(str("sorted:",highscores))
 
 func UpdateScoreName(playerName:String) -> void:
 	var scoreString = Global.lastScore[1]

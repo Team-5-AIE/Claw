@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://220whnswt3p2" path="res://Objects/time_tracker.tscn" id="5_04kto"]
 [ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="6_hy8c1"]
 
-[node name="GameRoot" type="Node"]
+[node name="GameRoot2" type="Node"]
 
 [node name="MainMenu" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu", "timeTracker", "dialogueManager") instance=ExtResource("1_7374e")]
 startChapterScenePath = "res://Chapters/Chapter_01/Rooms/room_101.tscn"
