@@ -11,6 +11,7 @@ var startChapterScenePath : String
 var roomContainer : Node2D
 var timeTracker : Node
 var dialogueManager: Control
+var bgmPlayer : AudioStreamPlayer
 
 # Member variables
 # - Public
@@ -37,6 +38,7 @@ func _on_retry_button_pressed() -> void:
 func _on_restart_button_pressed() -> void:
 	inGame = false
 	restartButton.disabled = true
+	bgmPlayer.stop()
 	
 	FadeTransitions.Transition()
 	await FadeTransitions.on_fade_in_finished
@@ -48,9 +50,10 @@ func _on_restart_button_pressed() -> void:
 	
 	player.free()
 	
-	var room = roomContainer.LoadRoom(startChapterScenePath, timeTracker)
-	room.StartingRoomSetup(self)
+	var room = roomContainer.LoadRoom(startChapterScenePath, timeTracker, self)
+	room.StartingRoomSetup()
 	visible = false
+	bgmPlayer.play()
 	
 	await FadeTransitions.on_fade_out_finished
 	FadeTransitions.lockPlayer = true
