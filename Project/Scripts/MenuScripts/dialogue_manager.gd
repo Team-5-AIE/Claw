@@ -9,7 +9,7 @@ func _ready():
 	HideDialouge()
 
 
-func _process(delta):
+func _process(_delta):
 	if textQueue.size() > 0: #there is text queued
 		if textQueue[0].length() != textAsPart.length(): #we haven't written all the text yet
 			
@@ -47,3 +47,11 @@ func ResetDialougeBox():
 		textQueue.pop_front()
 	if textQueue.size() == 0:
 		HideDialouge()
+
+func ClearDialogueBox():
+	textAsPart = ""
+	
+	if textQueue.size() > 0:
+		textQueue.clear()
+	
+	HideDialouge()

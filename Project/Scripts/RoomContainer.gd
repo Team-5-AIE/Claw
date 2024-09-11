@@ -12,21 +12,26 @@ var currentRoom : Node2D :
 
 # ---Functions---
 # Custom functions
-func LoadRoom(roomScenePath_ : String, player_ : SWPlatformerCharacter = null) -> Node2D:
+func LoadRoom(roomScenePath_ : String, timeTracker_ : Node, pauseMenu_ : Node, \
+			  player_ : SWPlatformerCharacter = null) -> Node2D:
 	assert(roomScenePath_ != "")
 	
 	var room = load(roomScenePath_).instantiate()
 	add_child(room)
 	
-	room.Init(get_parent(), self, player_)
+	room.Init(get_parent(), self, timeTracker_, pauseMenu_, player_)
 	
 	loadedRooms.append(room)
 	
 	return room
 
-func FreeRoom(room_ : Node2D) -> void:
+func QueueFreeRoom(room_ : Node2D) -> void:
 	loadedRooms.erase(room_)
 	room_.queue_free()
+
+func FreeRoom(room_ : Node2D) -> void:
+	loadedRooms.erase(room_)
+	room_.free()
 
 func LoadAdjacentRooms() -> void:
 	var rtnArray = get_tree().get_nodes_in_group("RoomTransitionNodes")
@@ -42,7 +47,8 @@ func LoadAdjacentRooms() -> void:
 					break
 			
 			if !roomAlreadyExists:
-				var room = LoadRoom(roomTransitionNode.nextRoom, currentRoom.player)
+				var room = LoadRoom(roomTransitionNode.nextRoom, currentRoom.timeTracker, \
+									currentRoom.pauseMenu, currentRoom.player)
 				
 				# Even though we did this earlier to get roomTransitionNodesArray,
 				# we've now loaded a new room, so we have to get this array
@@ -62,4 +68,4 @@ func LoadAdjacentRooms() -> void:
 func FreeAdjacentRooms(excludedRooms_ : Array[String]) -> void:
 	for room : Node2D in loadedRooms:
 		if not excludedRooms_.has(room.scene_file_path):
-			FreeRoom(room)
+			QueueFreeRoom(room)

@@ -1,7 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://80ljbkxkaea4"]
+[gd_scene load_steps=24 format=3 uid="uid://80ljbkxkaea4"]
 
-[ext_resource type="Texture2D" uid="uid://ftbo74pnlnfr" path="res://Rooms/PAX Menus/Title_Small.png" id="1_ms0xv"]
-[ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="2_8kep5"]
+[ext_resource type="Script" path="res://Scripts/MenuScripts/score_menu.gd" id="1_xxyev"]
+[ext_resource type="Texture2D" uid="uid://dmwrlsg3xkgay" path="res://Sprites/Menu/highscoreBG.png" id="3_xl6sf"]
+[ext_resource type="Theme" path="res://addons/Fonts/Chunky.tres" id="4_b2npv"]
+[ext_resource type="Texture2D" uid="uid://dxjvqs8qwyns2" path="res://Sprites/Menu/InsertNameBox.png" id="4_ed2pe"]
+[ext_resource type="Texture2D" uid="uid://cyvhepmaupi24" path="res://Sprites/Menu/BoxDefault.png" id="4_shn32"]
+[ext_resource type="Texture2D" uid="uid://bpbnpy3g434o" path="res://Sprites/Menu/BoxSelected.png" id="6_souod"]
+[ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="7_atyd5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_47wxp"]
+texture = ExtResource("3_xl6sf")
+
+[sub_resource type="ImageTexture" id="ImageTexture_mwb2m"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bmskm"]
+texture = ExtResource("4_ed2pe")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xgreg"]
+texture = ExtResource("4_ed2pe")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ch60e"]
+texture = ExtResource("4_ed2pe")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_it2q7"]
+texture = ExtResource("4_shn32")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_emuk1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f3qq3"]
+texture = ExtResource("4_shn32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_86p4m"]
+texture = ExtResource("4_shn32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iaqoy"]
+texture = ExtResource("4_shn32")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pnchs"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_thcnf"]
+texture = ExtResource("6_souod")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gdtsx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q7wsv"]
+texture = ExtResource("4_shn32")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mxqso"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_otxf0"]
+texture = ExtResource("4_shn32")
 
 [node name="ScoreMenu" type="Control"]
 layout_mode = 3
@@ -10,6 +58,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xxyev")
+mainMenuScenePath = "res://Rooms/PAX Menus/game_root_PAX.tscn"
 
 [node name="BG" type="ColorRect" parent="."]
 layout_mode = 1
@@ -18,32 +68,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.2015, 0.205117, 0.31, 1)
+color = Color(0.254902, 0.113725, 0.192157, 1)
 
 [node name="ChapterScreen" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 32.0
 offset_right = 640.0
-offset_bottom = 360.0
+offset_bottom = 392.0
 alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="ChapterScreen"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("1_ms0xv")
-stretch_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="ChapterScreen"]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_bottom = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="ChapterScreen/MarginContainer"]
+custom_minimum_size = Vector2(540, 238)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_47wxp")
+
+[node name="Label" type="Label" parent="ChapterScreen/MarginContainer/PanelContainer"]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ChapterScreen/MarginContainer/PanelContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -52,76 +103,36 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
-
-[node name="TopTimeTitle" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_8kep5")
-theme_override_colors/default_color = Color(0.729412, 0.729412, 0.729412, 1)
-theme_override_font_sizes/normal_font_size = 45
-text = "Top Times:"
-fit_content = true
-
-[node name="TopRecordsTable" type="VBoxContainer" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="FirstPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("2_8kep5")
-text = "1. AAA - HH:MM:SS.sss"
-fit_content = true
-
-[node name="SecondPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("2_8kep5")
-text = "2. AAA - HH:MM:SS.sss"
-fit_content = true
-
-[node name="ThirdPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("2_8kep5")
-text = "3. AAA - HH:MM:SS.sss"
-fit_content = true
-
-[node name="FourthPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("2_8kep5")
-text = "4. AAA - HH:MM:SS.sss"
-fit_content = true
-
-[node name="FifthPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("2_8kep5")
-text = "5. AAA - HH:MM:SS.sss"
-fit_content = true
+alignment = 1
 
 [node name="PlayerTime" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("2_8kep5")
+theme = ExtResource("4_b2npv")
+theme_override_colors/default_color = Color(0.854902, 0.52549, 0.243137, 1)
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = "[center]Your Time: HH:MM:SS.sss[/center]"
 fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 10)
 layout_mode = 2
 alignment = 1
 
 [node name="PlayerNameInput" type="LineEdit" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 size_flags_horizontal = 4
-placeholder_text = "Your Name"
+theme = ExtResource("4_b2npv")
+theme_override_font_sizes/font_size = 20
+theme_override_icons/clear = SubResource("ImageTexture_mwb2m")
+theme_override_styles/focus = SubResource("StyleBoxTexture_bmskm")
+theme_override_styles/read_only = SubResource("StyleBoxTexture_xgreg")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ch60e")
+placeholder_text = "YOUR NAME"
 alignment = 1
 expand_to_text_length = true
 clear_button_enabled = true
@@ -130,6 +141,126 @@ caret_blink = true
 caret_force_displayed = true
 
 [node name="SubmitButton" type="Button" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(112, 40)
 layout_mode = 2
-text = "Submit"
+theme = ExtResource("4_b2npv")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxTexture_it2q7")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_emuk1")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_f3qq3")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_86p4m")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_iaqoy")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_pnchs")
+theme_override_styles/hover = SubResource("StyleBoxTexture_thcnf")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_gdtsx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_q7wsv")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_mxqso")
+theme_override_styles/normal = SubResource("StyleBoxTexture_otxf0")
+text = "Submit
+"
+
+[node name="Label" type="Label" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+
+[node name="TopTimeTitle" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 0
+offset_left = 123.0
+offset_top = 87.0
+offset_right = 523.0
+offset_bottom = 187.0
+theme = ExtResource("4_b2npv")
+theme_override_colors/default_color = Color(0.909804, 0.756863, 0.439216, 1)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]
+ Best Times"
+fit_content = true
+
+[node name="TopRecordsTable" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 120.0
+offset_right = 656.0
+offset_bottom = 266.0
+alignment = 1
+
+[node name="FirstPlace" type="RichTextLabel" parent="TopRecordsTable"]
+custom_minimum_size = Vector2(400, 13)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_b2npv")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = " 
+ 1. AAA - HH:MM:SS.sss
+
+"
+fit_content = true
+tab_size = 0
+
+[node name="SecondPlace" type="RichTextLabel" parent="TopRecordsTable"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_b2npv")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = " 1. AAA - HH:MM:SS.sss
+
+"
+fit_content = true
+tab_size = 0
+
+[node name="ThirdPlace" type="RichTextLabel" parent="TopRecordsTable"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_b2npv")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = " 1. AAA - HH:MM:SS.sss
+
+"
+fit_content = true
+tab_size = 0
+
+[node name="FourthPlace" type="RichTextLabel" parent="TopRecordsTable"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_b2npv")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = " 1. AAA - HH:MM:SS.sss
+
+"
+fit_content = true
+tab_size = 0
+
+[node name="FifthPlace" type="RichTextLabel" parent="TopRecordsTable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme = ExtResource("4_b2npv")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = " 1. AAA - HH:MM:SS.sss
+
+"
+fit_content = true
+tab_size = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 1.0
+offset_top = -4.0
+offset_right = 641.0
+offset_bottom = 92.0
+size_flags_vertical = 0
+texture = ExtResource("7_atyd5")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="pressed" from="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]

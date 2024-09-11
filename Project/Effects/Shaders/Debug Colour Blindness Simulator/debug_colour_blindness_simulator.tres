@@ -1,7 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bq5um305qo8rs"]
-
-[ext_resource type="Shader" path="res://Effects/Shaders/Debug Colour Blindness Simulator/debug_colour_blindness_simulator.gdshader" id="1_505ng"]
-
-[resource]
-shader = ExtResource("1_505ng")
-shader_parameter/filter_type = 0

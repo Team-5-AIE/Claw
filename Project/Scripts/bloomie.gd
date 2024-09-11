@@ -7,7 +7,7 @@ var collected = false
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 const COLLECT_BLOOMIE = preload("res://Sounds/Effects/collectBloomie.wav")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+@export var bloomieID : int = 0
 var targetPosition = Vector2.ZERO
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,6 +31,9 @@ func _process(delta)-> void:
 	if collected:
 		if destroy_timer.time_left <= 0.0:
 			if !audio_stream_player.playing:
+				#Add bloomie to display
+				var bloomieDisplay = get_tree().root.get_node("/root/GameRoot2/CanvasLayer/BloomieDisplay")
+				bloomieDisplay.AddBloomieCount(bloomieID)
 				queue_free()
 
 

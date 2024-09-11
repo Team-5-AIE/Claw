@@ -1,12 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnei0kqq507xw"]
+[gd_scene load_steps=14 format=3 uid="uid://dnei0kqq507xw"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_4b8s4"]
 [ext_resource type="Script" path="res://Rooms/PAX Menus/title_screen.gd" id="2_isglf"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="3_3iaoi"]
-[ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="4_mjvbh"]
-[ext_resource type="Texture2D" uid="uid://ftbo74pnlnfr" path="res://Rooms/PAX Menus/Title_Small.png" id="5_fn36y"]
+[ext_resource type="Theme" path="res://addons/Fonts/Chunky.tres" id="4_hn62b"]
+[ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="5_2yjop"]
+[ext_resource type="Texture2D" uid="uid://dmwrlsg3xkgay" path="res://Sprites/Menu/highscoreBG.png" id="5_id6ks"]
+[ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="6_jpmdu"]
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3gthp"]
+texture = ExtResource("5_id6ks")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yga4s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rycgk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x77qh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_otbmf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n1t5b"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("startButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,35 +31,9 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_4b8s4")
+startButton = NodePath("ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/StartButton")
 
-[node name="BackgroundList" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TitleBG" type="ColorRect" parent="BackgroundList"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.26833, 0.194799, 0.294845, 1)
-
-[node name="ChapterOneBG" type="ColorRect" parent="BackgroundList"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.2015, 0.205117, 0.31, 1)
-
-[node name="TitleScreen" type="MarginContainer" parent="."]
+[node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("chapterScreen", "creditsScreen", "highscoreRank", "highscoreNames", "highscoreSeparator", "highscoreTimes")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,6 +41,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_isglf")
+chapterScreen = NodePath("../ChapterScreen")
+creditsScreen = NodePath("../CreditsScreen")
+highscoreRank = NodePath("../ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox/Rank")
+highscoreNames = NodePath("../ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox/Name")
+highscoreSeparator = NodePath("../ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox/Separator")
+highscoreTimes = NodePath("../ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox/Time")
+
+[node name="TitleBG" type="ColorRect" parent="TitleScreen"]
+layout_mode = 2
+color = Color(0.254902, 0.113725, 0.192157, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen"]
 layout_mode = 2
@@ -64,24 +63,35 @@ stretch_mode = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TitleScreen/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_mjvbh")
+theme = ExtResource("4_hn62b")
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[center]PRESS ANY BUTTON[/center]"
 fit_content = true
 
-[node name="ChapterScreen" type="VBoxContainer" parent="."]
+[node name="ChapterScreen" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
+
+[node name="ChapterOneBG" type="ColorRect" parent="ChapterScreen"]
+layout_mode = 2
+color = Color(0.254902, 0.113725, 0.192157, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChapterScreen"]
+layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="ChapterScreen"]
+[node name="TextureRect2" type="TextureRect" parent="ChapterScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 91.5)
 layout_mode = 2
 size_flags_vertical = 0
-texture = ExtResource("5_fn36y")
-stretch_mode = 3
+texture = ExtResource("3_3iaoi")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="ChapterScreen"]
+[node name="MarginContainer" type="MarginContainer" parent="ChapterScreen/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 50
@@ -89,87 +99,127 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 25
 metadata/_edit_use_anchors_ = true
 
-[node name="PanelContainer" type="PanelContainer" parent="ChapterScreen/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="ChapterScreen/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(540, 238)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3gthp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ChapterScreen/MarginContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="TopTimeTitle" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="TopTimeTitle2" type="RichTextLabel" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 32)
 layout_mode = 2
-theme = ExtResource("4_mjvbh")
-theme_override_colors/default_color = Color(0.729412, 0.729412, 0.729412, 1)
-theme_override_font_sizes/normal_font_size = 45
-text = "Top Times:"
+theme = ExtResource("4_hn62b")
+theme_override_colors/default_color = Color(0.909804, 0.756863, 0.439216, 1)
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "
+[center]BEST TIMES
+
+"
 fit_content = true
 
-[node name="TopRecordsTable" type="VBoxContainer" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HighscoreHBox" type="HBoxContainer" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="FirstPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
+[node name="Rank" type="RichTextLabel" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("4_mjvbh")
-text = "1. AAA - HH:MM:SS.sss"
+theme = ExtResource("4_hn62b")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "1."
 fit_content = true
+autowrap_mode = 0
 
-[node name="SecondPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
+[node name="Name" type="RichTextLabel" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("4_mjvbh")
-text = "2. AAA - HH:MM:SS.sss"
+theme = ExtResource("4_hn62b")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "AAA"
 fit_content = true
+autowrap_mode = 0
 
-[node name="ThirdPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
+[node name="Separator" type="RichTextLabel" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("4_mjvbh")
-text = "3. AAA - HH:MM:SS.sss"
+theme = ExtResource("4_hn62b")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "|"
 fit_content = true
+autowrap_mode = 0
 
-[node name="FourthPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
+[node name="Time" type="RichTextLabel" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("4_mjvbh")
-text = "4. AAA - HH:MM:SS.sss"
+theme = ExtResource("4_hn62b")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "0:33"
 fit_content = true
+autowrap_mode = 0
 
-[node name="FifthPlace" type="RichTextLabel" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/TopRecordsTable"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("4_mjvbh")
-text = "5. AAA - HH:MM:SS.sss"
-fit_content = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
 clip_contents = true
 layout_mode = 2
 alignment = 1
 
-[node name="StartButton" type="Button" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+[node name="StartButton" type="Button" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 42)
 layout_mode = 2
-theme = ExtResource("4_mjvbh")
+theme = ExtResource("4_hn62b")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = ExtResource("5_2yjop")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yga4s")
+theme_override_styles/disabled = ExtResource("5_2yjop")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rycgk")
+theme_override_styles/hover_pressed = ExtResource("5_2yjop")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_x77qh")
+theme_override_styles/hover = ExtResource("6_jpmdu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_otbmf")
+theme_override_styles/pressed = ExtResource("5_2yjop")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
+theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Play Level"
 
-[node name="CreditsButton" type="Button" parent="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+[node name="CreditsButton" type="Button" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 42)
 layout_mode = 2
+theme = ExtResource("4_hn62b")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = ExtResource("5_2yjop")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yga4s")
+theme_override_styles/disabled = ExtResource("5_2yjop")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rycgk")
+theme_override_styles/hover_pressed = ExtResource("5_2yjop")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_x77qh")
+theme_override_styles/hover = ExtResource("6_jpmdu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_otbmf")
+theme_override_styles/pressed = ExtResource("5_2yjop")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
+theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Credits"
+
+[node name="Label" type="Label" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
 
 [node name="CreditsScreen" type="PanelContainer" parent="."]
 visible = false
@@ -179,6 +229,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="CreditsBG" type="ColorRect" parent="CreditsScreen"]
+layout_mode = 2
+color = Color(0.2015, 0.205117, 0.31, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="CreditsScreen"]
 layout_mode = 2
@@ -192,13 +246,13 @@ layout_mode = 2
 
 [node name="Title" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_mjvbh")
-theme_override_colors/default_color = Color(0.729412, 0.729412, 0.729412, 1)
+theme = ExtResource("4_hn62b")
+theme_override_colors/default_color = Color(0.909804, 0.756863, 0.439216, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/normal_font_size = 42
 bbcode_enabled = true
-text = "[center]CREDITS[/center]"
+text = "[center]CREDITS"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -208,54 +262,152 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme = ExtResource("4_mjvbh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Art" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_hn62b")
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
-text = "[center]Traveen[/center]"
+text = "[center]
+Art[/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_mjvbh")
+theme = ExtResource("4_hn62b")
 bbcode_enabled = true
-text = "[center]Cody[/center]"
+text = "[center]Sarah W.[/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_mjvbh")
+theme = ExtResource("4_hn62b")
 bbcode_enabled = true
-text = "[center]Javier[/center]"
+text = "[center]Cody A.
+[/center]
+"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme = ExtResource("4_mjvbh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Design" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_hn62b")
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
-text = "[center]Sarah[/center]"
+text = "[center]Design[/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_mjvbh")
+theme = ExtResource("4_hn62b")
 bbcode_enabled = true
-text = "[center]Emma[/center]"
+text = "[center]Traveen W.[/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Button" type="Button" parent="CreditsScreen/MarginContainer/VBoxContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_mjvbh")
+theme = ExtResource("4_hn62b")
+bbcode_enabled = true
+text = "[center]Cody A.[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_hn62b")
+bbcode_enabled = true
+text = "[center]Javier A.
+
+[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Programming" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_hn62b")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[center]Programming[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_hn62b")
+bbcode_enabled = true
+text = "[center]Sarah W.[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="CreditsScreen/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_hn62b")
+bbcode_enabled = true
+text = "[center]Emma S.[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CreditsReturnButton" type="Button" parent="CreditsScreen/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 42)
+layout_mode = 2
+theme = ExtResource("4_hn62b")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = ExtResource("5_2yjop")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yga4s")
+theme_override_styles/disabled = ExtResource("5_2yjop")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rycgk")
+theme_override_styles/hover_pressed = ExtResource("5_2yjop")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_x77qh")
+theme_override_styles/hover = ExtResource("6_jpmdu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_otbmf")
+theme_override_styles/pressed = ExtResource("5_2yjop")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
+theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Return"
 
-[connection signal="pressed" from="ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[node name="MarginContainer" type="MarginContainer" parent="CreditsScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/CreditsButton" to="TitleScreen" method="_on_credits_button_pressed"]
+[connection signal="pressed" from="CreditsScreen/MarginContainer/VBoxContainer/HBoxContainer/CreditsReturnButton" to="TitleScreen" method="_on_credits_return_button_pressed"]
