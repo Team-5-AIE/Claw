@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bpn850d3hc10w"]
+[gd_scene load_steps=17 format=4 uid="uid://bpn850d3hc10w"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_ma1kx"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_rpbkt"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c87ktxyfdc5mk" path="res://Sprites/Backgrounds/City Background 1/Layer 03.png" id="7_1fplc"]
 [ext_resource type="Texture2D" uid="uid://qeoxrwrrcew2" path="res://Sprites/Backgrounds/City Background 1/Layer 04.png" id="8_rh50w"]
 [ext_resource type="PackedScene" uid="uid://cy10crhaf3g4v" path="res://Objects/world_environment.tscn" id="12_3jax1"]
+[ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="13_ukotj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_amx8x"]
 resource_local_to_scene = true
@@ -127,10 +128,11 @@ position = Vector2(320, -24)
 [node name="WorldEnvironment" parent="." instance=ExtResource("12_3jax1")]
 
 [node name="Label" type="Label" parent="."]
-offset_left = 169.0
-offset_top = -121.0
-offset_right = 473.0
-offset_bottom = -20.0
+offset_left = 141.0
+offset_top = -120.0
+offset_right = 479.0
+offset_bottom = -19.0
+theme = ExtResource("13_ukotj")
 theme_override_font_sizes/font_size = 12
 text = "Your Spear can attach to wooden walls.
 
