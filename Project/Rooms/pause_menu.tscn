@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://nelr0rw0cn6o"]
 
 [ext_resource type="Script" path="res://Scripts/MenuScripts/PauseMenu.gd" id="1_mpl1k"]
-[ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="1_tt71g"]
+[ext_resource type="Theme" path="res://addons/Fonts/Chunky.tres" id="2_ayrj1"]
 [ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="3_h2gsb"]
 [ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="4_rao1h"]
 
@@ -39,13 +39,13 @@ alignment = 1
 
 [node name="Title" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_tt71g")
+theme = ExtResource("2_ayrj1")
 theme_override_colors/default_color = Color(0.909804, 0.756863, 0.439216, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/normal_font_size = 45
 bbcode_enabled = true
-text = "[center]PAUSED[/center]"
+text = "[center] PAUSED[/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -62,10 +62,10 @@ layout_mode = 2
 [node name="ResumeButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-theme = ExtResource("1_tt71g")
+theme = ExtResource("2_ayrj1")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = ExtResource("3_h2gsb")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4swhe")
 theme_override_styles/disabled = ExtResource("3_h2gsb")
@@ -82,10 +82,10 @@ text = "Resume"
 [node name="RetryButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-theme = ExtResource("1_tt71g")
+theme = ExtResource("2_ayrj1")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = ExtResource("3_h2gsb")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4hofj")
 theme_override_styles/disabled = ExtResource("3_h2gsb")
@@ -102,10 +102,10 @@ text = "Retry Room"
 [node name="RestartButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-theme = ExtResource("1_tt71g")
+theme = ExtResource("2_ayrj1")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = ExtResource("3_h2gsb")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4hofj")
 theme_override_styles/disabled = ExtResource("3_h2gsb")
@@ -122,10 +122,10 @@ text = "Restart Chapter"
 [node name="QuitButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-theme = ExtResource("1_tt71g")
+theme = ExtResource("2_ayrj1")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = ExtResource("3_h2gsb")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4hofj")
 theme_override_styles/disabled = ExtResource("3_h2gsb")

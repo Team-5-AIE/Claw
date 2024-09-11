@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://oe4o7s0x8n1e"]
+
+[ext_resource type="FontFile" uid="uid://lj762ss47w5w" path="res://addons/Fonts/UpheavalPro.ttf" id="1_6v648"]
+
+[resource]
+default_font = ExtResource("1_6v648")
+default_font_size = 14
