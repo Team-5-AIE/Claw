@@ -39,7 +39,7 @@ offset = Vector2(0, -360)
 
 [node name="Clouds" type="Parallax2D" parent="."]
 z_index = -10
-scroll_scale = Vector2(0.2, 0.05)
+scroll_scale = Vector2(0.25, 0.05)
 scroll_offset = Vector2(0, 180)
 repeat_size = Vector2(640, 0)
 repeat_times = 3
@@ -59,7 +59,7 @@ offset = Vector2(0, -20)
 
 [node name="Mountains" type="Parallax2D" parent="."]
 z_index = -10
-scroll_scale = Vector2(0.4, 0.05)
+scroll_scale = Vector2(0.3, 0.05)
 scroll_offset = Vector2(0, 180)
 repeat_size = Vector2(640, 0)
 repeat_times = 3
@@ -69,8 +69,8 @@ texture = ExtResource("6_u6l84")
 
 [node name="City Back" type="Parallax2D" parent="."]
 z_index = -10
-scroll_scale = Vector2(0.5, 0.05)
-scroll_offset = Vector2(0, 180)
+scroll_scale = Vector2(0.55, 0.05)
+scroll_offset = Vector2(0, 150)
 repeat_size = Vector2(640, 0)
 repeat_times = 3
 
@@ -91,8 +91,8 @@ offset = Vector2(0, 1080)
 
 [node name="City Front" type="Parallax2D" parent="."]
 z_index = -10
-scroll_scale = Vector2(0.6, 0.05)
-scroll_offset = Vector2(0, 180)
+scroll_scale = Vector2(0.75, 0.05)
+scroll_offset = Vector2(0, 170)
 repeat_size = Vector2(640, 0)
 repeat_times = 3
 
