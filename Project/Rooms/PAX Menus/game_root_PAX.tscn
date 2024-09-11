@@ -11,12 +11,13 @@
 
 [node name="GameRoot2" type="Node"]
 
-[node name="MainMenu" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu", "timeTracker", "dialogueManager") instance=ExtResource("1_7374e")]
+[node name="MainMenu" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu", "timeTracker", "dialogueManager", "bgmPlayer") instance=ExtResource("1_7374e")]
 startChapterScenePath = "res://Chapters/SarahPAXRooms/sarah_room_01.tscn"
 roomContainer = NodePath("../RoomContainer")
 pauseMenu = NodePath("../CanvasLayer/PauseMenu")
 timeTracker = NodePath("../CanvasLayer/TimeTracker")
 dialogueManager = NodePath("../CanvasLayer/DialogueManager")
+bgmPlayer = NodePath("../BGMPlayer")
 
 [node name="RoomContainer" type="Node2D" parent="."]
 script = ExtResource("1_bu72f")

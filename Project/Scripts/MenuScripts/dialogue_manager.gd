@@ -47,3 +47,11 @@ func ResetDialougeBox():
 		textQueue.pop_front()
 	if textQueue.size() == 0:
 		HideDialouge()
+
+func ClearDialogueBox():
+	textAsPart = ""
+	
+	if textQueue.size() > 0:
+		textQueue.clear()
+	
+	HideDialouge()

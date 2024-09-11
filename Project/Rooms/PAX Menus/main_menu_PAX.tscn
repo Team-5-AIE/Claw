@@ -202,7 +202,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="StartButton" type="Button" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 32)
+custom_minimum_size = Vector2(150, 42)
 layout_mode = 2
 theme = ExtResource("4_mjvbh")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -222,7 +222,7 @@ theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Play Level"
 
 [node name="CreditsButton" type="Button" parent="ChapterScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 32)
+custom_minimum_size = Vector2(150, 42)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
@@ -408,7 +408,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="CreditsReturnButton" type="Button" parent="CreditsScreen/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 32)
+custom_minimum_size = Vector2(150, 42)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5

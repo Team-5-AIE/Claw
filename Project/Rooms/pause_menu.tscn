@@ -52,15 +52,15 @@ autowrap_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 245
+theme_override_constants/margin_left = 210
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 245
+theme_override_constants/margin_right = 210
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme = ExtResource("1_tt71g")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -80,7 +80,7 @@ theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Resume"
 
 [node name="RetryButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme = ExtResource("1_tt71g")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -100,7 +100,7 @@ theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Retry Room"
 
 [node name="RestartButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme = ExtResource("1_tt71g")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -120,7 +120,7 @@ theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Restart Chapter"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme = ExtResource("1_tt71g")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
