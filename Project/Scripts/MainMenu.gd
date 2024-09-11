@@ -7,7 +7,8 @@ extends Control
 @export var roomContainer : Node2D
 @export var pauseMenu : Node
 @export var timeTracker : Control
-@export var dialogueManager: Control
+@export var dialogueManager : Control
+@export var bgmPlayer : AudioStreamPlayer
 @onready var bloomieDisplay: Control = $"../CanvasLayer/BloomieDisplay"
 
 func _ready() -> void:
@@ -15,6 +16,7 @@ func _ready() -> void:
 	pauseMenu.roomContainer = roomContainer
 	pauseMenu.timeTracker = timeTracker
 	pauseMenu.dialogueManager = dialogueManager
+	pauseMenu.bgmPlayer = bgmPlayer
 	
 	pass
 	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
