@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cm57ml7oalns"]
+[gd_scene load_steps=16 format=4 uid="uid://cm57ml7oalns"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_ufhrl"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_bob17"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://t3ad2u6aclla" path="res://Sprites/Backgrounds/City Background 1/Layer 02-B.png" id="6_v5jd4"]
 [ext_resource type="Texture2D" uid="uid://c87ktxyfdc5mk" path="res://Sprites/Backgrounds/City Background 1/Layer 03.png" id="7_va1c3"]
 [ext_resource type="Texture2D" uid="uid://qeoxrwrrcew2" path="res://Sprites/Backgrounds/City Background 1/Layer 04.png" id="8_yudcb"]
+[ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="12_oiy8i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_alkxb"]
 resource_local_to_scene = true
@@ -114,7 +115,8 @@ flipSpawnDir = true
 offset_left = -216.0
 offset_right = -90.0
 offset_bottom = 49.0
-theme_override_font_sizes/font_size = 12
+theme = ExtResource("12_oiy8i")
+theme_override_font_sizes/font_size = 14
 text = "WASD - Move
 Spacebar - Jump"
 label_settings = SubResource("LabelSettings_7hoo0")

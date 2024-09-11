@@ -68,6 +68,10 @@ RoomInitListeners=""
 RoomTransitionNodes=""
 PlayerSpawns=""
 
+[gui]
+
+theme/custom_font="res://addons/Fonts/Chunky.tres"
+
 [input]
 
 Jump={
