@@ -6,7 +6,7 @@ var chapterOneBloomieCount = 5
 
 #This holds all the data of score entry
 #first entry is the latest one.
-var lastScore = [["ah","0:03",3]] #[Name, Score as string, time] 
+var lastScore = ["NAME","0:14",14]#[Name, Score as string, time]
 
 #This holds all the data of score entry
 #First entry is the fastest time - accending order. 
@@ -48,9 +48,8 @@ func _ready():
 	var file = FileAccess.open(path,FileAccess.READ)
 	if file == null:
 		CreateDefaultSave()
-	else:
-		LoadScoresFromFile()
-		
+	LoadScoresFromFile()
+	
 	#Bloomies
 	chapterOneBloomies.resize(chapterOneBloomieCount)
 	chapterOneBloomies.fill(false)
@@ -72,18 +71,19 @@ func BubbleSortScores() -> void: #TODO: Still need to test
 				scoresToSort[j+1] = temp
 	
 	highscores = scoresToSort.duplicate(true)
-	print(str("sorted:",scoresToSort))
+	if highscores.size() > 5:
+		highscores.resize(5)
+	print(str("sorted:",highscores))
 
-func UpdateScoreName(name:String) -> void:
-	var scoreString = Global.lastScore[0][1]
-	var score = Global.lastScore[0][2]
-	Global.lastScore.clear()
-	Global.lastScore.append([name,scoreString,score])
+func UpdateScoreName(playerName:String) -> void:
+	var scoreString = Global.lastScore[1]
+	var score = Global.lastScore[2]
+	Global.lastScore = [playerName,scoreString,score]
 
 func AddTimeToList() -> void:
-	var name = Global.lastScore[0][0]
-	var timeString = Global.lastScore[0][1]
-	var time = Global.lastScore[0][2]
-	Global.highscores.append([name,timeString,time])
+	var playerName = Global.lastScore[0]
+	var timeString = Global.lastScore[1]
+	var time = Global.lastScore[2]
+	Global.highscores.append([playerName,timeString,time])
 	Global.BubbleSortScores()
 	Global.SaveScoresToFile()

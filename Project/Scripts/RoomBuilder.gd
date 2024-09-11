@@ -4,7 +4,7 @@ extends Node2D
 signal roomInit
 
 signal playerEnteredRoom
-signal playerExitedRoom
+#signal playerExitedRoom
 
 # ---Variables---
 @export var standaloneSpawner : Node2D
@@ -13,16 +13,21 @@ signal playerExitedRoom
 
 var gameRoot : Node
 var roomContainer : Node2D
+var pauseMenu : Node
+var timeTracker : Node
 var player : SWPlatformerCharacter
 
 #var adjacentRoomPaths : Array[String]
 
 # ---Functions---
 # Init
-func Init(gameRoot_ : Node, roomContainer_ : Node2D, player_ : SWPlatformerCharacter):
+func Init(gameRoot_ : Node, roomContainer_ : Node2D, timeTracker_ : Node, \
+		  pauseMenu_ : Node, player_ : SWPlatformerCharacter):
 	gameRoot = gameRoot_
 	
 	roomContainer = roomContainer_
+	timeTracker = timeTracker_
+	pauseMenu = pauseMenu_
 	
 	if player_ == null:
 		assert(currentSpawner != null)
@@ -42,11 +47,12 @@ func Init(gameRoot_ : Node, roomContainer_ : Node2D, player_ : SWPlatformerChara
 	
 	roomInit.emit()
 
-func StartingRoomSetup(pauseMenu_ : Node):
-	pauseMenu_.player = player
-	
+func StartingRoomSetup():
 	roomContainer.currentRoom = self
 	roomContainer.LoadAdjacentRooms()
+	
+	pauseMenu.player = player
+	pauseMenu.inGame = true
 	
 	playerEnteredRoom.emit()
 
@@ -69,5 +75,7 @@ func _on_restart_player():
 	FadeTransitions.TransitionRestart()
 	await FadeTransitions.on_fade_in_finished
 	player.global_position = currentSpawner.global_position
+	player.finite_state_machine.ChangeState(player.state_idle)
 	player.velocity = Vector2.ZERO
+	player.finite_state_machine.ChangeState(player.state_idle)
 	await FadeTransitions.on_fade_out_finished

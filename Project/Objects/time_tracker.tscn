@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="3_iui52"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lgnu5"]
-font_size = 32
+font_size = 20
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 

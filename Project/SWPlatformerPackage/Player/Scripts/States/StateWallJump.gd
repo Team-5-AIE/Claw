@@ -44,6 +44,7 @@ func EnterState() -> void:
 	if player.debug_mode:
 		print("Debug: Wall Jump State")
 	player.animation_player.play("WallJump")
+	player.last_input_direction.x = -player.last_input_direction.x
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	if player.input_axis.x != 0 && !player.state_jump.bunnyhop:

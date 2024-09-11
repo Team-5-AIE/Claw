@@ -6,12 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dwrsnbk2bb2k2" path="res://Sprites/Menu/NameBox.png" id="4_bhif2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qoxb6"]
-font_size = 20
+font_size = 14
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mkl88"]
-font_size = 19
+font_size = 14
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
@@ -48,7 +48,6 @@ offset_bottom = 345.0
 text = "Hello this is test text"
 label_settings = SubResource("LabelSettings_qoxb6")
 autowrap_mode = 2
-uppercase = true
 
 [node name="TextSpeedTimer" type="Timer" parent="."]
 wait_time = 0.01
@@ -56,10 +55,9 @@ one_shot = true
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 231.0
+offset_left = 227.0
 offset_top = 253.0
-offset_right = 285.0
+offset_right = 281.0
 offset_bottom = 276.0
 text = "Kimiko"
 label_settings = SubResource("LabelSettings_mkl88")
-uppercase = true

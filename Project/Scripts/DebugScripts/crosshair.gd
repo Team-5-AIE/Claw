@@ -130,7 +130,7 @@ func _ready() -> void:
 	_change_label_description()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_mouse_used:
 		aim_direction = (player.get_global_mouse_position() - player.spear_marker.global_position).normalized()
 	else:
@@ -148,7 +148,7 @@ func _process(delta: float) -> void:
 		_set_crosshair_position()
 	_custom_control_execution()
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Debug Hold n Toggle Cycle"):
 		match (control_config):
 			ControlConfig.HOLD:

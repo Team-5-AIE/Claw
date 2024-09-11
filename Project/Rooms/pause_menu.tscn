@@ -25,11 +25,13 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_prhkr"]
 
-[node name="PauseMenu" type="PanelContainer"]
+[node name="PauseMenu" type="PanelContainer" node_paths=PackedStringArray("restartButton")]
 process_mode = 3
 offset_right = 640.0
 offset_bottom = 360.0
 script = ExtResource("1_mpl1k")
+mainMenuScenePath = "res://Rooms/PAX Menus/game_root_PAX.tscn"
+restartButton = NodePath("VBoxContainer/MarginContainer/VBoxContainer/RestartButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -139,4 +141,5 @@ text = "Return to Title"
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

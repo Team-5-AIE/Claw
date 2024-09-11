@@ -12,7 +12,7 @@ func _ready() -> void:
 	visible = false
 	UpdateText()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	UpdateText()
 
 func UpdateText() -> void:
@@ -29,7 +29,6 @@ func StartTimer():
 	seconds = 0
 	minutes = 0
 	wholeTime = 0
-	Global.lastScore.clear()
 	visible = true
 
 func _on_seconds_timer_timeout() -> void:

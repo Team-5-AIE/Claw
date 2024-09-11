@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxlh1d6lgdbmm"]
+
+[ext_resource type="Script" path="res://Scripts/MenuScripts/bloomie_display.gd" id="1_dm68x"]
+[ext_resource type="Texture2D" uid="uid://dbver6tbuv0bv" path="res://Sprites/Bloomie.png" id="2_dccvy"]
+
+[node name="BloomieDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -544.0
+offset_bottom = -344.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dm68x")
+
+[node name="Bloomie1" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(8, 8)
+texture = ExtResource("2_dccvy")
+hframes = 5
+
+[node name="Bloomie2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(24, 8)
+texture = ExtResource("2_dccvy")
+hframes = 5
+
+[node name="Bloomie3" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(40, 8)
+texture = ExtResource("2_dccvy")
+hframes = 5
+
+[node name="Bloomie4" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(56, 8)
+texture = ExtResource("2_dccvy")
+hframes = 5
+
+[node name="Bloomie5" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(72, 8)
+texture = ExtResource("2_dccvy")
+hframes = 5
+
+[node name="Bloomie6" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(88, 8)
+texture = ExtResource("2_dccvy")
+hframes = 5

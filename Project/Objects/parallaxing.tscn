@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://7heicgmosfh4"]
+
+[ext_resource type="Texture2D" uid="uid://cq5qagp7xu76m" path="res://Sprites/Backgrounds/City Background 1/Layer 00.png" id="1_wwkot"]
+[ext_resource type="Texture2D" uid="uid://b25bmjxha3q3r" path="res://Sprites/Backgrounds/City Background 1/Layer 01.png" id="2_ncx00"]
+[ext_resource type="Texture2D" uid="uid://cla5kuagc1ja4" path="res://Sprites/Backgrounds/City Background 1/Layer 01-B.png" id="3_eni2h"]
+[ext_resource type="Texture2D" uid="uid://dkd8m06bigltc" path="res://Sprites/Backgrounds/City Background 1/Layer 02.png" id="4_u8ysm"]
+[ext_resource type="Texture2D" uid="uid://t3ad2u6aclla" path="res://Sprites/Backgrounds/City Background 1/Layer 02-B.png" id="5_r3arf"]
+[ext_resource type="Texture2D" uid="uid://c87ktxyfdc5mk" path="res://Sprites/Backgrounds/City Background 1/Layer 03.png" id="6_u6l84"]
+[ext_resource type="Texture2D" uid="uid://qeoxrwrrcew2" path="res://Sprites/Backgrounds/City Background 1/Layer 04.png" id="7_0d7tx"]
+[ext_resource type="Texture2D" uid="uid://diwgidynrdhbn" path="res://Sprites/Backgrounds/City Background 1/Layer 04-B.png" id="8_76ldy"]
+[ext_resource type="Texture2D" uid="uid://cfvkk7e5oyce4" path="res://Sprites/Backgrounds/City Background 1/Layer 05.png" id="9_kj1w7"]
+
+[node name="Parallaxing" type="Node2D"]
+position = Vector2(0, 12)
+
+[node name="Sky" type="Parallax2D" parent="."]
+z_index = -10
+scroll_scale = Vector2(0.1, 1)
+repeat_size = Vector2(640, 0)
+repeat_times = 3
+
+[node name="Layer 00" type="Sprite2D" parent="Sky"]
+texture = ExtResource("1_wwkot")
+
+[node name="Clouds" type="Parallax2D" parent="."]
+z_index = -10
+scroll_scale = Vector2(0.2, 1)
+repeat_size = Vector2(640, 0)
+repeat_times = 3
+
+[node name="Layer 01" type="Sprite2D" parent="Clouds"]
+texture = ExtResource("2_ncx00")
+
+[node name="Layer 01-B" type="Sprite2D" parent="Clouds"]
+texture = ExtResource("3_eni2h")
+offset = Vector2(0, -360)
+
+[node name="Layer 01-C" type="Sprite2D" parent="Clouds"]
+texture = ExtResource("3_eni2h")
+offset = Vector2(0, -720)
+flip_v = true
+
+[node name="Tree" type="Parallax2D" parent="."]
+z_index = -10
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(640, 0)
+repeat_times = 3
+
+[node name="Layer 02" type="Sprite2D" parent="Tree"]
+texture = ExtResource("4_u8ysm")
+
+[node name="Layer 02-B" type="Sprite2D" parent="Tree"]
+texture = ExtResource("5_r3arf")
+offset = Vector2(0, -360)
+
+[node name="Mountains" type="Parallax2D" parent="."]
+z_index = -10
+scroll_scale = Vector2(0.4, 1)
+repeat_size = Vector2(640, 0)
+repeat_times = 3
+
+[node name="Layer 03" type="Sprite2D" parent="Mountains"]
+texture = ExtResource("6_u6l84")
+
+[node name="City Back" type="Parallax2D" parent="."]
+z_index = -10
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(640, 0)
+repeat_times = 3
+
+[node name="Layer 04" type="Sprite2D" parent="City Back"]
+texture = ExtResource("7_0d7tx")
+
+[node name="Layer 04-B" type="Sprite2D" parent="City Back"]
+texture = ExtResource("8_76ldy")
+offset = Vector2(0, 360)
+
+[node name="Layer 04-C" type="Sprite2D" parent="City Back"]
+texture = ExtResource("8_76ldy")
+offset = Vector2(0, 720)
+
+[node name="Layer 04-D" type="Sprite2D" parent="City Back"]
+texture = ExtResource("8_76ldy")
+offset = Vector2(0, 1080)
+
+[node name="City Front" type="Parallax2D" parent="."]
+z_index = -10
+scroll_scale = Vector2(0.6, 1)
+repeat_size = Vector2(640, 0)
+repeat_times = 3
+
+[node name="Layer 05" type="Sprite2D" parent="City Front"]
+texture = ExtResource("9_kj1w7")

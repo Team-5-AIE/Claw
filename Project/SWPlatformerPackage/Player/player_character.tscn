@@ -904,8 +904,10 @@ position = Vector2(0, -3)
 stream = ExtResource("15_pytux")
 
 [node name="DebugHUD" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Controls" type="Label" parent="DebugHUD"]
+visible = false
 modulate = Color(1, 1, 1, 0.705882)
 offset_right = 148.0
 offset_bottom = 157.0
@@ -923,6 +925,7 @@ Y/RT - Launch from Swing"
 autowrap_mode = 2
 
 [node name="DebugControls" type="Label" parent="DebugHUD"]
+visible = false
 modulate = Color(1, 1, 1, 0.705882)
 offset_left = 369.0
 offset_top = 37.0
@@ -944,12 +947,14 @@ horizontal_alignment = 2
 autowrap_mode = 2
 
 [node name="Control" type="Control" parent="DebugHUD"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Crosshairs" type="Node2D" parent="."]
+visible = false
 
 [node name="AimCrosshair" type="Sprite2D" parent="Crosshairs"]
 modulate = Color(0.827451, 0.00784314, 0.239216, 0.815686)
@@ -969,6 +974,7 @@ texture = ExtResource("19_s68wg")
 
 [node name="ControlOverride" type="Node2D" parent="."]
 script = ExtResource("17_c5rv7")
+crosshairs_enabled = false
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
