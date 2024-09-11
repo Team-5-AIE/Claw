@@ -39,6 +39,7 @@ func _on_restart_button_pressed() -> void:
 	inGame = false
 	restartButton.disabled = true
 	bgmPlayer.stop()
+	dialogueManager.ClearDialogueBox()
 	
 	FadeTransitions.Transition()
 	await FadeTransitions.on_fade_in_finished
