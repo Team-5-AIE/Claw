@@ -46,6 +46,8 @@ func _on_restart_button_pressed() -> void:
 	
 	TogglePause()
 	
+	Global.chapterOneBloomiesThisSession.fill(false)
+	
 	for room in roomContainer.get_children():
 		roomContainer.FreeRoom(room)
 	
@@ -72,6 +74,8 @@ func _on_quit_button_pressed() -> void:
 	await FadeTransitions.on_fade_in_finished
 	
 	TogglePause()
+	
+	Global.chapterOneBloomiesThisSession.fill(false)
 	get_tree().change_scene_to_file(mainMenuScenePath)
 	
 	await FadeTransitions.on_fade_out_finished

@@ -8,6 +8,16 @@ extends Control
 
 func _ready() -> void:
 	visible = false
+	
+	for i in Global.chapterOneBloomieCount:
+		if Global.chapterOneBloomies[i]:
+			match i:
+				0: bloomie_1.modulate = "ffffffff"
+				1: bloomie_2.modulate = "ffffffff"
+				2: bloomie_3.modulate = "ffffffff"
+				3: bloomie_4.modulate = "ffffffff"
+				4: bloomie_5.modulate = "ffffffff"
+				5: bloomie_6.modulate = "ffffffff"
 
 func AddBloomieCount(ID : int) -> void:
 	match ID:
