@@ -28,8 +28,6 @@ text = "File"
 alignment = 0
 item_count = 7
 popup/item_0/text = "New Scene Graph"
-popup/item_0/id = 0
-popup/item_1/text = ""
 popup/item_1/id = -1
 popup/item_1/separator = true
 popup/item_2/text = "Open Scene Graph"
@@ -38,7 +36,6 @@ popup/item_3/text = "Save"
 popup/item_3/id = 2
 popup/item_4/text = "Save As..."
 popup/item_4/id = 3
-popup/item_5/text = ""
 popup/item_5/id = -1
 popup/item_5/separator = true
 popup/item_6/text = "Close"
@@ -74,4 +71,6 @@ script = ExtResource("3_xdmpl")
 [connection signal="empty_clicked" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileMenu" method="_on_file_list_empty_clicked"]
 [connection signal="graphClosed" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" to="HSplitContainer/RoomGraphMargin/RoomGraph" method="_on_file_list_graph_closed"]
 [connection signal="graphOpened" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" to="HSplitContainer/RoomGraphMargin/RoomGraph" method="_on_file_list_graph_opened"]
+[connection signal="item_activated" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" method="_on_item_activated"]
+[connection signal="item_clicked" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileMenu" method="_on_file_list_item_clicked"]
 [connection signal="item_selected" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" method="_on_item_selected"]

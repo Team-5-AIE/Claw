@@ -105,10 +105,10 @@ func _on_file_menu_save_graph() -> void:
 	var selectedListItemIndex : int = get_selected_items()[0]
 	var metadata : RoomGraphMetadata = get_item_metadata(selectedListItemIndex)
 	
-	if metadata.LevelGraph.resource_path == "":
+	if metadata.roomGraph.resource_path == "":
 		_on_file_menu_save_graph_as()
 	else:
-		ResourceSaver.save(metadata.LevelGraph, metadata.LevelGraph.resource_path)
+		ResourceSaver.save(metadata.roomGraph, metadata.roomGraph.resource_path)
 
 func _on_file_menu_save_graph_as() -> void:
 	m_saveFileDialogue.file_mode = EditorFileDialog.FILE_MODE_SAVE_FILE
@@ -124,7 +124,7 @@ func _on_save_file_dialogue_file_selected(path : String) -> void:
 	var selectedListItemIndex : int = get_selected_items()[0]
 	var metadata : RoomGraphMetadata = get_item_metadata(selectedListItemIndex)
 	
-	ResourceSaver.save(metadata.LevelGraph, path, ResourceSaver.FLAG_CHANGE_PATH)
+	ResourceSaver.save(metadata.roomGraph, path, ResourceSaver.FLAG_CHANGE_PATH)
 	
 	metadata.filePath = path
 	set_item_metadata(selectedListItemIndex, metadata)
@@ -181,8 +181,8 @@ func OpenGraph(index_ : int) -> void:
 	graphOpened.emit()
 	
 	var metadata : RoomGraphMetadata = get_item_metadata(index_)
-	if metadata.LevelGraph == null:
-		metadata.LevelGraph = load(metadata.filePath)
+	if metadata.roomGraph == null:
+		metadata.roomGraph = load(metadata.filePath)
 	set_item_metadata(index_, metadata)
 
 # TODO: Add a check if the user has unsaved work
