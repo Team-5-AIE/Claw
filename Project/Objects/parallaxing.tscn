@@ -20,7 +20,12 @@ repeat_size = Vector2(640, 0)
 repeat_times = 3
 
 [node name="Layer 00" type="Sprite2D" parent="Sky"]
+z_index = -1
 texture = ExtResource("1_wwkot")
+
+[node name="Layer 01" type="Sprite2D" parent="Sky"]
+texture = ExtResource("1_wwkot")
+offset = Vector2(0, -360)
 
 [node name="Clouds" type="Parallax2D" parent="."]
 z_index = -10
