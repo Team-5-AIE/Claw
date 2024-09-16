@@ -28,52 +28,52 @@
 [node name="Room001" parent="LoadedRooms" instance=ExtResource("1_srfjq")]
 
 [node name="Room002" parent="LoadedRooms" instance=ExtResource("2_83h3q")]
-position = Vector2(640, 0)
+position = Vector2(672, 0)
 
 [node name="Room003" parent="LoadedRooms" instance=ExtResource("3_y6woc")]
-position = Vector2(1280, 0)
+position = Vector2(1344, 0)
 
 [node name="Room004" parent="LoadedRooms" instance=ExtResource("4_bisco")]
-position = Vector2(1920, 0)
+position = Vector2(2016, 0)
 
 [node name="Room005" parent="LoadedRooms" instance=ExtResource("5_n07ar")]
-position = Vector2(2720, 0)
+position = Vector2(2848, 0)
 
 [node name="Room006" parent="LoadedRooms" instance=ExtResource("6_jaiv2")]
-position = Vector2(2720, 416)
+position = Vector2(2848, 416)
 
 [node name="Room007" parent="LoadedRooms" instance=ExtResource("7_v78ak")]
-position = Vector2(2720, -672)
+position = Vector2(2848, -672)
 
 [node name="Room008" parent="LoadedRooms" instance=ExtResource("8_8hcxd")]
-position = Vector2(2032, -672)
+position = Vector2(2160, -672)
 
 [node name="Room009" parent="LoadedRooms" instance=ExtResource("9_lkidb")]
-position = Vector2(2720, 800)
+position = Vector2(2848, 800)
 
 [node name="Room010" parent="LoadedRooms" instance=ExtResource("10_ypycs")]
-position = Vector2(2048, 400)
+position = Vector2(2176, 400)
 
 [node name="Room011" parent="LoadedRooms" instance=ExtResource("11_gpyr8")]
-position = Vector2(1200, 400)
+position = Vector2(1328, 400)
 
 [node name="Room012" parent="LoadedRooms" instance=ExtResource("12_7yg8p")]
-position = Vector2(1888, 800)
+position = Vector2(2016, 800)
 
 [node name="Room013" parent="LoadedRooms" instance=ExtResource("13_hd416")]
-position = Vector2(1232, -400)
+position = Vector2(1360, -400)
 
 [node name="Room014" parent="LoadedRooms" instance=ExtResource("14_kfeln")]
-position = Vector2(1216, -1136)
+position = Vector2(1344, -1136)
 
 [node name="Room015" parent="LoadedRooms" instance=ExtResource("15_p0whi")]
-position = Vector2(1904, -1328)
+position = Vector2(2032, -1328)
 
 [node name="Room016" parent="LoadedRooms" instance=ExtResource("16_21085")]
-position = Vector2(1216, 800)
+position = Vector2(1344, 800)
 
 [node name="Room017" parent="LoadedRooms" instance=ExtResource("17_bpok3")]
-position = Vector2(2704, -1328)
+position = Vector2(2832, -1328)
 
 [node name="Player" parent="." instance=ExtResource("2_2yd10")]
 unique_name_in_owner = true
