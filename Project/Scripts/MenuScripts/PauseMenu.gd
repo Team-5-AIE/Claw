@@ -58,10 +58,12 @@ func _on_restart_button_pressed() -> void:
 	visible = false
 	bgmPlayer.play()
 	
+	timeTracker.visible = false
+	
 	await FadeTransitions.on_fade_out_finished
 	FadeTransitions.lockPlayer = true
 	dialogueManager.AddDialougeTextBox("I have to find the cure... for Izumo.")
-	dialogueManager.AddDialougeTextBox("I know someone here has information.\n Just have to find them.")
+	dialogueManager.AddDialougeTextBox("Someone in town must know about it.\nI better start looking.")
 	timeTracker.StartTimer()
 	
 	restartButton.disabled = false
