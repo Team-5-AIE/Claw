@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=4 uid="uid://bylwdiqxijadp"]
+[gd_scene load_steps=17 format=4 uid="uid://bylwdiqxijadp"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_1u7ea"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_v4bjj"]
 [ext_resource type="Texture2D" uid="uid://cla5kuagc1ja4" path="res://Sprites/Backgrounds/City Background 1/Layer 01-B.png" id="3_br6dr"]
+[ext_resource type="Texture2D" uid="uid://cq5qagp7xu76m" path="res://Sprites/Backgrounds/City Background 1/Layer 00.png" id="3_gahyu"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_iosre"]
 [ext_resource type="Texture2D" uid="uid://b25bmjxha3q3r" path="res://Sprites/Backgrounds/City Background 1/Layer 01.png" id="4_lelkb"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_ww6hy"]
@@ -45,7 +46,16 @@ tile_set = ExtResource("2_v4bjj")
 [node name="VisualLayers" type="Node2D" parent="TileMap"]
 
 [node name="BGImages" type="Node2D" parent="TileMap/VisualLayers"]
-position = Vector2(-72, -8)
+z_index = -13
+position = Vector2(-56, -8)
+
+[node name="Layer00" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
+position = Vector2(32, -55)
+texture = ExtResource("3_gahyu")
+
+[node name="Layer00-b" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
+position = Vector2(74, -57)
+texture = ExtResource("3_gahyu")
 
 [node name="Layer01-b" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
 position = Vector2(48, -64)

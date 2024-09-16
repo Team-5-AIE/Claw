@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=4 uid="uid://b48f145y13np6"]
+[gd_scene load_steps=18 format=4 uid="uid://b48f145y13np6"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_eyd72"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_e5gvu"]
 [ext_resource type="Texture2D" uid="uid://diwgidynrdhbn" path="res://Sprites/Backgrounds/City Background 1/Layer 04-B.png" id="3_4yfoj"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_jsjwd"]
+[ext_resource type="Texture2D" uid="uid://cq5qagp7xu76m" path="res://Sprites/Backgrounds/City Background 1/Layer 00.png" id="3_wtlel"]
 [ext_resource type="Texture2D" uid="uid://cla5kuagc1ja4" path="res://Sprites/Backgrounds/City Background 1/Layer 01-B.png" id="4_h3b1g"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_njc17"]
 [ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="5_26qkj"]
@@ -50,18 +51,14 @@ tile_set = ExtResource("2_e5gvu")
 [node name="VisualLayers" type="Node2D" parent="TileMap"]
 
 [node name="BGImages" type="Node2D" parent="TileMap/VisualLayers"]
-position = Vector2(20, 85)
+position = Vector2(19, 88)
 
-[node name="Layer04-b" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
-position = Vector2(4, -29)
-texture = ExtResource("3_4yfoj")
-
-[node name="Layer05" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
-position = Vector2(4, -157)
-texture = ExtResource("3_4yfoj")
+[node name="Layer00" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
+position = Vector2(5, -220)
+texture = ExtResource("3_wtlel")
 
 [node name="Layer06" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
-position = Vector2(4, -157)
+position = Vector2(1, 43)
 texture = ExtResource("3_4yfoj")
 
 [node name="Layer01-b" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
@@ -99,7 +96,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 340, 360)
 
 [node name="Layer07" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
-position = Vector2(212, -5)
+position = Vector2(163, -27)
 texture = ExtResource("10_481vx")
 region_enabled = true
 region_rect = Rect2(315, 0, 196, 286)
