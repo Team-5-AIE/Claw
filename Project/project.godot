@@ -67,6 +67,7 @@ folder_colors={
 RoomInitListeners=""
 RoomTransitionNodes=""
 PlayerSpawns=""
+RoomRepositionListeners=""
 
 [gui]
 

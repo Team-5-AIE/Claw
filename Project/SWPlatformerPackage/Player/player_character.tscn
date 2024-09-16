@@ -891,6 +891,7 @@ position = Vector2(0, -40)
 [node name="SpikeArea" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 16
+priority = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeArea"]
 position = Vector2(0.5, -20)

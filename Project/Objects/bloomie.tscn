@@ -167,7 +167,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.854701, 0.153846)
 
-[node name="Bloomie" type="Node2D"]
+[node name="Bloomie" type="Node2D" groups=["RoomRepositionListeners"]]
 z_index = 1
 script = ExtResource("1_ou05q")
 

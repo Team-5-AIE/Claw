@@ -1,5 +1,8 @@
 extends Node2D
 
+# ---Signals---
+#signal roomsRepositioned
+
 # ---Variables---
 # Member variables
 var loadedRooms : Array[Node2D]
@@ -22,6 +25,14 @@ func LoadRoom(roomScenePath_ : String, timeTracker_ : Node, pauseMenu_ : Node, \
 	room.Init(get_parent(), self, timeTracker_, pauseMenu_, player_)
 	
 	loadedRooms.append(room)
+	
+	#var rtnArray = get_tree().get_nodes_in_group("RoomRepositionListeners")
+	#var roomRepositionListeners : Array[Node]
+	#roomRepositionListeners.assign(rtnArray)
+	#
+	#for repositionListener : Node in roomRepositionListeners:
+		#if repositionListener.owner == room:
+			#roomsRepositioned.connect(repositionListener._on_room_reposition)
 	
 	return room
 
@@ -64,6 +75,8 @@ func LoadAdjacentRooms() -> void:
 						if otherRoomTransitionNode.nextRoom == currentRoom.scene_file_path:
 							room.position += roomTransitionNode.global_position - otherRoomTransitionNode.global_position
 							break
+				
+				#roomsRepositioned.emit()
 
 func FreeAdjacentRooms(excludedRooms_ : Array[String]) -> void:
 	for room : Node2D in loadedRooms:
