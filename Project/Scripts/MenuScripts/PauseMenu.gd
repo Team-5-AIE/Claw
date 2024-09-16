@@ -29,13 +29,18 @@ func _input(event : InputEvent) -> void:
 
 # Button signals
 func _on_resume_button_pressed() -> void:
-	TogglePause()
+	if _paused:
+		TogglePause()
 
 func _on_retry_button_pressed() -> void:
-	TogglePause()
-	player._on_spike_area_body_entered(null)
+	if _paused:
+		TogglePause()
+		player._on_spike_area_body_entered(null)
 
 func _on_restart_button_pressed() -> void:
+	if !_paused:
+		TogglePause()
+	
 	inGame = false
 	restartButton.disabled = true
 	bgmPlayer.stop()
@@ -70,6 +75,9 @@ func _on_restart_button_pressed() -> void:
 	inGame = true
 
 func _on_quit_button_pressed() -> void:
+	if !_paused:
+		TogglePause()
+	
 	inGame = false
 	
 	FadeTransitions.Transition()
@@ -84,15 +92,16 @@ func _on_quit_button_pressed() -> void:
 
 # Custom Functions
 func TogglePause() -> void:
-	if _paused:
-		# Unpause
-		_paused = false
-		visible = false
-		
-		get_tree().paused = false
-	else:
-		# Pause
-		_paused = true
-		visible = true
-		
-		get_tree().paused = true
+	if !FadeTransitions.animation_player.is_playing():
+		if _paused:
+			# Unpause
+			_paused = false
+			visible = false
+			
+			get_tree().paused = false
+		else:
+			# Pause
+			_paused = true
+			visible = true
+			
+			get_tree().paused = true

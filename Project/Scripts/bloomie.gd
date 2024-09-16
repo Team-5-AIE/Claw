@@ -58,21 +58,22 @@ func _on_destroy_timer_timeout():
 	collected = true
 
 func _on_restart_player() -> void:
-	follow = false
-	
-	collection_timer.stop()
+	if player != null:
+		follow = false
 		
-	await FadeTransitions.on_fade_in_finished
-	top_level = false
-	player.remove_child(self)
-	
-	if initialParent == null:
-		queue_free()
-	else:
-		initialParent.add_child(self)
-		position = initialPosition
+		collection_timer.stop()
+			
+		await FadeTransitions.on_fade_in_finished
+		top_level = false
+		player.remove_child(self)
 		
-		player = null
+		if initialParent == null:
+			queue_free()
+		else:
+			initialParent.add_child(self)
+			position = initialPosition
+			
+			player = null
 
 func _on_area_2d_body_entered(body) -> void:
 	if player == null and body.name == "Player":
@@ -85,8 +86,8 @@ func _on_area_2d_body_entered(body) -> void:
 		# behave as if it were a child of root instead
 		var initialGlobalPosition = global_position
 		top_level = true
-		initialParent.remove_child(self)
-		player.add_child(self)
+		initialParent.call_deferred("remove_child", self)
+		player.call_deferred("add_child", self)
 		position = initialGlobalPosition
 		
 		player.restartPlayer.connect(_on_restart_player)
