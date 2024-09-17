@@ -2,7 +2,8 @@
 extends Resource
 class_name RoomGraph
 
-@export var scenes : Array[PackedScene]
+var m_rootNode : RoomGraphNode = null
 
-func _init(scenes_ : Array[PackedScene] = []) -> void:
-	scenes = scenes_
+func _init(scene_ : String = "") -> void:
+	if scene_ != "":
+		m_rootNode = RoomGraphNode.new(scene_)

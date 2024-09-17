@@ -34,12 +34,15 @@ popup/item_2/text = "Open Scene Graph"
 popup/item_2/id = 1
 popup/item_3/text = "Save"
 popup/item_3/id = 2
+popup/item_3/disabled = true
 popup/item_4/text = "Save As..."
 popup/item_4/id = 3
+popup/item_4/disabled = true
 popup/item_5/id = -1
 popup/item_5/separator = true
 popup/item_6/text = "Close"
 popup/item_6/id = 4
+popup/item_6/disabled = true
 script = ExtResource("1_y65k3")
 
 [node name="FileList" type="ItemList" parent="HSplitContainer/FileTreeMargin/FileTreeContainer"]
@@ -55,12 +58,19 @@ script = ExtResource("2_5md10")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RoomGraph" type="GraphEdit" parent="HSplitContainer/RoomGraphMargin"]
+[node name="RoomGraph" type="GraphEdit" parent="HSplitContainer/RoomGraphMargin" node_paths=PackedStringArray("m_fileList")]
 visible = false
 layout_mode = 2
 minimap_enabled = false
 show_zoom_label = true
 script = ExtResource("3_xdmpl")
+m_fileList = NodePath("../../FileTreeMargin/FileTreeContainer/FileList")
+
+[node name="GraphNode" type="GraphNode" parent="HSplitContainer/RoomGraphMargin/RoomGraph"]
+layout_mode = 0
+offset_right = 9.0
+offset_bottom = 55.0
+mouse_filter = 1
 
 [connection signal="CloseGraph" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileMenu" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" method="_on_file_menu_close_graph"]
 [connection signal="LoadGraph" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileMenu" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" method="_on_file_menu_load_graph"]
@@ -74,3 +84,4 @@ script = ExtResource("3_xdmpl")
 [connection signal="item_activated" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" method="_on_item_activated"]
 [connection signal="item_clicked" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileMenu" method="_on_file_list_item_clicked"]
 [connection signal="item_selected" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" method="_on_item_selected"]
+[connection signal="delete_nodes_request" from="HSplitContainer/RoomGraphMargin/RoomGraph" to="HSplitContainer/RoomGraphMargin/RoomGraph" method="_on_delete_nodes_request"]
