@@ -39,6 +39,7 @@ window/size/borderless=true
 window/size/window_width_override=1920
 window/size/window_height_override=1980
 window/stretch/scale=3.0
+window/stretch/scale_mode="integer"
 window/screen_space_roughness_limiter/enabled=true
 
 [dotnet]
@@ -56,9 +57,12 @@ enabled=PackedStringArray("res://addons/scenegraph/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://Chapters/": "yellow",
 "res://Objects/": "green",
+"res://Rooms/": "orange",
 "res://SWPlatformerPackage/": "purple",
 "res://Scripts/": "red",
+"res://Sounds/": "pink",
 "res://Sprites/": "blue"
 }
 
