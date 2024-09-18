@@ -19,6 +19,9 @@ var pullReleased = false
 var flipped = false
 var ropeSnapTimerStarted = false
 
+# Moving Block Addition
+var attachedObject : Node2D
+
 var audio_stream_player: AudioStreamPlayer
 const JUMP1 = preload("res://Sounds/Effects/jump (2).wav")
 const JUMP2 = preload("res://Sounds/Effects/jump (3).wav")
@@ -42,8 +45,14 @@ func _physics_process(_delta):
 			ropeLength = player.spear_marker.global_position.distance_to(global_position)
 			hooked = true
 			extending = false
+			attachedObject = collision.get_collider()
 			player.finite_state_machine.ChangeState(player.state_spear)
 	tip = global_position
+	
+	# Moving block Addition
+	if attachedObject != null && attachedObject is MovingBlock:
+		self.position += attachedObject.constant_linear_velocity * _delta
+	
 	#Auto release the hook if you're grounded
 	if player.is_on_floor() && !extending && !ropeSnapTimerStarted:
 		player.snap_rope_timer.start()
@@ -81,6 +90,9 @@ func Release() -> void:
 	else:
 		player.finite_state_machine.ChangeState(player.state_fall)
 	retracted = true
+	
+	# Moving Block addition
+	attachedObject = null
 
 func JumpRelease() -> void:
 	#print("Jump Release")
