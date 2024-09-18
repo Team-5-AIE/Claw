@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c2lkjdbk2gifg"]
+[gd_scene load_steps=23 format=3 uid="uid://c2lkjdbk2gifg"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_u5mcf"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="2_u8qgk"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://nelr0rw0cn6o" path="res://Rooms/pause_menu.tscn" id="6_nf4r0"]
 [ext_resource type="PackedScene" uid="uid://7heicgmosfh4" path="res://Objects/parallaxing.tscn" id="6_qgjvj"]
 [ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="7_qykg7"]
-[ext_resource type="PackedScene" uid="uid://c3h5y1qp77ink" path="res://Effects/Shaders/Debug Colour Blindness Simulator/debug_colour_blindness_simulator.tscn" id="9_js1un"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_besrm"]
 texture = ExtResource("4_ncfom")
@@ -165,9 +164,6 @@ visible = false
 visible = false
 
 [node name="CherryBlossomPetal" parent="CanvasLayer" instance=ExtResource("5_yig42")]
-
-[node name="DebugColourBlindnessSimulator" parent="CanvasLayer" instance=ExtResource("9_js1un")]
-material = null
 
 [node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("6_cf7u0")]
 offset_left = 523.0

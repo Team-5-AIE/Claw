@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateMove.gd" id="6_k7wki"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateFall.gd" id="7_ya3yk"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateLand.gd" id="8_afics"]
-[ext_resource type="Script" path="res://DesignPrototypes/TraveenProposals/TraveenStateClawEdits.gd" id="9_n8m2s"]
+[ext_resource type="Script" path="res://TraveenPrototypes/EarlyProtoProposals/TraveenStateClawEdits.gd" id="9_n8m2s"]
 
 [sub_resource type="Gradient" id="Gradient_p7qc1"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.156863, 0.337255, 1)

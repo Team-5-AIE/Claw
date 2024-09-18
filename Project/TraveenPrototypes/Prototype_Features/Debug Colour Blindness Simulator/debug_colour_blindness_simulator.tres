@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://nro7gsr3wyfw"]
+
+[ext_resource type="Shader" path="res://TraveenPrototypes/Prototype_Features/Debug Colour Blindness Simulator/debug_colour_blindness_simulator.gdshader" id="1_505ng"]
+
+[resource]
+shader = ExtResource("1_505ng")
+shader_parameter/filter_type = 0
