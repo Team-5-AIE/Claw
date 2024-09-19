@@ -20,6 +20,14 @@ scroll_offset = Vector2(0, 180)
 repeat_size = Vector2(640, 0)
 repeat_times = 3
 
+[node name="Layer 02" type="Sprite2D" parent="Sky"]
+texture = ExtResource("1_wwkot")
+offset = Vector2(0, -720)
+
+[node name="Layer 01" type="Sprite2D" parent="Sky"]
+texture = ExtResource("1_wwkot")
+offset = Vector2(0, -360)
+
 [node name="Layer 00" type="Sprite2D" parent="Sky"]
 texture = ExtResource("1_wwkot")
 
@@ -44,18 +52,12 @@ scroll_offset = Vector2(0, 180)
 repeat_size = Vector2(640, 0)
 repeat_times = 3
 
-[node name="Layer 01-C" type="Sprite2D" parent="Clouds"]
-texture = ExtResource("3_eni2h")
-offset = Vector2(0, -720)
-flip_v = true
-
-[node name="Layer 01-B" type="Sprite2D" parent="Clouds"]
+[node name="Layer 02" type="Sprite2D" parent="Clouds"]
 texture = ExtResource("3_eni2h")
 offset = Vector2(0, -360)
 
 [node name="Layer 01" type="Sprite2D" parent="Clouds"]
 texture = ExtResource("2_ncx00")
-offset = Vector2(0, -20)
 
 [node name="Mountains" type="Parallax2D" parent="."]
 z_index = -10
@@ -97,4 +99,5 @@ repeat_size = Vector2(640, 0)
 repeat_times = 3
 
 [node name="Layer 05" type="Sprite2D" parent="City Front"]
+modulate = Color(0.8649, 0.887685, 0.93, 1)
 texture = ExtResource("9_kj1w7")
