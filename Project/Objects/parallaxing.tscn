@@ -15,39 +15,18 @@ position = Vector2(0, 12)
 
 [node name="Sky" type="Parallax2D" parent="."]
 z_index = -10
-scroll_scale = Vector2(0.1, 1)
+scroll_scale = Vector2(0.05, 0.05)
+scroll_offset = Vector2(0, 180)
 repeat_size = Vector2(640, 0)
 repeat_times = 3
 
 [node name="Layer 00" type="Sprite2D" parent="Sky"]
-z_index = -1
 texture = ExtResource("1_wwkot")
-
-[node name="Layer 01" type="Sprite2D" parent="Sky"]
-texture = ExtResource("1_wwkot")
-offset = Vector2(0, -360)
-
-[node name="Clouds" type="Parallax2D" parent="."]
-z_index = -10
-scroll_scale = Vector2(0.2, 1)
-repeat_size = Vector2(640, 0)
-repeat_times = 3
-
-[node name="Layer 01" type="Sprite2D" parent="Clouds"]
-texture = ExtResource("2_ncx00")
-
-[node name="Layer 01-B" type="Sprite2D" parent="Clouds"]
-texture = ExtResource("3_eni2h")
-offset = Vector2(0, -360)
-
-[node name="Layer 01-C" type="Sprite2D" parent="Clouds"]
-texture = ExtResource("3_eni2h")
-offset = Vector2(0, -720)
-flip_v = true
 
 [node name="Tree" type="Parallax2D" parent="."]
 z_index = -10
-scroll_scale = Vector2(0.3, 1)
+scroll_scale = Vector2(0.1, 0.05)
+scroll_offset = Vector2(0, 180)
 repeat_size = Vector2(640, 0)
 repeat_times = 3
 
@@ -58,9 +37,30 @@ texture = ExtResource("4_u8ysm")
 texture = ExtResource("5_r3arf")
 offset = Vector2(0, -360)
 
+[node name="Clouds" type="Parallax2D" parent="."]
+z_index = -10
+scroll_scale = Vector2(0.25, 0.05)
+scroll_offset = Vector2(0, 180)
+repeat_size = Vector2(640, 0)
+repeat_times = 3
+
+[node name="Layer 01-C" type="Sprite2D" parent="Clouds"]
+texture = ExtResource("3_eni2h")
+offset = Vector2(0, -720)
+flip_v = true
+
+[node name="Layer 01-B" type="Sprite2D" parent="Clouds"]
+texture = ExtResource("3_eni2h")
+offset = Vector2(0, -360)
+
+[node name="Layer 01" type="Sprite2D" parent="Clouds"]
+texture = ExtResource("2_ncx00")
+offset = Vector2(0, -20)
+
 [node name="Mountains" type="Parallax2D" parent="."]
 z_index = -10
-scroll_scale = Vector2(0.4, 1)
+scroll_scale = Vector2(0.3, 0.05)
+scroll_offset = Vector2(0, 180)
 repeat_size = Vector2(640, 0)
 repeat_times = 3
 
@@ -69,7 +69,8 @@ texture = ExtResource("6_u6l84")
 
 [node name="City Back" type="Parallax2D" parent="."]
 z_index = -10
-scroll_scale = Vector2(0.5, 1)
+scroll_scale = Vector2(0.55, 0.05)
+scroll_offset = Vector2(0, 150)
 repeat_size = Vector2(640, 0)
 repeat_times = 3
 
@@ -90,7 +91,8 @@ offset = Vector2(0, 1080)
 
 [node name="City Front" type="Parallax2D" parent="."]
 z_index = -10
-scroll_scale = Vector2(0.6, 1)
+scroll_scale = Vector2(0.75, 0.05)
+scroll_offset = Vector2(0, 170)
 repeat_size = Vector2(640, 0)
 repeat_times = 3
 

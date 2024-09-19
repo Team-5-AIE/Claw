@@ -1,0 +1,47 @@
+[gd_scene load_steps=12 format=3 uid="uid://c5b3rev4urd66"]
+
+[ext_resource type="PackedScene" uid="uid://rnfxuec728q0" path="res://Chapters/TraveenPAXChapter/Rooms/pax_room_01.tscn" id="1_0wulv"]
+[ext_resource type="PackedScene" uid="uid://cbp4gktnx7fqb" path="res://Chapters/TraveenPAXChapter/Rooms/pax_room_02.tscn" id="2_6mf17"]
+[ext_resource type="PackedScene" uid="uid://cnvbwqagmwmiy" path="res://Chapters/TraveenPAXChapter/Rooms/pax_room_03.tscn" id="3_8h2wo"]
+[ext_resource type="PackedScene" uid="uid://fbsbtpostfyv" path="res://Chapters/TraveenPAXChapter/Rooms/pax_room_04.tscn" id="4_23meg"]
+[ext_resource type="PackedScene" uid="uid://wunlqqgfb1g1" path="res://Chapters/TraveenPAXChapter/Rooms/pax_room_05.tscn" id="5_b4hy1"]
+[ext_resource type="PackedScene" uid="uid://vmsntf47vjek" path="res://Chapters/TraveenPAXChapter/Rooms/pax_room_06.tscn" id="6_c4s1p"]
+[ext_resource type="PackedScene" uid="uid://dqpw4qixwtnd5" path="res://Chapters/TraveenPAXChapter/Rooms/pax_room_07.tscn" id="7_nfsb0"]
+[ext_resource type="PackedScene" uid="uid://cryhvyw3ktfp5" path="res://Chapters/TraveenPAXChapter/Rooms/pax_room_08.tscn" id="8_girs1"]
+[ext_resource type="PackedScene" uid="uid://c1nqwk85met5r" path="res://Chapters/TraveenPAXChapter/Rooms/pax_room_09.tscn" id="9_3yfnt"]
+[ext_resource type="PackedScene" uid="uid://bfiw30arukxul" path="res://Chapters/TraveenPAXChapter/Rooms/pax_room_10.tscn" id="10_2whl3"]
+[ext_resource type="PackedScene" uid="uid://5fgsm5n8n0ye" path="res://Chapters/TraveenPAXChapter/Rooms/pax_room_11.tscn" id="11_7n47j"]
+
+[node name="PaxChapterPreview" type="Node2D"]
+
+[node name="PAXRoom01" parent="." instance=ExtResource("1_0wulv")]
+
+[node name="PAXRoom02" parent="." instance=ExtResource("2_6mf17")]
+position = Vector2(656, -64)
+
+[node name="PAXRoom03" parent="." instance=ExtResource("3_8h2wo")]
+position = Vector2(1616, -48)
+
+[node name="PAXRoom04" parent="." instance=ExtResource("4_23meg")]
+position = Vector2(1952, -64)
+
+[node name="PAXRoom05" parent="." instance=ExtResource("5_b4hy1")]
+position = Vector2(2896, -96)
+
+[node name="PAXRoom06" parent="." instance=ExtResource("6_c4s1p")]
+position = Vector2(3536, -48)
+
+[node name="PAXRoom07" parent="." instance=ExtResource("7_nfsb0")]
+position = Vector2(4176, -96)
+
+[node name="PAXRoom08" parent="." instance=ExtResource("8_girs1")]
+position = Vector2(4944, -144)
+
+[node name="PAXRoom09" parent="." instance=ExtResource("9_3yfnt")]
+position = Vector2(5184, 336)
+
+[node name="PAXRoom10" parent="." instance=ExtResource("10_2whl3")]
+position = Vector2(5872, 432)
+
+[node name="PAXRoom11" parent="." instance=ExtResource("11_7n47j")]
+position = Vector2(6528, 528)
