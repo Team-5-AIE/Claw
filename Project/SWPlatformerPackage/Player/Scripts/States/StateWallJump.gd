@@ -51,15 +51,14 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	if player.is_on_ceiling():
 		player.finite_state_machine.ChangeState(player.state_fall)
 	
-	# Are we in the air and finished jumping?
-	if !player.is_on_floor() && player.velocity.y > 0:
-		# Change to Fall state
-		player.finite_state_machine.ChangeState(player.state_fall)
-		return
-		
-	if player.animation_end && player.is_on_floor():
-		player.finite_state_machine.ChangeState(player.state_idle)
-		return
+	# Are we finished jumping?
+	if player.animation_end:
+		if player.is_on_floor():
+			player.finite_state_machine.ChangeState(player.state_idle)
+			return
+		else:
+			player.finite_state_machine.ChangeState(player.state_fall)
+			return
 	## Change to Wall Climb state #NOTE: test if needed or can be nuked
 	#if player.finite_state_machine.can_we_wall_climb():
 		#player.finite_state_machine.ChangeState(player.state_wall_climb)

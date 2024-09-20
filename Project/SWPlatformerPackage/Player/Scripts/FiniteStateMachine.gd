@@ -58,7 +58,7 @@ func _physics_process(delta) -> void:
 	
 	if !disable_gravity:
 		apply_gravity(delta)
-	if !player.state_jump.bunnyhop:
+	if !player.state_jump.bunnyhop || player.input_axis.x == 0:
 		apply_friction(delta)
 		#if player.finite_state_machine.state != player.state_spear:
 		apply_air_resistance(delta)
@@ -139,6 +139,19 @@ func apply_gravity(delta) -> void:
 func apply_air_resistance(delta):
 	if !player.is_on_floor() && !air_resistance_lock:
 		player.velocity.x = move_toward(player.velocity.x, 0, player.air_resistance * delta)
+
+# Change the player velocity based on player input
+func move_player(delta: float, is_in_air: bool, capped_speed: bool = false) -> void:
+	if player.input_axis.x != 0:
+		if player.input_axis.x == sign(player.velocity.x) || player.velocity.x == 0:
+			# Conditional makes sure speed is uncapped when needed
+			if absf(player.velocity.x) < player.run_speed || capped_speed == true:
+				if is_in_air:
+					player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
+				else:
+					player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.acceleration * delta)
+		else:
+			player.velocity.x = 0
 
 #===========================State change checks=========================================
 func jump_buffer_jump() -> bool:
