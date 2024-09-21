@@ -47,8 +47,8 @@ func _physics_process(_delta):
 			player.finite_state_machine.EnableSwing() # Replaced changeState
 	tip = global_position
 	
-	# Moving block Addition
-	if attachedObject != null && attachedObject is MovingBlock:
+	# Attached Object Addition
+	if attachedObject != null && attachedObject is StaticBody2D:
 		self.position += attachedObject.constant_linear_velocity * _delta
 	
 	#Auto release the hook if you're grounded
@@ -84,9 +84,6 @@ func Shoot(dir : Vector2) -> void:
 func Release() -> void:
 	player.finite_state_machine.DisableSwing() # Simplified from having to detect if player is on floor
 	retracted = true
-	
-	# Moving Block addition
-	attachedObject = null
 
 func JumpRelease() -> void:
 	# No jump sounds since swing now directly links to jump state

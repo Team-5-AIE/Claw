@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dba8tyagk1fkp"]
+
+[ext_resource type="Script" path="res://TraveenPrototypes/Prototype_Features/Level Features/Limited Grapple Points/limited_grapple_point.gd" id="1_bvpp0"]
+[ext_resource type="Texture2D" uid="uid://sbyk5q33xplj" path="res://Sprites/Tilesets/Castle Tileset Export.png" id="1_q7omj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ck6se"]
+radius = 5.0
+
+[node name="GrapplePoint" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_bvpp0")
+
+[node name="ActiveSprite" type="Sprite2D" parent="."]
+modulate = Color(0.912, 0.9392, 0.96, 1)
+position = Vector2(0, 1)
+texture = ExtResource("1_q7omj")
+hframes = 35
+vframes = 31
+frame = 893
+
+[node name="InactiveSprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.5, 0.5, 0.5, 0.682353)
+position = Vector2(0, 1)
+texture = ExtResource("1_q7omj")
+hframes = 35
+vframes = 31
+frame = 893
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ck6se")
+
+[node name="GrapplePointCooldown" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[connection signal="timeout" from="GrapplePointCooldown" to="." method="_on_grapple_point_cooldown_timeout"]

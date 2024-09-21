@@ -26,7 +26,6 @@ const HOOK2 = preload("res://Sounds/Effects/click.wav")
 const PULLJUMP = preload("res://Sounds/Effects/pullJump.wav")
 #=================================================================================
 func EnterState() -> void:
-	autoGrapple = false
 	if player.debug_mode:
 		print("Debug: Spear State")
 	var randSound = randi_range(0,1)
@@ -47,6 +46,12 @@ func Inputs(_event) -> void:
 		player.finite_state_machine.DisableSwing() # Replaced state change with disabling swing
 
 func ExitState() -> void:
+	# Attached Object addition
+	if spearInstance.attachedObject != null:
+		if spearInstance.attachedObject is LimitedGrapplePoint: 
+			spearInstance.attachedObject.start_cooldown()
+		spearInstance.attachedObject = null
+	
 	spearInstance = null
 	pivotPoint = Vector2.ZERO
 	player.spearCooldownTimer.start()

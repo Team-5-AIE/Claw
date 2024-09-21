@@ -49,8 +49,8 @@ func _physics_process(_delta):
 			player.finite_state_machine.ChangeState(player.state_spear)
 	tip = global_position
 	
-	# Moving block Addition
-	if attachedObject != null && attachedObject is MovingBlock:
+	# Attached Object Addition
+	if attachedObject != null && attachedObject is StaticBody2D:
 		self.position += attachedObject.constant_linear_velocity * _delta
 	
 	#Auto release the hook if you're grounded
@@ -90,9 +90,6 @@ func Release() -> void:
 	else:
 		player.finite_state_machine.ChangeState(player.state_fall)
 	retracted = true
-	
-	# Moving Block addition
-	attachedObject = null
 
 func JumpRelease() -> void:
 	#print("Jump Release")

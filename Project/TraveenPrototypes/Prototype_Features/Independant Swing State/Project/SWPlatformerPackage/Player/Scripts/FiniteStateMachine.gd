@@ -288,6 +288,7 @@ func _on_jump_buffer_timer_timeout():
 
 func ClawPhysicsProcess() -> void:
 	#Create Spear
+	player.state_spear.autoGrapple = false
 	player.state_spear.spearInstance = player.state_spear.SPEAR.instantiate()
 	# Get direction to shoot in
 	if player.lockspear45direction || Input.is_action_just_pressed("C"):
