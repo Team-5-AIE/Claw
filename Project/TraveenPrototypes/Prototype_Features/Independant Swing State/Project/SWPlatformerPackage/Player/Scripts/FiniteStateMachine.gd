@@ -66,10 +66,11 @@ func _physics_process(delta) -> void:
 		apply_air_resistance(delta)
 	# Coyote jump timing
 	var was_on_floor = player.is_on_floor()
-	player.move_and_slide() # This apllies movement to the player
 	
 	# Swing state now processes and corrects the velocity from other states
-	if swing_enabled: player.state_spear.ProcessVelocity(delta) 
+	if swing_enabled: 
+		player.state_spear.UpdatePhysics(delta) 
+	else: player.move_and_slide()
 	
 	var just_left_ledge = was_on_floor && !player.is_on_floor() && player.velocity.y >= 0
 	if just_left_ledge:

@@ -17,8 +17,8 @@ var length : float # get the angle between position + godot angle offset
 var gravity =  0.4 * 60
 var angle
 var damping = 0.995
-var angularVel : float = 0.0
-var angularAcceleration : float = 0.0
+var angularVelocity : Vector2
+var angularAcceleration : Vector2
 var autoGrapple : bool = false
 @onready var audio_stream_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
 const HOOK1 = preload("res://Sounds/Effects/click (1).wav")
@@ -37,7 +37,27 @@ func EnterState() -> void:
 
 #=================================================================================
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
-	ProcessVelocity(delta)
+	if spearInstance == null: return
+	var spearToPlayer = player.spear_marker.global_position - spearInstance.global_position
+	
+	#AutoGrapple
+	if Input.is_action_just_pressed("SpearPull"):
+		audio_stream_player.stream = PULLJUMP
+		audio_stream_player.play()
+		spearInstance.pullReleased = true
+		player.velocity *= (1.0 - pullJumpStopFraction)
+		player.velocity += -spearToPlayer.normalized() * pullJumpStrength
+		return
+		
+	if autoGrapple:
+		audio_stream_player.stream = PULLJUMP
+		audio_stream_player.play()
+		spearInstance.pullReleased = true
+		player.velocity *= (1.0 - pullJumpStopFraction)
+		player.velocity += -spearToPlayer.normalized() * pullJumpStrength
+		return
+	
+	ProcessVelocity(delta, spearToPlayer)
 
 func Inputs(_event) -> void:
 	if Input.is_action_just_pressed("LetGoOfSpear"):
@@ -47,12 +67,13 @@ func Inputs(_event) -> void:
 
 func ExitState() -> void:
 	# Attached Object addition
-	if spearInstance.attachedObject != null:
-		if spearInstance.attachedObject is LimitedGrapplePoint: 
-			spearInstance.attachedObject.start_cooldown()
-		spearInstance.attachedObject = null
+	if spearInstance != null:
+		if spearInstance.attachedObject != null:
+			if spearInstance.attachedObject is LimitedGrapplePoint: 
+				spearInstance.attachedObject.start_cooldown()
+			spearInstance.attachedObject = null
+		spearInstance = null
 	
-	spearInstance = null
 	pivotPoint = Vector2.ZERO
 	player.spearCooldownTimer.start()
 	
@@ -62,52 +83,31 @@ func ExitState() -> void:
 		dust_instance.set_as_top_level(true)
 		dust_instance.global_position = player.dustMarker2D.global_position
 #=================================================================================
-func ProcessVelocity(delta:float) -> void:
+func ProcessVelocity(delta:float, spearToPlayer:Vector2) -> void:
 	if spearInstance == null: return
-	var spearToPlayer = player.spear_marker.global_position - spearInstance.global_position
+	
 	var ropeDirection : Vector2 = spearToPlayer
-	
-	#AutoGrapple
-	if Input.is_action_just_pressed("SpearPull"):
-		audio_stream_player.stream = PULLJUMP
-		audio_stream_player.play()
-		spearInstance.pullReleased = true
-		player.velocity *= (1.0 - pullJumpStopFraction)
-		player.velocity += -spearToPlayer.normalized() * pullJumpStrength
-		
-	if autoGrapple:
-		audio_stream_player.stream = PULLJUMP
-		audio_stream_player.play()
-		spearInstance.pullReleased = true
-		player.velocity *= (1.0 - pullJumpStopFraction)
-		player.velocity += -spearToPlayer.normalized() * pullJumpStrength
-		
-		
-	var currentRopeLength : float = ropeDirection.length()
+	var currentRopeLength : float = spearToPlayer.length()
 	ropeDirection /= currentRopeLength
-	
-	var circularArcDirection : Vector2 = Vector2(ropeDirection.y, -ropeDirection.x)
 	var trueRopeLength : float = spearInstance.ropeLength
 	
-	if currentRopeLength >= trueRopeLength:
-		var overextendedAmount : float = currentRopeLength - trueRopeLength
-		var correctiveMovement : Vector2 = -overextendedAmount * ropeDirection
-		var cachedVel = player.velocity
-		
-		
-		# The swinging now only plays as a correction, therefore making it scale with other states' forces
-		player.velocity = correctiveMovement / delta
-		player.move_and_slide()
-		player.velocity = cachedVel;
-		
-		if ropeDirection.dot(player.velocity) > 0:
-			player.velocity = player.velocity.dot(circularArcDirection) * circularArcDirection
-		
-		player.velocity += circularArcDirection * player.input_axis.x * 4
+	var circularArcDirection : Vector2 = Vector2(ropeDirection.y, -ropeDirection.x)
+	angle = circularArcDirection.angle()
+	
+	if currentRopeLength > trueRopeLength:
 		player.animation_player.play("ShootSpear")
 		
-	elif autoShortenRope: # A Remnants of Naezith mechanic, might be cool or might not care
+		player.velocity = circularArcDirection.dot(player.velocity) * circularArcDirection
+		
+		var next_velocity = player.finite_state_machine.previous_vel - player.velocity
+		var circular_input_vel = circularArcDirection * player.input_axis.x * player.air_acceleration * delta
+		angularVelocity = (next_velocity + circular_input_vel) / trueRopeLength * sin(angle)
+		player.velocity += circularArcDirection.dot(angularVelocity) * circularArcDirection
+		
+		var correctiveMovement : Vector2 = -(currentRopeLength - trueRopeLength) * ropeDirection
+		player.velocity += correctiveMovement / delta
+	
+	player.move_and_slide()
+	
+	if autoShortenRope and currentRopeLength < trueRopeLength: # A Remnants of Naezith mechanic, might be cool or might not care
 		spearInstance.ropeLength = currentRopeLength
-#=================================================================================
-func AddAngularVelocity(force:float)-> void:
-	angularVel += force
