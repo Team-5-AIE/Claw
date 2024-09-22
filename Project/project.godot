@@ -67,6 +67,7 @@ folder_colors={
 RoomInitListeners=""
 RoomTransitionNodes=""
 PlayerSpawns=""
+RoomRepositionListeners=""
 
 [gui]
 
@@ -256,6 +257,7 @@ TogglePause={
 2d_physics/layer_5="Spikes"
 2d_physics/layer_6="AutoGrapplePoint"
 2d_physics/layer_7="Spear"
+2d_physics/layer_9="Spring"
 
 [rendering]
 
