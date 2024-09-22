@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=51 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
@@ -705,6 +705,9 @@ size = Vector2(10, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xieor"]
 size = Vector2(19, 40)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8i1d"]
+size = Vector2(25, 25)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 collision_mask = 10
@@ -977,8 +980,19 @@ texture = ExtResource("19_s68wg")
 script = ExtResource("17_c5rv7")
 crosshairs_enabled = false
 
+[node name="SpringArea" type="Area2D" parent="."]
+position = Vector2(0, 1)
+collision_layer = 256
+collision_mask = 256
+priority = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpringArea"]
+position = Vector2(1, -10)
+shape = SubResource("RectangleShape2D_k8i1d")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
 [connection signal="timeout" from="Timers/JumpBufferTimer" to="FiniteStateMachine" method="_on_jump_buffer_timer_timeout"]
 [connection signal="timeout" from="Timers/FootstepSoundTimer" to="FiniteStateMachine/StateMove" method="PlayFootsteps"]
 [connection signal="body_entered" from="SpikeArea" to="." method="_on_spike_area_body_entered"]
+[connection signal="area_entered" from="SpringArea" to="." method="_on_spring_area_area_entered"]
