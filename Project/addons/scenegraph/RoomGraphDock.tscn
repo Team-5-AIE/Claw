@@ -58,19 +58,14 @@ script = ExtResource("2_5md10")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RoomGraph" type="GraphEdit" parent="HSplitContainer/RoomGraphMargin" node_paths=PackedStringArray("m_fileList")]
+[node name="RoomGraph" type="GraphEdit" parent="HSplitContainer/RoomGraphMargin" node_paths=PackedStringArray("fileList")]
 visible = false
 layout_mode = 2
 minimap_enabled = false
 show_zoom_label = true
 script = ExtResource("3_xdmpl")
-m_fileList = NodePath("../../FileTreeMargin/FileTreeContainer/FileList")
-
-[node name="GraphNode" type="GraphNode" parent="HSplitContainer/RoomGraphMargin/RoomGraph"]
-layout_mode = 0
-offset_right = 9.0
-offset_bottom = 55.0
-mouse_filter = 1
+roomGraphNodeElement = "res://addons/scenegraph/RoomGraphNode.tscn"
+fileList = NodePath("../../FileTreeMargin/FileTreeContainer/FileList")
 
 [connection signal="CloseGraph" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileMenu" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" method="_on_file_menu_close_graph"]
 [connection signal="LoadGraph" from="HSplitContainer/FileTreeMargin/FileTreeContainer/FileMenu" to="HSplitContainer/FileTreeMargin/FileTreeContainer/FileList" method="_on_file_menu_load_graph"]
