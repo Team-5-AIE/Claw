@@ -20,10 +20,16 @@ var angularVel : float = 0.0
 var angularAcceleration : float = 0.0
 var autoGrapple : bool = false
 var hookSoundPlayed = false
+var angularVelocity : Vector2
+var inputAmount : float = 0
 @onready var audio_stream_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
 const HOOK1 = preload("res://Sounds/Effects/click (1).wav")
 const HOOK2 = preload("res://Sounds/Effects/click.wav")
 const PULLJUMP = preload("res://Sounds/Effects/pullJump.wav")
+
+@export var swingSpeedDecreaseModifier = 0.2
+@export var swingSpeedIncreaseModifier = 0.5
+@export var swingSpeedCap = 10
 #=================================================================================
 func EnterState() -> void:
 	hookSoundPlayed = false
@@ -33,7 +39,7 @@ func EnterState() -> void:
 	# Update sprite flip to the shoot direction
 	player.finite_state_machine.sprite_flip_lock = true
 	player.animation_player.play("ShootSpear")
-	
+	inputAmount = 0
 	
 #=================================================================================
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
@@ -44,7 +50,6 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 			1: audio_stream_player.stream = HOOK2
 		audio_stream_player.play()
 		hookSoundPlayed = true
-	
 	ProcessVelocity(delta)
 
 func Inputs(_event) -> void:
@@ -59,6 +64,7 @@ func ExitState() -> void:
 	pivotPoint = Vector2.ZERO
 	#player.finite_state_machine.disable_gravity = false
 	player.spearCooldownTimer.start()
+	inputAmount = 0
 #=================================================================================
 func ProcessVelocity(delta:float) -> void:
 	if spearInstance == null: return
@@ -84,13 +90,11 @@ func ProcessVelocity(delta:float) -> void:
 		player.velocity *= (1.0 - pullJumpStopFraction)
 		player.velocity += -spearToPlayer.normalized() * pullJumpStrength
 		
-		
 	var currentRopeLength : float = ropeDirection.length()
 	ropeDirection /= currentRopeLength
 	
 	var circularArcDirection : Vector2 = Vector2(ropeDirection.y, -ropeDirection.x)
 	var trueRopeLength : float = spearInstance.ropeLength
-	
 	if currentRopeLength > trueRopeLength:
 		var overextendedAmount : float = currentRopeLength - trueRopeLength
 		var correctiveMovement : Vector2 = -overextendedAmount * ropeDirection
@@ -101,12 +105,16 @@ func ProcessVelocity(delta:float) -> void:
 		player.velocity = cachedVel;
 		
 		#fix velocity
-		if ropeDirection.dot(player.velocity) > 0:
-			player.velocity = player.velocity.dot(circularArcDirection) * circularArcDirection
-		
-		#player.velocity = vel
+		player.velocity = player.velocity.dot(circularArcDirection) * circularArcDirection
+	
+	#Swing Input
 	if player.input_axis.x != 0:
-		player.velocity += circularArcDirection * player.input_axis.x * 8
+		if inputAmount <= swingSpeedCap:
+			inputAmount += swingSpeedIncreaseModifier
+	else:
+		if inputAmount > 0:
+			inputAmount -= swingSpeedDecreaseModifier
+	player.velocity += circularArcDirection * player.input_axis.x * inputAmount
 #=================================================================================
 func AddAngularVelocity(force:float)-> void:
 	angularVel += force
