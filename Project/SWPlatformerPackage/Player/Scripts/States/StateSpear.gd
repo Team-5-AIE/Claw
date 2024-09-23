@@ -32,6 +32,7 @@ const PULLJUMP = preload("res://Sounds/Effects/pullJump.wav")
 @export var swingSpeedCap = 10
 #=================================================================================
 func EnterState() -> void:
+	player.finite_state_machine.air_resistance_lock = true
 	hookSoundPlayed = false
 	autoGrapple = false
 	if player.debug_mode:
@@ -65,6 +66,7 @@ func ExitState() -> void:
 	#player.finite_state_machine.disable_gravity = false
 	player.spearCooldownTimer.start()
 	inputAmount = 0
+	player.finite_state_machine.air_resistance_lock = false
 #=================================================================================
 func ProcessVelocity(delta:float) -> void:
 	if spearInstance == null: return

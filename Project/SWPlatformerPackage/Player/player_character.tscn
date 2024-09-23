@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=47 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
@@ -15,10 +15,6 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallSlide.gd" id="12_q8x25"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
 [ext_resource type="AudioStream" uid="uid://dvgj8oqo664q0" path="res://Sounds/Effects/jump (1).wav" id="15_pytux"]
-[ext_resource type="Script" path="res://Scripts/DebugScripts/crosshair.gd" id="17_c5rv7"]
-[ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="17_l1jw6"]
-[ext_resource type="Texture2D" uid="uid://djb1vwql28tww" path="res://Sprites/Debug/crosshair.png" id="18_iltxp"]
-[ext_resource type="Texture2D" uid="uid://4oobdepu5fu8" path="res://Sprites/Debug/crosshair_point.png" id="19_s68wg"]
 
 [sub_resource type="Gradient" id="Gradient_62wi8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.14902, 0.329412, 1)
@@ -906,79 +902,6 @@ position = Vector2(0, -3)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_pytux")
-
-[node name="DebugHUD" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Controls" type="Label" parent="DebugHUD"]
-visible = false
-modulate = Color(1, 1, 1, 0.705882)
-offset_right = 148.0
-offset_bottom = 157.0
-theme = ExtResource("17_l1jw6")
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 16
-text = "TOGGLE MODE
-XBox Gamepad:
-L Stick - Move
-R Stick - Aim
-A/LB - Jump
-B/RB - Use/Release Spear
-X/LT - Slide
-Y/RT - Launch from Swing"
-autowrap_mode = 2
-
-[node name="DebugControls" type="Label" parent="DebugHUD"]
-visible = false
-modulate = Color(1, 1, 1, 0.705882)
-offset_left = 369.0
-offset_top = 37.0
-offset_right = 640.0
-offset_bottom = 187.0
-theme = ExtResource("17_l1jw6")
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 16
-text = "Toggles:
-I key - Spear controls
-O key - Hold/Toggle
-P key - Controller/MnK
-K key - Crosshairs Display
-L key - Control Display
-\\ key - Debug Labels
-
-R key - Restart room"
-horizontal_alignment = 2
-autowrap_mode = 2
-
-[node name="Control" type="Control" parent="DebugHUD"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Crosshairs" type="Node2D" parent="."]
-visible = false
-
-[node name="AimCrosshair" type="Sprite2D" parent="Crosshairs"]
-modulate = Color(0.827451, 0.00784314, 0.239216, 0.815686)
-texture = ExtResource("18_iltxp")
-
-[node name="AimPoint" type="Sprite2D" parent="Crosshairs"]
-modulate = Color(0.827451, 0.00784314, 0.239216, 1)
-texture = ExtResource("19_s68wg")
-
-[node name="SwingJumpCrosshair" type="Sprite2D" parent="Crosshairs"]
-modulate = Color(0.678431, 0.533333, 0.00784314, 1)
-texture = ExtResource("18_iltxp")
-
-[node name="SwingLaunchPoint" type="Sprite2D" parent="Crosshairs"]
-modulate = Color(0.68, 0.53414, 0.00679999, 1)
-texture = ExtResource("19_s68wg")
-
-[node name="ControlOverride" type="Node2D" parent="."]
-script = ExtResource("17_c5rv7")
-crosshairs_enabled = false
 
 [node name="SpringArea" type="Area2D" parent="."]
 position = Vector2(0, 1)

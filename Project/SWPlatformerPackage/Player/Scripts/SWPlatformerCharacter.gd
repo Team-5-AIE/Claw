@@ -57,7 +57,6 @@ const SLIDE_DUST_PARTICLES = preload("res://Effects/slide_dust_particles.tscn")
 ### Input
 ##Show console outputs of entering and exiting states
 @export var debug_mode = true
-@export var lockspear45direction : bool = false #NOTE: Remove later - keep for testing
 
 ### Enable|Disable Character states Settings
 @export_group("Enable|Disable Character states/Jump")
