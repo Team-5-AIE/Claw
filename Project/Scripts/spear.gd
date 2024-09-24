@@ -63,11 +63,9 @@ func _physics_process(_delta):
 	if pullReleased:
 		Release()
 		return
-	if Input.is_action_just_pressed("Jump") && !extending:
-		JumpRelease()
+	if Input.is_action_just_released("Spear") && !extending:
+		Release()
 		return
-		
-	
 
 func Shoot(dir : Vector2) -> void:
 	direction = dir.normalized()
@@ -82,7 +80,7 @@ func Release() -> void:
 		player.finite_state_machine.ChangeState(player.state_fall)
 	retracted = true
 
-func JumpRelease() -> void:
+func JumpRelease() -> void: #NOTE: Not used
 	#print("Jump Release")
 	var randSound = randi_range(0,1)
 	match randSound:
@@ -105,20 +103,13 @@ func Retract() -> bool:
 		return true
 	return false
 
-func _on_auto_grapple_area_body_entered(body):
-	#if body.name == "Player":
-		#if retracted:
-			#extending = false
-			#retracted = false
-			#queue_free()
-			#return
-	#else:
+func _on_auto_grapple_area_body_entered(_body: Node2D):
 	print("AutoGrapple point grabbed")
 	if !retracted:
 		player.state_spear.AutoGrapple(global_position)
 
 
-func _on_retract_area_body_entered(body: Node2D) -> void:
+func _on_retract_area_body_entered(_body: Node2D) -> void:
 	print("player entered collision area retract")
 	if retracted:
 		print("do the thing")
