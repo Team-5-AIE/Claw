@@ -18,7 +18,6 @@ var angle
 var damping = 0.995
 var angularVel : float = 0.0
 var angularAcceleration : float = 0.0
-var autoGrapple : bool = false
 var hookSoundPlayed = false
 var angularVelocity : Vector2
 var inputAmount : float = 0
@@ -34,7 +33,6 @@ const PULLJUMP = preload("res://Sounds/Effects/pullJump.wav")
 func EnterState() -> void:
 	player.finite_state_machine.air_resistance_lock = true
 	hookSoundPlayed = false
-	autoGrapple = false
 	if player.debug_mode:
 		print("Debug: Spear State")
 	# Update sprite flip to the shoot direction
@@ -83,15 +81,7 @@ func ProcessVelocity(delta:float) -> void:
 		player.velocity *= (1.0 - pullJumpStopFraction)
 		player.velocity += -spearToPlayer.normalized() * pullJumpStrength
 		
-	if autoGrapple:
-		audio_stream_player.stream = PULLJUMP #TODO: change this 
-		audio_stream_player.play()
-		spearInstance.pullReleased = true
-		#if spearInstance.ropeLength > 16:
-		#	spearInstance.ropeLength -= delta * 150
-		player.velocity *= (1.0 - pullJumpStopFraction)
-		player.velocity += -spearToPlayer.normalized() * pullJumpStrength
-		
+	
 	var currentRopeLength : float = ropeDirection.length()
 	ropeDirection /= currentRopeLength
 	
@@ -120,3 +110,15 @@ func ProcessVelocity(delta:float) -> void:
 #=================================================================================
 func AddAngularVelocity(force:float)-> void:
 	angularVel += force
+
+func AutoGrapple(spearPos : Vector2) -> void:
+	var spearToPlayer = player.spear_marker.global_position - spearPos
+	audio_stream_player.stream = PULLJUMP #TODO: change this 
+	audio_stream_player.play()
+	if spearInstance != null:
+		spearInstance.pullReleased = true
+	#if spearInstance.ropeLength > 16:
+	#	spearInstance.ropeLength -= delta * 150
+	player.velocity *= (1.0 - pullJumpStopFraction)
+	player.velocity += -spearToPlayer.normalized() * pullJumpStrength
+		

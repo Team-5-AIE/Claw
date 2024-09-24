@@ -106,12 +106,23 @@ func Retract() -> bool:
 	return false
 
 func _on_auto_grapple_area_body_entered(body):
-	if body.name == "Player":
-		if retracted:
-			extending = false
-			retracted = false
-			queue_free()
-			return
-	else:
-		print("AutoGrapple point grabbed")
-		player.state_spear.autoGrapple = true
+	#if body.name == "Player":
+		#if retracted:
+			#extending = false
+			#retracted = false
+			#queue_free()
+			#return
+	#else:
+	print("AutoGrapple point grabbed")
+	if !retracted:
+		player.state_spear.AutoGrapple(global_position)
+
+
+func _on_retract_area_body_entered(body: Node2D) -> void:
+	print("player entered collision area retract")
+	if retracted:
+		print("do the thing")
+		extending = false
+		retracted = false
+		queue_free()
+		return
