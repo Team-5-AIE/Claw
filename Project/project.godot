@@ -250,6 +250,13 @@ TogglePause={
 
 [layer_names]
 
+2d_render/layer_1="Default"
+2d_render/layer_2="BackgroundLit"
+2d_render/layer_3="BackgroundOccluders"
+2d_render/layer_4="TerrainLit"
+2d_render/layer_5="TerrainOccluders"
+2d_render/layer_6="PlayerLit"
+2d_render/layer_7="PlayerOccluders"
 2d_physics/layer_1="Player"
 2d_physics/layer_2="World"
 2d_physics/layer_3="GrapplePoint"
