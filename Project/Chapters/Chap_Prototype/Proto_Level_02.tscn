@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwyt67pvwo2y2"]
+[gd_scene load_steps=6 format=3 uid="uid://cwyt67pvwo2y2"]
 
 [ext_resource type="PackedScene" uid="uid://dnkajcwc74su8" path="res://Chapters/Chap_Prototype/Room_Backlog_2/room_PT2_01.tscn" id="1_y4chv"]
+[ext_resource type="PackedScene" uid="uid://2icur388kpei" path="res://Chapters/Chap_Prototype/Room_Backlog_2/room_PT2_Wall01.tscn" id="2_h2u5h"]
 [ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="18_nkffw"]
 [ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="19_lnlcd"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="20_hmqlm"]
@@ -10,6 +11,9 @@
 [node name="LoadedRooms" type="Node2D" parent="."]
 
 [node name="Room201" parent="LoadedRooms" instance=ExtResource("1_y4chv")]
+
+[node name="Room2W1" parent="LoadedRooms" instance=ExtResource("2_h2u5h")]
+position = Vector2(-672, 288)
 
 [node name="Player" parent="." instance=ExtResource("18_nkffw")]
 unique_name_in_owner = true
