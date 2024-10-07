@@ -214,3 +214,9 @@ func instance_create(preloaded_scene, parent_node):
 	
 func _on_room_area_ready():
 	pass # Replace with function body.
+
+func _on_spring_area_area_entered(area: Area2D) -> void:
+	print("body touched")
+	if velocity.y > 0:
+		print("player velovity is positive")
+		area.BouncePlayer(self)

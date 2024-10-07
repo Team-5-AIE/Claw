@@ -35,6 +35,8 @@ func Init(gameRoot_ : Node, roomContainer_ : Node2D, timeTracker_ : Node, \
 	else:
 		player = player_
 	
+	playerEnteredRoom.connect(_on_player_entered_room)
+	
 	var rtnArray = get_tree().get_nodes_in_group("RoomInitListeners")
 	var roomInitListenersArray : Array[Area2D]
 	roomInitListenersArray.assign(rtnArray)
@@ -42,8 +44,6 @@ func Init(gameRoot_ : Node, roomContainer_ : Node2D, timeTracker_ : Node, \
 	for roomInitListener : Area2D in roomInitListenersArray:
 		if roomInitListener.owner == self:
 			roomInit.connect(roomInitListener._on_room_init)
-	
-	playerEnteredRoom.connect(_on_player_entered_room)
 	
 	roomInit.emit()
 
