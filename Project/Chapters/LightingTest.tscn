@@ -1,6 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://bj0a6et3lytq"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_es2nf"]
+[ext_resource type="Texture2D" uid="uid://boa7o8qn37267" path="res://icon.svg" id="2_g6tys"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_qjngn"]
 [ext_resource type="PackedScene" uid="uid://btr04pfqnhcvi" path="res://Objects/player_spawn.tscn" id="3_80v1u"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="4_47jk0"]
@@ -12,20 +13,12 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_imk4x"]
 gradient = SubResource("Gradient_4foyr")
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cxehd"]
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
 size = Vector2(640, 360)
-
-[sub_resource type="Gradient" id="Gradient_r7ps1"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_d6xlk"]
-gradient = SubResource("Gradient_r7ps1")
-width = 1024
-height = 1024
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.854701, 0.153846)
 
 [node name="Room101" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_es2nf")
@@ -36,6 +29,17 @@ light_mask = 2
 position = Vector2(23, -10.5)
 scale = Vector2(12.3125, 6.85937)
 texture = SubResource("GradientTexture2D_imk4x")
+
+[node name="Icon" type="Sprite2D" parent="."]
+light_mask = 8
+position = Vector2(-139, 69)
+scale = Vector2(1, 1)
+texture = ExtResource("2_g6tys")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Icon"]
+light_mask = 4
+occluder = SubResource("OccluderPolygon2D_cxehd")
+occluder_light_mask = 4
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -80,30 +84,5 @@ shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Lighting"]
 color = Color(0.0588235, 0.0588235, 0.0980392, 1)
-
-[node name="PointLight2D" type="PointLight2D" parent="Lighting"]
-position = Vector2(-272, -232)
-range_item_cull_mask = 42
-shadow_enabled = true
-shadow_filter = 1
-shadow_item_cull_mask = 86
-texture = SubResource("GradientTexture2D_d6xlk")
-texture_scale = 0.75
-
-[node name="PointLight2D2" type="PointLight2D" parent="Lighting"]
-position = Vector2(384, -24)
-range_item_cull_mask = 42
-shadow_enabled = true
-shadow_item_cull_mask = 86
-texture = SubResource("GradientTexture2D_d6xlk")
-texture_scale = 0.75
-
-[node name="PointLight2D3" type="PointLight2D" parent="Lighting"]
-position = Vector2(384, 128)
-range_item_cull_mask = 42
-shadow_enabled = true
-shadow_item_cull_mask = 86
-texture = SubResource("GradientTexture2D_d6xlk")
-texture_scale = 0.75
 
 [editable path="RoomArea"]

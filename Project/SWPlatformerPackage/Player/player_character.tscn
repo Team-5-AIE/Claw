@@ -730,6 +730,7 @@ air_acceleration = 1200.0
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)
+light_mask = 32
 position = Vector2(0, -16)
 texture = ExtResource("2_rrav3")
 hframes = 10
@@ -737,6 +738,7 @@ vframes = 14
 
 [node name="LegsAir" type="Sprite2D" parent="."]
 visible = false
+light_mask = 32
 position = Vector2(0, -16)
 texture = ExtResource("2_rrav3")
 hframes = 10
@@ -745,6 +747,7 @@ frame = 32
 
 [node name="LegsGround" type="Sprite2D" parent="."]
 visible = false
+light_mask = 32
 position = Vector2(0, -16)
 texture = ExtResource("2_rrav3")
 hframes = 10
@@ -962,18 +965,22 @@ visible = false
 
 [node name="AimCrosshair" type="Sprite2D" parent="Crosshairs"]
 modulate = Color(0.827451, 0.00784314, 0.239216, 0.815686)
+light_mask = 32
 texture = ExtResource("18_iltxp")
 
 [node name="AimPoint" type="Sprite2D" parent="Crosshairs"]
 modulate = Color(0.827451, 0.00784314, 0.239216, 1)
+light_mask = 32
 texture = ExtResource("19_s68wg")
 
 [node name="SwingJumpCrosshair" type="Sprite2D" parent="Crosshairs"]
 modulate = Color(0.678431, 0.533333, 0.00784314, 1)
+light_mask = 32
 texture = ExtResource("18_iltxp")
 
 [node name="SwingLaunchPoint" type="Sprite2D" parent="Crosshairs"]
 modulate = Color(0.68, 0.53414, 0.00679999, 1)
+light_mask = 32
 texture = ExtResource("19_s68wg")
 
 [node name="ControlOverride" type="Node2D" parent="."]
