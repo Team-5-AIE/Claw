@@ -1,7 +1,7 @@
 class_name TraveenStateClawEdits
 extends StateSpear
 
-const NEW_CLAW = preload("res://DesignPrototypes/TraveenProposals/TraveenProtoClaw.tscn")
+var NEW_CLAW #= preload("res://DesignPrototypes/TraveenProposals/TraveenProtoClaw.tscn")
 
 func EnterState() -> void:
 	if player.debug_mode:
