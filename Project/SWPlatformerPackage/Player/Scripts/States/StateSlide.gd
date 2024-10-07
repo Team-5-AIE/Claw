@@ -35,8 +35,7 @@ func UpdatePhysics(_delta)-> void:  # Runs in _physics_process()
 	
 	# Otherwise - enable sliding
 	if sliding:
-		if absf(player.velocity.x) < player.slide_speed:
-			player.velocity.x = slide_direction * player.slide_speed
+		player.velocity.x = slide_direction * player.slide_speed
 		if player.raycast_bottom_left.is_colliding():
 			if player.sprite_sheet.flip_h == false:
 				player.velocity.y = player.slide_speed

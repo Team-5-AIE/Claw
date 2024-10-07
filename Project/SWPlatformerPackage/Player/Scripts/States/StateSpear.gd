@@ -27,6 +27,7 @@ const PULLJUMP = preload("res://Sounds/Effects/pullJump.wav")
 #=================================================================================
 func EnterState() -> void:
 	hookSoundPlayed = false
+	autoGrapple = false
 	if player.debug_mode:
 		print("Debug: Spear State")
 	# Update sprite flip to the shoot direction
@@ -53,12 +54,6 @@ func Inputs(_event) -> void:
 		player.finite_state_machine.ChangeState(player.state_fall)
 
 func ExitState() -> void:
-	# Attached Object addition
-	if spearInstance.attachedObject != null:
-		if spearInstance.attachedObject is LimitedGrapplePoint: 
-			spearInstance.attachedObject.start_cooldown()
-		spearInstance.attachedObject = null
-	
 	spearInstance = null
 	player.finite_state_machine.sprite_flip_lock = false
 	pivotPoint = Vector2.ZERO

@@ -19,7 +19,7 @@ func EnterState() -> void:
 	player.animation_player.play("Run")
 
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
-	player.finite_state_machine.move_player(delta, false)
+	player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.acceleration * delta)
 	if player.velocity.x != 0 && run_dust_timer.time_left <= 0:
 		var dust_instance = player.instance_create(player.RUN_DUST_PARTICLES,player)
 		dust_instance.scale.x = sign(-player.velocity.x)

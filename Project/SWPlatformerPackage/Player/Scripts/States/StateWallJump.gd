@@ -47,18 +47,22 @@ func EnterState() -> void:
 	player.last_input_direction.x = -player.last_input_direction.x
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
+	if player.input_axis.x != 0 && !player.state_jump.bunnyhop:
+		player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.air_acceleration * delta)
+	
 	# Set to fall state if we hit the roof of a collision
 	if player.is_on_ceiling():
 		player.finite_state_machine.ChangeState(player.state_fall)
 	
-	# Are we finished jumping?
-	if player.animation_end:
-		if player.is_on_floor():
-			player.finite_state_machine.ChangeState(player.state_idle)
-			return
-		else:
-			player.finite_state_machine.ChangeState(player.state_fall)
-			return
+	# Are we in the air and finished jumping?
+	if !player.is_on_floor() && player.velocity.y > 0:
+		# Change to Fall state
+		player.finite_state_machine.ChangeState(player.state_fall)
+		return
+		
+	if player.animation_end && player.is_on_floor():
+		player.finite_state_machine.ChangeState(player.state_idle)
+		return
 	## Change to Wall Climb state #NOTE: test if needed or can be nuked
 	#if player.finite_state_machine.can_we_wall_climb():
 		#player.finite_state_machine.ChangeState(player.state_wall_climb)

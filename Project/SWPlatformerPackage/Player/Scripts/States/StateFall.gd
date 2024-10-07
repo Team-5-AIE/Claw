@@ -18,7 +18,10 @@ func EnterState() -> void:
 		dust_instance.global_position = player.dustMarker2D.global_position
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
-	player.finite_state_machine.move_player(delta, true)
+	if player.input_axis.x != 0:
+		if player.input_axis.x != sign(player.velocity.x) || absf(player.velocity.x) < player.run_speed:
+			player.velocity.x += player.air_acceleration * player.input_axis.x * delta
+			print("Slow down")
 	
 	# Jump buffer #NOTE: why is this here?
 	if player.finite_state_machine.jump_buffer_jump():
