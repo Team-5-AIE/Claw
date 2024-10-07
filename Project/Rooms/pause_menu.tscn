@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://nelr0rw0cn6o"]
 
 [ext_resource type="Script" path="res://Scripts/MenuScripts/PauseMenu.gd" id="1_mpl1k"]
-[ext_resource type="Theme" path="res://addons/Fonts/Chunky.tres" id="2_ayrj1"]
+[ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="2_ayrj1"]
 [ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="3_h2gsb"]
 [ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="4_rao1h"]
 
