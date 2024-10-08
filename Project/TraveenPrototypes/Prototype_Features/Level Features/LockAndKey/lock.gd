@@ -1,10 +1,9 @@
-class_name DoorLock
+class_name Lock
 extends Node
 
-signal door_unlocked()
+signal unlocked()
 
-@export var persistent_in_level: bool = true
-@export var doorID: int = 0
+@export var lockID: int = 0
 @export var door_collision: Node
 
 var keys : Array = []
@@ -14,20 +13,6 @@ var is_unique: bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var has_keys : bool = false
-	
-	if persistent_in_level:
-		var roomContainer: Node = get_tree().root.get_node("/root/GameRoot2/RoomContainer")
-		
-		for child in roomContainer.get_children():
-			if child is DoorLock and child.doorID == self.doorID:
-				is_unique = false
-				break
-		
-		if is_unique:
-			reparent(roomContainer)
-		else:
-			self.queue_free()
-			return
 	
 	if not open:
 		var keyCount : int = 0
@@ -55,8 +40,7 @@ func on_key_collected(keyID: int):
 	
 	if keys.find(false) == -1 && not open:
 		open = true
-		door_collision.queue_free()
-		door_unlocked.emit()
+		unlocked.emit()
 
 func on_key_reset(keyID: int):
 	keys[keyID] = false

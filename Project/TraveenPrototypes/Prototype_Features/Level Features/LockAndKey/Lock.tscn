@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=4 uid="uid://c1lt5sw1xpng4"]
 
-[ext_resource type="Script" path="res://TraveenPrototypes/Prototype_Features/Level Features/DoorLock/door_lock.gd" id="1_etk6d"]
+[ext_resource type="Script" path="res://TraveenPrototypes/Prototype_Features/Level Features/LockAndKey/lock.gd" id="1_etk6d"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_jiat7"]
 
-[node name="DoorLock" type="Node2D" node_paths=PackedStringArray("door_collision")]
+[node name="Lock" type="Node2D" node_paths=PackedStringArray("door_collision")]
 script = ExtResource("1_etk6d")
 door_collision = NodePath("ProtoDoor")
 

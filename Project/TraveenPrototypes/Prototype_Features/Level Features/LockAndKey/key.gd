@@ -16,7 +16,7 @@ var targetPosition = Vector2.ZERO
 var initialPosition
 var initialGlobalPosition
 
-@onready var doorParent = get_parent()
+@onready var lockParent = get_parent()
 @onready var keyImpression = $Hole
 @onready var light = $PointLight2D
 @onready var destroy_timer = $DestroyTimer
@@ -73,7 +73,7 @@ func _on_restart_player() -> void:
 		await FadeTransitions.on_fade_in_finished
 		top_level = false
 		
-		if doorParent == null:
+		if lockParent == null:
 			delete_key()
 		else:
 			_reset_key()
@@ -88,7 +88,7 @@ func _on_area_2d_body_entered(body) -> void:
 func _setup_key() -> void:
 	initialPosition = position
 	initialGlobalPosition = global_position
-	doorParent.door_unlocked.connect(on_door_unlocked)
+	lockParent.unlocked.connect(on_unlocked)
 	keyImpression.visible = false
 	light.visible = true
 	animation_player.play("Float")
@@ -98,7 +98,7 @@ func _reset_key() -> void:
 	keyImpression.visible = false
 	light.visible = true
 	
-	reparent(doorParent)
+	reparent(lockParent)
 	position = initialPosition
 	
 	animation_player.play("Float")
@@ -109,7 +109,7 @@ func _collect_key() -> void:
 	light.visible = true
 	# Move hole to door parent
 	keyImpression.visible = true
-	keyImpression.reparent(doorParent)
+	keyImpression.reparent(lockParent)
 	
 	reparent(player)
 	global_position = player.bloomieMarker2D.global_position
@@ -125,13 +125,13 @@ func delete_key() -> void:
 	if not keyImpression.visible:
 		# Move hole to door parent
 		keyImpression.visible = true
-		keyImpression.reparent(doorParent)
+		keyImpression.reparent(lockParent)
 	
-	reparent(doorParent)
+	reparent(lockParent)
 	position = initialPosition
 	
 	collected = false
 	key_collected.emit(keyID)
 
-func on_door_unlocked() -> void:
+func on_unlocked() -> void:
 	queue_free()
