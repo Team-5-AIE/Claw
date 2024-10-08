@@ -24,16 +24,6 @@ func _ready() -> void:
 	keyImpression.visible = false
 	animation_player.play("Float")
 
-func delete_key(delete: bool) -> void:
-	var initialGlobalPosition = global_position
-	# Move hole to door parent
-	keyImpression.visible = true
-	remove_child(keyImpression)
-	doorParent.add_child(keyImpression)
-	keyImpression.global_position = initialGlobalPosition
-	key_collected.emit(keyID)
-	queue_free()
-
 func _physics_process(_delta):
 	if follow and !collecting:
 		if player.is_on_floor():
@@ -54,8 +44,7 @@ func _process(_delta)-> void:
 	
 	if collected:
 		if !audio_stream_player.playing:
-			key_collected.emit(keyID)
-			queue_free()
+			delete_key()
 
 func _on_collection_timer_timeout():
 	collecting = true
@@ -68,7 +57,6 @@ func _on_destroy_timer_timeout():
 	collected = true
 
 func _on_restart_player() -> void:
-	var initialGlobalPosition = global_position
 	if player != null:
 		follow = false
 		
@@ -79,38 +67,55 @@ func _on_restart_player() -> void:
 		player.remove_child(self)
 		
 		if doorParent == null:
-			key_collected.emit(keyID)
-			queue_free()
+			delete_key()
 		else:
 			doorParent.add_child(self)
-			global_position = initialGlobalPosition
-			doorParent.keys.append
-			
-			doorParent.remove_child(keyImpression)
-			add_child(keyImpression)
-			keyImpression.global_position = initialGlobalPosition
-			keyImpression.visible = false
+			_reset_key()
 			
 			player = null
 
 func _on_area_2d_body_entered(body) -> void:
-	var initialGlobalPosition = global_position
 	if player == null and body.name == "Player":
 		player = body
-		top_level = true
-		
+		_collect_key()
+
+func _reset_key() -> void:
+	var initialGlobalPosition = global_position
+	global_position = initialGlobalPosition
+	
+	doorParent.remove_child(keyImpression)
+	add_child(keyImpression)
+	keyImpression.global_position = initialGlobalPosition
+	keyImpression.visible = false
+
+func _collect_key() -> void:
+	var initialGlobalPosition = global_position
+	top_level = true
+	
+	# Move hole to door parent
+	keyImpression.visible = true
+	remove_child(keyImpression)
+	doorParent.add_child(keyImpression)
+	keyImpression.global_position = initialGlobalPosition
+	
+	doorParent.remove_child(self)
+	player.add_child(self)
+	global_position = initialGlobalPosition
+	
+	player.restartPlayer.connect(_on_restart_player)
+	
+	follow = true
+	print("pick up key")
+	
+
+func delete_key() -> void:
+	if not keyImpression.visible:
+		var initialGlobalPosition = global_position
 		# Move hole to door parent
 		keyImpression.visible = true
 		remove_child(keyImpression)
 		doorParent.add_child(keyImpression)
 		keyImpression.global_position = initialGlobalPosition
-		
-		doorParent.remove_child(self)
-		player.add_child(self)
-		global_position = initialGlobalPosition
-		
-		player.restartPlayer.connect(_on_restart_player)
-		
-		follow = true
-		print("pick up key")
-		
+	
+	key_collected.emit(keyID)
+	queue_free()
