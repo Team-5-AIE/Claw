@@ -151,9 +151,10 @@ func jump_buffer_jump() -> bool:
 	return false
 
 func can_we_throw_spear():
-	if state != player.state_spear && player.state_spear.spearInstance == null:
-		if Input.is_action_just_pressed("Spear") && player.spearCooldownTimer.time_left <= 0.0:
-			spearThrown = true
+	if player.spearCollected:
+		if state != player.state_spear && player.state_spear.spearInstance == null:
+			if Input.is_action_just_pressed("Spear") && player.spearCooldownTimer.time_left <= 0.0:
+				spearThrown = true
 
 func jump_buffer_check() -> bool:
 	if Input.is_action_pressed("Jump") && player.jump_enabled:

@@ -40,6 +40,10 @@ const SLIDE_DUST_PARTICLES = preload("res://Effects/slide_dust_particles.tscn")
 @onready var legs_air = $LegsAir
 @onready var legs_ground = $LegsGround
 
+const PLAYER_SHEET = preload("res://SWPlatformerPackage/Player/Player 48x48-sheet.png")
+const PLAYER_SHEET_NO_SPEAR = preload("res://SWPlatformerPackage/Player/PlayerSpriteSheet_NoSpear.png")
+
+
 #Raycasts
 @onready var raycast_slide_left = $RaycastSlideLeft
 @onready var raycast_slide_right = $RaycastSlideRight
@@ -57,7 +61,7 @@ const SLIDE_DUST_PARTICLES = preload("res://Effects/slide_dust_particles.tscn")
 ### Input
 ##Show console outputs of entering and exiting states
 @export var debug_mode = true
-
+@export var spearCollected = false
 ### Enable|Disable Character states Settings
 @export_group("Enable|Disable Character states/Jump")
 ## If On, allows the player to jump.
@@ -172,6 +176,12 @@ var move_lock = false
 var animation_end = false
 
 #=================================Functions===================================================
+func _process(delta: float) -> void:
+	if spearCollected:
+		sprite_sheet.texture = PLAYER_SHEET
+	else:
+		sprite_sheet.texture = PLAYER_SHEET_NO_SPEAR
+
 func _ready() -> void:
 	## Set variables based on exported variables.
 	# Set Cooldown Timers.
