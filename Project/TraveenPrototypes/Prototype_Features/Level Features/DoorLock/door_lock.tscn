@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=4 uid="uid://c1lt5sw1xpng4"]
+[gd_scene load_steps=3 format=4 uid="uid://c1lt5sw1xpng4"]
 
 [ext_resource type="Script" path="res://TraveenPrototypes/Prototype_Features/Level Features/DoorLock/door_lock.gd" id="1_etk6d"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_jiat7"]
-[ext_resource type="PackedScene" uid="uid://1jc8mx5akmnw" path="res://TraveenPrototypes/Prototype_Features/Level Features/DoorLock/Key.tscn" id="3_f3l6d"]
 
 [node name="DoorLock" type="Node2D" node_paths=PackedStringArray("door_collision")]
 script = ExtResource("1_etk6d")
@@ -13,9 +12,3 @@ use_parent_material = true
 position = Vector2(8, 8)
 tile_map_data = PackedByteArray("AAANAPn/AQABAAEAAAANAPr/AQABAAUAAAANAPv/AQABAAUAAAANAPz/AQABAAUAAAANAP3/AQABAAUAAAANAP7/AQABAAUAAAANAP//AQABAAkAAAAOAPn/AQAFAAEAAAAOAPr/AQAPAAIAAAAOAPv/AQAPAAIAAAAOAPz/AQAPAAIAAAAOAP3/AQAPAAIAAAAOAP7/AQAPAAIAAAAOAP//AQAFAAkAAAAPAPn/AQAFAAEAAAAPAPr/AQAPAAIAAAAPAPv/AQAPAAIAAAAPAPz/AQAPAAIAAAAPAP3/AQAPAAIAAAAPAP7/AQAPAAIAAAAPAP//AQAFAAkAAAAQAPn/AQAJAAEAAAAQAPr/AQAJAAUAAAAQAPv/AQAJAAUAAAAQAPz/AQAJAAUAAAAQAP3/AQAJAAUAAAAQAP7/AQAJAAUAAAAQAP//AQAJAAkAAAA=")
 tile_set = ExtResource("2_jiat7")
-
-[node name="Key" parent="." instance=ExtResource("3_f3l6d")]
-position = Vector2(16, -96)
-
-[node name="Key2" parent="." instance=ExtResource("3_f3l6d")]
-position = Vector2(16, -216)
