@@ -168,7 +168,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.854701, 0.153846)
 
 [node name="Key" type="Node2D"]
-modulate = Color(1, 0.69, 0.07, 1)
+modulate = Color(0.44, 0.850667, 1, 1)
 script = ExtResource("1_j4mvt")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -205,7 +205,7 @@ texture = ExtResource("3_opc8x")
 hframes = 5
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.435294, 0.0117647, 0.764706, 1)
+color = Color(0.1064, 0.476773, 0.76, 1)
 texture = SubResource("GradientTexture2D_bbuup")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
