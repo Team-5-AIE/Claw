@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c3n7omxklbot4"]
 
-[ext_resource type="Script" path="res://TraveenPrototypes/Prototype_Features/Level Features/Limited Grapple Points/limited_autograpple_point.gd" id="1_eorcl"]
+[ext_resource type="Script" path="res://TraveenPrototypes/Prototype_Features/Level Features/Cooldown Grapple Points/cooldown_autograpple_point.gd" id="1_eorcl"]
 [ext_resource type="Texture2D" uid="uid://sbyk5q33xplj" path="res://Sprites/Tilesets/Castle Tileset Export.png" id="2_lfj42"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ck6se"]
