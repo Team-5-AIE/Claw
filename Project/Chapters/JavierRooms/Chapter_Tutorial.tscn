@@ -29,7 +29,7 @@ position = Vector2(2064, 0)
 position = Vector2(2752, 144)
 
 [node name="RoomT06" parent="LoadedRooms" instance=ExtResource("6_02y7b")]
-position = Vector2(1968, 400)
+position = Vector2(1968, 416)
 
 [node name="Player" parent="." instance=ExtResource("3_bvdkg")]
 unique_name_in_owner = true
