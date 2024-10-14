@@ -1,6 +1,7 @@
-[gd_scene load_steps=47 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=48 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
+[ext_resource type="Texture2D" uid="uid://bqexwwlorewmv" path="res://SWPlatformerPackage/Player/PlayerSpriteSheet_NoSpear.png" id="2_d4djl"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/FiniteStateMachine.gd" id="3_6nxyt"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateIdle.gd" id="4_kiun4"]
@@ -727,7 +728,7 @@ air_acceleration = 1200.0
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)
 position = Vector2(0, -16)
-texture = ExtResource("2_rrav3")
+texture = ExtResource("2_d4djl")
 hframes = 10
 vframes = 14
 
@@ -882,7 +883,7 @@ target_position = Vector2(10, 0)
 collision_mask = 2
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(0, -29)
+position = Vector2(0, -14)
 
 [node name="BloomieMarker2D" type="Marker2D" parent="."]
 position = Vector2(0, -40)

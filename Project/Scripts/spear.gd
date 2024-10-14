@@ -18,7 +18,7 @@ var ropeLength : float = 0
 var pullReleased = false
 var flipped = false
 var ropeSnapTimerStarted = false
-
+var timerStarted = false
 var audio_stream_player: AudioStreamPlayer
 const JUMP1 = preload("res://Sounds/Effects/jump (2).wav")
 const JUMP2 = preload("res://Sounds/Effects/jump (3).wav")
@@ -100,6 +100,10 @@ func Retract() -> bool:
 		#print("Retract")
 		var spearToPlayer = player.spear_marker.global_position - global_position
 		global_position += spearToPlayer.normalized() * SPEED
+		var timer = $Destroy
+		if !timerStarted:
+			timerStarted = true
+			timer.start()
 		return true
 	return false
 
@@ -109,11 +113,11 @@ func _on_auto_grapple_area_body_entered(_body: Node2D):
 		player.state_spear.AutoGrapple(global_position)
 
 
-func _on_retract_area_body_entered(_body: Node2D) -> void:
-	print("player entered collision area retract")
+func _on_destroy_timeout() -> void:
 	if retracted:
-		print("do the thing")
+		print("destroy spear")
 		extending = false
 		retracted = false
+		player.sprite_sheet.texture = player.PLAYER_SHEET
 		queue_free()
 		return

@@ -51,12 +51,6 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 		hookSoundPlayed = true
 	ProcessVelocity(delta)
 
-func Inputs(_event) -> void:
-	if Input.is_action_just_pressed("LetGoOfSpear"):
-		if spearInstance != null:
-			spearInstance.retracted = true
-		player.finite_state_machine.ChangeState(player.state_fall)
-
 func ExitState() -> void:
 	spearInstance = null
 	player.finite_state_machine.sprite_flip_lock = false
@@ -71,7 +65,6 @@ func ProcessVelocity(delta:float) -> void:
 	var spearToPlayer = player.spear_marker.global_position - spearInstance.global_position
 	var ropeDirection : Vector2 = spearToPlayer
 	
-	#AutoGrapple
 	if Input.is_action_just_pressed("SpearPull"):
 		audio_stream_player.stream = PULLJUMP
 		audio_stream_player.play()
@@ -80,6 +73,7 @@ func ProcessVelocity(delta:float) -> void:
 		#	spearInstance.ropeLength -= delta * 150
 		player.velocity *= (1.0 - pullJumpStopFraction)
 		player.velocity += -spearToPlayer.normalized() * pullJumpStrength
+		return
 		
 	
 	var currentRopeLength : float = ropeDirection.length()

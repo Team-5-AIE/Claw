@@ -52,7 +52,6 @@ func _physics_process(delta) -> void:
 	if FadeTransitions.lockPlayer: return
 	if spearThrown:
 		SpearPhysicsProcess()
-	
 	if state is State:
 		state.UpdatePhysics(delta) # Run the UpdatePhysics function in our current state
 	
@@ -259,17 +258,16 @@ func _on_jump_buffer_timer_timeout():
 	player.jump_buffer = false
 
 func SpearPhysicsProcess() -> void:
+	player.sprite_sheet.texture = player.PLAYER_SHEET_NO_SPEAR
 	#Create Spear
 	player.state_spear.spearInstance = player.state_spear.SPEAR.instantiate()
 	# Get direction to shoot in
 	player.state_spear.shootDirection = (player.get_global_mouse_position() - player.spear_marker.global_position)
 	
 	if sign(player.state_spear.shootDirection.x) == 1:
-		player.spear_marker.global_position = player.global_position + Vector2(-6,-28)
 		player.sprite_sheet.flip_h = false
 		player.state_spear.spearInstance.flipped = false
 	else:
-		player.spear_marker.global_position = player.global_position + Vector2(6,-28)
 		player.sprite_sheet.flip_h = true
 		player.state_spear.spearInstance.flipped = true
 	

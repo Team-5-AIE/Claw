@@ -176,12 +176,6 @@ var move_lock = false
 var animation_end = false
 
 #=================================Functions===================================================
-func _process(delta: float) -> void:
-	if spearCollected:
-		sprite_sheet.texture = PLAYER_SHEET
-	else:
-		sprite_sheet.texture = PLAYER_SHEET_NO_SPEAR
-
 func _ready() -> void:
 	## Set variables based on exported variables.
 	# Set Cooldown Timers.
