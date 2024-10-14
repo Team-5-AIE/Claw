@@ -4,7 +4,6 @@ extends Node
 signal unlocked()
 
 @export var lockID: int = 0
-@export var destroy_target: Node
 
 var keys : Array = []
 var open: bool = false
@@ -31,8 +30,6 @@ func _ready() -> void:
 				has_keys = true
 				keys.append(true)
 				child.delete_key()
-			elif child == destroy_target:
-				destroy_target.queue_free()
 	assert(has_keys, "Need keys for this door: " + str(self))
 
 func on_key_collected(keyID: int):
@@ -40,7 +37,6 @@ func on_key_collected(keyID: int):
 	
 	if keys.find(false) == -1 && not open:
 		open = true
-		destroy_target.queue_free()
 		unlocked.emit()
 
 func on_key_reset(keyID: int):

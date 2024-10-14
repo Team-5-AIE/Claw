@@ -4,4 +4,3 @@
 
 [node name="Lock" type="Node2D"]
 script = ExtResource("1_etk6d")
-lockID = null

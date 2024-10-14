@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3n7omxklbot4"]
+[gd_scene load_steps=6 format=3 uid="uid://c3n7omxklbot4"]
 
 [ext_resource type="Script" path="res://TraveenPrototypes/Prototype_Features/Level Features/Cooldown Grapple Points/cooldown_autograpple_point.gd" id="1_eorcl"]
 [ext_resource type="Texture2D" uid="uid://sbyk5q33xplj" path="res://Sprites/Tilesets/Castle Tileset Export.png" id="2_lfj42"]
@@ -9,9 +9,12 @@ radius = 4.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wifwv"]
 size = Vector2(18, 18)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wgrk3"]
+radius = 16.0
+
 [node name="AutoGrapplePoint" type="StaticBody2D"]
 collision_layer = 4
-collision_mask = 4
+collision_mask = 64
 script = ExtResource("1_eorcl")
 
 [node name="ActiveSprite" type="Sprite2D" parent="."]
@@ -45,4 +48,12 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoGrappleArea"]
 shape = SubResource("RectangleShape2D_wifwv")
 
+[node name="SpearDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpearDetector"]
+shape = SubResource("CircleShape2D_wgrk3")
+
 [connection signal="timeout" from="GrapplePointCooldown" to="." method="_on_grapple_point_cooldown_timeout"]
+[connection signal="body_entered" from="SpearDetector" to="." method="_on_spear_detector_body_entered"]
