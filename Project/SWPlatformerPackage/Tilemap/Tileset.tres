@@ -2270,6 +2270,7 @@ texture = ExtResource("2_ttpan")
 18:24/0 = 0
 20:24/0 = 0
 19:24/0 = 0
+6:10/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5r85v"]
 texture = ExtResource("3_38f20")
@@ -2535,6 +2536,7 @@ texture = ExtResource("3_38f20")
 
 [resource]
 occlusion_layer_0/light_mask = 4
+occlusion_layer_0/sdf_collision = true
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 3
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_kw5l1")
