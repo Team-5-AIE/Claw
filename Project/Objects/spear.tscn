@@ -23,11 +23,16 @@ shape = SubResource("CapsuleShape2D_t58d4")
 texture = ExtResource("2_tudld")
 
 [node name="AutoGrappleArea" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 33
+collision_layer = 0
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoGrappleArea"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_5i8b4")
 
+[node name="Destroy" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="body_entered" from="AutoGrappleArea" to="." method="_on_auto_grapple_area_body_entered"]
+[connection signal="timeout" from="Destroy" to="." method="_on_destroy_timeout"]
