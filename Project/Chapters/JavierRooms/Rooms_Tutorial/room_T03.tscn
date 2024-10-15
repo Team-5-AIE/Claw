@@ -7,7 +7,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
-size = Vector2(640, 352)
+size = Vector2(640, 368)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_7pux2"]
 resource_local_to_scene = true
@@ -61,6 +61,7 @@ tile_set = ExtResource("2_68fcd")
 roomBounds = NodePath("RoomBounds")
 
 [node name="RoomBounds" parent="RoomArea" index="0"]
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="RoomTransition" parent="." instance=ExtResource("4_sa6ic")]
@@ -76,15 +77,15 @@ shape = SubResource("SegmentShape2D_7pux2")
 position = Vector2(48, 32)
 
 [node name="RoomTransition2" parent="." instance=ExtResource("4_sa6ic")]
-position = Vector2(352, -128)
+position = Vector2(336, -128)
 nextRoom = "res://Chapters/JavierRooms/Rooms_Tutorial/room_T04.tscn"
 
 [node name="CollisionShape2D" parent="RoomTransition2" index="0"]
-position = Vector2(-32, 0)
+position = Vector2(-16, 0)
 shape = SubResource("SegmentShape2D_n38vw")
 
 [node name="PlayerSpawn" parent="RoomTransition2" index="1"]
-position = Vector2(-64, 32)
+position = Vector2(-32, 32)
 flipSpawnDir = true
 
 [node name="RoomTransition3" parent="." instance=ExtResource("4_sa6ic")]

@@ -68,7 +68,7 @@ position = Vector2(-16, 0)
 shape = SubResource("SegmentShape2D_n38vw")
 
 [node name="PlayerSpawn" parent="RoomTransition" index="1"]
-position = Vector2(-64, 32)
+position = Vector2(-48, 32)
 flipSpawnDir = true
 
 [editable path="RoomArea"]
