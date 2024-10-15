@@ -22,6 +22,8 @@ var timerStarted = false
 var audio_stream_player: AudioStreamPlayer
 const JUMP1 = preload("res://Sounds/Effects/jump (2).wav")
 const JUMP2 = preload("res://Sounds/Effects/jump (3).wav")
+
+
 func _draw():
 	var spearToPlayer = player.spear_marker.global_position - global_position
 	draw_line(Vector2.ZERO, spearToPlayer,Color.WHITE,1,false)
@@ -42,7 +44,12 @@ func _physics_process(_delta):
 			ropeLength = player.spear_marker.global_position.distance_to(global_position)
 			hooked = true
 			extending = false
+			
+	if hooked:
+		if player.finite_state_machine.state == player.state_fall:
 			player.finite_state_machine.ChangeState(player.state_spear)
+		if player.finite_state_machine.state == player.state_spear && player.is_on_floor():
+			player.finite_state_machine.ChangeState(player.state_idle)
 	tip = global_position
 	#Auto release the hook if you're grounded
 	if player.is_on_floor() && !extending && !ropeSnapTimerStarted:
@@ -57,7 +64,7 @@ func _physics_process(_delta):
 		return
 	
 	distanceToPlayer = global_position.distance_to(player.spear_marker.global_position)
-	if distanceToPlayer > maxDistance && !hooked:
+	if distanceToPlayer > maxDistance:
 		Release()
 		return
 	if pullReleased:
@@ -66,7 +73,7 @@ func _physics_process(_delta):
 	if Input.is_action_just_released("Spear") && !extending:
 		Release()
 		return
-
+	
 func Shoot(dir : Vector2) -> void:
 	direction = dir.normalized()
 	extending = true
