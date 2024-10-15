@@ -11,13 +11,13 @@ size = Vector2(640, 368)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_7pux2"]
 resource_local_to_scene = true
-a = Vector2(0, 40)
-b = Vector2(0, -232)
+a = Vector2(0, 48)
+b = Vector2(0, -48)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_n38vw"]
 resource_local_to_scene = true
 a = Vector2(0, 48)
-b = Vector2(0, -192)
+b = Vector2(0, -48)
 
 [node name="RoomT02" type="Node2D"]
 script = ExtResource("1_824om")
@@ -65,7 +65,7 @@ nextRoom = "res://Chapters/JavierRooms/Rooms_Tutorial/room_T01.tscn"
 exitDirection = "Left"
 
 [node name="CollisionShape2D" parent="RoomTransition" index="0"]
-position = Vector2(16, 8)
+position = Vector2(16, 0)
 shape = SubResource("SegmentShape2D_7pux2")
 
 [node name="PlayerSpawn" parent="RoomTransition" index="1"]
@@ -79,7 +79,7 @@ nextRoom = "res://Chapters/JavierRooms/Rooms_Tutorial/room_T03.tscn"
 shape = SubResource("SegmentShape2D_n38vw")
 
 [node name="PlayerSpawn" parent="RoomTransition2" index="1"]
-position = Vector2(-48, 32)
+position = Vector2(-32, 32)
 flipSpawnDir = true
 
 [editable path="RoomArea"]

@@ -16,8 +16,8 @@ b = Vector2(0, -48)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_n38vw"]
 resource_local_to_scene = true
-a = Vector2(0, -160)
-b = Vector2(0, -256)
+a = Vector2(0, 32)
+b = Vector2(0, -32)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_lyjsm"]
 resource_local_to_scene = true
@@ -73,18 +73,18 @@ position = Vector2(16, 0)
 shape = SubResource("SegmentShape2D_7pux2")
 
 [node name="PlayerSpawn" parent="RoomTransition" index="1"]
-position = Vector2(80, 32)
+position = Vector2(48, 32)
 
 [node name="RoomTransition2" parent="." instance=ExtResource("4_sa6ic")]
-position = Vector2(336, -128)
+position = Vector2(352, -128)
 nextRoom = "res://Chapters/JavierRooms/Rooms_Tutorial/room_T04.tscn"
 
 [node name="CollisionShape2D" parent="RoomTransition2" index="0"]
-position = Vector2(-16, 208)
+position = Vector2(-32, 0)
 shape = SubResource("SegmentShape2D_n38vw")
 
 [node name="PlayerSpawn" parent="RoomTransition2" index="1"]
-position = Vector2(-16, 32)
+position = Vector2(-64, 32)
 flipSpawnDir = true
 
 [node name="RoomTransition3" parent="." instance=ExtResource("4_sa6ic")]
