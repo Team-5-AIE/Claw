@@ -58,6 +58,7 @@ position = Vector2(4480, -2080)
 [node name="Player" parent="." instance=ExtResource("7_s4xcw")]
 unique_name_in_owner = true
 position = Vector2(-256, 144)
+spearCollected = true
 
 [node name="PlayerCamera" parent="Player" instance=ExtResource("8_eifur")]
 offset = Vector2(1, 0)
