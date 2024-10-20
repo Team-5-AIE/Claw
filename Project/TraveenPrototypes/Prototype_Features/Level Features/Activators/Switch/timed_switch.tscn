@@ -45,3 +45,4 @@ collision_mask = 64
 shape = SubResource("RectangleShape2D_necuw")
 
 [connection signal="timeout" from="SwitchTimer" to="." method="_on_switch_timer_timeout"]
+[connection signal="body_entered" from="SpearDetector" to="." method="_on_spear_detector_body_entered"]
