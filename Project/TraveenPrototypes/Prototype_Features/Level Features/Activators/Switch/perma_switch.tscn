@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhhoo7ko0n7sk"]
+
+[ext_resource type="Script" path="res://TraveenPrototypes/Prototype_Features/Level Features/Activators/Switch/perma_switch.gd" id="1_qg4oo"]
+[ext_resource type="Texture2D" uid="uid://sbyk5q33xplj" path="res://Sprites/Tilesets/Castle Tileset Export.png" id="2_6i0df"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_erbcc"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_necuw"]
+size = Vector2(32, 32)
+
+[node name="PermaSwitch" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 65
+script = ExtResource("1_qg4oo")
+
+[node name="OnSprite" type="Sprite2D" parent="."]
+modulate = Color(0.912, 0.9392, 0.96, 1)
+position = Vector2(0, 1)
+texture = ExtResource("2_6i0df")
+hframes = 35
+vframes = 31
+frame = 893
+
+[node name="OffSprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.5, 0.5, 0.5, 1)
+position = Vector2(0, 1)
+texture = ExtResource("2_6i0df")
+hframes = 35
+vframes = 31
+frame = 893
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_erbcc")
+
+[node name="SpearDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpearDetector"]
+shape = SubResource("RectangleShape2D_necuw")
