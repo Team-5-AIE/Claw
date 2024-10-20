@@ -1,22 +1,20 @@
 class_name Lock
 extends LevelActivator
 
-@export var lockID : int :
+@export var flagID : int :
 	get:
-		return switchID
+		return _flag_ID
 	set(value):
-		switchID = value
+		_flag_ID = value
 
 var keys : Array = []
-var open: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var has_keys : bool = false
 	
 	# Add keys to the lock's list
-	if not open:
-		startup_deactivated.emit(switchID)
+	if not is_active:
 		var keyCount : int = 0
 		for child in get_children():
 			if child is ObstacleKey:
@@ -28,7 +26,6 @@ func _ready() -> void:
 				child.key_reset.connect(on_key_reset)
 				keyCount += 1
 	else:
-		startup_activated.emit(switchID)
 		for child in get_children():
 			if child is ObstacleKey:
 				has_keys = true
@@ -40,9 +37,8 @@ func _ready() -> void:
 func on_key_collected(keyID: int):
 	keys[keyID] = true
 	
-	if keys.find(false) == -1 && not open:
-		open = true
-		activated.emit(switchID)
+	if keys.find(false) == -1 && not is_active:
+		is_active = true
 
 func on_key_reset(keyID: int):
 	keys[keyID] = false
