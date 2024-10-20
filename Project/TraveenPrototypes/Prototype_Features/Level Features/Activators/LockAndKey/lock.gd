@@ -1,8 +1,5 @@
 class_name Lock
-extends Node
-
-signal activated(switchID)
-signal startup_activated(switchID)
+extends LevelActivator
 
 @export var lockID : int :
 	get:
@@ -10,7 +7,6 @@ signal startup_activated(switchID)
 	set(value):
 		switchID = value
 
-var switchID: int 
 var keys : Array = []
 var open: bool = false
 
@@ -20,6 +16,7 @@ func _ready() -> void:
 	
 	# Add keys to the lock's list
 	if not open:
+		startup_deactivated.emit(switchID)
 		var keyCount : int = 0
 		for child in get_children():
 			if child is ObstacleKey:
