@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6tax4kf18x8r"]
+[gd_scene load_steps=11 format=3 uid="uid://1jc8mx5akmnw"]
 
-[ext_resource type="Script" path="res://TraveenPrototypes/Prototype_Features/Level Features/LockAndKey/key_latchable.gd" id="1_5m733"]
-[ext_resource type="AudioStream" uid="uid://ybnshgeeo1uv" path="res://Sounds/Effects/collectBloomie.wav" id="2_rhr2w"]
-[ext_resource type="Texture2D" uid="uid://dbver6tbuv0bv" path="res://Sprites/Bloomie.png" id="3_j8qe5"]
+[ext_resource type="Script" path="res://TraveenPrototypes/Prototype_Features/Level Features/Activators/LockAndKey/key.gd" id="1_j4mvt"]
+[ext_resource type="AudioStream" uid="uid://ybnshgeeo1uv" path="res://Sounds/Effects/collectBloomie.wav" id="2_go3ja"]
+[ext_resource type="Texture2D" uid="uid://dbver6tbuv0bv" path="res://Sprites/Bloomie.png" id="3_opc8x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wqhvq"]
 radius = 6.0
@@ -167,12 +167,9 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.854701, 0.153846)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ck6se"]
-radius = 5.0
-
 [node name="Key" type="Node2D"]
-modulate = Color(0.5, 0.24425, 0.035, 1)
-script = ExtResource("1_5m733")
+modulate = Color(0.44, 0.850667, 1, 1)
+script = ExtResource("1_j4mvt")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
@@ -181,15 +178,11 @@ collision_layer = 8
 shape = SubResource("CircleShape2D_wqhvq")
 
 [node name="CollectionTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
-[node name="DestroyTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.15
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_rhr2w")
+stream = ExtResource("2_go3ja")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -200,24 +193,16 @@ speed_scale = 0.3
 [node name="Hole" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(0, 0, 0, 1)
-texture = ExtResource("3_j8qe5")
+texture = ExtResource("3_opc8x")
 hframes = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_j8qe5")
+texture = ExtResource("3_opc8x")
 hframes = 5
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.6, 0.0708, 0.012, 1)
+color = Color(0.1064, 0.476773, 0.76, 1)
 texture = SubResource("GradientTexture2D_bbuup")
-
-[node name="GrapplePoint" type="StaticBody2D" parent="."]
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GrapplePoint"]
-shape = SubResource("CircleShape2D_ck6se")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="CollectionTimer" to="." method="_on_collection_timer_timeout"]
-[connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]
