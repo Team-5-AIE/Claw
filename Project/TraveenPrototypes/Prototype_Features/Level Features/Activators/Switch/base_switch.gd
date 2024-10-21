@@ -11,20 +11,16 @@ var switchState : bool :
 	get:
 		return is_active
 	set(value):
-		is_active = switchState
-		match(value):
-			true:
-				on_sprite.visible = true
-				off_sprite.visible = false
-			false:
-				on_sprite.visible = false
-				off_sprite.visible = true
+		is_active = value
+		if on_sprite != null and off_sprite != null:
+			on_sprite.visible = value
+			off_sprite.visible = !value
 
 var spear: Spear = null
 
 @onready var active_collision: CollisionShape2D = $CollisionShape2D
-@onready var on_sprite: Sprite2D = $ActiveSprite
-@onready var off_sprite: Sprite2D = $InactiveSprite
+@onready var on_sprite: Sprite2D = $OnSprite
+@onready var off_sprite: Sprite2D = $OffSprite
 
 
 # Guard to force inherited scripts to use this method
