@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw581mxgf32sm"]
+
+[ext_resource type="Script" path="res://Scripts/coin_door.gd" id="1_rnefy"]
+[ext_resource type="Texture2D" uid="uid://bl5iuhmlei7sq" path="res://Sprites/CoinDoor.png" id="2_pnoo3"]
+
+[node name="CoinDoor" type="Node2D"]
+script = ExtResource("1_rnefy")
+
+[node name="CoinDoor" type="Sprite2D" parent="."]
+texture = ExtResource("2_pnoo3")
+hframes = 2
+
+[node name="Label" type="Label" parent="."]
+offset_left = -25.0
+offset_top = -48.0
+offset_right = 44.0
+offset_bottom = -25.0
+text = "2"
