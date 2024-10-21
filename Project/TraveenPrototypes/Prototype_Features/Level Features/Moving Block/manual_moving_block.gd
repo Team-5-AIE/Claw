@@ -67,12 +67,3 @@ func end_activity() -> void:
 	else:
 		animation_player.stop()
 		animation_player.play(deactivate_animation_name)
-
-
-func _physics_process(delta: float) -> void:
-	if $MovingBlockVisual/Label != null:
-		match(active):
-			true:
-				$MovingBlockVisual/Label.text = "ON"
-			false:
-				$MovingBlockVisual/Label.text = "OFF"
