@@ -59,11 +59,11 @@ nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_111.tscn"
 exitDirection = "Left"
 
 [node name="CollisionShape2D" parent="RoomTransition" index="0"]
-position = Vector2(32, 0)
+position = Vector2(16, 0)
 shape = SubResource("SegmentShape2D_xaixi")
 
 [node name="PlayerSpawn" parent="RoomTransition" index="1"]
-position = Vector2(64, 64)
+position = Vector2(48, 64)
 
 [node name="EndOfChapterTrigger" parent="." instance=ExtResource("4_at15x")]
 position = Vector2(-48, 32)
