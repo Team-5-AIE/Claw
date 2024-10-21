@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://coidnren0dfrw"]
+
+[ext_resource type="PackedScene" uid="uid://h388iklc6jek" path="res://Chapters/JavierRooms/Rooms_Chapter 2/room_201.tscn" id="1_6807w"]
+[ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="13_y3yn2"]
+[ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="14_pftbp"]
+[ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="15_b3up2"]
+
+[node name="Chapter_02" type="Node2D"]
+
+[node name="LoadedRooms" type="Node2D" parent="."]
+
+[node name="Room201" parent="LoadedRooms" instance=ExtResource("1_6807w")]
+position = Vector2(1, 0)
+
+[node name="Player" parent="." instance=ExtResource("13_y3yn2")]
+unique_name_in_owner = true
+position = Vector2(-256, 144)
+spearCollected = true
+
+[node name="PlayerCamera" parent="Player" instance=ExtResource("14_pftbp")]
+offset = Vector2(1, 0)
+zoom = Vector2(1, 1)
+script = ExtResource("15_b3up2")
