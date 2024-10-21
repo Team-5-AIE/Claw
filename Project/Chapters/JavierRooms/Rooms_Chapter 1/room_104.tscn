@@ -57,7 +57,7 @@ shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="RoomTransition" parent="." instance=ExtResource("3_5brji")]
 position = Vector2(-336, 160)
-nextRoom = "res://Chapters/Chapter_01/Rooms/room_101.tscn"
+nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_103.tscn"
 exitDirection = "Left"
 
 [node name="CollisionShape2D" parent="RoomTransition" index="0"]
@@ -69,7 +69,7 @@ position = Vector2(80, 256)
 
 [node name="RoomTransition2" parent="." instance=ExtResource("3_5brji")]
 position = Vector2(224, -480)
-nextRoom = "res://Chapters/Chapter_01/Rooms/room_101a.tscn"
+nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_105.tscn"
 exitDirection = "Up"
 
 [node name="CollisionShape2D" parent="RoomTransition2" index="0"]
