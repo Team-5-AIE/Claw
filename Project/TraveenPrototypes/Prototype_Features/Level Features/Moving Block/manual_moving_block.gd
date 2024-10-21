@@ -43,11 +43,14 @@ func _process(delta) -> void:
 # Manages the looping and animation switching functionality
 func _manage_animation(anim_name) -> void:
 	if active:
-		animation_player.play(animation_name)
+		if loopable:
+			animation_player.play(animation_name)
+		else:
+			animation_player.stop(true)
 	elif anim_name == animation_name and deactivate_animation_name:
 		animation_player.play(deactivate_animation_name)
 	else:
-		animation_player.stop()
+		animation_player.stop(true)
 
 # Change active state of the block. 
 # If active: Play main animation
@@ -65,5 +68,5 @@ func end_activity() -> void:
 	if use_deactivate_animation == false:
 		animation_player.pause()
 	else:
-		animation_player.stop()
+		animation_player.stop(true)
 		animation_player.play(deactivate_animation_name)
