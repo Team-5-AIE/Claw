@@ -21,7 +21,7 @@ func _setup_moving_block() -> void:
 	linked_activator.deactivated.connect(_on_flag_deactivated)
 	
 	active = active_on_startup
-	animation_player.get_animation(animation_name).set_loop_mode(set_loop_behaviour(anim_loop_mode, loopable))
+	animation_player.get_animation(animation_name).set_loop_mode(Animation.LOOP_NONE)
 	if active_on_startup:
 		animation_player.play(animation_name)
 
@@ -36,7 +36,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	_manage_animation(anim_name)
 func _process(delta) -> void:
 	if animation_player.is_playing():
-		if animation_player.current_animation_position == animation_player.current_animation_length:
+		if animation_player.current_animation_position == 0:
 			if not active and animation_player.current_animation == animation_name:
 				_manage_animation(animation_player.current_animation)
 
