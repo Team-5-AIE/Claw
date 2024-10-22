@@ -8,7 +8,7 @@
 resource_local_to_scene = true
 size = Vector2(656, 768)
 
-[node name="Room014" type="Node2D"]
+[node name="Room114" type="Node2D"]
 
 [node name="TileMap" type="Node2D" parent="."]
 
