@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg7im1k8p64pr"]
+
+[ext_resource type="Script" path="res://Scripts/coin_key.gd" id="1_8eii4"]
+[ext_resource type="Texture2D" uid="uid://beicvv7otxh68" path="res://Sprites/CoinKey.png" id="1_pt5su"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r742t"]
+radius = 13.0
+
+[node name="CoinKey" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_8eii4")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_pt5su")
+hframes = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r742t")
+
+[node name="TimeBeforeDeactivate" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="TimeBeforeDeactivate" to="." method="_on_time_before_deactivate_timeout"]

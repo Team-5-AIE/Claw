@@ -1,0 +1,43 @@
+[gd_scene load_steps=10 format=3 uid="uid://c4sarfgp81r1a"]
+
+[ext_resource type="PackedScene" uid="uid://cuoj5kvln51vu" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T01.tscn" id="1_fatff"]
+[ext_resource type="PackedScene" uid="uid://b6qrpxvq2ow2a" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T02.tscn" id="2_y40hw"]
+[ext_resource type="PackedScene" uid="uid://vch0t0ngjjt7" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T03.tscn" id="3_0x5j8"]
+[ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="3_bvdkg"]
+[ext_resource type="PackedScene" uid="uid://b30pr5xo7owc2" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T04.tscn" id="4_20reu"]
+[ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="4_lxn6y"]
+[ext_resource type="PackedScene" uid="uid://ct0pg7nntbx32" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T05.tscn" id="5_n2qp0"]
+[ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="5_waluu"]
+[ext_resource type="PackedScene" uid="uid://ctjwe72dpy5gg" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T06.tscn" id="6_02y7b"]
+
+[node name="Chapter_0T" type="Node2D"]
+
+[node name="LoadedRooms" type="Node2D" parent="."]
+
+[node name="RoomT01" parent="LoadedRooms" instance=ExtResource("1_fatff")]
+
+[node name="RoomT02" parent="LoadedRooms" instance=ExtResource("2_y40hw")]
+position = Vector2(688, 0)
+
+[node name="RoomT03" parent="LoadedRooms" instance=ExtResource("3_0x5j8")]
+position = Vector2(1376, 0)
+
+[node name="RoomT04" parent="LoadedRooms" instance=ExtResource("4_20reu")]
+position = Vector2(2064, 0)
+
+[node name="RoomT05" parent="LoadedRooms" instance=ExtResource("5_n2qp0")]
+position = Vector2(2752, 0)
+
+[node name="RoomT06" parent="LoadedRooms" instance=ExtResource("6_02y7b")]
+position = Vector2(1376, 400)
+
+[node name="Player" parent="." instance=ExtResource("3_bvdkg")]
+unique_name_in_owner = true
+position = Vector2(-256, 144)
+input_pickable = true
+spearCollected = true
+
+[node name="PlayerCamera" parent="Player" instance=ExtResource("4_lxn6y")]
+offset = Vector2(1, 0)
+zoom = Vector2(1, 1)
+script = ExtResource("5_waluu")

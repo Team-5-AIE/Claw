@@ -40,6 +40,10 @@ const SLIDE_DUST_PARTICLES = preload("res://Effects/slide_dust_particles.tscn")
 @onready var legs_air = $LegsAir
 @onready var legs_ground = $LegsGround
 
+const PLAYER_SHEET = preload("res://SWPlatformerPackage/Player/Player 48x48-sheet.png")
+const PLAYER_SHEET_NO_SPEAR = preload("res://SWPlatformerPackage/Player/PlayerSpriteSheet_NoSpear.png")
+
+
 #Raycasts
 @onready var raycast_slide_left = $RaycastSlideLeft
 @onready var raycast_slide_right = $RaycastSlideRight
@@ -57,8 +61,7 @@ const SLIDE_DUST_PARTICLES = preload("res://Effects/slide_dust_particles.tscn")
 ### Input
 ##Show console outputs of entering and exiting states
 @export var debug_mode = true
-@export var lockspear45direction : bool = false #NOTE: Remove later - keep for testing
-
+@export var spearCollected = false
 ### Enable|Disable Character states Settings
 @export_group("Enable|Disable Character states/Jump")
 ## If On, allows the player to jump.
@@ -214,3 +217,9 @@ func instance_create(preloaded_scene, parent_node):
 	
 func _on_room_area_ready():
 	pass # Replace with function body.
+
+func _on_spring_area_area_entered(area: Area2D) -> void:
+	print("body touched")
+	if velocity.y > 0:
+		print("player velovity is positive")
+		area.BouncePlayer(self)

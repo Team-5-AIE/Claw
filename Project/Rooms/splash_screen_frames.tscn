@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dnu8babgfvnje" path="res://Sprites/Menu/5FramesSplash/FramesSplash.tres" id="1_knp4v"]
 [ext_resource type="Script" path="res://Scripts/MenuScripts/SplashScreen.gd" id="2_hutxu"]
 [ext_resource type="AudioStream" uid="uid://btoekee4wk2ve" path="res://Sounds/SplashScreenSound.wav" id="3_wxxin"]
-[ext_resource type="PackedScene" uid="uid://bvv533hjdlncr" path="res://Rooms/main_menu_PAX.tscn" id="4_j06yt"]
+[ext_resource type="PackedScene" uid="uid://bvv533hjdlncr" path="res://Rooms/main_menu_PAX.tscn" id="4_u6swg"]
 
 [node name="Splash_Screen_Frames" type="Node2D"]
 
@@ -53,7 +53,7 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -1)
 sprite_frames = ExtResource("1_knp4v")
 script = ExtResource("2_hutxu")
-getScene = ExtResource("4_j06yt")
+getScene = ExtResource("4_u6swg")
 
 [node name="Change Scenes" type="Timer" parent="."]
 wait_time = 3.0

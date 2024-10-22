@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1lt5sw1xpng4"]
+
+[ext_resource type="Script" path="res://Scripts/Traveen_LevelObstacles/Activators/LockAndKey/lock.gd" id="1_etk6d"]
+
+[node name="Lock" type="Node2D"]
+script = ExtResource("1_etk6d")

@@ -2,7 +2,8 @@ extends Node
 
 var totalBloomiesCollected : int = 0
 var chapterOneBloomies : Array[bool]
-var chapterOneBloomieCount = 5
+var chapterOneBloomiesThisSession : Array[bool]
+var chapterOneBloomieCount = 6
 
 #This holds all the data of score entry
 #first entry is the latest one.
@@ -53,6 +54,9 @@ func _ready():
 	#Bloomies
 	chapterOneBloomies.resize(chapterOneBloomieCount)
 	chapterOneBloomies.fill(false)
+	
+	chapterOneBloomiesThisSession.resize(chapterOneBloomieCount)
+	chapterOneBloomiesThisSession.fill(false)
 
 func _process(_delta):
 	pass
