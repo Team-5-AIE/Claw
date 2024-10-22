@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://1jc8mx5akmnw"]
 
-[ext_resource type="Script" path="res://TraveenPrototypes/Prototype_Features/Level Features/Activators/LockAndKey/key.gd" id="1_j4mvt"]
+[ext_resource type="Script" path="res://Scripts/Traveen_LevelObstacles/Activators/LockAndKey/key.gd" id="1_j4mvt"]
 [ext_resource type="AudioStream" uid="uid://ybnshgeeo1uv" path="res://Sounds/Effects/collectBloomie.wav" id="2_go3ja"]
 [ext_resource type="Texture2D" uid="uid://dbver6tbuv0bv" path="res://Sprites/Bloomie.png" id="3_opc8x"]
 

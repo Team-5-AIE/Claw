@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://ch1dfrsgtti5h"]
 
-[ext_resource type="Script" path="res://TraveenPrototypes/Prototype_Features/Level Features/Moving Block/moving_block.gd" id="1_il2kn"]
+[ext_resource type="Script" path="res://Scripts/Traveen_LevelObstacles/Moving Block/moving_block.gd" id="1_il2kn"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_6m4of"]
 
 [node name="MovingBlock" type="Marker2D"]

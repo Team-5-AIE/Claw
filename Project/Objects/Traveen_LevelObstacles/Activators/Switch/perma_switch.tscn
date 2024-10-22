@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bhhoo7ko0n7sk"]
 
-[ext_resource type="Script" path="res://TraveenPrototypes/Prototype_Features/Level Features/Activators/Switch/perma_switch.gd" id="1_qg4oo"]
+[ext_resource type="Script" path="res://Scripts/Traveen_LevelObstacles/Activators/Switch/perma_switch.gd" id="1_qg4oo"]
 [ext_resource type="Texture2D" uid="uid://sbyk5q33xplj" path="res://Sprites/Tilesets/Castle Tileset Export.png" id="2_6i0df"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erbcc"]
@@ -18,18 +18,18 @@ script = ExtResource("1_qg4oo")
 modulate = Color(0.912, 0.9392, 0.96, 1)
 position = Vector2(0, 1)
 texture = ExtResource("2_6i0df")
-hframes = 35
-vframes = 31
-frame = 893
+hframes = 24
+vframes = 28
+frame = 571
 
 [node name="OffSprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(0.5, 0.5, 0.5, 1)
 position = Vector2(0, 1)
 texture = ExtResource("2_6i0df")
-hframes = 35
-vframes = 31
-frame = 893
+hframes = 24
+vframes = 28
+frame = 571
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_erbcc")
