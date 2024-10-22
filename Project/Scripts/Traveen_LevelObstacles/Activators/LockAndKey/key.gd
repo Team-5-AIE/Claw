@@ -24,6 +24,7 @@ var initialGlobalPosition
 
 
 func _ready() -> void:
+	initialPosition = position
 	_setup_key()
 
 func _physics_process(_delta):
@@ -32,7 +33,7 @@ func _physics_process(_delta):
 
 # Follow behind player, trailing amount depending on keyID
 func _move_lerp() -> void:
-	if player != null:
+	if player != null and follow:
 		targetPosition = player.bloomieMarker2D.global_position
 		global_position.x = lerp(global_position.x, targetPosition.x, 0.1 * (keyID + 1))
 		global_position.y = lerp(global_position.y, targetPosition.y, 0.1 * (keyID + 1))
@@ -64,7 +65,8 @@ func _on_collection_timer_timeout():
 	delete_key()
 
 func _on_area_2d_body_entered(body) -> void:
-	_check_for_collection(body)
+	if not follow:
+		_check_for_collection(body)
 
 func on_lock_activated(switchID: int) -> void:
 	collection_timer.start(collection_timer.wait_time * (float(keyID)+1))
@@ -87,7 +89,6 @@ func _check_for_collection(body) -> void:
 
 # Let player collect the key and make it follow them. Also leave behind a key impression.
 func _collect_key() -> void:
-	initialPosition = position
 	initialGlobalPosition = global_position
 	
 	top_level = true
@@ -98,7 +99,7 @@ func _collect_key() -> void:
 	keyImpression.global_position = initialGlobalPosition
 	
 	reparent(player)
-	global_position = player.bloomieMarker2D.global_position
+	global_position = initialGlobalPosition
 	
 	player.restartPlayer.connect(_on_restart_player)
 	key_collected.emit(keyID)

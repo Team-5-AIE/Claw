@@ -16,6 +16,7 @@ func _check_for_collection(body) -> void:
 func _physics_process(_delta):
 	_move_lerp()
 	if spear != null and spear.retracted:
+		player = spear.player
 		spear = null
 		_collect_key()
 
@@ -23,18 +24,18 @@ func _physics_process(_delta):
 # Key related functions that operate the same except also disables grapple collision
 
 func _setup_key() -> void:
-	grapple_collision.set_deferred("disabled", false)
 	super()
+	grapple_collision.set_deferred("disabled", false)
 
 func _reset_key() -> void:
+	super()
 	grapple_collision.set_deferred("disabled", false)
 	spear = null
-	super()
 
 func _collect_key() -> void:
-	grapple_collision.set_deferred("disabled", true)
 	super()
+	grapple_collision.set_deferred("disabled", true)
 
 func delete_key() -> void:
-	grapple_collision.set_deferred("disabled", true)
 	super()
+	grapple_collision.set_deferred("disabled", true)
