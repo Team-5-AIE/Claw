@@ -37,6 +37,7 @@ tile_set = ExtResource("2_rorg6")
 [node name="GrapplePoints" type="TileMapLayer" parent="TileMap/CollisionLayers"]
 z_index = -1
 use_parent_material = true
+position = Vector2(8, 8)
 tile_set = ExtResource("2_rorg6")
 
 [node name="VisualLayers" type="Node2D" parent="TileMap"]
