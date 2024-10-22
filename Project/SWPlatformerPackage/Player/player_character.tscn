@@ -721,13 +721,13 @@ low_stamina_flash_color = SubResource("GradientTexture1D_rlb5p")
 wall_climb_enabled = false
 wall_grab_stamina_enabled = false
 wall_jump_speed = 240.0
-acceleration = 900.0
+acceleration = 1800.0
 friction = 900.0
 coyote_jump_time_delay = 0.15
 gravity_speed = 680.0
 max_gravity = 420.0
-air_resistance = 40.0
-air_acceleration = 750.0
+air_resistance = 0.0
+air_acceleration = 700.0
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)
