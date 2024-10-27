@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddbhcmjxuh73m"]
 
-[ext_resource type="Script" path="res://DesignPrototypes/TraveenProposals/TraveenClawEdits.gd" id="1_nkpjk"]
+[ext_resource type="Script" path="res://TraveenPrototypes/EarlyProtoProposals/TraveenClawEdits.gd" id="1_nkpjk"]
 [ext_resource type="Texture2D" uid="uid://nq3odiky7bqs" path="res://Sprites/Claw.png" id="2_8sydy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t58d4"]

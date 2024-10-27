@@ -712,18 +712,22 @@ floor_constant_speed = true
 floor_block_on_wall = false
 floor_snap_length = 3.0
 script = ExtResource("1_qfw28")
-jump_height = 350.0
-slide_speed = 240.0
+jump_height = 280.0
+slide_speed = 280.0
 slide_time = 0.3
+slide_friction = 900.0
 crouch_jump_height = 300.0
 low_stamina_flash_color = SubResource("GradientTexture1D_rlb5p")
 wall_climb_enabled = false
 wall_grab_stamina_enabled = false
-wall_jump_speed = 250.0
-acceleration = 2000.0
+wall_jump_speed = 240.0
+acceleration = 1800.0
 friction = 900.0
-air_resistance = 300.0
-air_acceleration = 1200.0
+coyote_jump_time_delay = 0.15
+gravity_speed = 680.0
+max_gravity = 420.0
+air_resistance = 0.0
+air_acceleration = 700.0
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)
@@ -778,8 +782,8 @@ script = ExtResource("7_mqss4")
 
 [node name="StateSpear" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("8_h64g1")
-pullJumpStrength = 500.0
-pullJumpStopFraction = 0.6
+pullJumpStrength = 450.0
+pullJumpStopFraction = 0.25
 
 [node name="StateCrouch" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("9_gut04")

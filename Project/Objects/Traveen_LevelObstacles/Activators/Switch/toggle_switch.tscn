@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://brrwtpvjpgey7"]
+
+[ext_resource type="Script" path="res://Scripts/Traveen_LevelObstacles/Activators/Switch/toggle_switch.gd" id="1_moatw"]
+[ext_resource type="Texture2D" uid="uid://sbyk5q33xplj" path="res://Sprites/Tilesets/Castle Tileset Export.png" id="2_1k214"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_erbcc"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_necuw"]
+size = Vector2(32, 32)
+
+[node name="ToggleSwitch" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 65
+script = ExtResource("1_moatw")
+
+[node name="OnSprite" type="Sprite2D" parent="."]
+modulate = Color(0.912, 0.9392, 0.96, 1)
+position = Vector2(0, 1)
+texture = ExtResource("2_1k214")
+hframes = 24
+vframes = 28
+frame = 571
+
+[node name="OffSprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.5, 0.5, 0.5, 1)
+position = Vector2(0, 1)
+texture = ExtResource("2_1k214")
+hframes = 24
+vframes = 28
+frame = 571
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_erbcc")
+
+[node name="SpearDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpearDetector"]
+shape = SubResource("RectangleShape2D_necuw")
+
+[connection signal="body_entered" from="SpearDetector" to="." method="_on_spear_detector_body_entered"]
