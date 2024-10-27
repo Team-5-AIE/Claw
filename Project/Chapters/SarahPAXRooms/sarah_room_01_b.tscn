@@ -1,14 +1,12 @@
-[gd_scene load_steps=17 format=4 uid="uid://bpn850d3hc10w"]
+[gd_scene load_steps=15 format=4 uid="uid://bpn850d3hc10w"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_ma1kx"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_rpbkt"]
-[ext_resource type="Texture2D" uid="uid://cla5kuagc1ja4" path="res://Sprites/Backgrounds/City Background 1/Layer 01-B.png" id="3_y8dfe"]
-[ext_resource type="Texture2D" uid="uid://b25bmjxha3q3r" path="res://Sprites/Backgrounds/City Background 1/Layer 01.png" id="4_5x4y8"]
+[ext_resource type="Texture2D" uid="uid://cq5qagp7xu76m" path="res://Sprites/Backgrounds/City Background 1/Layer 00.png" id="3_lc5bu"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="4_787gs"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="5_2tws0"]
 [ext_resource type="Texture2D" uid="uid://dkd8m06bigltc" path="res://Sprites/Backgrounds/City Background 1/Layer 02.png" id="5_53wev"]
 [ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="6_3o0ul"]
-[ext_resource type="Texture2D" uid="uid://t3ad2u6aclla" path="res://Sprites/Backgrounds/City Background 1/Layer 02-B.png" id="6_4vnv0"]
 [ext_resource type="Texture2D" uid="uid://c87ktxyfdc5mk" path="res://Sprites/Backgrounds/City Background 1/Layer 03.png" id="7_1fplc"]
 [ext_resource type="Texture2D" uid="uid://qeoxrwrrcew2" path="res://Sprites/Backgrounds/City Background 1/Layer 04.png" id="8_rh50w"]
 [ext_resource type="PackedScene" uid="uid://cy10crhaf3g4v" path="res://Objects/world_environment.tscn" id="12_3jax1"]
@@ -51,23 +49,16 @@ tile_set = ExtResource("2_rpbkt")
 [node name="VisualLayers" type="Node2D" parent="TileMap"]
 
 [node name="BGImages" type="Node2D" parent="TileMap/VisualLayers"]
-position = Vector2(560, -9)
+z_index = -1
+position = Vector2(557, -9)
 
-[node name="Layer01-b" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
-position = Vector2(8, -40)
-texture = ExtResource("3_y8dfe")
-
-[node name="Layer01" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
-position = Vector2(8, -40)
-texture = ExtResource("4_5x4y8")
+[node name="Layer00" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
+position = Vector2(8, 0)
+texture = ExtResource("3_lc5bu")
 
 [node name="Layer02" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
 position = Vector2(8, 50)
 texture = ExtResource("5_53wev")
-
-[node name="Layer02-b" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
-position = Vector2(8, -310)
-texture = ExtResource("6_4vnv0")
 
 [node name="Layer03" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
 position = Vector2(8, -48)

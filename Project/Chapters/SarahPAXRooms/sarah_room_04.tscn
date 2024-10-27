@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_tjycq"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_nlyjq"]
-[ext_resource type="Texture2D" uid="uid://cla5kuagc1ja4" path="res://Sprites/Backgrounds/City Background 1/Layer 01-B.png" id="3_2nbek"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_5kt07"]
+[ext_resource type="Texture2D" uid="uid://cq5qagp7xu76m" path="res://Sprites/Backgrounds/City Background 1/Layer 00.png" id="3_j72oi"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_2h2yh"]
 [ext_resource type="Texture2D" uid="uid://b25bmjxha3q3r" path="res://Sprites/Backgrounds/City Background 1/Layer 01.png" id="4_shxws"]
 [ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="5_wgu0h"]
@@ -45,12 +45,12 @@ tile_set = ExtResource("2_nlyjq")
 [node name="VisualLayers" type="Node2D" parent="TileMap"]
 
 [node name="BGImages" type="Node2D" parent="TileMap/VisualLayers"]
-position = Vector2(-40, 0)
+z_index = -1
+position = Vector2(-39, 0)
 
-[node name="Layer01-b" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
-position = Vector2(56, -64)
-scale = Vector2(1.025, 1)
-texture = ExtResource("3_2nbek")
+[node name="Layer00" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
+position = Vector2(48, -71)
+texture = ExtResource("3_j72oi")
 
 [node name="Layer01" type="Sprite2D" parent="TileMap/VisualLayers/BGImages"]
 position = Vector2(56, -64)
