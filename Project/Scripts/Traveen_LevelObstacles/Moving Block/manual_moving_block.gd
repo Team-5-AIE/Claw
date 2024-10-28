@@ -1,8 +1,8 @@
 extends MovingBlock
 
-@export var active_on_startup : bool
 @export var loopable: bool
 @export var linked_activator: LevelActivator
+@export var invert_active_states : bool = false
 ## When the block becomes inactive, choose whether it applies immediately or when animation ends
 @export_enum("Immediate", "End of Animation") var inactive_trigger_mode: int
 @export_group("Deactivate Animation")
@@ -20,15 +20,14 @@ func _setup_moving_block() -> void:
 	linked_activator.activated.connect(_on_flag_activated)
 	linked_activator.deactivated.connect(_on_flag_deactivated)
 	
-	active = active_on_startup
 	animation_player.get_animation(animation_name).set_loop_mode(Animation.LOOP_NONE)
-	if active_on_startup:
-		animation_player.play(animation_name)
+	
+	change_block_activity(linked_activator.is_active)
 
 # Functions connecting the flag signals to the block
-func _on_flag_activated(flag_ID: int) -> void:
+func _on_flag_activated(flagID: int) -> void:
 	change_block_activity(true)
-func _on_flag_deactivated(flag_ID: int) -> void:
+func _on_flag_deactivated(flagID: int) -> void:
 	change_block_activity(false)
 
 # Functions to detect if animation has ended
@@ -56,8 +55,12 @@ func _manage_animation(anim_name) -> void:
 # If active: Play main animation
 # If inactive and the inactive trigger mode is set to immediate: Process the animation inactivity 
 func change_block_activity(active_state: bool) -> void:
-	active = active_state
-	if active_state == true:
+	match (invert_active_states):
+		true:
+			active = !active_state
+		false:
+			active = active_state
+	if active == true:
 		animation_player.play(animation_name)
 	elif inactive_trigger_mode == 0:
 			end_activity()
