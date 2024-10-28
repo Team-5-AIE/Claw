@@ -13,15 +13,16 @@
 [ext_resource type="Shader" path="res://Shaders/SDFShadows.gdshader" id="9_n6n5d"]
 [ext_resource type="Script" path="res://Scripts/SDFShadows.gd" id="10_cp6cl"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_72qyp"]
-shader = ExtResource("3_visqf")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xolsr"]
 shader = ExtResource("9_n6n5d")
 shader_parameter/ambientColour = Color(0, 0, 0, 0.784314)
-shader_parameter/directionalLightEnabled = true
+shader_parameter/directionalLightEnabled = false
 shader_parameter/directionalLightAngle = 225.0
 shader_parameter/directionalLightMaxDist = 50.0
+shader_parameter/pointLights = PackedVector3Array(640, 360, 200)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_72qyp"]
+shader = ExtResource("3_visqf")
 
 [node name="GameRoot2" type="Node"]
 
@@ -38,9 +39,8 @@ script = ExtResource("1_bu72f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="SDFGenerator" type="ColorRect" parent="CanvasLayer"]
-visible = false
-material = SubResource("ShaderMaterial_72qyp")
+[node name="Shadows" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_xolsr")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -58,8 +58,9 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("10_cp6cl")
 
-[node name="Shadows" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_xolsr")
+[node name="SDFGenerator" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_72qyp")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

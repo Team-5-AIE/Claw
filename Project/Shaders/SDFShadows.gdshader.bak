@@ -59,52 +59,42 @@ void fragment() {
 		}
 		
 		vec2 lightVector = pointLightCoords - pixelCoords;
-		vec2 lightDir = normalize(lightVector);
 		float lightDist = length(lightVector);
 		
-		int samples = 256;
-		vec2 sdfSamplePos = FRAGCOORD.xy;
-		float accumulator = 0.0;
-		float result = 0.0;
-		for (int j = 0; j < samples; j++)
+		if (lightDist < pointLights[i].z)
 		{
-			float dist = texture_sdf(sdfSamplePos);
-			accumulator += dist;
-			
-			if (dist <= 0.0)
+			vec2 lightDir = normalize(lightVector);
+			vec2 sdfSamplePos = sdfPos;
+			float accumulator = 0.0;
+			float dist = 100.0;
+			while(dist > 0.01)
 			{
-				result = 0.0;
-				break;
+				dist = texture_sdf(sdfSamplePos);
+				accumulator += dist;
+				
+				if (dist < 0.01) { break; }
+				
+				sdfSamplePos += dist * lightDir;
 			}
 			
-			if (accumulator > lightDist)
+			float lightIntensity = 1.0;
+			if (texture_sdf(sdfPos) >= 0.0)
 			{
-				result = 1.0;
-				break;
+				lightIntensity = min(1.0, accumulator/directionalLightMaxDist);
 			}
 			
-			sdfSamplePos += dist * lightDir;
-		}
-		
-		if (lightDist <= pointLights[i].z)
-		{
-			finalDirLightIntensity = result;
+			finalDirLightIntensity = lightIntensity;
 		}
 	}
 	
 	finalPixelAlpha -= finalDirLightIntensity;
 	
 	// TODO: Remove later, for testing
-	if (texture_sdf(FRAGCOORD.xy) < 0.0)
+	if (texture_sdf(sdfPos) < 0.0)
 	{
 		finalPixelAlpha = 0.0;
 	}
 	
-	//if (!isLightPixel) { COLOR = vec4(ambientColour.xyz, finalPixelAlpha); }
-	//else { COLOR = vec4(1, 0, 1, 1); }
-	
-	float sdfSample = texture_sdf(FRAGCOORD.xy) / 100.0;
-	COLOR += vec4(sdfSample, sdfSample, sdfSample, 1.0);
-	
-	//COLOR = vec4(FRAGCOORD.xy * 0.001, 0, 1);
+	if (!isLightPixel) { COLOR = vec4(ambientColour.xyz, finalPixelAlpha); }
+	else { COLOR = vec4(1, 0, 1, 1); }
 }
