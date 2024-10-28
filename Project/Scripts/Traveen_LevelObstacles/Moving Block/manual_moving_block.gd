@@ -25,15 +25,15 @@ func _setup_moving_block() -> void:
 	change_block_activity(linked_activator.is_active)
 
 # Functions connecting the flag signals to the block
-func _on_flag_activated(flagID: int) -> void:
+func _on_flag_activated(_flagID: int) -> void:
 	change_block_activity(true)
-func _on_flag_deactivated(flagID: int) -> void:
+func _on_flag_deactivated(_flagID: int) -> void:
 	change_block_activity(false)
 
 # Functions to detect if animation has ended
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	_manage_animation(anim_name)
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	if animation_player.is_playing():
 		if animation_player.current_animation_position == 0:
 			if not active and animation_player.current_animation == animation_name:

@@ -38,7 +38,7 @@ func _on_spear_detector_body_entered(body: Node2D) -> void:
 		spear = body
 
 # Call use_switch when spear starts retracting
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if spear != null and spear.retracted:
 		spear = null
 		Callable(self, "use_switch").call()
