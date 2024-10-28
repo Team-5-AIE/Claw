@@ -65,7 +65,7 @@ func ProcessVelocity(delta:float) -> void:
 	var spearToPlayer = player.spear_marker.global_position - spearInstance.global_position
 	var ropeDirection : Vector2 = spearToPlayer
 	
-	if Input.is_action_just_pressed("SpearPull"):
+	if Input.is_action_just_pressed("SpearPull") && !player.is_on_floor():
 		audio_stream_player.stream = PULLJUMP
 		audio_stream_player.play()
 		spearInstance.pullReleased = true
