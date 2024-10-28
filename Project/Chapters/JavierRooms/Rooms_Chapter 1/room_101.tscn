@@ -65,7 +65,7 @@ shape = SubResource("SegmentShape2D_xaixi")
 position = Vector2(-48, 64)
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("4_7768i")]
-position = Vector2(-256, 136)
+position = Vector2(-256, 152)
 
 [node name="SpearPickup" parent="." instance=ExtResource("6_yhg1j")]
 position = Vector2(224, 48)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://h388iklc6jek"]
+[gd_scene load_steps=8 format=4 uid="uid://h388iklc6jek"]
 
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="1_o2aak"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="2_7ve5v"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="3_m1yft"]
 [ext_resource type="PackedScene" uid="uid://x0uvq1ihbtug" path="res://Objects/spring.tscn" id="4_pk168"]
+[ext_resource type="PackedScene" uid="uid://btr04pfqnhcvi" path="res://Objects/player_spawn.tscn" id="5_tha0t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -61,6 +62,9 @@ position = Vector2(-49, 32)
 
 [node name="Spring" parent="." instance=ExtResource("4_pk168")]
 position = Vector2(96, 128)
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("5_tha0t")]
+position = Vector2(-256, 144)
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]

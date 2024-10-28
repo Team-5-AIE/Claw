@@ -19,8 +19,9 @@ resource_local_to_scene = true
 a = Vector2(0, 64)
 b = Vector2(0, -64)
 
-[node name="Room103" type="Node2D"]
+[node name="Room103" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("2_6200j")
+standaloneSpawner = NodePath("RoomArea/RoomBounds")
 
 [node name="TileMap" type="Node2D" parent="."]
 
