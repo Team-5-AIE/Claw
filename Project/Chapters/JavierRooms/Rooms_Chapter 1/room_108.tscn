@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://d5nqkf1511f4"]
+[gd_scene load_steps=9 format=4 uid="uid://d5nqkf1511f4"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_5yy5c"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="1_vq0hj"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="2_wxdxn"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="3_ybwl2"]
+[ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="4_3k50x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -56,6 +57,9 @@ tile_set = ExtResource("1_vq0hj")
 [node name="RoomBounds" parent="RoomArea" index="0"]
 position = Vector2(-8, -8)
 shape = SubResource("RectangleShape2D_l72mg")
+
+[node name="Bloomie" parent="RoomArea" instance=ExtResource("4_3k50x")]
+position = Vector2(88, -96)
 
 [node name="RoomTransition" parent="." instance=ExtResource("3_ybwl2")]
 position = Vector2(-368, -32)

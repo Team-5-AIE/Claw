@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://cle5ludmvx2q6"]
+[gd_scene load_steps=9 format=4 uid="uid://cle5ludmvx2q6"]
 
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="1_2gu0b"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="2_877k4"]
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="2_t4bga"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="3_5lmqr"]
+[ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="5_y044c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -80,6 +81,9 @@ shape = SubResource("SegmentShape2D_kaeuv")
 [node name="PlayerSpawn" parent="RoomTransition2" index="1"]
 position = Vector2(-48, 48)
 flipSpawnDir = true
+
+[node name="Bloomie" parent="." instance=ExtResource("5_y044c")]
+position = Vector2(0, -16)
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
