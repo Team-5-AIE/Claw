@@ -100,11 +100,11 @@ void fragment() {
 		finalPixelAlpha = 0.0;
 	}
 	
-	//if (!isLightPixel) { COLOR = vec4(ambientColour.xyz, finalPixelAlpha); }
-	//else { COLOR = vec4(1, 0, 1, 1); }
+	if (!isLightPixel) { COLOR = vec4(ambientColour.xyz, finalPixelAlpha); }
+	else { COLOR = vec4(1, 0, 1, 1); }
 	
 	float sdfSample = texture_sdf(FRAGCOORD.xy) / 100.0;
-	COLOR += vec4(sdfSample, sdfSample, sdfSample, 1.0);
+	COLOR += vec4(sdfSample, sdfSample, sdfSample, 0.5);
 	
 	//COLOR = vec4(FRAGCOORD.xy * 0.001, 0, 1);
 }
