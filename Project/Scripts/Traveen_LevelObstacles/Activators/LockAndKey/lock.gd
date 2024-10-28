@@ -13,6 +13,8 @@ var keys : Array = []
 func _ready() -> void:
 	var has_keys : bool = false
 	
+	is_active = get_flag_state()
+	
 	# Add keys to the lock's list
 	if not is_active:
 		var keyCount : int = 0

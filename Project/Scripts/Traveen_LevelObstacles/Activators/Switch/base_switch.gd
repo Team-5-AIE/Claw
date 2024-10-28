@@ -28,7 +28,7 @@ func _init() -> void:
 	assert(self.has_method("use_switch"), "Method use_switch not found in Switch: " + str(self))
 
 func _ready() -> void:
-	switchState = false
+	switchState = get_flag_state()
 
 # Connect spear to this script when it enters
 func _on_spear_detector_body_entered(body: Node2D) -> void:

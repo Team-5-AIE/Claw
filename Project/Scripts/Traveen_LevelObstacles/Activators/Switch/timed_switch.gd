@@ -1,6 +1,6 @@
 extends Switch
 
-@export var switch_time_length: float = 10
+@export var timer_duration: float = 10
 
 @onready var switch_timer: Timer = $SwitchTimer
 
@@ -8,7 +8,7 @@ extends Switch
 func use_switch() -> void:
 	if switchState == false:
 		switchState = true
-	switch_timer.start(switch_time_length)
+	switch_timer.start(timer_duration)
 
 # When Timer finishes, turn off switch
 func _on_switch_timer_timeout() -> void:
