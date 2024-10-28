@@ -11,9 +11,8 @@ var keys : Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	var has_keys : bool = false
-	
-	is_active = get_flag_state()
 	
 	# Add keys to the lock's list
 	if not is_active:

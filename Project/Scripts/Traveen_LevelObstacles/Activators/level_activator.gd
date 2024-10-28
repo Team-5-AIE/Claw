@@ -7,9 +7,8 @@ signal deactivated(flagID)
 var _flag_ID: int
 var is_active : bool :
 	get:
-		return is_active
+		return LevelFlags.chapterFlags[_flag_ID]
 	set(value):
-		is_active = value
 		LevelFlags.chapterFlags[_flag_ID] = value
 		match(value):
 			true:
@@ -17,9 +16,9 @@ var is_active : bool :
 			false:
 				deactivated.emit(_flag_ID)
 
-# Assert that the LevelFlags dict has this flag ID, then ask for the flag's state
-func get_flag_state() -> bool:
+# Assert that the LevelFlags dict has this flag ID, 
+# then send a startup signal based on if is_active is true or false
+func _ready() -> void:
 	assert(0 <= _flag_ID && _flag_ID < LevelFlags.chapterFlags.size(), 
 	str(self) + "is out of bounds of chapterFlags array.")
 	
-	return LevelFlags.chapterFlags[_flag_ID]

@@ -11,7 +11,8 @@ var switchState : bool :
 	get:
 		return is_active
 	set(value):
-		is_active = value
+		if is_active != value:
+			is_active = value
 		if on_sprite != null and off_sprite != null:
 			on_sprite.visible = value
 			off_sprite.visible = !value
@@ -28,7 +29,8 @@ func _init() -> void:
 	assert(self.has_method("use_switch"), "Method use_switch not found in Switch: " + str(self))
 
 func _ready() -> void:
-	switchState = get_flag_state()
+	super()
+	switchState = is_active
 
 # Connect spear to this script when it enters
 func _on_spear_detector_body_entered(body: Node2D) -> void:
