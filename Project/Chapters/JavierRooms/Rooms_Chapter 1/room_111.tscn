@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://d3jyamhnfwt60"]
+[gd_scene load_steps=8 format=4 uid="uid://d3jyamhnfwt60"]
 
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="1_3te64"]
+[ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_aw772"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="2_wqbvr"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="3_8uc60"]
 
@@ -19,6 +20,7 @@ a = Vector2(0, 80)
 b = Vector2(0, -80)
 
 [node name="Room111" type="Node2D"]
+script = ExtResource("1_aw772")
 
 [node name="TileMap" type="Node2D" parent="."]
 
