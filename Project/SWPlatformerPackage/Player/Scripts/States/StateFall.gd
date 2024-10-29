@@ -38,7 +38,7 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 		return
 	
 	# Change to Wall Slide state
-	if player.finite_state_machine.can_we_wall_slide():
+	if player.finite_state_machine.can_we_wall_slide() && player.state_spear.spearInstance == null:
 		player.finite_state_machine.ChangeState(player.state_wall_slide)
 		return
 

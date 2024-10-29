@@ -39,6 +39,7 @@ tile_set = ExtResource("1_mphr7")
 
 [node name="Visual" type="TileMapLayer" parent="TileMap/VisualLayers"]
 use_parent_material = true
+tile_map_data = PackedByteArray("AADt/wsAAQAQABcAAADu/wsAAQARABcAAADv/wsAAQARABcAAADw/wsAAQARABgAAADx/wsAAQARABgAAADy/wsAAQARABkAAAASAOj/AQASABcAAAAJAOj/AQAQABcAAAAKAOj/AQARABcAAAALAOj/AQARABcAAAAMAOj/AQARABcAAAANAOj/AQARABcAAAAOAOj/AQARABcAAAAPAOj/AQARABcAAAAQAOj/AQARABcAAAARAOj/AQARABcAAAA=")
 tile_set = ExtResource("1_mphr7")
 
 [node name="BG" type="TileMapLayer" parent="TileMap/VisualLayers"]
