@@ -16,7 +16,7 @@ var initialGlobalPosition
 
 @onready var lockParent = get_parent()
 @onready var keyImpression = $Hole
-@onready var light = $PointLight2D
+@onready var light = $Sprite2D/PointLight2D
 @onready var destroy_timer = $DestroyTimer
 @onready var collection_timer = $CollectionTimer
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
