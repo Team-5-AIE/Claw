@@ -18,18 +18,18 @@ script = ExtResource("1_qg4oo")
 modulate = Color(0.912, 0.9392, 0.96, 1)
 position = Vector2(0, 1)
 texture = ExtResource("2_6i0df")
-hframes = 24
-vframes = 28
-frame = 571
+hframes = 35
+vframes = 31
+frame = 893
 
 [node name="OffSprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(0.5, 0.5, 0.5, 1)
 position = Vector2(0, 1)
 texture = ExtResource("2_6i0df")
-hframes = 24
-vframes = 28
-frame = 571
+hframes = 35
+vframes = 31
+frame = 893
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_erbcc")

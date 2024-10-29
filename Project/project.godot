@@ -25,6 +25,7 @@ boot_splash/assembly_name="MoverInThePlane_Prototype_demo"
 Global="*res://Scripts/Global.gd"
 FadeTransitions="*res://Objects/fade_transitions.tscn"
 GlobalWorldEnvironment="*res://Objects/world_environment.tscn"
+LevelFlags="*res://Scripts/LevelFlags.gd"
 
 [debug]
 
