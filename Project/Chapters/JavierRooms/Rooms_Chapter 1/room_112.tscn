@@ -82,7 +82,7 @@ shape = SubResource("RectangleShape2D_ooyib")
 
 [node name="Bloomie" parent="." instance=ExtResource("6_g2ttb")]
 position = Vector2(-256, 0)
-bloomieID = 5
+bloomieID = 6
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
