@@ -27,6 +27,11 @@ func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	player.animation_player.play("WallSlide") #NOTE: Needed? or can just loop the animation?
 	player.velocity.x = move_toward(player.velocity.x, player.run_speed * player.input_axis.x, player.acceleration * delta)
 	
+	#Cancel slide if spear is out
+	if player.state_spear.spearInstance != null: 
+		if !player.state_spear.spearInstance.hooked:
+			player.finite_state_machine.ChangeState(player.state_fall)
+	
 	# Change to Land state
 	if player.is_on_floor():
 		player.finite_state_machine.ChangeState(player.state_land)

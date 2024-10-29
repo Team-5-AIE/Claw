@@ -191,6 +191,7 @@ func can_we_wall_climb() -> bool:
 	return false
 
 func can_we_wall_slide() -> bool:
+	if player.finite_state_machine.state == player.state_spear: return false
 	if wall_jump_input && get_next_to_wall() != Vector2.ZERO && player.wall_slide_enabled:
 		if can_grab_wall || player.wall_grab_stamina.time_left > 0.0:
 			return true
