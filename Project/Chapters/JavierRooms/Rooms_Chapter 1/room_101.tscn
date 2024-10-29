@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://btr04pfqnhcvi" path="res://Objects/player_spawn.tscn" id="4_7768i"]
 [ext_resource type="PackedScene" uid="uid://ddrlv8enrycsh" path="res://Objects/spear_pickup.tscn" id="6_yhg1j"]
 [ext_resource type="PackedScene" path="res://Objects/Traveen_LevelObstacles/Moving Block/manual_moving_block.tscn" id="7_lcdns"]
-[ext_resource type="PackedScene" path="res://Objects/Traveen_LevelObstacles/Activators/Switch/toggle_switch.tscn" id="8_vf713"]
+[ext_resource type="PackedScene" uid="uid://brrwtpvjpgey7" path="res://Objects/Traveen_LevelObstacles/Activators/Switch/toggle_switch.tscn" id="8_vf713"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -17,6 +17,21 @@ size = Vector2(640, 368)
 resource_local_to_scene = true
 a = Vector2(0, 80)
 b = Vector2(0, -80)
+
+[sub_resource type="Animation" id="Animation_1gin5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingBlockVisual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_uxvxo"]
 resource_name = "door_lifting"
@@ -32,21 +47,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -176)]
-}
-
-[sub_resource type="Animation" id="Animation_1gin5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MovingBlockVisual:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6mift"]
@@ -84,6 +84,7 @@ tile_set = ExtResource("1_1ogkn")
 [node name="BG" type="TileMapLayer" parent="TileMap/VisualLayers"]
 z_index = -2
 use_parent_material = true
+tile_map_data = PackedByteArray("AAAUAAsAAwADAAIAAAAUAAoAAwADAAIAAAAUAAkAAwADAAIAAAAUAAgAAwADAAIAAAAUAAcAAwADAAIAAAAUAAYAAwADAAIAAAAUAAUAAwADAAIAAAAUAAQAAwADAAIAAAAUAAMAAwADAAIAAAAUAAIAAwADAAIAAAAUAAEAAwADAAIAAAAUAAAAAwADAAIAAAAUAP//AwADAAIAAAAUAP7/AwADAAIAAAAUAP3/AwADAAIAAAAUAPz/AwADAAIAAAAUAPv/AwADAAIAAAAUAPr/AwADAAIAAAAUAPn/AwADAAIAAAAUAPj/AwADAAIAAAAUAPf/AwADAAIAAAAUAPb/AwADAAIAAAAUAPX/AwADAAIAAAAUAPT/AwADAAIAAAAUAPP/AwADAAIAAAATAAsAAwADAAIAAAATAAoAAwADAAIAAAATAAkAAwADAAIAAAATAAgAAwADAAIAAAATAAcAAwADAAIAAAATAAYAAwADAAIAAAATAAUAAwADAAIAAAATAAQAAwADAAIAAAATAAMAAwADAAIAAAATAAIAAwADAAIAAAATAAEAAwADAAIAAAATAAAAAwADAAIAAAATAP//AwADAAIAAAATAP7/AwADAAIAAAATAP3/AwADAAIAAAATAPz/AwADAAIAAAATAPv/AwADAAIAAAATAPr/AwADAAIAAAATAPn/AwADAAIAAAATAPj/AwADAAIAAAATAPf/AwADAAIAAAATAPb/AwADAAIAAAATAPX/AwADAAIAAAATAPT/AwADAAIAAAATAPP/AwADAAIAAAASAAsAAwADAAIAAAASAAoAAwADAAIAAAASAAkAAwADAAIAAAASAAgAAwADAAIAAAASAAcAAwADAAIAAAASAAYAAwADAAIAAAASAAUAAwADAAIAAAASAAQAAwADAAIAAAASAAMAAwADAAIAAAASAAIAAwADAAIAAAASAAEAAwADAAIAAAASAAAAAwADAAIAAAASAP//AwADAAIAAAASAP7/AwADAAIAAAASAP3/AwADAAIAAAASAPz/AwADAAIAAAASAPv/AwADAAIAAAASAPr/AwADAAIAAAASAPn/AwADAAIAAAASAPj/AwADAAIAAAASAPf/AwADAAIAAAASAPb/AwADAAIAAAASAPX/AwADAAIAAAASAPT/AwADAAIAAAASAPP/AwADAAIAAAARAPT/AwABAAIAAAARAPP/AwABAAIAAAARAPL/AwABAAEAAAASAPL/AwADAAEAAAATAPL/AwADAAEAAAARAPX/AwABAAIAAAARAPb/AwABAAIAAAARAPf/AwABAAIAAAARAPj/AwABAAIAAAARAPn/AwABAAIAAAARAPr/AwABAAIAAAARAPv/AwABAAIAAAARAPz/AwABAAIAAAARAP3/AwABAAIAAAARAP7/AwABAAIAAAARAP//AwABAAIAAAARAAAAAwABAAIAAAARAAEAAwABAAIAAAARAAIAAwABAAIAAAARAAMAAwABAAIAAAARAAQAAwABAAIAAAARAAUAAwABAAIAAAARAAYAAwABAAIAAAARAAcAAwABAAIAAAARAAgAAwABAAIAAAARAAkAAwABAAIAAAARAAoAAwABAAIAAAARAAsAAwABAAIAAAATAAwAAwACAAQAAAASAAwAAwACAAQAAAARAAwAAwABAAQAAAAUAPL/AwADAAEAAAAUAAwAAwACAAQAAAAVAPT/AwADAAIAAAAVAPL/AwADAAEAAAAVAPb/AwADAAIAAAAVAPj/AwADAAIAAAAVAPr/AwACAAIAAAAVAPz/AwACAAIAAAAVAP7/AwACAAIAAAAVAAAAAwACAAIAAAAVAAIAAwACAAIAAAAVAAQAAwACAAIAAAAVAAYAAwACAAIAAAAVAAgAAwACAAIAAAAVAAoAAwADAAIAAAAVAAwAAwACAAQAAAA=")
 tile_set = ExtResource("1_1ogkn")
 
 [node name="RoomArea" parent="." instance=ExtResource("2_4lrf1")]
