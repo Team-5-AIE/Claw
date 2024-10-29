@@ -8,5 +8,6 @@ func _on_pickup_area_body_entered(body: Node2D) -> void:
 		print("picked up spear")
 		player.spearCollected = true
 		player.sprite_sheet.texture = player.PLAYER_SHEET
-		dialogueManager.AddDialougeTextBox("Spear collected text here.")
+		dialogueManager.AddDialougeTextBox("Apologies to my elders...")
+		dialogueManager.AddDialougeTextBox("...for stealing this treasure.")
 		queue_free()
