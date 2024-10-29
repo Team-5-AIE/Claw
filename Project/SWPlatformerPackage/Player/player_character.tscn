@@ -883,7 +883,7 @@ target_position = Vector2(10, 0)
 collision_mask = 2
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(0, -14)
+position = Vector2(0, -19)
 
 [node name="BloomieMarker2D" type="Marker2D" parent="."]
 position = Vector2(0, -40)
