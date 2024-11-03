@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 			bloomieDisplay.visible = false
 			get_tree().change_scene_to_file(chapterEndScenePath)
 			await FadeTransitions.on_fade_out_finished
+			if LevelFlags.chapterFlags.size() > 0: LevelFlags.chapterFlags.resize(0)
 
 func _on_body_entered(body_: Node2D) -> void:
 	if ! Engine.is_editor_hint():

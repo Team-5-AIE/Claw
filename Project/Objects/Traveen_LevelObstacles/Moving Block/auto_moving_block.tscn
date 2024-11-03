@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=4 uid="uid://ch1dfrsgtti5h"]
+
+[ext_resource type="Script" path="res://Scripts/Traveen_LevelObstacles/Moving Block/moving_block.gd" id="1_il2kn"]
+[ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_6m4of"]
+
+[node name="MovingBlock" type="Marker2D"]
+script = ExtResource("1_il2kn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="MovingBlockVisual" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAAAAAQAIAAgAAAAAAP//AQAIAAIAAAD//wAAAQACAAgAAAD/////AQACAAIAAAD+/wAAAQABAAUAAAD+////AQABAAUAAAD+//7/AQABAAEAAAD///7/AQAFAAEAAAAAAP7/AQAFAAEAAAAAAAEAAQAFAAkAAAD//wEAAQAFAAkAAAD+/wEAAQABAAkAAAABAP//AQAJAAUAAAABAAAAAQAJAAUAAAABAP7/AQAJAAEAAAABAAEAAQAJAAkAAAA=")
+tile_set = ExtResource("2_6m4of")
+use_kinematic_bodies = true

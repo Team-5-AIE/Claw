@@ -1,8 +1,10 @@
 extends MarginContainer
 
-@export var chapterScreen : Control
+@export var chapterSelectScreen : Control
+@export var chapterOneScreen : Control
 @export var creditsScreen : Control
 
+@export_group("Chapter One Scores")
 @export var highscoreRank : RichTextLabel
 @export var highscoreNames : RichTextLabel
 @export var highscoreSeparator : RichTextLabel
@@ -34,13 +36,23 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if self.visible == true and event.is_pressed():
-		chapterScreen.visible = true
+		chapterSelectScreen.visible = true
 		self.visible = false
 
+# Chapter One Buttons
+func _on_chapter_one_button_pressed() -> void:
+	chapterOneScreen.visible = true
+	chapterSelectScreen.visible = false
+func _on_chapter_one_return_button_pressed() -> void:
+	chapterSelectScreen.visible = true
+	chapterOneScreen.visible = false
+
+# Chapter Two buttons WIP
+
+# Credits Buttons
 func _on_credits_button_pressed() -> void:
 	creditsScreen.visible = true
-	chapterScreen.visible = false
-
+	chapterSelectScreen.visible = false
 func _on_credits_return_button_pressed() -> void:
-	chapterScreen.visible = true
+	chapterSelectScreen.visible = true
 	creditsScreen.visible = false

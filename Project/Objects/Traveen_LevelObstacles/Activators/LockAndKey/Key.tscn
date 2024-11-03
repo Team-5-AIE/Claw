@@ -1,0 +1,146 @@
+[gd_scene load_steps=11 format=3 uid="uid://1jc8mx5akmnw"]
+
+[ext_resource type="Script" path="res://Scripts/Traveen_LevelObstacles/Activators/LockAndKey/key.gd" id="1_j4mvt"]
+[ext_resource type="AudioStream" uid="uid://ybnshgeeo1uv" path="res://Sounds/Effects/collectBloomie.wav" id="2_go3ja"]
+[ext_resource type="Texture2D" uid="uid://b7c8fd2j2ile8" path="res://Sprites/KEY.png" id="3_0if82"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqhvq"]
+radius = 12.0
+
+[sub_resource type="Gradient" id="Gradient_m3e0u"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bbuup"]
+gradient = SubResource("Gradient_m3e0u")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.854701, 0.153846)
+
+[sub_resource type="Animation" id="Animation_0mmie"]
+resource_name = "Fade"
+length = 0.400003
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.878431), Color(1, 1, 1, 0.752941), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0.25098), Color(1, 1, 1, 0.12549), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/PointLight2D:energy")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.2, 1.0, 0.8, 0.6, 0.4, 0.2, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_sax6l"]
+resource_name = "Float"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.533333, 0.666667, 0.8, 1.2, 1.33333, 1.46667, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 2), Vector2(0, 0.962961), Vector2(0, 0.199998), Vector2(0, -0.646915), Vector2(0, -2), Vector2(0, -1.26584), Vector2(0, -0.464817), Vector2(0, 0.532507), Vector2(0, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_mo47d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/PointLight2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4iw1s"]
+_data = {
+"Fade": SubResource("Animation_0mmie"),
+"Float": SubResource("Animation_sax6l"),
+"RESET": SubResource("Animation_mo47d")
+}
+
+[node name="Key" type="Node2D"]
+script = ExtResource("1_j4mvt")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wqhvq")
+
+[node name="CollectionTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_go3ja")
+
+[node name="Hole" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("3_0if82")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_0if82")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(0, -2)
+color = Color(0.76, 0.749107, 0.1064, 1)
+energy = 1.2
+texture = SubResource("GradientTexture2D_bbuup")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4iw1s")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="CollectionTimer" to="." method="_on_collection_timer_timeout"]

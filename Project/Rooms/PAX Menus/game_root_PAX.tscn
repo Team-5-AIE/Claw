@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvv533hjdlncr"]
+[gd_scene load_steps=11 format=3 uid="uid://bvv533hjdlncr"]
 
 [ext_resource type="PackedScene" uid="uid://dnei0kqq507xw" path="res://Rooms/PAX Menus/main_menu_PAX.tscn" id="1_7374e"]
 [ext_resource type="Script" path="res://Scripts/RoomContainer.gd" id="1_bu72f"]
+[ext_resource type="PackedScene" uid="uid://7heicgmosfh4" path="res://Objects/parallaxing.tscn" id="3_ro3q2"]
 [ext_resource type="PackedScene" uid="uid://clhj20ryjsiow" path="res://Objects/dialogue_manager.tscn" id="3_y85if"]
 [ext_resource type="PackedScene" uid="uid://nelr0rw0cn6o" path="res://Rooms/pause_menu.tscn" id="4_fov84"]
 [ext_resource type="PackedScene" uid="uid://b1x7tuyiokmqg" path="res://Effects/cherry_blossom_petal.tscn" id="4_lkmvv"]
@@ -13,7 +14,7 @@
 [node name="GameRoot2" type="Node"]
 
 [node name="MainMenu" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu", "timeTracker", "dialogueManager", "bgmPlayer") instance=ExtResource("1_7374e")]
-startChapterScenePath = "res://Chapters/SarahPAXRooms/sarah_room_01.tscn"
+startChapterScenePath = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_101.tscn"
 roomContainer = NodePath("../RoomContainer")
 pauseMenu = NodePath("../CanvasLayer/PauseMenu")
 timeTracker = NodePath("../CanvasLayer/TimeTracker")
@@ -22,6 +23,9 @@ bgmPlayer = NodePath("../BGMPlayer")
 
 [node name="RoomContainer" type="Node2D" parent="."]
 script = ExtResource("1_bu72f")
+
+[node name="Parallaxing" parent="." instance=ExtResource("3_ro3q2")]
+z_index = -100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

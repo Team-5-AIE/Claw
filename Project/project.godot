@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Spearloom"
-run/main_scene="res://Rooms/PAX Menus/game_root_PAX.tscn"
+run/main_scene="res://Rooms/splash_screen_frames.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=144
 boot_splash/bg_color=Color(0.0352941, 0.0392157, 0.0784314, 1)
@@ -25,6 +25,7 @@ boot_splash/assembly_name="MoverInThePlane_Prototype_demo"
 Global="*res://Scripts/Global.gd"
 FadeTransitions="*res://Objects/fade_transitions.tscn"
 GlobalWorldEnvironment="*res://Objects/world_environment.tscn"
+LevelFlags="*res://Scripts/LevelFlags.gd"
 
 [debug]
 
@@ -39,6 +40,7 @@ window/size/borderless=true
 window/size/window_width_override=1920
 window/size/window_height_override=1980
 window/stretch/scale=3.0
+window/stretch/scale_mode="integer"
 window/screen_space_roughness_limiter/enabled=true
 
 [dotnet]
