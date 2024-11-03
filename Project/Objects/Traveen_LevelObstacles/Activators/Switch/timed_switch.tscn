@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cph35kvguyngs"]
 
 [ext_resource type="Script" path="res://Scripts/Traveen_LevelObstacles/Activators/Switch/timed_switch.gd" id="1_hg45h"]
-[ext_resource type="Texture2D" uid="uid://sbyk5q33xplj" path="res://Sprites/Tilesets/Castle Tileset Export.png" id="2_ue3wh"]
+[ext_resource type="Texture2D" uid="uid://rhn7q2dogg1l" path="res://Sprites/Target.png" id="2_0txr4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erbcc"]
 size = Vector2(16, 16)
@@ -17,19 +17,13 @@ script = ExtResource("1_hg45h")
 [node name="OnSprite" type="Sprite2D" parent="."]
 modulate = Color(0.912, 0.9392, 0.96, 1)
 position = Vector2(0, 1)
-texture = ExtResource("2_ue3wh")
-hframes = 35
-vframes = 31
-frame = 893
+texture = ExtResource("2_0txr4")
 
 [node name="OffSprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(0.5, 0.5, 0.5, 1)
 position = Vector2(0, 1)
-texture = ExtResource("2_ue3wh")
-hframes = 35
-vframes = 31
-frame = 893
+texture = ExtResource("2_0txr4")
 
 [node name="SwitchTimer" type="Timer" parent="."]
 one_shot = true

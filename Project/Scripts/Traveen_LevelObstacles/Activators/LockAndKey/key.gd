@@ -16,8 +16,7 @@ var initialGlobalPosition
 
 @onready var lockParent = get_parent()
 @onready var keyImpression = $Hole
-@onready var light = $PointLight2D
-@onready var destroy_timer = $DestroyTimer
+@onready var light = $Sprite2D/PointLight2D
 @onready var collection_timer = $CollectionTimer
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -96,10 +95,10 @@ func _collect_key() -> void:
 	# Move hole to door parent
 	keyImpression.visible = true
 	keyImpression.reparent(lockParent)
-	keyImpression.global_position = initialGlobalPosition
+	keyImpression.call_deferred("set_global_position", initialGlobalPosition)
 	
 	reparent(player)
-	global_position = initialGlobalPosition
+	call_deferred("set_global_position", initialGlobalPosition)
 	
 	player.restartPlayer.connect(_on_restart_player)
 	key_collected.emit(keyID)

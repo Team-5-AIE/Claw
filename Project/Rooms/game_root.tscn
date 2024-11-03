@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cfhaw62nhome8"]
 
-[ext_resource type="PackedScene" uid="uid://delmfpnepulua" path="res://Rooms/main_menu.tscn" id="1_6v35d"]
+[ext_resource type="PackedScene" uid="uid://k0mypqaor7au" path="res://Rooms/main_menu.tscn" id="1_6v35d"]
 [ext_resource type="Script" path="res://Scripts/RoomContainer.gd" id="5_tv4gk"]
 [ext_resource type="PackedScene" uid="uid://7heicgmosfh4" path="res://Objects/parallaxing.tscn" id="6_drdw7"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="7_dp77o"]
@@ -13,10 +13,10 @@
 
 [node name="GameRoot" type="Node"]
 
-[node name="MainMenu" parent="." instance=ExtResource("1_6v35d")]
-
 [node name="RoomContainer" type="Node2D" parent="."]
 script = ExtResource("5_tv4gk")
+
+[node name="MainMenu" parent="RoomContainer" instance=ExtResource("1_6v35d")]
 
 [node name="Parallaxing" parent="RoomContainer" instance=ExtResource("6_drdw7")]
 

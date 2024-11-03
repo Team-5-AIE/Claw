@@ -50,15 +50,14 @@ position = Vector2(5344, -1440)
 position = Vector2(5344, -2096)
 
 [node name="Room111" parent="LoadedRooms" instance=ExtResource("11_iqm8l")]
-position = Vector2(6032, -2048)
+position = Vector2(6352, -2048)
 
 [node name="Room112" parent="LoadedRooms" instance=ExtResource("12_klkod")]
-position = Vector2(6720, -2048)
+position = Vector2(7360, -2048)
 
 [node name="Player" parent="." instance=ExtResource("7_s4xcw")]
 unique_name_in_owner = true
 position = Vector2(-256, 144)
-spearCollected = false
 
 [node name="PlayerCamera" parent="Player" instance=ExtResource("8_eifur")]
 offset = Vector2(1, 0)

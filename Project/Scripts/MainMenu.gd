@@ -24,6 +24,8 @@ func _ready() -> void:
 func _on_start_button_pressed():
 	startButton.disabled = true
 	
+	LevelFlags.create_flag_array()
+	
 	FadeTransitions.Transition()
 	await FadeTransitions.on_fade_in_finished
 	

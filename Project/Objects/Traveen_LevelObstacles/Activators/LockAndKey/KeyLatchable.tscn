@@ -2,117 +2,78 @@
 
 [ext_resource type="Script" path="res://Scripts/Traveen_LevelObstacles/Activators/LockAndKey/key_latchable.gd" id="1_5m733"]
 [ext_resource type="AudioStream" uid="uid://ybnshgeeo1uv" path="res://Sounds/Effects/collectBloomie.wav" id="2_rhr2w"]
-[ext_resource type="Texture2D" uid="uid://dbver6tbuv0bv" path="res://Sprites/Bloomie.png" id="3_j8qe5"]
+[ext_resource type="Texture2D" uid="uid://b7c8fd2j2ile8" path="res://Sprites/KEY.png" id="4_bj2ax"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wqhvq"]
-radius = 8.0
+radius = 12.0
 
-[sub_resource type="Animation" id="Animation_xay71"]
+[sub_resource type="Gradient" id="Gradient_r7ps1"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bbuup"]
+gradient = SubResource("Gradient_r7ps1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.854701, 0.153846)
+
+[sub_resource type="Animation" id="Animation_fwb45"]
 resource_name = "Fade"
-length = 0.2
+length = 0.400003
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.878431), Color(1, 1, 1, 0.752941), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0.25098), Color(1, 1, 1, 0.0627451), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/path = NodePath("Sprite2D/PointLight2D:energy")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(2, 2), Vector2(1, 1), Vector2(1e-05, 1e-05)]
+"values": [1.2, 1.0, 0.8, 0.6, 0.4, 0.2, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_0h52r"]
+[sub_resource type="Animation" id="Animation_x1t63"]
 resource_name = "Float"
-length = 0.2
+length = 1.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.533333, 0.666667, 0.8, 1.2, 1.33333, 1.46667, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0, 2), Vector2(0, 1), Vector2(0, 0), Vector2(0, -1), Vector2(0, -2), Vector2(0, -1), Vector2(0, 0), Vector2(0, 1), Vector2(0, 2)]
 }
 
-[sub_resource type="Animation" id="Animation_fp4wk"]
+[sub_resource type="Animation" id="Animation_gpsec"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -129,46 +90,25 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/path = NodePath("Sprite2D/PointLight2D:energy")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
+"values": [1.2]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ndyty"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dtdf8"]
 _data = {
-"Fade": SubResource("Animation_xay71"),
-"Float": SubResource("Animation_0h52r"),
-"RESET": SubResource("Animation_fp4wk")
+"Fade": SubResource("Animation_fwb45"),
+"Float": SubResource("Animation_x1t63"),
+"RESET": SubResource("Animation_gpsec")
 }
-
-[sub_resource type="Gradient" id="Gradient_r7ps1"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bbuup"]
-gradient = SubResource("Gradient_r7ps1")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.854701, 0.153846)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ck6se"]
-radius = 5.0
+radius = 8.0
 
 [node name="LatchKey" type="Node2D"]
 modulate = Color(0.5, 0.24425, 0.035, 1)
@@ -185,32 +125,27 @@ shape = SubResource("CircleShape2D_wqhvq")
 wait_time = 0.1
 one_shot = true
 
-[node name="DestroyTimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_rhr2w")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ndyty")
-}
-speed_scale = 0.3
 
 [node name="Hole" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(0, 0, 0, 1)
-texture = ExtResource("3_j8qe5")
-hframes = 5
+texture = ExtResource("4_bj2ax")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_j8qe5")
-hframes = 5
+texture = ExtResource("4_bj2ax")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(0, -2)
 color = Color(0.6, 0.0708, 0.012, 1)
+energy = 1.2
 texture = SubResource("GradientTexture2D_bbuup")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dtdf8")
+}
 
 [node name="GrapplePoint" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -221,4 +156,3 @@ shape = SubResource("CircleShape2D_ck6se")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="CollectionTimer" to="." method="_on_collection_timer_timeout"]
-[connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]
