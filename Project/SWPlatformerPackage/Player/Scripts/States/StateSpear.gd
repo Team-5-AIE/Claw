@@ -101,11 +101,6 @@ func ProcessVelocity(delta:float) -> void:
 		if inputAmount > 0:
 			inputAmount -= swingSpeedDecreaseModifier
 	player.velocity += circularArcDirection * player.input_axis.x * inputAmount
-	if ropeDirection.x > 0 && player.velocity.x < 0:
-		player.sprite_sheet.flip_h = true
-		print("true")
-	elif ropeDirection.x < 0 && player.velocity.x > 0:
-		player.sprite_sheet.flip_h = false
 #=================================================================================
 func AddAngularVelocity(force:float)-> void:
 	angularVel += force
