@@ -67,7 +67,7 @@ func _on_area_2d_body_entered(body) -> void:
 	if not follow:
 		_check_for_collection(body)
 
-func on_lock_activated(switchID: int) -> void:
+func on_lock_activated(_switchID: int) -> void:
 	collection_timer.start(collection_timer.wait_time * (float(keyID)+1))
 
 
