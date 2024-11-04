@@ -7,6 +7,8 @@ extends LevelActivator
 	set(value):
 		_flag_ID = value
 
+@export var alwaysStartOff : bool = false
+
 var switchState : bool :
 	get:
 		return is_active
@@ -27,7 +29,13 @@ func _init() -> void:
 
 func _ready() -> void:
 	super()
-	switchState = is_active
+	
+	# Match switch state to flag. If alwaysStartOff is enabled, force it to be off instead
+	match (alwaysStartOff):
+		true:
+			switchState = false
+		false:
+			switchState = is_active
 	
 	# Depending on what state the switch starts in, use either the on or off sprite
 	match (switchState):
