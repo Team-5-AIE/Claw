@@ -38,16 +38,20 @@ func _physics_process(_delta):
 	if Retract(): return
 	#===Pull
 	if Input.is_action_just_pressed("SpearPull") && player.is_on_floor():
-		player.state_spear.audio_stream_player.stream = player.state_spear.PULLJUMP
-		player.state_spear.audio_stream_player.play()
-		player.state_spear.spearInstance.pullReleased = true
-		#if spearInstance.ropeLength > 16:
-		#	spearInstance.ropeLength -= delta * 150
-		player.velocity *= (1.0 - player.state_spear.pullJumpStopFraction)
-		
-		var spearToPlayer = player.spear_marker.global_position - player.state_spear.spearInstance.global_position
-		player.velocity += -spearToPlayer.normalized() * player.state_spear.pullJumpStrength
-		return
+		if player.state_spear.spearInstance != null:
+			print("pull")
+			player.state_spear.audio_stream_player.stream = player.state_spear.PULLJUMP
+			player.state_spear.audio_stream_player.play()
+			player.state_spear.spearInstance.pullReleased = true
+			#if spearInstance.ropeLength > 16:
+			#	spearInstance.ropeLength -= delta * 150
+			player.velocity *= (1.0 - player.state_spear.pullJumpStopFraction)
+			
+			var spearToPlayer = player.spear_marker.global_position - player.state_spear.spearInstance.global_position
+			player.velocity += -spearToPlayer.normalized() * player.state_spear.pullJumpStrength
+			return
+		else:
+			print("spear instance does not exists - tried to pull")
 	
 	
 	#===

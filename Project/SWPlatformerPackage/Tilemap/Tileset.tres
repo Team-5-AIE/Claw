@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=19 format=3 uid="uid://k06gckh0bst4"]
+[gd_resource type="TileSet" load_steps=36 format=3 uid="uid://k06gckh0bst4"]
 
 [ext_resource type="Texture2D" uid="uid://bhjv0y3qf7mkr" path="res://SWPlatformerPackage/Tilemap/Tilemap.png" id="1_ishsc"]
 [ext_resource type="Texture2D" uid="uid://sbyk5q33xplj" path="res://Sprites/Tilesets/Castle Tileset Export.png" id="2_ttpan"]
@@ -13,8 +13,59 @@ tile_data = PackedInt32Array(0, 393217, 8, 1, 458753, 8)
 [sub_resource type="TileMapPattern" id="TileMapPattern_o2jf1"]
 tile_data = PackedInt32Array(0, 1048577, 23, 1, 1114113, 23, 2, 1114113, 23, 3, 1114113, 23, 4, 1179649, 23)
 
+[sub_resource type="TileMapPattern" id="TileMapPattern_k7thr"]
+tile_data = PackedInt32Array(0, 196609, 3, 65536, 196609, 6, 1, 196609, 20, 65537, 1179649, 27)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_7tvej"]
+tile_data = PackedInt32Array(0, 327681, 20, 65536, 1245185, 27, 1, 458753, 3, 65537, 458753, 4)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_tmt6l"]
+tile_data = PackedInt32Array(0, 196609, 6, 65536, 196609, 7, 1, 1179649, 28, 65537, 196609, 16)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_ggt03"]
+tile_data = PackedInt32Array(0, 1245185, 28, 65536, 327681, 16, 1, 458753, 4, 65537, 458753, 7)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_nanf2"]
+tile_data = PackedInt32Array(0, 196609, 15, 65536, 196609, 16)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_yeku6"]
+tile_data = PackedInt32Array(0, 327681, 15, 65536, 327681, 16)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_jrs2t"]
+tile_data = PackedInt32Array(0, 393217, 17, 1, 458753, 17)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_w02p4"]
+tile_data = PackedInt32Array(0, 393217, 19, 1, 458753, 19)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_dwhpk"]
+tile_data = PackedInt32Array(0, 327681, 20, 65536, 327681, 21)
+
 [sub_resource type="TileMapPattern" id="TileMapPattern_vn8br"]
 tile_data = PackedInt32Array(0, 131073, 4, 65536, 131073, 5)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_bcer6"]
+tile_data = PackedInt32Array(0, 196609, 20, 65536, 196609, 21)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_uw0g8"]
+tile_data = PackedInt32Array(0, 65537, 19, 1, 131073, 19)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_e3sps"]
+tile_data = PackedInt32Array(0, 65537, 17, 1, 131073, 17)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_15rwi"]
+tile_data = PackedInt32Array(0, 196609, 3, 65536, 393217, 17, 1, 262145, 3, 65537, 1376257, 27)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_8sig0"]
+tile_data = PackedInt32Array(0, 262145, 3, 65536, 1441793, 27, 1, 458753, 3, 65537, 131073, 17)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_w6crm"]
+tile_data = PackedInt32Array(0, 393217, 19, 65536, 196609, 7, 1, 1376257, 28, 65537, 393217, 7)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_a2j3s"]
+tile_data = PackedInt32Array(0, 1441793, 28, 65536, 393217, 7, 1, 131073, 19, 65537, 458753, 7)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_u74r4"]
+tile_data = PackedInt32Array(0, 65537, 5, 65536, 65537, 5, 131072, 65537, 17, 196608, 983041, 19, 1, 917505, 4, 65537, 720897, 3, 131073, 786433, 20, 196609, 1245185, 19, 2, 589825, 5, 65538, 589825, 5, 131074, 458753, 17, 196610, 1507329, 19)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_tn48p"]
 tile_data = PackedInt32Array(0, 131073, 6, 65536, 131073, 7)
@@ -2044,3 +2095,20 @@ pattern_7 = SubResource("TileMapPattern_6hjmm")
 pattern_8 = SubResource("TileMapPattern_etyo4")
 pattern_9 = SubResource("TileMapPattern_o42se")
 pattern_10 = SubResource("TileMapPattern_o2jf1")
+pattern_11 = SubResource("TileMapPattern_k7thr")
+pattern_12 = SubResource("TileMapPattern_7tvej")
+pattern_13 = SubResource("TileMapPattern_tmt6l")
+pattern_14 = SubResource("TileMapPattern_ggt03")
+pattern_15 = SubResource("TileMapPattern_nanf2")
+pattern_16 = SubResource("TileMapPattern_yeku6")
+pattern_17 = SubResource("TileMapPattern_jrs2t")
+pattern_18 = SubResource("TileMapPattern_w02p4")
+pattern_19 = SubResource("TileMapPattern_dwhpk")
+pattern_20 = SubResource("TileMapPattern_bcer6")
+pattern_21 = SubResource("TileMapPattern_uw0g8")
+pattern_22 = SubResource("TileMapPattern_e3sps")
+pattern_23 = SubResource("TileMapPattern_15rwi")
+pattern_24 = SubResource("TileMapPattern_8sig0")
+pattern_25 = SubResource("TileMapPattern_w6crm")
+pattern_26 = SubResource("TileMapPattern_a2j3s")
+pattern_27 = SubResource("TileMapPattern_u74r4")
