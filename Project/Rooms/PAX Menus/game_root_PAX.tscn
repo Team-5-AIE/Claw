@@ -34,6 +34,7 @@ visible = false
 
 [node name="CherryBlossomPetal" parent="CanvasLayer" instance=ExtResource("4_lkmvv")]
 process_mode = 3
+z_index = 5
 
 [node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("5_04kto")]
 offset_left = 523.0
