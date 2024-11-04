@@ -145,5 +145,6 @@ func _on_destroy_timeout() -> void:
 		extending = false
 		retracted = false
 		player.sprite_sheet.texture = player.PLAYER_SHEET
+		player.state_spear.spearInstance = null
 		queue_free()
 		return

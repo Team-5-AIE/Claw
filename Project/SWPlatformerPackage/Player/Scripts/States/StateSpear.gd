@@ -52,7 +52,6 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	ProcessVelocity(delta)
 
 func ExitState() -> void:
-	spearInstance = null
 	player.finite_state_machine.sprite_flip_lock = false
 	pivotPoint = Vector2.ZERO
 	#player.finite_state_machine.disable_gravity = false
