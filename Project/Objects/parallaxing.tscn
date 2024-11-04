@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://7heicgmosfh4"]
+[gd_scene load_steps=11 format=3 uid="uid://7heicgmosfh4"]
 
 [ext_resource type="Texture2D" uid="uid://cq5qagp7xu76m" path="res://Sprites/Backgrounds/City Background 1/Layer 00.png" id="1_wwkot"]
 [ext_resource type="Texture2D" uid="uid://b25bmjxha3q3r" path="res://Sprites/Backgrounds/City Background 1/Layer 01.png" id="2_ncx00"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://qeoxrwrrcew2" path="res://Sprites/Backgrounds/City Background 1/Layer 04.png" id="7_0d7tx"]
 [ext_resource type="Texture2D" uid="uid://diwgidynrdhbn" path="res://Sprites/Backgrounds/City Background 1/Layer 04-B.png" id="8_76ldy"]
 [ext_resource type="Texture2D" uid="uid://cfvkk7e5oyce4" path="res://Sprites/Backgrounds/City Background 1/Layer 05.png" id="9_kj1w7"]
+[ext_resource type="Texture2D" uid="uid://3mye4i1115s7" path="res://Sprites/Backgrounds/City Background 1/Layer 06.png" id="10_w0mh8"]
 
 [node name="Parallaxing" type="Node2D"]
 position = Vector2(0, 12)
@@ -101,3 +102,14 @@ repeat_times = 3
 [node name="Layer 05" type="Sprite2D" parent="City Front"]
 modulate = Color(0.8649, 0.887685, 0.93, 1)
 texture = ExtResource("9_kj1w7")
+
+[node name="Fadeout" type="Parallax2D" parent="."]
+z_index = -10
+scroll_scale = Vector2(0.75, 0.05)
+scroll_offset = Vector2(0, 170)
+repeat_size = Vector2(640, 360)
+repeat_times = 7
+
+[node name="Layer 06" type="Sprite2D" parent="Fadeout"]
+modulate = Color(0.8649, 0.887685, 0.93, 1)
+texture = ExtResource("10_w0mh8")
