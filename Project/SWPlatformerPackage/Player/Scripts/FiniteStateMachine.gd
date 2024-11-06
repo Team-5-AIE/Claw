@@ -52,6 +52,9 @@ func _physics_process(delta) -> void:
 	if FadeTransitions.lockPlayer: return
 	if spearThrown:
 		SpearPhysicsProcess()
+	
+	
+	
 	if state is State:
 		state.UpdatePhysics(delta) # Run the UpdatePhysics function in our current state
 	
@@ -61,6 +64,11 @@ func _physics_process(delta) -> void:
 		apply_friction(delta)
 		#if player.finite_state_machine.state != player.state_spear:
 		apply_air_resistance(delta)
+		
+	if player.state_spear.spearInstance != null:
+		if player.state_spear.spearInstance.hooked:
+			player.state_spear.ProcessVelocity(delta)
+			
 	# Coyote jump timing
 	var was_on_floor = player.is_on_floor()
 	player.move_and_slide() # This apllies movement to the player

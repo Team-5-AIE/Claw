@@ -29,6 +29,13 @@ const PULLJUMP = preload("res://Sounds/Effects/pullJump.wav")
 @export var swingSpeedDecreaseModifier = 0.2
 @export var swingSpeedIncreaseModifier = 0.5
 @export var swingSpeedCap = 10
+
+@export_group("Rope Climbing")
+@export var climbRopeSpeedUp : int = 50
+@export var climbRopeSpeedDown : int = 50
+@export var minLength : int = 20
+@export var enableClimbUp : bool = true
+@export var enableClimbDown : bool = true
 #=================================================================================
 func EnterState() -> void:
 	player.finite_state_machine.air_resistance_lock = true
@@ -49,7 +56,7 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 			1: audio_stream_player.stream = HOOK2
 		audio_stream_player.play()
 		hookSoundPlayed = true
-	ProcessVelocity(delta)
+	#ProcessVelocity(delta)
 
 func ExitState() -> void:
 	spearInstance = null
@@ -74,14 +81,29 @@ func ProcessVelocity(delta:float) -> void:
 		player.velocity *= (1.0 - pullJumpStopFraction)
 		player.velocity += -spearToPlayer.normalized() * pullJumpStrength
 		return
-		
 	
 	var currentRopeLength : float = ropeDirection.length()
 	ropeDirection /= currentRopeLength
 	
+	
+	#Climb Input
+	var ropeLengthChange : float = 0.0
+	var climbInput = Input.get_axis("Down","Up")
+	if climbInput > 0.0 && enableClimbUp:
+		if currentRopeLength >= minLength:
+			ropeLengthChange = -climbRopeSpeedDown * delta
+			#spearInstance.ropeLength -= climbRopeSpeedDown * delta
+	elif climbInput < 0.0 && enableClimbDown:
+		if currentRopeLength <= spearInstance.maxDistance:
+			ropeLengthChange = climbRopeSpeedUp * delta
+			#spearInstance.ropeLength += climbRopeSpeedUp * delta
+			
+	spearInstance.ropeLength += ropeLengthChange
+	
 	var circularArcDirection : Vector2 = Vector2(ropeDirection.y, -ropeDirection.x)
 	var trueRopeLength : float = spearInstance.ropeLength
-	if currentRopeLength > trueRopeLength:
+	
+	if currentRopeLength >= trueRopeLength:# || climbInput < 0.0 && enableClimbDown:
 		var overextendedAmount : float = currentRopeLength - trueRopeLength
 		var correctiveMovement : Vector2 = -overextendedAmount * ropeDirection
 		var cachedVel = player.velocity
@@ -91,7 +113,17 @@ func ProcessVelocity(delta:float) -> void:
 		player.velocity = cachedVel;
 		
 		#fix velocity
-		player.velocity = player.velocity.dot(circularArcDirection) * circularArcDirection
+		var velTowardsSpear : float = player.velocity.dot(-ropeDirection)
+		var desiredVelTowardsSpear : float = -ropeLengthChange / delta
+		var desiredVelChangeTowardsSpear : float = desiredVelTowardsSpear - velTowardsSpear
+		if (desiredVelChangeTowardsSpear > 0):
+			player.velocity += desiredVelChangeTowardsSpear * -ropeDirection
+			
+		#var desiredVel : Vector2 = player.velocity.dot(circularArcDirection) * circularArcDirection
+		#var desiredVelocityChange : Vector2 = desiredVel - player.velocity
+		#var tensionLevel = -desiredVelocityChange.dot(ropeDirection)
+		#if (tensionLevel > 0):
+			#player.velocity += desiredVelocityChange
 	
 	#Swing Input
 	if player.input_axis.x != 0:
@@ -103,9 +135,13 @@ func ProcessVelocity(delta:float) -> void:
 	player.velocity += circularArcDirection * player.input_axis.x * inputAmount
 	if ropeDirection.x > 0 && player.velocity.x < 0:
 		player.sprite_sheet.flip_h = true
-		print("true")
 	elif ropeDirection.x < 0 && player.velocity.x > 0:
 		player.sprite_sheet.flip_h = false
+	
+	
+	
+	
+
 #=================================================================================
 func AddAngularVelocity(force:float)-> void:
 	angularVel += force
