@@ -783,7 +783,7 @@ script = ExtResource("7_mqss4")
 [node name="StateSpear" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("8_h64g1")
 pullJumpStrength = 450.0
-pullJumpStopFraction = 0.25
+pullJumpStopFraction = -0.2
 
 [node name="StateCrouch" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("9_gut04")
