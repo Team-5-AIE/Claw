@@ -1,6 +1,8 @@
 shader_type canvas_item;
 render_mode unshaded;
 
+uniform vec2 camOffset;
+
 uniform vec4 ambientColour : source_color;
 
 uniform bool directionalLightEnabled;
@@ -8,7 +10,7 @@ uniform float directionalLightAngle : hint_range(0.0, 360.0);
 uniform float directionalLightMaxDist = 50;
 
 // xy = pos, z = intensity
-uniform vec3 pointLights[1];
+uniform vec3 pointLights[64];
 
 void fragment() {
 	vec2 sdfPos = screen_uv_to_sdf(SCREEN_UV);
@@ -47,12 +49,15 @@ void fragment() {
 	// TODO: Remove later, for testing
 	bool isLightPixel = false;
 	float finalPointLightIntensity = 0.0;
+	
+	vec2 pixelCoords = sdfPos;
 	for (int i = 0; i < pointLights.length(); i++)
 	{
-		vec2 pixelCoords = FRAGCOORD.xy;
-		vec2 pointLightCoords = pointLights[i].xy;
+		if (pointLights[i].z == -1.0) { break; }
 		
-		// TODO: Remove later, for testing
+		vec2 pointLightCoords = pointLights[i].xy - camOffset;
+		
+		// TODO: Remove later, for testing 
 		if (length(pointLightCoords - pixelCoords) < 5.0)
 		{
 			isLightPixel = true;
@@ -62,8 +67,8 @@ void fragment() {
 		vec2 lightDir = normalize(lightVector);
 		float lightDist = length(lightVector);
 		
-		int samples = 256;
-		vec2 sdfSamplePos = FRAGCOORD.xy;
+		int samples = 32;
+		vec2 sdfSamplePos = sdfPos;
 		float accumulator = 0.0;
 		float result = 0.0;
 		for (int j = 0; j < samples; j++)
@@ -79,7 +84,7 @@ void fragment() {
 			
 			if (accumulator > lightDist)
 			{
-				result = 1.0;
+				result = 1.0 - (lightDist / pointLights[i].z);
 				break;
 			}
 			
@@ -88,14 +93,13 @@ void fragment() {
 		
 		if (lightDist <= pointLights[i].z)
 		{
-			finalDirLightIntensity = result;
+			finalPointLightIntensity += result;
 		}
 	}
 	
-	finalPixelAlpha -= finalDirLightIntensity;
+	finalPixelAlpha -= finalPointLightIntensity;
 	
-	// TODO: Remove later, for testing
-	if (texture_sdf(FRAGCOORD.xy) < 0.0)
+	if (texture_sdf(sdfPos) < 0.0)
 	{
 		finalPixelAlpha = 0.0;
 	}
@@ -103,8 +107,9 @@ void fragment() {
 	if (!isLightPixel) { COLOR = vec4(ambientColour.xyz, finalPixelAlpha); }
 	else { COLOR = vec4(1, 0, 1, 1); }
 	
-	float sdfSample = texture_sdf(FRAGCOORD.xy) / 100.0;
-	COLOR += vec4(sdfSample, sdfSample, sdfSample, 0.5);
+	//float sdfSample = texture_sdf(sdfPos) / 100.0;
+	//COLOR += vec4(sdfSample, sdfSample, sdfSample, 0.5);
 	
-	//COLOR = vec4(FRAGCOORD.xy * 0.001, 0, 1);
+	//COLOR = vec4(FRAGCOORD.xyz * 0.001, 1);
+	//COLOR = vec4(VERTEX, 0.0, 1.0);
 }

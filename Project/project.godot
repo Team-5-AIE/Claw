@@ -68,6 +68,8 @@ RoomInitListeners=""
 RoomTransitionNodes=""
 PlayerSpawns=""
 RoomRepositionListeners=""
+Player=""
+PointLights=""
 
 [gui]
 

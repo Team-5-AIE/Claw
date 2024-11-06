@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=52 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
@@ -19,6 +19,7 @@
 [ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="17_l1jw6"]
 [ext_resource type="Texture2D" uid="uid://djb1vwql28tww" path="res://Sprites/Debug/crosshair.png" id="18_iltxp"]
 [ext_resource type="Texture2D" uid="uid://4oobdepu5fu8" path="res://Sprites/Debug/crosshair_point.png" id="19_s68wg"]
+[ext_resource type="Texture2D" uid="uid://j3m6edjnvwl8" path="res://24g1uhk1.bmp" id="20_y7igp"]
 
 [sub_resource type="Gradient" id="Gradient_62wi8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.14902, 0.329412, 1)
@@ -708,7 +709,7 @@ size = Vector2(19, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8i1d"]
 size = Vector2(25, 25)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 collision_mask = 10
 floor_constant_speed = true
@@ -996,6 +997,12 @@ priority = 10
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpringArea"]
 position = Vector2(1, -10)
 shape = SubResource("RectangleShape2D_k8i1d")
+
+[node name="Light" type="Sprite2D" parent="." groups=["PointLights"]]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(0, -20)
+scale = Vector2(0.0389404, 0.0389404)
+texture = ExtResource("20_y7igp")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]

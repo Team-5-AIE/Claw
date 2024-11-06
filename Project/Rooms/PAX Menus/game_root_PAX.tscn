@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bvv533hjdlncr"]
+[gd_scene load_steps=13 format=3 uid="uid://bvv533hjdlncr"]
 
 [ext_resource type="PackedScene" uid="uid://dnei0kqq507xw" path="res://Rooms/PAX Menus/main_menu_PAX.tscn" id="1_7374e"]
 [ext_resource type="Script" path="res://Scripts/RoomContainer.gd" id="1_bu72f"]
-[ext_resource type="Shader" path="res://Shaders/SDFGenerate.gdshader" id="3_visqf"]
 [ext_resource type="PackedScene" uid="uid://clhj20ryjsiow" path="res://Objects/dialogue_manager.tscn" id="3_y85if"]
 [ext_resource type="PackedScene" uid="uid://nelr0rw0cn6o" path="res://Rooms/pause_menu.tscn" id="4_fov84"]
 [ext_resource type="PackedScene" uid="uid://b1x7tuyiokmqg" path="res://Effects/cherry_blossom_petal.tscn" id="4_lkmvv"]
@@ -15,14 +14,12 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xolsr"]
 shader = ExtResource("9_n6n5d")
-shader_parameter/ambientColour = Color(0, 0, 0, 0.784314)
+shader_parameter/camOffset = null
+shader_parameter/ambientColour = Color(0, 0, 0, 0.470588)
 shader_parameter/directionalLightEnabled = false
 shader_parameter/directionalLightAngle = 225.0
 shader_parameter/directionalLightMaxDist = 50.0
-shader_parameter/pointLights = PackedVector3Array(640, 360, 200)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_72qyp"]
-shader = ExtResource("3_visqf")
+shader_parameter/pointLights = PackedVector3Array(0, 0, 200, 0, 0, 200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [node name="GameRoot2" type="Node"]
 
@@ -41,26 +38,6 @@ script = ExtResource("1_bu72f")
 
 [node name="Shadows" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_xolsr")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -180.0
-offset_right = 320.0
-offset_bottom = 180.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-script = ExtResource("10_cp6cl")
-
-[node name="SDFGenerator" type="ColorRect" parent="CanvasLayer"]
-visible = false
-material = SubResource("ShaderMaterial_72qyp")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

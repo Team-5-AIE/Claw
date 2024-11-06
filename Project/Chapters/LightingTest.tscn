@@ -1,12 +1,17 @@
-[gd_scene load_steps=13 format=4 uid="uid://bj0a6et3lytq"]
+[gd_scene load_steps=17 format=4 uid="uid://bj0a6et3lytq"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_es2nf"]
+[ext_resource type="Texture2D" uid="uid://cla5kuagc1ja4" path="res://Sprites/Backgrounds/City Background 1/Layer 01-B.png" id="2_btkj6"]
 [ext_resource type="Texture2D" uid="uid://boa7o8qn37267" path="res://icon.svg" id="2_g6tys"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_qjngn"]
+[ext_resource type="Texture2D" uid="uid://j3m6edjnvwl8" path="res://24g1uhk1.bmp" id="2_y72rg"]
+[ext_resource type="Texture2D" uid="uid://b25bmjxha3q3r" path="res://Sprites/Backgrounds/City Background 1/Layer 01.png" id="3_78k1g"]
 [ext_resource type="PackedScene" uid="uid://btr04pfqnhcvi" path="res://Objects/player_spawn.tscn" id="3_80v1u"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="4_47jk0"]
-[ext_resource type="Shader" path="res://Shaders/SDFShadows.gdshader" id="6_tlybq"]
-[ext_resource type="Script" path="res://Scripts/SDFShadows.gd" id="7_nj24g"]
+[ext_resource type="Texture2D" uid="uid://dkd8m06bigltc" path="res://Sprites/Backgrounds/City Background 1/Layer 02.png" id="4_vk3g6"]
+[ext_resource type="Texture2D" uid="uid://t3ad2u6aclla" path="res://Sprites/Backgrounds/City Background 1/Layer 02-B.png" id="5_n0d78"]
+[ext_resource type="Texture2D" uid="uid://c87ktxyfdc5mk" path="res://Sprites/Backgrounds/City Background 1/Layer 03.png" id="6_21u0k"]
+[ext_resource type="Texture2D" uid="uid://qeoxrwrrcew2" path="res://Sprites/Backgrounds/City Background 1/Layer 04.png" id="7_a3nvm"]
 
 [sub_resource type="Gradient" id="Gradient_4foyr"]
 offsets = PackedFloat32Array(1)
@@ -22,25 +27,51 @@ polygon = PackedVector2Array(-64, -53, -63, -53, -63, -56, -62, -56, -62, -58, -
 resource_local_to_scene = true
 size = Vector2(640, 360)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o6msn"]
-shader = ExtResource("6_tlybq")
-shader_parameter/ambientColour = Color(0, 0, 0, 0.784314)
-shader_parameter/directionalLightEnabled = false
-shader_parameter/directionalLightAngle = 225.0
-shader_parameter/directionalLightMaxDist = 50.0
-shader_parameter/pointLights = PackedVector3Array(640, 360, 200)
-
 [node name="Room101" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_es2nf")
 standaloneSpawner = NodePath("PlayerSpawn")
 
+[node name="BGImages" type="Node2D" parent="."]
+position = Vector2(8, 8)
+
+[node name="Layer01-b" type="Sprite2D" parent="BGImages"]
+position = Vector2(8, -40)
+texture = ExtResource("2_btkj6")
+
+[node name="Layer01" type="Sprite2D" parent="BGImages"]
+position = Vector2(8, -40)
+texture = ExtResource("3_78k1g")
+
+[node name="Layer02" type="Sprite2D" parent="BGImages"]
+position = Vector2(8, 60)
+texture = ExtResource("4_vk3g6")
+
+[node name="Layer02-b" type="Sprite2D" parent="BGImages"]
+position = Vector2(8, -300)
+texture = ExtResource("5_n0d78")
+
+[node name="Layer03" type="Sprite2D" parent="BGImages"]
+position = Vector2(8, -36)
+texture = ExtResource("6_21u0k")
+
+[node name="Layer04" type="Sprite2D" parent="BGImages"]
+position = Vector2(8, -27)
+texture = ExtResource("7_a3nvm")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 light_mask = 2
 position = Vector2(23, -10.5)
 scale = Vector2(12.3125, 6.85937)
 texture = SubResource("GradientTexture2D_imk4x")
 
+[node name="Light" type="Sprite2D" parent="." groups=["PointLights"]]
+position = Vector2(166.875, -68.875)
+scale = Vector2(0.0389404, 0.0389404)
+texture = ExtResource("2_y72rg")
+
 [node name="Icon" type="Sprite2D" parent="."]
+visible = false
 light_mask = 8
 position = Vector2(-139, 69)
 texture = ExtResource("2_g6tys")
@@ -90,24 +121,5 @@ roomBounds = NodePath("RoomBounds")
 [node name="RoomBounds" parent="RoomArea" index="0"]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_l72mg")
-
-[node name="Shadows" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_o6msn")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -180.0
-offset_right = 320.0
-offset_bottom = 180.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-script = ExtResource("7_nj24g")
 
 [editable path="RoomArea"]
