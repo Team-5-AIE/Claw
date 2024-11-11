@@ -26,6 +26,7 @@ Global="*res://Scripts/Global.gd"
 FadeTransitions="*res://Objects/fade_transitions.tscn"
 GlobalWorldEnvironment="*res://Objects/world_environment.tscn"
 LevelFlags="*res://Scripts/LevelFlags.gd"
+Settings="*res://Scripts/settings.gd"
 
 [debug]
 
@@ -35,11 +36,8 @@ settings/canvas_textures/default_texture_filter=3
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
-window/size/borderless=true
-window/size/window_width_override=1920
-window/size/window_height_override=1980
-window/stretch/scale=3.0
+window/size/resizable=false
+window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 window/screen_space_roughness_limiter/enabled=true
 
@@ -197,6 +195,7 @@ TogglePause={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
+environment/defaults/default_clear_color=Color(0.0352941, 0.0392157, 0.0784314, 1)
 
 [threading]
 
