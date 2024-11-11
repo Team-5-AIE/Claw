@@ -57,6 +57,8 @@ func _ready():
 	
 	chapterOneBloomiesThisSession.resize(chapterOneBloomieCount)
 	chapterOneBloomiesThisSession.fill(false)
+	
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 func _process(_delta):
 	pass
@@ -91,3 +93,5 @@ func AddTimeToList() -> void:
 	Global.highscores.append([playerName,timeString,time])
 	Global.BubbleSortScores()
 	Global.SaveScoresToFile()
+
+signal playerCreated

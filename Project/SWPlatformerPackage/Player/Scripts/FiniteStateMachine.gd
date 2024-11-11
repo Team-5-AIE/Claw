@@ -263,7 +263,11 @@ func SpearPhysicsProcess() -> void:
 	#Create Spear
 	player.state_spear.spearInstance = player.state_spear.SPEAR.instantiate()
 	# Get direction to shoot in
-	player.state_spear.shootDirection = (player.get_global_mouse_position() - player.spear_marker.global_position)
+	var aim_dir = Input.get_vector("Aim Left","Aim Right","Aim Up","Aim Down")
+	if aim_dir == Vector2.ZERO:
+		player.state_spear.shootDirection = (player.get_global_mouse_position() - player.spear_marker.global_position)
+	else:
+		player.state_spear.shootDirection = aim_dir
 	
 	if sign(player.state_spear.shootDirection.x) == 1:
 		player.sprite_sheet.flip_h = false
