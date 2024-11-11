@@ -1,7 +1,79 @@
-[gd_scene load_steps=5 format=3 uid="uid://brrwtpvjpgey7"]
+[gd_scene load_steps=10 format=3 uid="uid://brrwtpvjpgey7"]
 
 [ext_resource type="Script" path="res://Scripts/Traveen_LevelObstacles/Activators/Switch/toggle_switch.gd" id="1_moatw"]
 [ext_resource type="Texture2D" uid="uid://rhn7q2dogg1l" path="res://Sprites/Target.png" id="2_idnp7"]
+
+[sub_resource type="Animation" id="Animation_ovk26"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_cuig7"]
+resource_name = "SwitchOff"
+length = 0.600003
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_xnpj0"]
+resource_name = "SwitchOn"
+length = 0.600003
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_dvvih"]
+resource_name = "Spinning"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4s85e"]
+_data = {
+"RESET": SubResource("Animation_ovk26"),
+"Spinning": SubResource("Animation_dvvih"),
+"SwitchOff": SubResource("Animation_cuig7"),
+"SwitchOn": SubResource("Animation_xnpj0")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erbcc"]
 size = Vector2(16, 16)
@@ -14,18 +86,19 @@ collision_layer = 4
 collision_mask = 65
 script = ExtResource("1_moatw")
 
-[node name="OnSprite" type="Sprite2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4s85e")
+}
+
+[node name="VisualSprite" type="Sprite2D" parent="."]
 modulate = Color(0.912, 0.9392, 0.96, 1)
 position = Vector2(0, 1)
 texture = ExtResource("2_idnp7")
-
-[node name="OffSprite" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(0.5, 0.5, 0.5, 1)
-position = Vector2(0, 1)
-texture = ExtResource("2_idnp7")
+hframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_erbcc")
 
 [node name="SpearDetector" type="Area2D" parent="."]
