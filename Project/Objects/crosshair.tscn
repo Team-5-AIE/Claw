@@ -8,4 +8,4 @@ z_index = 20
 texture_filter = 1
 texture = ExtResource("1_h31c6")
 script = ExtResource("2_txt0d")
-joyPadSpeed = 8.0
+joyPadSpeed = 20.0
