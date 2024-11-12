@@ -93,5 +93,3 @@ func AddTimeToList() -> void:
 	Global.highscores.append([playerName,timeString,time])
 	Global.BubbleSortScores()
 	Global.SaveScoresToFile()
-
-signal playerCreated

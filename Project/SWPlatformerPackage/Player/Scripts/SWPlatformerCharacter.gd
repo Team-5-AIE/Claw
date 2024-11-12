@@ -196,7 +196,6 @@ func _ready() -> void:
 	legs_ground.visible = false
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
-	Global.playerCreated.emit()
 
 func animation_finished(_anim_name):
 	animation_end = true

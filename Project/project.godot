@@ -40,6 +40,8 @@ window/size/borderless=true
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="res://Sprites/Cursor.png"
+mouse_cursor/custom_image_hotspot=Vector2(20, 20)
 window/screen_space_roughness_limiter/enabled=true
 
 [dotnet]
