@@ -34,7 +34,37 @@ var is_fullscreen: bool :
 					pixel_size = floor(DisplayServer.screen_get_size(window.current_screen).x / VIEWPORT_SIZE.x) - 1
 				window.move_to_center()
 
+## The Master Volume. [b]Must be between 0 and 1.[/b]
+## Adjusting this will change the volume of the whole game.
+var master_volume: float :
+	get:
+		return db_to_linear(AudioServer.get_bus_volume_db(AudioManager.mixer_master))
+	set(value):
+		assert(value >= 0, "Master Volume must be between 0 and 1.")
+		assert(value <= 1, "Master Volume must be between 0 and 1.")
+		AudioServer.set_bus_volume_db(AudioManager.mixer_master, linear_to_db(value))
+
+## The Music Volume. [b]Must be between 0 and 1.[/b]
+## Adjusting this will change the volume of all music.
+var music_volume: float :
+	get:
+		return db_to_linear(AudioServer.get_bus_volume_db(AudioManager.mixer_music))
+	set(value):
+		assert(value >= 0, "Music Volume must be between 0 and 1.")
+		assert(value <= 1, "Music Volume must be between 0 and 1.")
+		AudioServer.set_bus_volume_db(AudioManager.mixer_music, linear_to_db(value))
+
+## The Sound FX Volume. [b]Must be between 0 and 1.[/b]
+## Adjusting this will change the volume of all sound FX.
+var sfx_volume: float :
+	get:
+		return db_to_linear(AudioServer.get_bus_volume_db(AudioManager.mixer_sfx))
+	set(value):
+		assert(value >= 0, "SFX Volume must be between 0 and 1.")
+		assert(value <= 1, "SFX Volume must be between 0 and 1.")
+		AudioServer.set_bus_volume_db(AudioManager.mixer_sfx, linear_to_db(value))
+
 # Initial values
 func _ready() -> void:
-	is_fullscreen = true
+	is_fullscreen = false
 	pixel_size = 2

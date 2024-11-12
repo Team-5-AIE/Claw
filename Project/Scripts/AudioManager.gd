@@ -45,6 +45,10 @@ const STEPS3 = preload("res://Sounds/Effects/steps3.wav")
 
 var music_pause_point = 0
 
+@onready var mixer_master = AudioServer.get_bus_index("Master")
+@onready var mixer_music = AudioServer.get_bus_index("Music")
+@onready var mixer_sfx = AudioServer.get_bus_index("SFX")
+
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 @onready var sfx_player: Node = $SFXplayer
 
