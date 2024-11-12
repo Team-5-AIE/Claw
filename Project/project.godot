@@ -27,6 +27,7 @@ FadeTransitions="*res://Objects/fade_transitions.tscn"
 GlobalWorldEnvironment="*res://Objects/world_environment.tscn"
 LevelFlags="*res://Scripts/LevelFlags.gd"
 Settings="*res://Scripts/settings.gd"
+AudioManager="*res://Objects/AudioManager.tscn"
 
 [debug]
 
