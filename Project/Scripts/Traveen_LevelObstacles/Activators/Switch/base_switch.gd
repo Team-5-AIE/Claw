@@ -21,6 +21,7 @@ var spear: Spear = null
 @onready var active_collision: CollisionShape2D = $CollisionShape2D
 @onready var visual_sprite: Sprite2D = $VisualSprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var particle_player: GPUParticles2D = $GPUParticles2D
 
 
 # Guard to force inherited scripts to use this method
@@ -48,6 +49,10 @@ func _ready() -> void:
 func _on_spear_detector_body_entered(body: Node2D) -> void:
 	if body is Spear and not body.retracted:
 		spear = body
+		if particle_player.emitting == true:
+			particle_player.restart()
+		else:
+			particle_player.emitting = true
 
 # Call use_switch when spear starts retracting
 func _physics_process(_delta: float) -> void:

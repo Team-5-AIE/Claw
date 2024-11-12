@@ -52,7 +52,6 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	ProcessVelocity(delta)
 
 func ExitState() -> void:
-	spearInstance = null
 	player.finite_state_machine.sprite_flip_lock = false
 	pivotPoint = Vector2.ZERO
 	#player.finite_state_machine.disable_gravity = false
@@ -101,6 +100,11 @@ func ProcessVelocity(delta:float) -> void:
 		if inputAmount > 0:
 			inputAmount -= swingSpeedDecreaseModifier
 	player.velocity += circularArcDirection * player.input_axis.x * inputAmount
+	if ropeDirection.x > 0 && player.velocity.x < 0:
+		player.sprite_sheet.flip_h = true
+		print("true")
+	elif ropeDirection.x < 0 && player.velocity.x > 0:
+		player.sprite_sheet.flip_h = false
 #=================================================================================
 func AddAngularVelocity(force:float)-> void:
 	angularVel += force
