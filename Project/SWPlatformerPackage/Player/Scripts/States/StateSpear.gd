@@ -21,6 +21,7 @@ var angularAcceleration : float = 0.0
 var hookSoundPlayed = false
 var angularVelocity : Vector2
 var inputAmount : float = 0
+var drawVisual : bool = true
 @onready var audio_stream_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
 const HOOK1 = preload("res://Sounds/Effects/click (1).wav")
 const HOOK2 = preload("res://Sounds/Effects/click.wav")
@@ -46,7 +47,8 @@ func EnterState() -> void:
 	player.finite_state_machine.sprite_flip_lock = true
 	player.animation_player.play("ShootSpear")
 	inputAmount = 0
-	
+
+
 #=================================================================================
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	if !hookSoundPlayed:
@@ -59,7 +61,8 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	#ProcessVelocity(delta)
 
 func ExitState() -> void:
-	spearInstance = null
+	#NOTE: removed line -- below
+	#spearInstance = null
 	player.finite_state_machine.sprite_flip_lock = false
 	pivotPoint = Vector2.ZERO
 	#player.finite_state_machine.disable_gravity = false
@@ -68,6 +71,7 @@ func ExitState() -> void:
 	player.finite_state_machine.air_resistance_lock = false
 #=================================================================================
 func ProcessVelocity(delta:float) -> void:
+	drawVisual = false
 	if spearInstance == null: return
 	var spearToPlayer = player.spear_marker.global_position - spearInstance.global_position
 	var ropeDirection : Vector2 = spearToPlayer
@@ -103,6 +107,7 @@ func ProcessVelocity(delta:float) -> void:
 	var circularArcDirection : Vector2 = Vector2(ropeDirection.y, -ropeDirection.x)
 	var trueRopeLength : float = spearInstance.ropeLength
 	
+	drawVisual = true
 	if currentRopeLength >= trueRopeLength:# || climbInput < 0.0 && enableClimbDown:
 		var overextendedAmount : float = currentRopeLength - trueRopeLength
 		var correctiveMovement : Vector2 = -overextendedAmount * ropeDirection
@@ -124,15 +129,17 @@ func ProcessVelocity(delta:float) -> void:
 		#var tensionLevel = -desiredVelocityChange.dot(ropeDirection)
 		#if (tensionLevel > 0):
 			#player.velocity += desiredVelocityChange
+		#Swing Input
+		if player.input_axis.x != 0:
+			if inputAmount <= swingSpeedCap:
+				inputAmount += swingSpeedIncreaseModifier
+		else:
+			if inputAmount > 0:
+				inputAmount -= swingSpeedDecreaseModifier
+		
+		if !player.is_on_floor():
+			player.velocity += circularArcDirection * player.input_axis.x * inputAmount
 	
-	#Swing Input
-	if player.input_axis.x != 0:
-		if inputAmount <= swingSpeedCap:
-			inputAmount += swingSpeedIncreaseModifier
-	else:
-		if inputAmount > 0:
-			inputAmount -= swingSpeedDecreaseModifier
-	player.velocity += circularArcDirection * player.input_axis.x * inputAmount
 	if ropeDirection.x > 0 && player.velocity.x < 0:
 		player.sprite_sheet.flip_h = true
 	elif ropeDirection.x < 0 && player.velocity.x > 0:

@@ -29,6 +29,7 @@ func _ready() -> void:
 	ChangeState(state)
 
 func _process(delta) -> void:
+	print(player.velocity.y)
 	if FadeTransitions.lockPlayer: 
 		player.velocity = Vector2.ZERO
 		if FadeTransitions.restart:
@@ -65,7 +66,10 @@ func _physics_process(delta) -> void:
 		#if player.finite_state_machine.state != player.state_spear:
 		apply_air_resistance(delta)
 		
+	player.state_spear.drawVisual = false
+	#print("SPEARINSTANCE|>" +str(player.state_spear.spearInstance))
 	if player.state_spear.spearInstance != null:
+		#print("HOOKED|>" +str(player.state_spear.spearInstance.hooked))
 		if player.state_spear.spearInstance.hooked:
 			player.state_spear.ProcessVelocity(delta)
 			
