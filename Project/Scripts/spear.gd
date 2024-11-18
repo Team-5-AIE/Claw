@@ -37,7 +37,7 @@ func _process(_delta):
 func _physics_process(_delta):
 	if Retract(): return
 	#===Pull
-	if Input.is_action_just_pressed("SpearPull") && player.is_on_floor():
+	if Input.is_action_just_pressed("SpearPull") && player.is_on_floor() && hooked:
 		if player.state_spear.spearInstance != null:
 			print("pull")
 			player.state_spear.audio_stream_player.stream = player.state_spear.PULLJUMP
