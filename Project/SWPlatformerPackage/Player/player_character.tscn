@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=49 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://bqexwwlorewmv" path="res://SWPlatformerPackage/Player/PlayerSpriteSheet_NoSpear.png" id="2_d4djl"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallSlide.gd" id="12_q8x25"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
 [ext_resource type="AudioStream" uid="uid://dvgj8oqo664q0" path="res://Sounds/Effects/jump (1).wav" id="15_pytux"]
+[ext_resource type="PackedScene" uid="uid://bb1qdc361jjvp" path="res://Objects/crosshair.tscn" id="17_4yyds"]
 
 [sub_resource type="Gradient" id="Gradient_62wi8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.14902, 0.329412, 1)
@@ -839,7 +840,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="SnapRopeTimer" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 20.0
 one_shot = true
 
 [node name="FootstepSoundTimer" type="Timer" parent="Timers"]
@@ -907,6 +908,8 @@ position = Vector2(0, -3)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_pytux")
+
+[node name="Crosshair" parent="." instance=ExtResource("17_4yyds")]
 
 [node name="SpringArea" type="Area2D" parent="."]
 position = Vector2(0, 1)

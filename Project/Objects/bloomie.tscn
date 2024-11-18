@@ -199,7 +199,7 @@ texture = ExtResource("1_mwvca")
 hframes = 5
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.145098, 0.407843, 0.137255, 0.635294)
+color = Color(0.27451, 0.803922, 0.133333, 0.635294)
 texture = SubResource("GradientTexture2D_fa7ga")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

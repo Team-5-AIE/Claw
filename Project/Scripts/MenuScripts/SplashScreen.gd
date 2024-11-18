@@ -29,7 +29,9 @@ func _on_animation_looped() -> void:
 	tween2.tween_property(getrect, "color", Color8(9,10,20,255), 1.8).set_delay(1).set_ease(Tween.EASE_OUT)
 	
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.keycode == KEY_SPACE && event.is_pressed():
-			print("Skipped")
-			get_tree().change_scene_to_file(getScene.resource_path)
+	if event.is_pressed():
+		print("Skipped")
+		get_tree().change_scene_to_file(getScene.resource_path)
+	
+	
+	

@@ -28,12 +28,15 @@ func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 		run_dust_timer.start()
 	# Change to Fall state if we are no longer grounded
 	if !player.is_on_floor():
+		print("fall booya")
+		
 		player.finite_state_machine.ChangeState(player.state_fall)
 		return
 		
 func Update(_delta) -> void:
 	# Change to Idle state
 	if player.input_axis.x == 0:
+		print("booya")
 		player.finite_state_machine.ChangeState(player.state_idle)
 		return
 

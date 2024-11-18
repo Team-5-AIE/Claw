@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb1qdc361jjvp"]
+
+[ext_resource type="Texture2D" uid="uid://bbu84mdk4g4xu" path="res://Sprites/Crosshair.png" id="1_h31c6"]
+[ext_resource type="Script" path="res://Scripts/Crosshair.gd" id="2_txt0d"]
+
+[node name="Crosshair" type="Sprite2D"]
+z_index = 20
+texture_filter = 1
+texture = ExtResource("1_h31c6")
+script = ExtResource("2_txt0d")
+joyPadSpeed = 20.0
