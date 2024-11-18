@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dnei0kqq507xw"]
+[gd_scene load_steps=16 format=3 uid="uid://dnei0kqq507xw"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_4b8s4"]
 [ext_resource type="Script" path="res://Rooms/PAX Menus/title_screen.gd" id="2_isglf"]
@@ -8,6 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="5_2yjop"]
 [ext_resource type="Texture2D" uid="uid://dmwrlsg3xkgay" path="res://Sprites/Menu/highscoreBG.png" id="5_id6ks"]
 [ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="6_jpmdu"]
+[ext_resource type="Texture2D" uid="uid://cyvhepmaupi24" path="res://Sprites/Menu/BoxDefault.png" id="9_dxhfl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yga4s"]
 
@@ -32,7 +33,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_4b8s4")
-startButton = NodePath("ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/ChapterOneStartButton")
+startButton = NodePath("ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/ChapterOneStartButton")
 
 [node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("chapterSelectScreen", "chapterOneScreen", "creditsScreen", "highscoreRank", "highscoreNames", "highscoreSeparator", "highscoreTimes")]
 layout_mode = 1
@@ -45,10 +46,10 @@ script = ExtResource("2_isglf")
 chapterSelectScreen = NodePath("../ChapterSelectScreen")
 chapterOneScreen = NodePath("../ChapterOneScreen")
 creditsScreen = NodePath("../CreditsScreen")
-highscoreRank = NodePath("../ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox/Rank")
-highscoreNames = NodePath("../ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox/Name")
-highscoreSeparator = NodePath("../ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox/Separator")
-highscoreTimes = NodePath("../ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox/Time")
+highscoreRank = NodePath("../ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox/Rank")
+highscoreNames = NodePath("../ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox/Name")
+highscoreSeparator = NodePath("../ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox/Separator")
+highscoreTimes = NodePath("../ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox/Time")
 
 [node name="TitleBG" type="TextureRect" parent="TitleScreen"]
 layout_mode = 2
@@ -59,7 +60,6 @@ layout_mode = 2
 alignment = 1
 
 [node name="ChapterSelectScreen" type="PanelContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,11 +71,17 @@ grow_vertical = 2
 layout_mode = 2
 color = Color(0.254902, 0.113725, 0.192157, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ChapterSelectScreen"]
+[node name="MarginContainer" type="MarginContainer" parent="ChapterSelectScreen"]
 layout_mode = 2
-alignment = 1
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 13
+theme_override_constants/margin_right = 285
+theme_override_constants/margin_bottom = 13
 
-[node name="TextureRect2" type="TextureRect" parent="ChapterSelectScreen/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ChapterSelectScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="ChapterSelectScreen/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 91.5)
 layout_mode = 2
 size_flags_vertical = 0
@@ -83,11 +89,11 @@ texture = ExtResource("3_3iaoi")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ChapterSelectScreen/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ChapterSelectScreen/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="ChapterTutorialButton" type="Button" parent="ChapterSelectScreen/VBoxContainer/HBoxContainer"]
+[node name="ChapterTutorialButton" type="Button" parent="ChapterSelectScreen/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(300, 42)
 layout_mode = 2
 theme = ExtResource("4_hn62b")
@@ -107,11 +113,11 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
 theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Tutorial"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ChapterSelectScreen/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ChapterSelectScreen/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="ChapterOneButton" type="Button" parent="ChapterSelectScreen/VBoxContainer/HBoxContainer2"]
+[node name="ChapterOneButton" type="Button" parent="ChapterSelectScreen/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(300, 84)
 layout_mode = 2
 theme = ExtResource("4_hn62b")
@@ -132,12 +138,12 @@ theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Chapter
 One"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="ChapterSelectScreen/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="ChapterSelectScreen/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="ChapterTwoButton" type="Button" parent="ChapterSelectScreen/VBoxContainer/HBoxContainer4"]
+[node name="ChapterTwoButton" type="Button" parent="ChapterSelectScreen/MarginContainer/VBoxContainer/HBoxContainer4"]
 custom_minimum_size = Vector2(300, 84)
 layout_mode = 2
 theme = ExtResource("4_hn62b")
@@ -158,11 +164,11 @@ theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Chapter
 Two"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="ChapterSelectScreen/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="ChapterSelectScreen/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="CreditsButton" type="Button" parent="ChapterSelectScreen/VBoxContainer/HBoxContainer3"]
+[node name="CreditsButton" type="Button" parent="ChapterSelectScreen/MarginContainer/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(150, 42)
 layout_mode = 2
 theme = ExtResource("4_hn62b")
@@ -182,24 +188,28 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
 theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Credits"
 
-[node name="MarginContainer" type="MarginContainer" parent="ChapterSelectScreen/VBoxContainer"]
-layout_mode = 2
-
 [node name="ChapterOneScreen" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 
 [node name="ChapterOneBG" type="ColorRect" parent="ChapterOneScreen"]
+visible = false
 layout_mode = 2
 color = Color(0.2015, 0.205117, 0.31, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ChapterOneScreen"]
+[node name="MarginContainer" type="MarginContainer" parent="ChapterOneScreen"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 285
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChapterOneScreen/MarginContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="ChapterOneScreen/VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="ChapterOneScreen/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 91.5)
 layout_mode = 2
 size_flags_vertical = 0
@@ -207,33 +217,25 @@ texture = ExtResource("3_3iaoi")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="ChapterOneScreen/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 25
-metadata/_edit_use_anchors_ = true
-
-[node name="PanelContainer" type="PanelContainer" parent="ChapterOneScreen/VBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(540, 238)
+[node name="PanelContainer" type="PanelContainer" parent="ChapterOneScreen/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 238)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_3gthp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="TopTimeTitle2" type="RichTextLabel" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(400, 32)
+[node name="TopTimeTitle2" type="RichTextLabel" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme = ExtResource("4_hn62b")
 theme_override_colors/default_color = Color(0.909804, 0.756863, 0.439216, 1)
@@ -245,14 +247,14 @@ CHAPTER ONE
 "
 fit_content = true
 
-[node name="CenterContainer" type="CenterContainer" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="HighscoreHBox" type="HBoxContainer" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer"]
+[node name="HighscoreHBox" type="HBoxContainer" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="Rank" type="RichTextLabel" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox"]
+[node name="Rank" type="RichTextLabel" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox"]
 layout_mode = 2
 theme = ExtResource("4_hn62b")
 theme_override_font_sizes/normal_font_size = 28
@@ -261,7 +263,7 @@ text = "1."
 fit_content = true
 autowrap_mode = 0
 
-[node name="Name" type="RichTextLabel" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox"]
+[node name="Name" type="RichTextLabel" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox"]
 layout_mode = 2
 theme = ExtResource("4_hn62b")
 theme_override_font_sizes/normal_font_size = 28
@@ -270,7 +272,7 @@ text = "AAA"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Separator" type="RichTextLabel" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox"]
+[node name="Separator" type="RichTextLabel" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox"]
 layout_mode = 2
 theme = ExtResource("4_hn62b")
 theme_override_font_sizes/normal_font_size = 28
@@ -279,7 +281,7 @@ text = "|"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Time" type="RichTextLabel" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox"]
+[node name="Time" type="RichTextLabel" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/HighscoreHBox"]
 layout_mode = 2
 theme = ExtResource("4_hn62b")
 theme_override_font_sizes/normal_font_size = 28
@@ -288,12 +290,12 @@ text = "0:33"
 fit_content = true
 autowrap_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 clip_contents = true
 layout_mode = 2
 alignment = 1
 
-[node name="ChapterOneStartButton" type="Button" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="ChapterOneStartButton" type="Button" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 42)
 layout_mode = 2
 theme = ExtResource("4_hn62b")
@@ -313,7 +315,7 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
 theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Play Level"
 
-[node name="ChapterOneReturnButton" type="Button" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="ChapterOneReturnButton" type="Button" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 42)
 layout_mode = 2
 theme = ExtResource("4_hn62b")
@@ -333,7 +335,7 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
 theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Return"
 
-[node name="Label" type="Label" parent="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 4
 
@@ -676,8 +678,24 @@ text = "Return"
 [node name="MarginContainer" type="MarginContainer" parent="CreditsScreen/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[connection signal="pressed" from="ChapterSelectScreen/VBoxContainer/HBoxContainer2/ChapterOneButton" to="TitleScreen" method="_on_chapter_one_button_pressed"]
-[connection signal="pressed" from="ChapterSelectScreen/VBoxContainer/HBoxContainer3/CreditsButton" to="TitleScreen" method="_on_credits_button_pressed"]
-[connection signal="pressed" from="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/ChapterOneStartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="ChapterOneScreen/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/ChapterOneReturnButton" to="TitleScreen" method="_on_chapter_one_return_button_pressed"]
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 34.0
+theme = ExtResource("4_hn62b")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 89.0
+offset_bottom = 36.0
+texture = ExtResource("9_dxhfl")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[connection signal="pressed" from="ChapterSelectScreen/MarginContainer/VBoxContainer/HBoxContainer2/ChapterOneButton" to="TitleScreen" method="_on_chapter_one_button_pressed"]
+[connection signal="pressed" from="ChapterSelectScreen/MarginContainer/VBoxContainer/HBoxContainer3/CreditsButton" to="TitleScreen" method="_on_credits_button_pressed"]
+[connection signal="pressed" from="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/ChapterOneStartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ChapterOneScreen/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/ChapterOneReturnButton" to="TitleScreen" method="_on_chapter_one_return_button_pressed"]
 [connection signal="pressed" from="CreditsScreen/MarginContainer/VBoxContainer/HBoxContainer/CreditsReturnButton" to="TitleScreen" method="_on_credits_return_button_pressed"]
