@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://ctjwe72dpy5gg"]
+[gd_scene load_steps=10 format=4 uid="uid://ctjwe72dpy5gg"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_2iuno"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_3weut"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_s51wr"]
 [ext_resource type="PackedScene" uid="uid://ddrlv8enrycsh" path="res://Objects/spear_pickup.tscn" id="5_3v2mi"]
 [ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="5_i2s3l"]
+[ext_resource type="Texture2D" uid="uid://bds5fue7p3aue" path="res://Sprites/UI/Mouse2.png" id="7_cym36"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -16,8 +17,9 @@ resource_local_to_scene = true
 a = Vector2(-48, 0)
 b = Vector2(48, 0)
 
-[node name="RoomT06" type="Node2D"]
+[node name="RoomT06" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_2iuno")
+standaloneSpawner = NodePath("RoomArea/RoomBounds")
 
 [node name="TileMap" type="Node2D" parent="."]
 position = Vector2(8, 8)
@@ -51,15 +53,14 @@ z_index = -2
 use_parent_material = true
 tile_set = ExtResource("2_3weut")
 
-[node name="RoomArea" parent="." node_paths=PackedStringArray("roomBounds") instance=ExtResource("3_6ykox")]
-roomBounds = NodePath("RoomBounds")
+[node name="RoomArea" parent="." instance=ExtResource("3_6ykox")]
 
 [node name="RoomBounds" parent="RoomArea" index="0"]
 shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="RoomTransition" parent="." instance=ExtResource("4_s51wr")]
 position = Vector2(-208, -192)
-nextRoom = "res://Chapters/Chapter_01/Rooms/room_101.tscn"
+nextRoom = "res://Chapters/JavierRooms/Rooms_Tutorial/room_T03.tscn"
 exitDirection = "Up"
 
 [node name="CollisionShape2D" parent="RoomTransition" index="0"]
@@ -74,6 +75,10 @@ position = Vector2(-56, -16)
 
 [node name="Bloomie" parent="." instance=ExtResource("5_i2s3l")]
 position = Vector2(272, 0)
+
+[node name="Mouse2" type="Sprite2D" parent="."]
+position = Vector2(32, -32)
+texture = ExtResource("7_cym36")
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
