@@ -22,7 +22,7 @@ var player : SWPlatformerCharacter
 # ---Functions---
 # Init
 func Init(gameRoot_ : Node, roomContainer_ : Node2D, timeTracker_ : Node, \
-		  pauseMenu_ : Node, player_ : SWPlatformerCharacter):
+		  pauseMenu_ : Node, player_ : SWPlatformerCharacter, crosshair_ : Node2D):
 	gameRoot = gameRoot_
 	
 	roomContainer = roomContainer_
@@ -34,6 +34,8 @@ func Init(gameRoot_ : Node, roomContainer_ : Node2D, timeTracker_ : Node, \
 		player = currentSpawner.SpawnPlayer(gameRoot)
 	else:
 		player = player_
+	
+	player.get_node("PlayerCamera").crosshair = crosshair_
 	
 	playerEnteredRoom.connect(_on_player_entered_room)
 	
