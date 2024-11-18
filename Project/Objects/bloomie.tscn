@@ -5,7 +5,6 @@
 [ext_resource type="AudioStream" uid="uid://ybnshgeeo1uv" path="res://Sounds/Effects/collectBloomie.wav" id="3_ss4g6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6sv0p"]
-radius = 6.0
 
 [sub_resource type="Animation" id="Animation_xay71"]
 resource_name = "Fade"
@@ -49,7 +48,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_0h52r"]
 resource_name = "Float"
-length = 0.2
+length = 0.18
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -195,11 +194,12 @@ libraries = {
 speed_scale = 0.3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 texture = ExtResource("1_mwvca")
 hframes = 5
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.435294, 0.0117647, 0.764706, 1)
+color = Color(0.27451, 0.803922, 0.133333, 0.635294)
 texture = SubResource("GradientTexture2D_fa7ga")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

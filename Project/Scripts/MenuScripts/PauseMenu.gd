@@ -99,11 +99,13 @@ func TogglePause() -> void:
 			# Unpause
 			_paused = false
 			visible = false
+			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 			
 			get_tree().paused = false
 		else:
 			# Pause
 			_paused = true
 			visible = true
+			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 			
 			get_tree().paused = true

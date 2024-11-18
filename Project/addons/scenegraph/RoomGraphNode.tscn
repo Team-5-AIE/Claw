@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dup0pah4ukth4"]
+
+[ext_resource type="Texture2D" uid="uid://boa7o8qn37267" path="res://icon.svg" id="1_7mpmm"]
+
+[node name="GraphNode" type="GraphNode"]
+offset_right = 36.0
+offset_bottom = 55.0
+mouse_filter = 1
+resizable = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="RoomPreview" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_7mpmm")

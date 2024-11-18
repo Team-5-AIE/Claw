@@ -4,6 +4,9 @@ extends Node2D
 #signal roomsRepositioned
 
 # ---Variables---
+# Editor variables
+@export var crosshair : Node2D
+
 # Member variables
 var loadedRooms : Array[Node2D]
 var lastRoom : Node2D
@@ -22,7 +25,7 @@ func LoadRoom(roomScenePath_ : String, timeTracker_ : Node, pauseMenu_ : Node, \
 	var room = load(roomScenePath_).instantiate()
 	add_child(room)
 	
-	room.Init(get_parent(), self, timeTracker_, pauseMenu_, player_)
+	room.Init(get_parent(), self, timeTracker_, pauseMenu_, player_, crosshair)
 	
 	loadedRooms.append(room)
 	

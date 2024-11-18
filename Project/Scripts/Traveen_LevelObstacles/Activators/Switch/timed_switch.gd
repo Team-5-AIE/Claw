@@ -8,8 +8,10 @@ extends Switch
 func use_switch() -> void:
 	if switchState == false:
 		switchState = true
+		animation_player.play("Spinning")
 	switch_timer.start(timer_duration)
 
 # When Timer finishes, turn off switch
 func _on_switch_timer_timeout() -> void:
 	switchState = false
+	animation_player.play("SwitchOff")

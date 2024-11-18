@@ -51,6 +51,8 @@ func _ready() -> void:
 		third_place.text = " \n3. --:--"
 	if sizeArr <= 1:
 		second_place.text = " \n2. --:--"
+	
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 func Sort(scoresToSort) ->Array:
 	print(str("unsorted:",scoresToSort))
