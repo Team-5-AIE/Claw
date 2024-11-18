@@ -1,14 +1,18 @@
 extends MarginContainer
 
-@export var chapterSelectScreen : Control
-@export var chapterOneScreen : Control
+@export var mainScreen : Control
+@export var scoreboardScreen : Control
 @export var creditsScreen : Control
+@export var optionsScreen : Control
 
-@export_group("Chapter One Scores")
+@export_group("Scores")
 @export var highscoreRank : RichTextLabel
 @export var highscoreNames : RichTextLabel
 @export var highscoreSeparator : RichTextLabel
 @export var highscoreTimes : RichTextLabel
+
+var titleScreenActivated = false
+var isQuitting = false
 
 func _ready() -> void:
 	highscoreRank.text = ""
@@ -35,24 +39,23 @@ func _ready() -> void:
 			highscoreTimes.text += str("[center]", scoreBlank, "[/center]\n")
 
 func _input(event: InputEvent) -> void:
-	if self.visible == true and event.is_pressed():
-		chapterSelectScreen.visible = true
-		self.visible = false
-
-# Chapter One Buttons
-func _on_chapter_one_button_pressed() -> void:
-	chapterOneScreen.visible = true
-	chapterSelectScreen.visible = false
-func _on_chapter_one_return_button_pressed() -> void:
-	chapterSelectScreen.visible = true
-	chapterOneScreen.visible = false
-
-# Chapter Two buttons WIP
+	if event.is_pressed() and not titleScreenActivated:
+		mainScreen.visible = true
+		scoreboardScreen.visible = true
+		creditsScreen.visible = false
 
 # Credits Buttons
 func _on_credits_button_pressed() -> void:
 	creditsScreen.visible = true
-	chapterSelectScreen.visible = false
+	scoreboardScreen.visible = false
 func _on_credits_return_button_pressed() -> void:
-	chapterSelectScreen.visible = true
+	scoreboardScreen.visible = true
 	creditsScreen.visible = false
+
+# Quit Button
+func _on_quit_button_pressed() -> void:
+	if not isQuitting:
+		isQuitting = true
+		FadeTransitions.Transition()
+		await FadeTransitions.on_fade_in_finished
+		get_tree().quit()

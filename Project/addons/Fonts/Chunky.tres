@@ -1,6 +1,5 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://oe4o7s0x8n1e"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://oe4o7s0x8n1e"]
 
-[ext_resource type="FontFile" uid="uid://lj762ss47w5w" path="res://addons/Fonts/UpheavalPro.ttf" id="1_6v648"]
 [ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="1_j17e1"]
 [ext_resource type="FontFile" uid="uid://bppwh1x16uaqo" path="res://addons/Fonts/monoupheaval/monoupheaval.ttf" id="1_pjpm2"]
 [ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="2_34ip2"]
@@ -70,8 +69,8 @@ content_margin_right = 0.0
 content_margin_bottom = 0.0
 
 [resource]
-default_font = ExtResource("1_6v648")
-default_font_size = 14
+default_font = ExtResource("1_pjpm2")
+default_font_size = 8
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
