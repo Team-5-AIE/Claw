@@ -18,10 +18,12 @@ var ropeLength : float = 0
 var pullReleased = false
 var flipped = false
 var ropeSnapTimerStarted = false
-
+var timerStarted = false
 var audio_stream_player: AudioStreamPlayer
 const JUMP1 = preload("res://Sounds/Effects/jump (2).wav")
 const JUMP2 = preload("res://Sounds/Effects/jump (3).wav")
+
+
 func _draw():
 	var spearToPlayer = player.spear_marker.global_position - global_position
 	draw_line(Vector2.ZERO, spearToPlayer,Color.WHITE,1,false)
@@ -34,6 +36,25 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	if Retract(): return
+	#===Pull
+	if Input.is_action_just_pressed("SpearPull") && player.is_on_floor() && hooked:
+		if player.state_spear.spearInstance != null:
+			print("pull")
+			player.state_spear.audio_stream_player.stream = player.state_spear.PULLJUMP
+			player.state_spear.audio_stream_player.play()
+			player.state_spear.spearInstance.pullReleased = true
+			#if spearInstance.ropeLength > 16:
+			#	spearInstance.ropeLength -= delta * 150
+			player.velocity *= (1.0 - player.state_spear.pullJumpStopFraction)
+			
+			var spearToPlayer = player.spear_marker.global_position - player.state_spear.spearInstance.global_position
+			player.velocity += -spearToPlayer.normalized() * player.state_spear.pullJumpStrength
+			return
+		else:
+			print("spear instance does not exists - tried to pull")
+	
+	
+	#===
 	if extending:
 		var collision = move_and_collide(direction * SPEED)
 		if collision:
@@ -42,7 +63,12 @@ func _physics_process(_delta):
 			ropeLength = player.spear_marker.global_position.distance_to(global_position)
 			hooked = true
 			extending = false
+			
+	if hooked:
+		if player.finite_state_machine.state == player.state_fall:
 			player.finite_state_machine.ChangeState(player.state_spear)
+		if player.finite_state_machine.state == player.state_spear && player.is_on_floor():
+			player.finite_state_machine.ChangeState(player.state_idle)
 	tip = global_position
 	#Auto release the hook if you're grounded
 	if player.is_on_floor() && !extending && !ropeSnapTimerStarted:
@@ -57,18 +83,16 @@ func _physics_process(_delta):
 		return
 	
 	distanceToPlayer = global_position.distance_to(player.spear_marker.global_position)
-	if distanceToPlayer > maxDistance && !hooked:
+	if distanceToPlayer > maxDistance:
 		Release()
 		return
 	if pullReleased:
 		Release()
 		return
-	if Input.is_action_just_pressed("Jump") && !extending:
-		JumpRelease()
+	if Input.is_action_just_released("Spear") && !extending:
+		Release()
 		return
-		
 	
-
 func Shoot(dir : Vector2) -> void:
 	direction = dir.normalized()
 	extending = true
@@ -82,7 +106,7 @@ func Release() -> void:
 		player.finite_state_machine.ChangeState(player.state_fall)
 	retracted = true
 
-func JumpRelease() -> void:
+func JumpRelease() -> void: #NOTE: Not used
 	#print("Jump Release")
 	var randSound = randi_range(0,1)
 	match randSound:
@@ -102,16 +126,25 @@ func Retract() -> bool:
 		#print("Retract")
 		var spearToPlayer = player.spear_marker.global_position - global_position
 		global_position += spearToPlayer.normalized() * SPEED
+		var timer = $Destroy
+		if !timerStarted:
+			timerStarted = true
+			timer.start()
 		return true
 	return false
 
-func _on_auto_grapple_area_body_entered(body):
-	if body.name == "Player":
-		if retracted:
-			extending = false
-			retracted = false
-			queue_free()
-			return
-	else:
-		print("AutoGrapple point grabbed")
-		player.state_spear.autoGrapple = true
+func _on_auto_grapple_area_body_entered(_body: Node2D):
+	print("AutoGrapple point grabbed")
+	if !retracted:
+		player.state_spear.AutoGrapple(global_position)
+
+
+func _on_destroy_timeout() -> void:
+	if retracted:
+		print("destroy spear")
+		extending = false
+		retracted = false
+		player.sprite_sheet.texture = player.PLAYER_SHEET
+		player.state_spear.spearInstance = null
+		queue_free()
+		return

@@ -1,0 +1,48 @@
+[gd_scene load_steps=11 format=3 uid="uid://cfhaw62nhome8"]
+
+[ext_resource type="PackedScene" uid="uid://k0mypqaor7au" path="res://Rooms/main_menu.tscn" id="1_6v35d"]
+[ext_resource type="Script" path="res://Scripts/RoomContainer.gd" id="5_tv4gk"]
+[ext_resource type="PackedScene" uid="uid://7heicgmosfh4" path="res://Objects/parallaxing.tscn" id="6_drdw7"]
+[ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="7_dp77o"]
+[ext_resource type="PackedScene" uid="uid://nelr0rw0cn6o" path="res://Rooms/pause_menu.tscn" id="7_kpisj"]
+[ext_resource type="PackedScene" uid="uid://clhj20ryjsiow" path="res://Objects/dialogue_manager.tscn" id="8_oyvbm"]
+[ext_resource type="PackedScene" uid="uid://cxlh1d6lgdbmm" path="res://Objects/bloomie_display.tscn" id="9_84wn4"]
+[ext_resource type="PackedScene" uid="uid://b1x7tuyiokmqg" path="res://Effects/cherry_blossom_petal.tscn" id="9_x4fii"]
+[ext_resource type="PackedScene" uid="uid://220whnswt3p2" path="res://Objects/time_tracker.tscn" id="10_pq5im"]
+[ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="11_isrdt"]
+
+[node name="GameRoot" type="Node"]
+
+[node name="RoomContainer" type="Node2D" parent="."]
+script = ExtResource("5_tv4gk")
+
+[node name="MainMenu" parent="RoomContainer" instance=ExtResource("1_6v35d")]
+
+[node name="Parallaxing" parent="RoomContainer" instance=ExtResource("6_drdw7")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueManager" parent="CanvasLayer" instance=ExtResource("8_oyvbm")]
+visible = false
+
+[node name="CherryBlossomPetal" parent="CanvasLayer" instance=ExtResource("9_x4fii")]
+process_mode = 3
+
+[node name="TimeTracker" parent="CanvasLayer" instance=ExtResource("10_pq5im")]
+offset_left = 523.0
+offset_top = 4.0
+offset_right = 523.0
+offset_bottom = 3.88
+theme = ExtResource("7_dp77o")
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_kpisj")]
+visible = false
+
+[node name="BloomieDisplay" parent="CanvasLayer" instance=ExtResource("9_84wn4")]
+offset_left = 6.0
+offset_top = 336.0
+offset_right = -538.0
+offset_bottom = -8.0
+
+[node name="BGMPlayer" parent="." instance=ExtResource("11_isrdt")]
+volume_db = -10.085

@@ -52,6 +52,7 @@ func _on_restart_button_pressed() -> void:
 	TogglePause()
 	
 	Global.chapterOneBloomiesThisSession.fill(false)
+	if LevelFlags.chapterFlags.size() > 0: LevelFlags.chapterFlags.fill(false)
 	
 	for room in roomContainer.get_children():
 		roomContainer.FreeRoom(room)
@@ -86,6 +87,7 @@ func _on_quit_button_pressed() -> void:
 	TogglePause()
 	
 	Global.chapterOneBloomiesThisSession.fill(false)
+	if LevelFlags.chapterFlags.size() > 0: LevelFlags.chapterFlags.resize(0)
 	get_tree().change_scene_to_file(mainMenuScenePath)
 	
 	await FadeTransitions.on_fade_out_finished
@@ -97,11 +99,13 @@ func TogglePause() -> void:
 			# Unpause
 			_paused = false
 			visible = false
+			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 			
 			get_tree().paused = false
 		else:
 			# Pause
 			_paused = true
 			visible = true
+			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 			
 			get_tree().paused = true

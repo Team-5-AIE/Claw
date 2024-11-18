@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://c754aq07xarlj"]
 
-[ext_resource type="Theme" path="res://addons/Fonts/Chunky.tres" id="1_2nby1"]
+[ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="1_2nby1"]
 [ext_resource type="SpriteFrames" uid="uid://dnu8babgfvnje" path="res://Sprites/Menu/5FramesSplash/FramesSplash.tres" id="1_knp4v"]
 [ext_resource type="Script" path="res://Scripts/MenuScripts/SplashScreen.gd" id="2_hutxu"]
 [ext_resource type="AudioStream" uid="uid://btoekee4wk2ve" path="res://Sounds/SplashScreenSound.wav" id="3_wxxin"]
-[ext_resource type="PackedScene" uid="uid://bvv533hjdlncr" path="res://Rooms/main_menu_PAX.tscn" id="4_sgytw"]
+[ext_resource type="PackedScene" uid="uid://bvv533hjdlncr" path="res://Rooms/PAX Menus/game_root_PAX.tscn" id="4_u6swg"]
 
 [node name="Splash_Screen_Frames" type="Node2D"]
 
@@ -45,7 +45,7 @@ grow_vertical = 0
 theme = ExtResource("1_2nby1")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "[center] Skip with Space"
+text = "[center] Press any button"
 tab_size = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -53,7 +53,7 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -1)
 sprite_frames = ExtResource("1_knp4v")
 script = ExtResource("2_hutxu")
-getScene = ExtResource("4_sgytw")
+getScene = ExtResource("4_u6swg")
 
 [node name="Change Scenes" type="Timer" parent="."]
 wait_time = 3.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cm57ml7oalns"]
+[gd_scene load_steps=19 format=4 uid="uid://cm57ml7oalns"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_ufhrl"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_bob17"]
@@ -11,7 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://t3ad2u6aclla" path="res://Sprites/Backgrounds/City Background 1/Layer 02-B.png" id="6_v5jd4"]
 [ext_resource type="Texture2D" uid="uid://c87ktxyfdc5mk" path="res://Sprites/Backgrounds/City Background 1/Layer 03.png" id="7_va1c3"]
 [ext_resource type="Texture2D" uid="uid://qeoxrwrrcew2" path="res://Sprites/Backgrounds/City Background 1/Layer 04.png" id="8_yudcb"]
-[ext_resource type="Theme" path="res://addons/Fonts/Chunky.tres" id="12_oiy8i"]
+[ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="12_oiy8i"]
+[ext_resource type="PackedScene" uid="uid://ddrlv8enrycsh" path="res://Objects/spear_pickup.tscn" id="13_y2g0m"]
+[ext_resource type="PackedScene" uid="uid://bg7im1k8p64pr" path="res://Objects/coin_key.tscn" id="14_7gh8a"]
+[ext_resource type="PackedScene" uid="uid://dw581mxgf32sm" path="res://Objects/coin_door.tscn" id="15_xmuwb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_alkxb"]
 resource_local_to_scene = true
@@ -120,6 +123,21 @@ theme_override_font_sizes/font_size = 14
 text = "WASD - Move
 Spacebar - Jump"
 label_settings = SubResource("LabelSettings_7hoo0")
+
+[node name="SpearPickup" parent="." instance=ExtResource("13_y2g0m")]
+position = Vector2(-88, 56)
+
+[node name="CoinKey" parent="." node_paths=PackedStringArray("doorNode") instance=ExtResource("14_7gh8a")]
+position = Vector2(-256, 16)
+doorNode = NodePath("../CoinDoor")
+
+[node name="CoinKey2" parent="." node_paths=PackedStringArray("doorNode") instance=ExtResource("14_7gh8a")]
+position = Vector2(-128, 8)
+doorNode = NodePath("../CoinDoor")
+
+[node name="CoinDoor" parent="." instance=ExtResource("15_xmuwb")]
+position = Vector2(-72, -64)
+coinsNeeded = 2
 
 [editable path="RoomArea"]
 [editable path="RoomTransition2"]

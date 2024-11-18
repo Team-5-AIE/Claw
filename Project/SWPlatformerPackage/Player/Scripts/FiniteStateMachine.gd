@@ -29,6 +29,7 @@ func _ready() -> void:
 	ChangeState(state)
 
 func _process(delta) -> void:
+	print(player.velocity.y)
 	if FadeTransitions.lockPlayer: 
 		player.velocity = Vector2.ZERO
 		if FadeTransitions.restart:
@@ -51,7 +52,9 @@ func _input(event) -> void:
 func _physics_process(delta) -> void:
 	if FadeTransitions.lockPlayer: return
 	if spearThrown:
-		ClawPhysicsProcess()
+		SpearPhysicsProcess()
+	
+	
 	
 	if state is State:
 		state.UpdatePhysics(delta) # Run the UpdatePhysics function in our current state
@@ -62,6 +65,14 @@ func _physics_process(delta) -> void:
 		apply_friction(delta)
 		#if player.finite_state_machine.state != player.state_spear:
 		apply_air_resistance(delta)
+		
+	player.state_spear.drawVisual = false
+	#print("SPEARINSTANCE|>" +str(player.state_spear.spearInstance))
+	if player.state_spear.spearInstance != null:
+		#print("HOOKED|>" +str(player.state_spear.spearInstance.hooked))
+		if player.state_spear.spearInstance.hooked:
+			player.state_spear.ProcessVelocity(delta)
+			
 	# Coyote jump timing
 	var was_on_floor = player.is_on_floor()
 	player.move_and_slide() # This apllies movement to the player
@@ -151,9 +162,10 @@ func jump_buffer_jump() -> bool:
 	return false
 
 func can_we_throw_spear():
-	if state != player.state_spear && player.state_spear.spearInstance == null:
-		if Input.is_action_just_pressed("Spear") && player.spearCooldownTimer.time_left <= 0.0:
-			spearThrown = true
+	if player.spearCollected:
+		if state != player.state_spear && player.state_spear.spearInstance == null:
+			if Input.is_action_just_pressed("Spear") && player.spearCooldownTimer.time_left <= 0.0:
+				spearThrown = true
 
 func jump_buffer_check() -> bool:
 	if Input.is_action_pressed("Jump") && player.jump_enabled:
@@ -191,6 +203,7 @@ func can_we_wall_climb() -> bool:
 	return false
 
 func can_we_wall_slide() -> bool:
+	if player.finite_state_machine.state == player.state_spear: return false
 	if wall_jump_input && get_next_to_wall() != Vector2.ZERO && player.wall_slide_enabled:
 		if can_grab_wall || player.wall_grab_stamina.time_left > 0.0:
 			return true
@@ -257,21 +270,17 @@ func reset_colour_player() -> void:
 func _on_jump_buffer_timer_timeout():
 	player.jump_buffer = false
 
-func ClawPhysicsProcess() -> void:
+func SpearPhysicsProcess() -> void:
+	player.sprite_sheet.texture = player.PLAYER_SHEET_NO_SPEAR
 	#Create Spear
 	player.state_spear.spearInstance = player.state_spear.SPEAR.instantiate()
 	# Get direction to shoot in
-	if player.lockspear45direction || Input.is_action_just_pressed("C"):
-		player.state_spear.shootDirection = Vector2(player.last_input_direction.x,-1)
-	else:
-		player.state_spear.shootDirection = (player.get_global_mouse_position() - player.spear_marker.global_position)
+	player.state_spear.shootDirection = (player.get_global_mouse_position() - player.spear_marker.global_position)
 	
 	if sign(player.state_spear.shootDirection.x) == 1:
-		player.spear_marker.global_position = player.global_position + Vector2(-6,-28)
 		player.sprite_sheet.flip_h = false
 		player.state_spear.spearInstance.flipped = false
 	else:
-		player.spear_marker.global_position = player.global_position + Vector2(6,-28)
 		player.sprite_sheet.flip_h = true
 		player.state_spear.spearInstance.flipped = true
 	

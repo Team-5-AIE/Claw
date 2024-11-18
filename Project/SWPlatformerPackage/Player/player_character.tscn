@@ -1,6 +1,7 @@
-[gd_scene load_steps=50 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=48 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
+[ext_resource type="Texture2D" uid="uid://bqexwwlorewmv" path="res://SWPlatformerPackage/Player/PlayerSpriteSheet_NoSpear.png" id="2_d4djl"]
 [ext_resource type="Texture2D" uid="uid://crdbo6m1s1l8u" path="res://SWPlatformerPackage/Player/Player 48x48-sheet.png" id="2_rrav3"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/FiniteStateMachine.gd" id="3_6nxyt"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateIdle.gd" id="4_kiun4"]
@@ -15,10 +16,6 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallSlide.gd" id="12_q8x25"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
 [ext_resource type="AudioStream" uid="uid://dvgj8oqo664q0" path="res://Sounds/Effects/jump (1).wav" id="15_pytux"]
-[ext_resource type="Script" path="res://Scripts/DebugScripts/crosshair.gd" id="17_c5rv7"]
-[ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="17_l1jw6"]
-[ext_resource type="Texture2D" uid="uid://djb1vwql28tww" path="res://Sprites/Debug/crosshair.png" id="18_iltxp"]
-[ext_resource type="Texture2D" uid="uid://4oobdepu5fu8" path="res://Sprites/Debug/crosshair_point.png" id="19_s68wg"]
 
 [sub_resource type="Gradient" id="Gradient_62wi8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.14902, 0.329412, 1)
@@ -705,6 +702,9 @@ size = Vector2(10, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xieor"]
 size = Vector2(19, 40)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8i1d"]
+size = Vector2(25, 25)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 collision_mask = 10
@@ -712,23 +712,27 @@ floor_constant_speed = true
 floor_block_on_wall = false
 floor_snap_length = 3.0
 script = ExtResource("1_qfw28")
-jump_height = 350.0
-slide_speed = 240.0
+jump_height = 280.0
+slide_speed = 280.0
 slide_time = 0.3
+slide_friction = 900.0
 crouch_jump_height = 300.0
 low_stamina_flash_color = SubResource("GradientTexture1D_rlb5p")
 wall_climb_enabled = false
 wall_grab_stamina_enabled = false
-wall_jump_speed = 250.0
-acceleration = 2000.0
+wall_jump_speed = 240.0
+acceleration = 1800.0
 friction = 900.0
-air_resistance = 300.0
-air_acceleration = 1200.0
+coyote_jump_time_delay = 0.15
+gravity_speed = 680.0
+max_gravity = 420.0
+air_resistance = 0.0
+air_acceleration = 700.0
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)
 position = Vector2(0, -16)
-texture = ExtResource("2_rrav3")
+texture = ExtResource("2_d4djl")
 hframes = 10
 vframes = 14
 
@@ -778,8 +782,8 @@ script = ExtResource("7_mqss4")
 
 [node name="StateSpear" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("8_h64g1")
-pullJumpStrength = 500.0
-pullJumpStopFraction = 0.6
+pullJumpStrength = 420.0
+pullJumpStopFraction = -0.2
 
 [node name="StateCrouch" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("9_gut04")
@@ -835,7 +839,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="SnapRopeTimer" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 20.0
 one_shot = true
 
 [node name="FootstepSoundTimer" type="Timer" parent="Timers"]
@@ -883,7 +887,7 @@ target_position = Vector2(10, 0)
 collision_mask = 2
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(0, -29)
+position = Vector2(0, -19)
 
 [node name="BloomieMarker2D" type="Marker2D" parent="."]
 position = Vector2(0, -40)
@@ -904,81 +908,19 @@ position = Vector2(0, -3)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_pytux")
 
-[node name="DebugHUD" type="CanvasLayer" parent="."]
-visible = false
+[node name="SpringArea" type="Area2D" parent="."]
+position = Vector2(0, 1)
+collision_layer = 256
+collision_mask = 256
+priority = 10
 
-[node name="Controls" type="Label" parent="DebugHUD"]
-visible = false
-modulate = Color(1, 1, 1, 0.705882)
-offset_right = 148.0
-offset_bottom = 157.0
-theme = ExtResource("17_l1jw6")
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 16
-text = "TOGGLE MODE
-XBox Gamepad:
-L Stick - Move
-R Stick - Aim
-A/LB - Jump
-B/RB - Use/Release Spear
-X/LT - Slide
-Y/RT - Launch from Swing"
-autowrap_mode = 2
-
-[node name="DebugControls" type="Label" parent="DebugHUD"]
-visible = false
-modulate = Color(1, 1, 1, 0.705882)
-offset_left = 369.0
-offset_top = 37.0
-offset_right = 640.0
-offset_bottom = 187.0
-theme = ExtResource("17_l1jw6")
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 16
-text = "Toggles:
-I key - Spear controls
-O key - Hold/Toggle
-P key - Controller/MnK
-K key - Crosshairs Display
-L key - Control Display
-\\ key - Debug Labels
-
-R key - Restart room"
-horizontal_alignment = 2
-autowrap_mode = 2
-
-[node name="Control" type="Control" parent="DebugHUD"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Crosshairs" type="Node2D" parent="."]
-visible = false
-
-[node name="AimCrosshair" type="Sprite2D" parent="Crosshairs"]
-modulate = Color(0.827451, 0.00784314, 0.239216, 0.815686)
-texture = ExtResource("18_iltxp")
-
-[node name="AimPoint" type="Sprite2D" parent="Crosshairs"]
-modulate = Color(0.827451, 0.00784314, 0.239216, 1)
-texture = ExtResource("19_s68wg")
-
-[node name="SwingJumpCrosshair" type="Sprite2D" parent="Crosshairs"]
-modulate = Color(0.678431, 0.533333, 0.00784314, 1)
-texture = ExtResource("18_iltxp")
-
-[node name="SwingLaunchPoint" type="Sprite2D" parent="Crosshairs"]
-modulate = Color(0.68, 0.53414, 0.00679999, 1)
-texture = ExtResource("19_s68wg")
-
-[node name="ControlOverride" type="Node2D" parent="."]
-script = ExtResource("17_c5rv7")
-crosshairs_enabled = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpringArea"]
+position = Vector2(1, -10)
+shape = SubResource("RectangleShape2D_k8i1d")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
 [connection signal="timeout" from="Timers/JumpBufferTimer" to="FiniteStateMachine" method="_on_jump_buffer_timer_timeout"]
 [connection signal="timeout" from="Timers/FootstepSoundTimer" to="FiniteStateMachine/StateMove" method="PlayFootsteps"]
 [connection signal="body_entered" from="SpikeArea" to="." method="_on_spike_area_body_entered"]
+[connection signal="area_entered" from="SpringArea" to="." method="_on_spring_area_area_entered"]

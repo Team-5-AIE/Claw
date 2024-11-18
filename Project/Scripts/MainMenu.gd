@@ -20,9 +20,13 @@ func _ready() -> void:
 	
 	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	#DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
+	
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 func _on_start_button_pressed():
 	startButton.disabled = true
+	
+	LevelFlags.create_flag_array()
 	
 	FadeTransitions.Transition()
 	await FadeTransitions.on_fade_in_finished
