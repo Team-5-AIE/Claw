@@ -29,7 +29,7 @@ func _ready() -> void:
 	ChangeState(state)
 
 func _process(delta) -> void:
-	print(player.velocity.y)
+	#print(player.velocity.y)
 	if FadeTransitions.lockPlayer: 
 		player.velocity = Vector2.ZERO
 		if FadeTransitions.restart:
