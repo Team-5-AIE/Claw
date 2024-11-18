@@ -17,7 +17,7 @@
 [node name="Crosshair" parent="." instance=ExtResource("4_lodj3")]
 
 [node name="MainMenu" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu", "timeTracker", "dialogueManager", "bgmPlayer") instance=ExtResource("1_7374e")]
-startChapterScenePath = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_101.tscn"
+startChapterScenePath = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_101a.tscn"
 roomContainer = NodePath("../RoomContainer")
 pauseMenu = NodePath("../CanvasLayer/PauseMenu")
 timeTracker = NodePath("../CanvasLayer/TimeTracker")
