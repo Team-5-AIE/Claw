@@ -1,0 +1,65 @@
+[gd_scene load_steps=16 format=3 uid="uid://6kexlgiu60lf"]
+
+[ext_resource type="PackedScene" uid="uid://dwjo4alkec78d" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_101.tscn" id="1_t16uh"]
+[ext_resource type="PackedScene" uid="uid://cle5ludmvx2q6" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_102.tscn" id="2_puqu7"]
+[ext_resource type="PackedScene" uid="uid://bdmxqkx5db7ps" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_103.tscn" id="3_dan7v"]
+[ext_resource type="PackedScene" uid="uid://bjgoy5wqorh8h" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_104a.tscn" id="4_au13m"]
+[ext_resource type="PackedScene" uid="uid://bxatoh3sp42hh" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_105a.tscn" id="5_qfmem"]
+[ext_resource type="PackedScene" uid="uid://csaweol8fi80" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_106.tscn" id="6_w7rrw"]
+[ext_resource type="PackedScene" uid="uid://dxrqrweahyu4t" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_107.tscn" id="7_0y23x"]
+[ext_resource type="PackedScene" uid="uid://d5nqkf1511f4" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_108.tscn" id="8_1ia37"]
+[ext_resource type="PackedScene" uid="uid://2edfkxr36w8j" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_109.tscn" id="9_naro6"]
+[ext_resource type="PackedScene" uid="uid://cxc4r17cff2c2" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_110.tscn" id="10_wm11q"]
+[ext_resource type="PackedScene" uid="uid://d3jyamhnfwt60" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_111.tscn" id="11_36t3n"]
+[ext_resource type="PackedScene" uid="uid://bp0sjtbu1rwgb" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_112.tscn" id="12_s7ds0"]
+[ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="13_datcd"]
+[ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="14_7dmxr"]
+[ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="15_0ytxd"]
+
+[node name="Chapter_01a" type="Node2D"]
+
+[node name="LoadedRooms" type="Node2D" parent="."]
+
+[node name="Room101" parent="LoadedRooms" instance=ExtResource("1_t16uh")]
+
+[node name="Room102" parent="LoadedRooms" instance=ExtResource("2_puqu7")]
+position = Vector2(688, 0)
+
+[node name="Room103" parent="LoadedRooms" instance=ExtResource("3_dan7v")]
+position = Vector2(1456, 0)
+
+[node name="Room104a" parent="LoadedRooms" instance=ExtResource("4_au13m")]
+position = Vector2(2224, -16)
+
+[node name="Room105a" parent="LoadedRooms" instance=ExtResource("5_qfmem")]
+position = Vector2(2224, -416)
+
+[node name="Room106" parent="LoadedRooms" instance=ExtResource("6_w7rrw")]
+position = Vector2(3008, -656)
+
+[node name="Room107" parent="LoadedRooms" instance=ExtResource("7_0y23x")]
+position = Vector2(3856, -704)
+
+[node name="Room108" parent="LoadedRooms" instance=ExtResource("8_1ia37")]
+position = Vector2(4640, -704)
+
+[node name="Room109" parent="LoadedRooms" instance=ExtResource("9_naro6")]
+position = Vector2(5344, -896)
+
+[node name="Room110" parent="LoadedRooms" instance=ExtResource("10_wm11q")]
+position = Vector2(5344, -1552)
+
+[node name="Room111" parent="LoadedRooms" instance=ExtResource("11_36t3n")]
+position = Vector2(6352, -1504)
+
+[node name="Room112" parent="LoadedRooms" instance=ExtResource("12_s7ds0")]
+position = Vector2(7360, -1504)
+
+[node name="Player" parent="." instance=ExtResource("13_datcd")]
+unique_name_in_owner = true
+position = Vector2(-256, 144)
+
+[node name="PlayerCamera" parent="Player" instance=ExtResource("14_7dmxr")]
+offset = Vector2(1, 0)
+zoom = Vector2(1, 1)
+script = ExtResource("15_0ytxd")
