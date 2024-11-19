@@ -76,7 +76,7 @@ label_settings = SubResource("LabelSettings_qoxb6")
 autowrap_mode = 2
 
 [node name="TextSpeedTimer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.01
 one_shot = true
 
 [node name="NameLabel" type="Label" parent="."]
