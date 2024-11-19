@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cxlh1d6lgdbmm" path="res://Objects/bloomie_display.tscn" id="7_vnndk"]
 
 [node name="GameRoot2" type="Node"]
+process_mode = 3
 
 [node name="MainMenu" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu", "timeTracker", "dialogueManager", "bgmPlayer") instance=ExtResource("1_7374e")]
 startChapterScenePath = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_101.tscn"
@@ -22,12 +23,14 @@ dialogueManager = NodePath("../CanvasLayer/DialogueManager")
 bgmPlayer = NodePath("../BGMPlayer")
 
 [node name="RoomContainer" type="Node2D" parent="."]
+process_mode = 1
 script = ExtResource("1_bu72f")
 
 [node name="Parallaxing" parent="." instance=ExtResource("3_ro3q2")]
 z_index = -100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="DialogueManager" parent="CanvasLayer" instance=ExtResource("3_y85if")]
 visible = false
@@ -53,4 +56,5 @@ offset_right = -538.0
 offset_bottom = -8.0
 
 [node name="BGMPlayer" parent="." instance=ExtResource("6_hy8c1")]
+process_mode = 3
 volume_db = -10.085

@@ -59,6 +59,7 @@ func _ready():
 	chapterOneBloomiesThisSession.fill(false)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	process_mode = PROCESS_MODE_ALWAYS
 
 func _process(_delta):
 	pass

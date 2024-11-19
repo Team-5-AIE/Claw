@@ -66,5 +66,6 @@ var sfx_volume: float :
 
 # Initial values
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	is_fullscreen = false
 	pixel_size = 2
