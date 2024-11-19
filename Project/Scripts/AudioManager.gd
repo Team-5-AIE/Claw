@@ -42,27 +42,28 @@ const STEPS3 = preload("res://Sounds/Effects/steps3.wav")
 
 ## ============================================================================/===================/
 
-
-var music_pause_point = 0
-
 @onready var mixer_master = AudioServer.get_bus_index("Master")
 @onready var mixer_music = AudioServer.get_bus_index("Music")
 @onready var mixer_sfx = AudioServer.get_bus_index("SFX")
 
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
-@onready var sfx_player: Node = $SFXplayer
+@onready var game_sfx_player: Node = $GameSFXPlayer
+@onready var menu_sfx_player: Node = $MenuSFXPlayer
 
-## Play sound in a free audio channel. Return true when a channel is found, and false otherwise.
-func play_sound(sound: Resource) -> bool:
-	for channel in sfx_player.get_children():
+## Play sound in a free audio channel in the Game SFX Player. 
+## Return true when a channel is found, and false otherwise.
+func play_game_sound(sound: Resource, _sfx_player: Node = game_sfx_player) -> bool:
+	for channel in _sfx_player.get_children():
 		if channel is AudioStreamPlayer and not channel.playing:
+			channel.stream_paused = false
 			channel.stream = sound
 			channel.play()
 			return true
 	return false
 
-## Play random sound out of options. Return true when a channel is found, and false otherwise.
-func play_sound_random(s1: Resource = null, s2: Resource = null, s3: Resource = null, s4: Resource = null) -> bool:
+## Play random game sound out of options. 
+## Return true when a channel is found, and false otherwise.
+func play_game_sound_random(s1: Resource = null, s2: Resource = null, s3: Resource = null, s4: Resource = null, _sfx_player: Node = game_sfx_player) -> bool:
 	# Because variable arguments aren't supported :(
 	var sound_pool = []
 	for argument in [s1, s2, s3, s4]:
@@ -70,32 +71,73 @@ func play_sound_random(s1: Resource = null, s2: Resource = null, s3: Resource = 
 			sound_pool.push_back(argument)
 	
 	if sound_pool.size() > 0:
-		return play_sound(sound_pool.pick_random())
+		return play_game_sound(sound_pool.pick_random(), _sfx_player)
 	return false
 
-## Play specific music. Return true when executed.
+## Pause all currently playing game sounds. 
+## Return true when it pauses a game SFX channel, and false when it couldn't pause any of them.
+func pause_all_game_sounds(_sfx_player: Node = game_sfx_player) -> bool:
+	var paused: bool = false
+	for channel in _sfx_player.get_children():
+		if channel is AudioStreamPlayer and not channel.stream_paused:
+				channel.stream_paused = true
+				paused = true
+	return paused
+
+## Resume all paused game sound channels. 
+## Return true when it resumes one of them, and false when it couldn't resume any of them.
+func resume_all_game_sounds(_sfx_player: Node = game_sfx_player) -> bool:
+	var resumed: bool = false
+	for channel in _sfx_player.get_children():
+		if channel is AudioStreamPlayer and channel.stream_paused:
+				channel.stream_paused = false
+				resumed = true
+	return resumed
+
+## Play sound in a free audio channel in the Menu SFX Player. 
+## Return true when a channel is found, and false otherwise.
+func play_menu_sound(sound: Resource) -> bool:
+	return play_game_sound(sound, menu_sfx_player)
+
+## Play random menu sound out of options. 
+## Return true when a channel is found, and false otherwise.
+func play_menu_sound_random(s1: Resource = null, s2: Resource = null, s3: Resource = null, s4: Resource = null) -> bool:
+	return play_game_sound_random(s1, s2, s3, s4, menu_sfx_player)
+
+## Pause all currently playing menu sounds. 
+## Return true when it pauses a menu SFX channel, and false when it couldn't pause any of them.
+func pause_all_menu_sounds() -> bool:
+	return pause_all_game_sounds(menu_sfx_player)
+
+## Resume all paused menu sound channels. 
+## Return true when it resumes one of them, and false when it couldn't resume any of them.
+func resume_all_menu_sounds() -> bool:
+	return resume_all_game_sounds(menu_sfx_player)
+
+## Play specific music. 
+## Return true when executed.
 func play_music(music) -> bool:
 	if (music_player.playing == true):
 		music_player.stop()
-	music_pause_point = 0
+	music_player.stream_paused = false
 	music_player.stream = music
 	music_player.play()
 	return true
 
-## Pause music. Return true when executed, and false if there is no music playing.
+## Pause music. 
+## Return true when executed, and false if there is no music playing.
 func pause_current_music() -> bool:
-	if (music_player.playing == true):
-		music_pause_point = music_player.get_playback_position()
-		music_player.stop()
+	if music_player.playing and not music_player.stream_paused:
+		music_player.stream_paused = true
 		return true
 	else:
 		return false
 
-## Resume music. Return true when executed, and false if there is already music playing.
+## Resume music. 
+## Return true when executed, and false if there is already music playing.
 func resume_current_music():
-	if (music_player.playing == false):
-		music_pause_point = 0
-		music_player.play()
+	if music_player.stream_paused:
+		music_player.stream_paused = false
 		return true
 	else:
 		return false
