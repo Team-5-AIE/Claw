@@ -286,7 +286,6 @@ func SpearPhysicsProcess() -> void:
 	
 	# Spear Set up
 	player.state_spear.add_child(player.state_spear.spearInstance)
-	player.state_spear.spearInstance.audio_stream_player = player.audio_stream_player
 	player.state_spear.spearInstance.player = player
 	player.state_spear.spearInstance.global_position = player.spear_marker.global_position
 	player.state_spear.spearInstance.Shoot(player.state_spear.shootDirection)

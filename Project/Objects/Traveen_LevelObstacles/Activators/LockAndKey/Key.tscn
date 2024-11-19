@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://1jc8mx5akmnw"]
+[gd_scene load_steps=10 format=3 uid="uid://1jc8mx5akmnw"]
 
 [ext_resource type="Script" path="res://Scripts/Traveen_LevelObstacles/Activators/LockAndKey/key.gd" id="1_j4mvt"]
-[ext_resource type="AudioStream" uid="uid://ybnshgeeo1uv" path="res://Sounds/Effects/collectBloomie.wav" id="2_go3ja"]
 [ext_resource type="Texture2D" uid="uid://b7c8fd2j2ile8" path="res://Sprites/KEY.png" id="3_0if82"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wqhvq"]
@@ -119,9 +118,6 @@ shape = SubResource("CircleShape2D_wqhvq")
 [node name="CollectionTimer" type="Timer" parent="."]
 wait_time = 0.15
 one_shot = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_go3ja")
 
 [node name="Hole" type="Sprite2D" parent="."]
 visible = false

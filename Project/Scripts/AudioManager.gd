@@ -144,3 +144,4 @@ func resume_current_music():
 
 func _ready():
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
+	play_music(MUSIC_WOLF)

@@ -5,11 +5,7 @@ extends State
 
 # This state can transition to: Fall, Idle, Jump, Slide, Crouch
 # This state happens if we are grounded and there IS movement input.
-@onready var audio_stream_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
 @onready var footstep_sound_timer: Timer = $"../../Timers/FootstepSoundTimer"
-const STEPS1 = preload("res://Sounds/Effects/steps1.wav")
-const STEPS2 = preload("res://Sounds/Effects/steps2.wav")
-const STEPS3 = preload("res://Sounds/Effects/steps3.wav")
 
 func EnterState() -> void: 
 	PlayFootsteps()
@@ -58,15 +54,9 @@ func Inputs(_event):
 		return
 
 func ExitState() -> void:
-	audio_stream_player.stop()
 	footstep_sound_timer.stop()
 
 func PlayFootsteps():
-	var randSound = randi_range(0,2)
-	match randSound:
-		0: audio_stream_player.stream = STEPS1
-		1: audio_stream_player.stream = STEPS2
-		2: audio_stream_player.stream = STEPS3
-	audio_stream_player.play()
+	AudioManager.play_game_sound_random(AudioManager.STEPS1, AudioManager.STEPS2, AudioManager.STEPS3)
 	if player.finite_state_machine.state == player.state_move:
 		footstep_sound_timer.start()
