@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dm6vgvgjf3nek"
+path="res://.godot/imported/slide (1).wav-c37594972b59df79b2d10404a8242b30.sample"
+
+[deps]
+
+source_file="res://Sounds/JavierSounds/slide (1).wav"
+dest_files=["res://.godot/imported/slide (1).wav-c37594972b59df79b2d10404a8242b30.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://vch0t0ngjjt7"]
+[gd_scene load_steps=10 format=4 uid="uid://vch0t0ngjjt7"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_6qoys"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_68fcd"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_0mcd6"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_sa6ic"]
+[ext_resource type="Texture2D" uid="uid://jglgft0ysrgf" path="res://Sprites/UI/Mouse1.png" id="5_qu2ft"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -24,8 +25,9 @@ resource_local_to_scene = true
 a = Vector2(0, 48)
 b = Vector2(0, -48)
 
-[node name="RoomT03" type="Node2D"]
+[node name="RoomT03" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_6qoys")
+standaloneSpawner = NodePath("RoomArea/RoomBounds")
 
 [node name="TileMap" type="Node2D" parent="."]
 position = Vector2(8, 8)
@@ -59,8 +61,7 @@ z_index = -2
 use_parent_material = true
 tile_set = ExtResource("2_68fcd")
 
-[node name="RoomArea" parent="." node_paths=PackedStringArray("roomBounds") instance=ExtResource("3_0mcd6")]
-roomBounds = NodePath("RoomBounds")
+[node name="RoomArea" parent="." instance=ExtResource("3_0mcd6")]
 
 [node name="RoomBounds" parent="RoomArea" index="0"]
 position = Vector2(0, -8)
@@ -103,6 +104,10 @@ shape = SubResource("SegmentShape2D_lyjsm")
 [node name="PlayerSpawn" parent="RoomTransition3" index="1"]
 position = Vector2(80, -144)
 flipSpawnDir = true
+
+[node name="Mouse1" type="Sprite2D" parent="."]
+position = Vector2(56, 96)
+texture = ExtResource("5_qu2ft")
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]

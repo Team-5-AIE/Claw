@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://b20uo6n4lqvie"]
+[gd_scene load_steps=9 format=4 uid="uid://b20uo6n4lqvie"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_6ebwj"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_dyglp"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_li0y4"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_jy8ba"]
+[ext_resource type="PackedScene" uid="uid://btr04pfqnhcvi" path="res://Objects/player_spawn.tscn" id="5_ino1h"]
+[ext_resource type="PackedScene" uid="uid://ddrlv8enrycsh" path="res://Objects/spear_pickup.tscn" id="6_m6o8q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -16,7 +18,7 @@ b = Vector2(0, -80)
 
 [node name="RoomMG1" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_6ebwj")
-standaloneSpawner = NodePath("RoomArea/RoomBounds")
+standaloneSpawner = NodePath("PlayerSpawn")
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -65,6 +67,12 @@ shape = SubResource("SegmentShape2D_xaixi")
 
 [node name="PlayerSpawn" parent="RoomTransition" index="1"]
 position = Vector2(-48, 64)
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("5_ino1h")]
+position = Vector2(-256, 152)
+
+[node name="SpearPickup" parent="." instance=ExtResource("6_m6o8q")]
+position = Vector2(240, 48)
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
