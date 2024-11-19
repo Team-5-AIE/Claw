@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 		currentTime += delta
 		wholeTime = int(floor(currentTime))
 		seconds = int(floor(currentTime)) % 60
-		minutes = int(floor(currentTime/60))
+		minutes = int(floor(currentTime/60)) % 60
 		hours = int(floor(currentTime/3600))
 		UpdateText()
 
@@ -28,15 +28,15 @@ func UpdateText() -> void:
 	secondsStr += str(seconds)
 	
 	var minutesStr = "0" if minutes < 10 else ""
-	minutesStr += str(minutes % 60)
+	minutesStr += str(minutes)
 	
 	var hoursStr = ""
 	if hours >= 10:
 		hoursStr = str(hours)
-		currentTimeString = str(hours, ":", minutesStr,":",secondsStr)
+		currentTimeString = str(hoursStr, ":", minutesStr,":",secondsStr)
 	elif hours >= 1:
 		hoursStr = "0" + str(hours)
-		currentTimeString = str(hours, ":", minutesStr,":",secondsStr)
+		currentTimeString = str(hoursStr, ":", minutesStr,":",secondsStr)
 	else:
 		currentTimeString = str(minutesStr,":",secondsStr)
 	label.text = currentTimeString
@@ -53,4 +53,4 @@ func StartTimer():
 func StopTimerAddToLastScore() -> void: #Call when level is finished.
 	visible = false
 	#NOTE: change the "Name" to be whatever the player types.
-	Global.lastScore = ["Name",str(minutes,":",seconds),wholeTime]
+	Global.lastScore = ["Name",currentTimeString,wholeTime]
