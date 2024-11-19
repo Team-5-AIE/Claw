@@ -51,7 +51,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
@@ -84,7 +84,7 @@ theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Resume"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
@@ -109,7 +109,7 @@ theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Retry Room"
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
@@ -134,7 +134,7 @@ theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Restart Chapter"
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
