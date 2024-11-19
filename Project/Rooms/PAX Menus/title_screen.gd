@@ -1,5 +1,6 @@
 extends MarginContainer
 
+@export var titleScreen : Control
 @export var mainScreen : Control
 @export var scoreboardScreen : Control
 @export var creditsScreen : Control
@@ -11,10 +12,28 @@ extends MarginContainer
 @export var highscoreSeparator : RichTextLabel
 @export var highscoreTimes : RichTextLabel
 
-var titleScreenActivated = false
+var titleScreenActivated : bool :
+	get:
+		return titleScreenActivated
+	set(value):
+		titleScreenActivated = value
+		match (value):
+			true:
+				titleScreen.visible = false
+				mainScreen.visible = true
+				scoreboardScreen.visible = true
+				creditsScreen.visible = false
+			false:
+				titleScreen.visible = true
+				mainScreen.visible = false
+				scoreboardScreen.visible = true
+				creditsScreen.visible = false
+
 var isQuitting = false
 
 func _ready() -> void:
+	titleScreenActivated = false
+	
 	highscoreRank.text = ""
 	highscoreNames.text = ""
 	highscoreSeparator.text = ""
@@ -40,9 +59,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_pressed() and not titleScreenActivated:
-		mainScreen.visible = true
-		scoreboardScreen.visible = true
-		creditsScreen.visible = false
+		titleScreenActivated = true
 
 # Credits Buttons
 func _on_credits_button_pressed() -> void:
@@ -56,6 +73,7 @@ func _on_credits_return_button_pressed() -> void:
 func _on_quit_button_pressed() -> void:
 	if not isQuitting:
 		isQuitting = true
+		titleScreenActivated = false
 		FadeTransitions.Transition()
 		await FadeTransitions.on_fade_in_finished
 		get_tree().quit()

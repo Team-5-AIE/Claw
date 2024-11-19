@@ -30,7 +30,13 @@ size_flags_vertical = 3
 script = ExtResource("1_4b8s4")
 startButton = NodePath("MainScreen/PanelContainer/Scoreboard/ButtonsHBox1/StartButton")
 
-[node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("mainScreen", "scoreboardScreen", "creditsScreen", "highscoreRank", "highscoreNames", "highscoreSeparator", "highscoreTimes")]
+[node name="TitleBG" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("3_wpaw7")
+
+[node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("titleScreen", "mainScreen", "scoreboardScreen", "creditsScreen", "highscoreRank", "highscoreNames", "highscoreSeparator", "highscoreTimes")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,6 +44,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_isglf")
+titleScreen = NodePath(".")
 mainScreen = NodePath("../MainScreen")
 scoreboardScreen = NodePath("../MainScreen/PanelContainer/Scoreboard")
 creditsScreen = NodePath("../MainScreen/PanelContainer/Credits")
@@ -45,10 +52,6 @@ highscoreRank = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginContaine
 highscoreNames = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginContainer/Scores/HighscoreHBox/Name")
 highscoreSeparator = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginContainer/Scores/HighscoreHBox/Separator")
 highscoreTimes = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginContainer/Scores/HighscoreHBox/Time")
-
-[node name="TitleBG" type="TextureRect" parent="TitleScreen"]
-layout_mode = 2
-texture = ExtResource("3_wpaw7")
 
 [node name="MainScreen" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -97,7 +100,7 @@ clip_contents = false
 layout_mode = 2
 theme = ExtResource("4_hn62b")
 theme_override_constants/outline_size = 4
-theme_override_constants/line_separation = 6
+theme_override_constants/line_separation = 4
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "1."
@@ -109,7 +112,7 @@ clip_contents = false
 layout_mode = 2
 theme = ExtResource("4_hn62b")
 theme_override_constants/outline_size = 4
-theme_override_constants/line_separation = 6
+theme_override_constants/line_separation = 4
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "AAA"
@@ -121,7 +124,7 @@ clip_contents = false
 layout_mode = 2
 theme = ExtResource("4_hn62b")
 theme_override_constants/outline_size = 4
-theme_override_constants/line_separation = 6
+theme_override_constants/line_separation = 4
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "|"
@@ -133,7 +136,7 @@ clip_contents = false
 layout_mode = 2
 theme = ExtResource("4_hn62b")
 theme_override_constants/outline_size = 4
-theme_override_constants/line_separation = 6
+theme_override_constants/line_separation = 4
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "0:33"
@@ -195,7 +198,7 @@ custom_minimum_size = Vector2(90, 32)
 layout_mode = 2
 theme = ExtResource("4_hn62b")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 8
 theme_override_styles/focus = ExtResource("5_2yjop")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yga4s")
@@ -215,7 +218,7 @@ custom_minimum_size = Vector2(90, 32)
 layout_mode = 2
 theme = ExtResource("4_hn62b")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 8
 theme_override_styles/focus = ExtResource("5_2yjop")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yga4s")
