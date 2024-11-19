@@ -15,12 +15,13 @@ func _ready() -> void:
 	UpdateText()
 
 func _process(delta: float) -> void:
-	currentTime += delta
-	wholeTime = floor(currentTime)
-	seconds = floor(currentTime) % 60
-	minutes = floor(currentTime/60)
-	hours = floor(currentTime/3600)
-	UpdateText()
+	if visible:
+		currentTime += delta
+		wholeTime = int(floor(currentTime))
+		seconds = int(floor(currentTime)) % 60
+		minutes = int(floor(currentTime/60))
+		hours = int(floor(currentTime/3600))
+		UpdateText()
 
 func UpdateText() -> void:
 	var secondsStr = "0" if seconds < 10 else ""
