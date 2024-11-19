@@ -1,6 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf3g7dbqv1605"]
+[gd_scene load_steps=11 format=3 uid="uid://cf3g7dbqv1605"]
 
 [ext_resource type="PackedScene" uid="uid://dy25bi37fuxds" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_106c.tscn" id="1_uuht8"]
+[ext_resource type="PackedScene" uid="uid://vx6ndhfe1o5n" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_107b.tscn" id="2_dgvm8"]
+[ext_resource type="PackedScene" uid="uid://cs83s11x70uyi" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_108b.tscn" id="3_toy72"]
+[ext_resource type="PackedScene" uid="uid://cfgsyrpikh8e4" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_109b.tscn" id="4_d4w0h"]
+[ext_resource type="PackedScene" uid="uid://qd6bqum6olc7" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_110b.tscn" id="5_71trh"]
+[ext_resource type="PackedScene" uid="uid://lmft0dq6s5n7" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_111b.tscn" id="6_3qn48"]
+[ext_resource type="PackedScene" uid="uid://b4iumh7ol0bjv" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_112b.tscn" id="7_nsico"]
 [ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="8_423j8"]
 [ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="9_mltsv"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="10_c2o04"]
@@ -10,6 +16,24 @@
 [node name="LoadedRooms" type="Node2D" parent="."]
 
 [node name="Room106c" parent="LoadedRooms" instance=ExtResource("1_uuht8")]
+
+[node name="Room107b" parent="LoadedRooms" instance=ExtResource("2_dgvm8")]
+position = Vector2(752, -112)
+
+[node name="Room108b" parent="LoadedRooms" instance=ExtResource("3_toy72")]
+position = Vector2(1536, -112)
+
+[node name="Room109b" parent="LoadedRooms" instance=ExtResource("4_d4w0h")]
+position = Vector2(2240, -304)
+
+[node name="Room110b" parent="LoadedRooms" instance=ExtResource("5_71trh")]
+position = Vector2(2240, -960)
+
+[node name="Room111b" parent="LoadedRooms" instance=ExtResource("6_3qn48")]
+position = Vector2(3248, -912)
+
+[node name="Room112b" parent="LoadedRooms" instance=ExtResource("7_nsico")]
+position = Vector2(4256, -912)
 
 [node name="Player" parent="." instance=ExtResource("8_423j8")]
 unique_name_in_owner = true
