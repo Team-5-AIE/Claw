@@ -42,30 +42,34 @@ layout_mode = 2
 theme = ExtResource("2_ayrj1")
 theme_override_colors/default_color = Color(0.909804, 0.756863, 0.439216, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 45
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "[center] PAUSED[/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 210
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 210
+theme_override_constants/margin_left = 235
+theme_override_constants/margin_right = 235
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme = ExtResource("2_ayrj1")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 16
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 8
 theme_override_styles/focus = ExtResource("3_h2gsb")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4swhe")
 theme_override_styles/disabled = ExtResource("3_h2gsb")
@@ -79,13 +83,18 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ekmjj")
 theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Resume"
 
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
 [node name="RetryButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme = ExtResource("2_ayrj1")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 16
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 8
 theme_override_styles/focus = ExtResource("3_h2gsb")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4hofj")
 theme_override_styles/disabled = ExtResource("3_h2gsb")
@@ -99,13 +108,18 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_prhkr")
 theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Retry Room"
 
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
 [node name="RestartButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme = ExtResource("2_ayrj1")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 16
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 8
 theme_override_styles/focus = ExtResource("3_h2gsb")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4hofj")
 theme_override_styles/disabled = ExtResource("3_h2gsb")
@@ -119,13 +133,18 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_prhkr")
 theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Restart Chapter"
 
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
 [node name="QuitButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme = ExtResource("2_ayrj1")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 16
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 8
 theme_override_styles/focus = ExtResource("3_h2gsb")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4hofj")
 theme_override_styles/disabled = ExtResource("3_h2gsb")
