@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://Scripts/MenuScripts/time_tracker.gd" id="1_5ptep"]
 [ext_resource type="Texture2D" uid="uid://cyvhepmaupi24" path="res://Sprites/Menu/BoxDefault.png" id="2_lhesd"]
-[ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="3_iui52"]
+[ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="3_3hu2s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lgnu5"]
-font_size = 20
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [node name="TimeTracker" type="Control"]
+process_mode = 1
 layout_mode = 3
 anchor_right = 0.175
 anchor_bottom = 0.092
@@ -29,18 +29,8 @@ offset_left = 1.0
 offset_top = 3.0
 offset_right = 113.0
 offset_bottom = 31.0
-theme = ExtResource("3_iui52")
+theme = ExtResource("3_3hu2s")
 text = "13:00"
 label_settings = SubResource("LabelSettings_lgnu5")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="SecondsTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="MinutesTimer" type="Timer" parent="."]
-wait_time = 60.0
-one_shot = true
-
-[connection signal="timeout" from="SecondsTimer" to="." method="_on_seconds_timer_timeout"]
-[connection signal="timeout" from="MinutesTimer" to="." method="_on_minutes_timer_timeout"]

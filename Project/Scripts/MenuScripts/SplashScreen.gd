@@ -9,13 +9,15 @@ func _ready():
 	tween.tween_property(getSprite, "modulate", Color.WHITE, 1).set_ease(Tween.EASE_IN)
 	
 	var fade_tween = get_tree().create_tween()
-	fade_tween.tween_property($"../Control/CanvasLayer/Label","modulate", Color.TRANSPARENT, 0.5).set_delay(1).set_ease(Tween.EASE_OUT)
+	fade_tween.tween_property($"../Control/CanvasLayer/Label","modulate", Color.TRANSPARENT, 0.9).set_delay(3).set_ease(Tween.EASE_OUT)
 
 func _on_animation_start_timeout() -> void:
 	getSprite.play()
-	$"../AudioStreamPlayer2D".play()
+	AudioManager.play_menu_sound(AudioManager.SPLASH_SCREEN)
 
 func _on_change_scenes_timeout() -> void:
+	FadeTransitions.Transition()
+	await FadeTransitions.on_fade_in_finished
 	get_tree().change_scene_to_file(getScene.resource_path)
 
 func _on_animation_looped() -> void:
@@ -27,7 +29,7 @@ func _on_animation_looped() -> void:
 	
 	var tween2 = get_tree().create_tween()
 	tween2.tween_property(getrect, "color", Color8(9,10,20,255), 1.8).set_delay(1).set_ease(Tween.EASE_OUT)
-	
+
 func _input(event: InputEvent) -> void:
 	if event.is_pressed():
 		print("Skipped")

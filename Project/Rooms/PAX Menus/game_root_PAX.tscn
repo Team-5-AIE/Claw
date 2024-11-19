@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvv533hjdlncr"]
+[gd_scene load_steps=10 format=3 uid="uid://bvv533hjdlncr"]
 
 [ext_resource type="PackedScene" uid="uid://dnei0kqq507xw" path="res://Rooms/PAX Menus/main_menu_PAX.tscn" id="1_7374e"]
 [ext_resource type="Script" path="res://Scripts/RoomContainer.gd" id="1_bu72f"]
@@ -7,27 +7,28 @@
 [ext_resource type="PackedScene" uid="uid://nelr0rw0cn6o" path="res://Rooms/pause_menu.tscn" id="4_fov84"]
 [ext_resource type="PackedScene" uid="uid://b1x7tuyiokmqg" path="res://Effects/cherry_blossom_petal.tscn" id="4_lkmvv"]
 [ext_resource type="PackedScene" uid="uid://220whnswt3p2" path="res://Objects/time_tracker.tscn" id="5_04kto"]
-[ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="6_hy8c1"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="6_q6wf2"]
 [ext_resource type="PackedScene" uid="uid://cxlh1d6lgdbmm" path="res://Objects/bloomie_display.tscn" id="7_vnndk"]
 
 [node name="GameRoot2" type="Node"]
+process_mode = 3
 
-[node name="MainMenu" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu", "timeTracker", "dialogueManager", "bgmPlayer") instance=ExtResource("1_7374e")]
+[node name="MainMenu" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu", "timeTracker", "dialogueManager") instance=ExtResource("1_7374e")]
 startChapterScenePath = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_101.tscn"
 roomContainer = NodePath("../RoomContainer")
 pauseMenu = NodePath("../CanvasLayer/PauseMenu")
 timeTracker = NodePath("../CanvasLayer/TimeTracker")
 dialogueManager = NodePath("../CanvasLayer/DialogueManager")
-bgmPlayer = NodePath("../BGMPlayer")
 
 [node name="RoomContainer" type="Node2D" parent="."]
+process_mode = 1
 script = ExtResource("1_bu72f")
 
 [node name="Parallaxing" parent="." instance=ExtResource("3_ro3q2")]
 z_index = -100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="DialogueManager" parent="CanvasLayer" instance=ExtResource("3_y85if")]
 visible = false
@@ -51,6 +52,3 @@ offset_left = 6.0
 offset_top = 336.0
 offset_right = -538.0
 offset_bottom = -8.0
-
-[node name="BGMPlayer" parent="." instance=ExtResource("6_hy8c1")]
-volume_db = -10.085

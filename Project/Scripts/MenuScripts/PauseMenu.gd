@@ -11,7 +11,6 @@ var startChapterScenePath : String
 var roomContainer : Node2D
 var timeTracker : Node
 var dialogueManager: Control
-var bgmPlayer : AudioStreamPlayer
 
 # Member variables
 # - Public
@@ -43,13 +42,13 @@ func _on_restart_button_pressed() -> void:
 	
 	inGame = false
 	restartButton.disabled = true
-	bgmPlayer.stop()
 	dialogueManager.ClearDialogueBox()
 	
 	FadeTransitions.Transition()
 	await FadeTransitions.on_fade_in_finished
 	
 	TogglePause()
+	AudioManager.play_music(AudioManager.MUSIC_WOLF)
 	
 	Global.chapterOneBloomiesThisSession.fill(false)
 	if LevelFlags.chapterFlags.size() > 0: LevelFlags.chapterFlags.fill(false)
@@ -62,7 +61,6 @@ func _on_restart_button_pressed() -> void:
 	var room = roomContainer.LoadRoom(startChapterScenePath, timeTracker, self)
 	room.StartingRoomSetup()
 	visible = false
-	bgmPlayer.play()
 	
 	timeTracker.visible = false
 	
@@ -100,12 +98,12 @@ func TogglePause() -> void:
 			_paused = false
 			visible = false
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
-			
+			AudioManager.resume_current_music()
 			get_tree().paused = false
 		else:
 			# Pause
 			_paused = true
 			visible = true
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-			
+			AudioManager.pause_current_music()
 			get_tree().paused = true

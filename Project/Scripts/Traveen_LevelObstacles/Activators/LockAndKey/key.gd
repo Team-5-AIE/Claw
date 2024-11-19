@@ -4,8 +4,6 @@ extends Node2D
 signal key_collected(id: int)
 signal key_reset(id: int)
 
-const COLLECT_KEY = preload("res://Sounds/Effects/collectBloomie.wav")
-
 var keyID : int = 0
 var follow : bool = false
 var player = null
@@ -18,7 +16,6 @@ var initialGlobalPosition
 @onready var keyImpression = $Hole
 @onready var light = $Sprite2D/PointLight2D
 @onready var collection_timer = $CollectionTimer
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
@@ -54,13 +51,12 @@ func _on_restart_player() -> void:
 			_reset_key()
 		player = null
 
-# Play collection animation, wait for the sound to end, then delete key
+# Play collection animation, wait for the animation to end, then delete key
 func _on_collection_timer_timeout():
 	collected = true
-	audio_stream_player.stream = COLLECT_KEY
-	audio_stream_player.play()
+	AudioManager.play_game_sound(AudioManager.COLLECT_BLOOMIE) # Replace with key collect sound
 	animation_player.play("Fade")
-	await audio_stream_player.finished
+	await animation_player.animation_finished
 	delete_key()
 
 func _on_area_2d_body_entered(body) -> void:
