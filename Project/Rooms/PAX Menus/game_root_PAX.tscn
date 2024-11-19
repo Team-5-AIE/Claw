@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bb1qdc361jjvp" path="res://Objects/crosshair.tscn" id="4_lodj3"]
 [ext_resource type="PackedScene" uid="uid://220whnswt3p2" path="res://Objects/time_tracker.tscn" id="5_04kto"]
 [ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="6_hy8c1"]
-[ext_resource type="Theme" path="res://addons/Fonts/Chunky.tres" id="6_q6wf2"]
-[ext_resource type="PackedScene" path="res://Objects/bloomie_display.tscn" id="7_vnndk"]
+[ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="6_q6wf2"]
+[ext_resource type="PackedScene" uid="uid://cxlh1d6lgdbmm" path="res://Objects/bloomie_display.tscn" id="7_vnndk"]
 
 [node name="GameRoot2" type="Node"]
 

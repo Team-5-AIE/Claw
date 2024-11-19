@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://q6irvs7qbil5"]
+[gd_scene load_steps=9 format=4 uid="uid://q6irvs7qbil5"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_51epd"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_7sxh2"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_whq2i"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_d1gij"]
 [ext_resource type="PackedScene" uid="uid://caudwsaw0pv0c" path="res://Objects/end_of_chapter_trigger.tscn" id="5_g7lln"]
-[ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="6_ryq0n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -80,10 +79,6 @@ position = Vector2(-48, -48)
 [node name="CollisionShape2D" parent="EndOfChapterTrigger" index="0"]
 position = Vector2(0, -48)
 shape = SubResource("RectangleShape2D_ooyib")
-
-[node name="Bloomie" parent="." instance=ExtResource("6_ryq0n")]
-position = Vector2(-256, 0)
-bloomieID = 6
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
