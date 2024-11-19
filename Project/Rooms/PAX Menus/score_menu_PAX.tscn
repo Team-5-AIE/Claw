@@ -24,11 +24,13 @@ player_time = NodePath("MainScreen/PanelContainer/BestTimes/PlayerTime")
 mainMenuScenePath = "res://Rooms/PAX Menus/game_root_PAX.tscn"
 
 [node name="TitleBG" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 texture = ExtResource("2_40o2b")
 
 [node name="MainScreen" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 size_flags_vertical = 3
