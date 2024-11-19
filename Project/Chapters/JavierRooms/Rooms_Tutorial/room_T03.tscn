@@ -1,12 +1,14 @@
-[gd_scene load_steps=13 format=4 uid="uid://vch0t0ngjjt7"]
+[gd_scene load_steps=15 format=4 uid="uid://vch0t0ngjjt7"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_6qoys"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_68fcd"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_0mcd6"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_sa6ic"]
-[ext_resource type="Texture2D" uid="uid://bwuvhvh7v5ehf" path="res://Sprites/UI/Keys1.png" id="5_8ubeb"]
-[ext_resource type="Texture2D" uid="uid://cis61id4ejioo" path="res://Sprites/UI/Keys3.png" id="6_6wnil"]
-[ext_resource type="Texture2D" uid="uid://dodarxo0xyc0t" path="res://Sprites/UI/Keys5.png" id="7_6a7cp"]
+[ext_resource type="Texture2D" uid="uid://djriny68v10s" path="res://Sprites/UI/Controls/Keys1.png" id="5_gn3cj"]
+[ext_resource type="Texture2D" uid="uid://cphqbxmdepe4f" path="res://Sprites/UI/Controls/Keys3.png" id="6_nq17h"]
+[ext_resource type="Texture2D" uid="uid://c3158y27246lc" path="res://Sprites/UI/Controls/Keys5.png" id="7_2pbs3"]
+[ext_resource type="Texture2D" uid="uid://b715nw63fud2r" path="res://Sprites/UI/Controls/Joysticks3.png" id="8_cljl6"]
+[ext_resource type="Texture2D" uid="uid://b428vrw487t15" path="res://Sprites/UI/Controls/Joysticks4.png" id="9_3lgwh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -31,25 +33,42 @@ b = Vector2(0, -48)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_8ubeb")
+"texture": ExtResource("5_gn3cj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_8ubeb")
+"texture": ExtResource("6_nq17h")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_8ubeb")
+"texture": ExtResource("5_gn3cj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_6wnil")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_8ubeb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_6a7cp")
+"texture": ExtResource("7_2pbs3")
 }],
 "loop": true,
-"name": &"default",
+"name": &"pc",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_cljl6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cljl6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cljl6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3lgwh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cljl6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3lgwh")
+}],
+"loop": true,
+"name": &"xbox",
 "speed": 4.0
 }]
 
@@ -139,8 +158,9 @@ flipSpawnDir = true
 [node name="Mouse1" type="AnimatedSprite2D" parent="."]
 position = Vector2(-112, 152)
 sprite_frames = SubResource("SpriteFrames_obf1j")
-autoplay = "default"
-frame_progress = 0.539703
+animation = &"pc"
+autoplay = "pc"
+frame_progress = 0.555005
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]

@@ -1,16 +1,21 @@
-[gd_scene load_steps=17 format=4 uid="uid://ct0pg7nntbx32"]
+[gd_scene load_steps=23 format=4 uid="uid://ct0pg7nntbx32"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_jo1e8"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_g8asr"]
-[ext_resource type="Texture2D" uid="uid://c5i8k2pq4siy6" path="res://Sprites/UI/Mouse3.png" id="3_fmupw"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_hh8to"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_8bo1g"]
-[ext_resource type="Texture2D" uid="uid://b6bgrowhiyhuc" path="res://Sprites/UI/Keys4.png" id="4_c4p7k"]
 [ext_resource type="PackedScene" uid="uid://caudwsaw0pv0c" path="res://Objects/end_of_chapter_trigger.tscn" id="6_ifk11"]
-[ext_resource type="Texture2D" uid="uid://dc0okorircd5" path="res://Sprites/UI/Mouse1.png" id="7_p25jo"]
+[ext_resource type="Texture2D" uid="uid://d3squtocx0ak5" path="res://Sprites/UI/Controls/Shoulder Buttons5.png" id="7_w04rt"]
+[ext_resource type="Texture2D" uid="uid://jglgft0ysrgf" path="res://Sprites/UI/Controls/Mouse1.png" id="7_yto6o"]
+[ext_resource type="Texture2D" uid="uid://c2d174co5glf5" path="res://Sprites/UI/Controls/Mouse3.png" id="8_31p1j"]
+[ext_resource type="Texture2D" uid="uid://bo7cuag8ve85w" path="res://Sprites/UI/Controls/Shoulder Buttons6.png" id="8_br8kf"]
 [ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="8_pmqr0"]
-[ext_resource type="Texture2D" uid="uid://bwuvhvh7v5ehf" path="res://Sprites/UI/Keys1.png" id="9_6g7e4"]
-[ext_resource type="Texture2D" uid="uid://dncdh3ee5kl8j" path="res://Sprites/UI/Keys2.png" id="10_jkihu"]
+[ext_resource type="Texture2D" uid="uid://nwatvdqkuqyb" path="res://Sprites/UI/Controls/Keys2.png" id="12_nrpj0"]
+[ext_resource type="Texture2D" uid="uid://b715nw63fud2r" path="res://Sprites/UI/Controls/Joysticks3.png" id="14_malmr"]
+[ext_resource type="Texture2D" uid="uid://b428vrw487t15" path="res://Sprites/UI/Controls/Joysticks4.png" id="15_x6gmc"]
+[ext_resource type="Texture2D" uid="uid://djriny68v10s" path="res://Sprites/UI/Controls/Keys1.png" id="16_s7x0n"]
+[ext_resource type="Texture2D" uid="uid://c1x74uqgglmic" path="res://Sprites/UI/Controls/Keys4.png" id="17_0b2f3"]
+[ext_resource type="Texture2D" uid="uid://gh548tbhk726" path="res://Sprites/UI/Controls/Shoulder Buttons8.png" id="19_4nr1w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -29,19 +34,36 @@ size = Vector2(16, 96)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_p25jo")
+"texture": ExtResource("7_yto6o")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_p25jo")
+"texture": ExtResource("7_yto6o")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_p25jo")
+"texture": ExtResource("7_yto6o")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_fmupw")
+"texture": ExtResource("8_31p1j")
 }],
 "loop": true,
-"name": &"default",
+"name": &"pc",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_w04rt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w04rt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w04rt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_br8kf")
+}],
+"loop": true,
+"name": &"xbox",
 "speed": 4.0
 }]
 
@@ -49,25 +71,67 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_6g7e4")
+"texture": ExtResource("16_s7x0n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_6g7e4")
+"texture": ExtResource("16_s7x0n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_6g7e4")
+"texture": ExtResource("16_s7x0n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_jkihu")
+"texture": ExtResource("12_nrpj0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_6g7e4")
+"texture": ExtResource("16_s7x0n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_c4p7k")
+"texture": ExtResource("17_0b2f3")
 }],
 "loop": true,
-"name": &"default",
+"name": &"pc",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_malmr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_malmr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_malmr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_x6gmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_malmr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_x6gmc")
+}],
+"loop": true,
+"name": &"xbox",
+"speed": 4.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ef8rp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_0b2f3")
+}],
+"loop": true,
+"name": &"pc",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_4nr1w")
+}],
+"loop": true,
+"name": &"xbox",
 "speed": 4.0
 }]
 
@@ -145,18 +209,20 @@ bloomieID = 1
 [node name="Mouse3" type="AnimatedSprite2D" parent="."]
 position = Vector2(40, -72)
 sprite_frames = SubResource("SpriteFrames_ny8la")
-autoplay = "default"
-frame_progress = 0.733221
+animation = &"pc"
+autoplay = "pc"
 
 [node name="Keys4" type="AnimatedSprite2D" parent="."]
 position = Vector2(40, -32)
 sprite_frames = SubResource("SpriteFrames_b8kc7")
-autoplay = "default"
-frame_progress = 0.387105
+animation = &"pc"
+autoplay = "pc"
 
-[node name="Keys5" type="Sprite2D" parent="."]
-position = Vector2(-192, 0)
-texture = ExtResource("4_c4p7k")
+[node name="Keys5" type="AnimatedSprite2D" parent="."]
+position = Vector2(-192, 88)
+sprite_frames = SubResource("SpriteFrames_ef8rp")
+animation = &"pc"
+autoplay = "pc"
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]

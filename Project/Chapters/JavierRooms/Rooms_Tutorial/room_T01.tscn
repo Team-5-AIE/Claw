@@ -1,15 +1,19 @@
-[gd_scene load_steps=15 format=4 uid="uid://cuoj5kvln51vu"]
+[gd_scene load_steps=19 format=4 uid="uid://cuoj5kvln51vu"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_munf2"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_ohw7w"]
 [ext_resource type="PackedScene" uid="uid://btr04pfqnhcvi" path="res://Objects/player_spawn.tscn" id="3_7lxxh"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="4_ghx2d"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="5_mvw5e"]
-[ext_resource type="Texture2D" uid="uid://bwuvhvh7v5ehf" path="res://Sprites/UI/Keys1.png" id="6_hvbs3"]
-[ext_resource type="Texture2D" uid="uid://dodarxo0xyc0t" path="res://Sprites/UI/Keys5.png" id="6_xrljx"]
-[ext_resource type="Texture2D" uid="uid://cis61id4ejioo" path="res://Sprites/UI/Keys3.png" id="7_8rhfp"]
-[ext_resource type="Texture2D" uid="uid://cc4pmtuyvu30o" path="res://Sprites/UI/Space2.png" id="7_ffaee"]
-[ext_resource type="Texture2D" uid="uid://sakpug4p8cik" path="res://Sprites/UI/Space1.png" id="9_da2c4"]
+[ext_resource type="Texture2D" uid="uid://djriny68v10s" path="res://Sprites/UI/Controls/Keys1.png" id="6_21bye"]
+[ext_resource type="Texture2D" uid="uid://cphqbxmdepe4f" path="res://Sprites/UI/Controls/Keys3.png" id="7_v51db"]
+[ext_resource type="Texture2D" uid="uid://c3158y27246lc" path="res://Sprites/UI/Controls/Keys5.png" id="8_wfgbg"]
+[ext_resource type="Texture2D" uid="uid://b715nw63fud2r" path="res://Sprites/UI/Controls/Joysticks3.png" id="9_5uixu"]
+[ext_resource type="Texture2D" uid="uid://b428vrw487t15" path="res://Sprites/UI/Controls/Joysticks4.png" id="10_oymia"]
+[ext_resource type="Texture2D" uid="uid://bt74ayjxvbl5o" path="res://Sprites/UI/Controls/Space1.png" id="11_5txpl"]
+[ext_resource type="Texture2D" uid="uid://c2rexvvdq6t27" path="res://Sprites/UI/Controls/Space2.png" id="12_6x20s"]
+[ext_resource type="Texture2D" uid="uid://6m24iiamjb62" path="res://Sprites/UI/Controls/Shoulder Buttons1.png" id="13_8nr4r"]
+[ext_resource type="Texture2D" uid="uid://vw54eo5phnxp" path="res://Sprites/UI/Controls/Shoulder Buttons2.png" id="14_uetff"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -24,25 +28,48 @@ b = Vector2(0, -64)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_hvbs3")
+"texture": ExtResource("6_21bye")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_hvbs3")
+"texture": ExtResource("6_21bye")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_hvbs3")
+"texture": ExtResource("6_21bye")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_8rhfp")
+"texture": ExtResource("7_v51db")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_hvbs3")
+"texture": ExtResource("6_21bye")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_xrljx")
+"texture": ExtResource("8_wfgbg")
 }],
 "loop": true,
-"name": &"default",
+"name": &"pc",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_5uixu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5uixu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5uixu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_oymia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5uixu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_oymia")
+}],
+"loop": true,
+"name": &"xbox",
 "speed": 4.0
 }]
 
@@ -50,19 +77,36 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_da2c4")
+"texture": ExtResource("11_5txpl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_da2c4")
+"texture": ExtResource("11_5txpl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_da2c4")
+"texture": ExtResource("11_5txpl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_ffaee")
+"texture": ExtResource("12_6x20s")
 }],
 "loop": true,
-"name": &"default",
+"name": &"pc",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_8nr4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8nr4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8nr4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_uetff")
+}],
+"loop": true,
+"name": &"xbox",
 "speed": 4.0
 }]
 
@@ -129,14 +173,16 @@ flipSpawnDir = true
 [node name="Keys5" type="AnimatedSprite2D" parent="."]
 position = Vector2(-96, 152)
 sprite_frames = SubResource("SpriteFrames_6pj05")
-autoplay = "default"
-frame = 1
-frame_progress = 0.548008
+animation = &"pc"
+autoplay = "pc"
+frame_progress = 0.0934008
 
 [node name="Space2" type="AnimatedSprite2D" parent="."]
 position = Vector2(56, 152)
 sprite_frames = SubResource("SpriteFrames_xm07e")
-autoplay = "default"
+animation = &"pc"
+autoplay = "pc"
+frame_progress = 0.39462
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]

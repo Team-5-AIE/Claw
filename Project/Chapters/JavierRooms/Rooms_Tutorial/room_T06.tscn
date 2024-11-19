@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://ctjwe72dpy5gg"]
+[gd_scene load_steps=14 format=4 uid="uid://ctjwe72dpy5gg"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_2iuno"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_3weut"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_s51wr"]
 [ext_resource type="PackedScene" uid="uid://ddrlv8enrycsh" path="res://Objects/spear_pickup.tscn" id="5_3v2mi"]
 [ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="5_i2s3l"]
-[ext_resource type="Texture2D" uid="uid://bks7igaqngper" path="res://Sprites/UI/Mouse2.png" id="7_cym36"]
-[ext_resource type="Texture2D" uid="uid://dc0okorircd5" path="res://Sprites/UI/Mouse1.png" id="7_n4bgp"]
+[ext_resource type="Texture2D" uid="uid://jglgft0ysrgf" path="res://Sprites/UI/Controls/Mouse1.png" id="7_4mmho"]
+[ext_resource type="Texture2D" uid="uid://bds5fue7p3aue" path="res://Sprites/UI/Controls/Mouse2.png" id="8_nsaxg"]
+[ext_resource type="Texture2D" uid="uid://b8qllfaxq8lwl" path="res://Sprites/UI/Controls/Shoulder Buttons3.png" id="9_xesmk"]
+[ext_resource type="Texture2D" uid="uid://b6fuu1wudo63v" path="res://Sprites/UI/Controls/Shoulder Buttons4.png" id="10_mo16g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -22,28 +24,54 @@ b = Vector2(48, 0)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_n4bgp")
+"texture": ExtResource("7_4mmho")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_n4bgp")
+"texture": ExtResource("7_4mmho")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_n4bgp")
+"texture": ExtResource("7_4mmho")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_cym36")
+"texture": ExtResource("8_nsaxg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_cym36")
+"texture": ExtResource("8_nsaxg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_cym36")
+"texture": ExtResource("8_nsaxg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_cym36")
+"texture": ExtResource("8_nsaxg")
 }],
 "loop": true,
-"name": &"default",
+"name": &"pc",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_xesmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xesmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xesmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mo16g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mo16g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mo16g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mo16g")
+}],
+"loop": true,
+"name": &"xbox",
 "speed": 4.0
 }]
 
@@ -112,8 +140,8 @@ position = Vector2(272, 0)
 [node name="Mouse2" type="AnimatedSprite2D" parent="."]
 position = Vector2(128, -96)
 sprite_frames = SubResource("SpriteFrames_4bsib")
-autoplay = "default"
-frame_progress = 0.199867
+animation = &"pc"
+autoplay = "pc"
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
