@@ -1,13 +1,13 @@
 extends Control
 
-@onready var first_place: RichTextLabel = $TopRecordsTable/FirstPlace
-@onready var second_place: RichTextLabel = $TopRecordsTable/SecondPlace
-@onready var third_place: RichTextLabel = $TopRecordsTable/ThirdPlace
-@onready var fourth_place: RichTextLabel = $TopRecordsTable/FourthPlace
-@onready var fifth_place: RichTextLabel = $TopRecordsTable/FifthPlace
-@onready var player_name_input: LineEdit = $ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/PlayerNameInput
+@export var first_place: RichTextLabel
+@export var second_place: RichTextLabel
+@export var third_place: RichTextLabel
+@export var fourth_place: RichTextLabel
+@export var fifth_place: RichTextLabel
+@export var player_name_input: LineEdit
 
-@onready var player_time: RichTextLabel = $ChapterScreen/MarginContainer/PanelContainer/VBoxContainer/PlayerTime
+@export var player_time: RichTextLabel
 
 @export_file("*.tscn") var mainMenuScenePath : String
 
