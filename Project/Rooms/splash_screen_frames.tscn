@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c754aq07xarlj"]
+[gd_scene load_steps=5 format=3 uid="uid://c754aq07xarlj"]
 
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="1_2nby1"]
 [ext_resource type="SpriteFrames" uid="uid://dnu8babgfvnje" path="res://Sprites/Menu/5FramesSplash/FramesSplash.tres" id="1_knp4v"]
 [ext_resource type="Script" path="res://Scripts/MenuScripts/SplashScreen.gd" id="2_hutxu"]
-[ext_resource type="AudioStream" uid="uid://btoekee4wk2ve" path="res://Sounds/SplashScreenSound.wav" id="3_wxxin"]
 [ext_resource type="PackedScene" uid="uid://bvv533hjdlncr" path="res://Rooms/PAX Menus/game_root_PAX.tscn" id="4_u6swg"]
 
 [node name="Splash_Screen_Frames" type="Node2D"]
@@ -56,16 +55,13 @@ script = ExtResource("2_hutxu")
 getScene = ExtResource("4_u6swg")
 
 [node name="Change Scenes" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.4
 one_shot = true
 
 [node name="Animation Start" type="Timer" parent="."]
-wait_time = 2.9
+wait_time = 3.0
 one_shot = true
 autostart = true
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_wxxin")
 
 [connection signal="animation_looped" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_looped"]
 [connection signal="timeout" from="Change Scenes" to="AnimatedSprite2D" method="_on_change_scenes_timeout"]
