@@ -99,6 +99,7 @@ func TogglePause() -> void:
 			visible = false
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 			AudioManager.resume_current_music()
+			AudioManager.resume_all_game_sounds()
 			get_tree().paused = false
 		else:
 			# Pause
@@ -106,4 +107,5 @@ func TogglePause() -> void:
 			visible = true
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 			AudioManager.pause_current_music()
+			AudioManager.pause_all_game_sounds()
 			get_tree().paused = true
