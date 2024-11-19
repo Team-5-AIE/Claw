@@ -115,10 +115,11 @@ func resume_all_menu_sounds() -> bool:
 	return resume_all_game_sounds(menu_sfx_player)
 
 ## Play specific music. 
-## Return true when executed.
-func play_music(music) -> bool:
-	if (music_player.playing == true):
-		music_player.stop()
+## Return true when executed, and false if music is already playing when not forcing start
+func play_music(music: Resource, force_start: bool = true) -> bool:
+	if music_player.playing:
+		if force_start: music_player.stop()
+		else: return false
 	music_player.stream_paused = false
 	music_player.stream = music
 	music_player.play()
@@ -144,4 +145,3 @@ func resume_current_music():
 
 func _ready():
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
-	play_music(MUSIC_WOLF)

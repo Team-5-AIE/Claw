@@ -48,7 +48,7 @@ func EnterState() -> void:
 
 #=================================================================================
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
-	if !hookSoundPlayed:
+	if not hookSoundPlayed:
 		AudioManager.play_game_sound_random(AudioManager.HOOK1, AudioManager.HOOK2)
 		hookSoundPlayed = true
 	#ProcessVelocity(delta)
