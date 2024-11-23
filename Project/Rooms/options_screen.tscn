@@ -1,53 +1,291 @@
-[gd_scene load_steps=2 format=3 uid="uid://1n7gaf38aipt"]
+[gd_scene load_steps=10 format=3 uid="uid://1n7gaf38aipt"]
 
-[ext_resource type="Theme" uid="uid://c52weqjysclu7" path="res://Effects/font_theme.tres" id="1_0ix1y"]
+[ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="1_sstob"]
+[ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="2_ohn6s"]
+[ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="3_l58dn"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_ml7uj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u8hsw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fxx53"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfjma"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dobla"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bmbee"]
 
 [node name="OptionsScreen" type="PanelContainer"]
-offset_right = 640.0
-offset_bottom = 360.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 2
-follow_focus = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Title" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
+[node name="OptionsTitle" type="RichTextLabel" parent="VBoxContainer"]
+clip_contents = false
 layout_mode = 2
-theme = ExtResource("1_0ix1y")
-theme_override_colors/default_color = Color(0.729412, 0.729412, 0.729412, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme = ExtResource("1_sstob")
+theme_override_colors/default_color = Color(0.909804, 0.756863, 0.439216, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]OPTIONS"
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="VisualSubheading" type="RichTextLabel" parent="VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_sstob")
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "[center]OPTIONS[/center]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="ControlsSubheading" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_0ix1y")
-theme_override_colors/default_color = Color(0.6, 0.6, 0.6, 1)
-theme_override_font_sizes/normal_font_size = 12
-bbcode_enabled = true
-text = "[center]CONTROLS[/center]"
+text = "[center]VISUAL[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="ControlsOptions" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="VisualSettings" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 200
-theme_override_constants/margin_right = 200
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_right = 80
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/ControlsOptions"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VisualSettings"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/ControlsOptions/VBoxContainer"]
+[node name="ToggleFullscreen" type="HBoxContainer" parent="VBoxContainer/VisualSettings/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_0ix1y")
-text = "Keybinds"
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VisualSettings/VBoxContainer/ToggleFullscreen"]
+layout_mode = 2
+alignment = 1
+
+[node name="FullscreenLabel" type="RichTextLabel" parent="VBoxContainer/VisualSettings/VBoxContainer/ToggleFullscreen/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Fullscreen:"
+fit_content = true
+
+[node name="ButtonFullscreen" type="CheckButton" parent="VBoxContainer/VisualSettings/VBoxContainer/ToggleFullscreen"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+
+[node name="PixelSize" type="HBoxContainer" parent="VBoxContainer/VisualSettings/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
+layout_mode = 2
+alignment = 1
+
+[node name="PixelSizeLabel" type="RichTextLabel" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Pixel Size:"
+fit_content = true
+
+[node name="ButtonSize1" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+text = "x1"
+
+[node name="ButtonSize2" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+text = "x2"
+
+[node name="ButtonSize3" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+text = "x3"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="AudioSubheading" type="RichTextLabel" parent="VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_sstob")
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]AUDIO[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="AudioSettings" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_right = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/AudioSettings"]
+layout_mode = 2
+
+[node name="MasterVolume" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume"]
+layout_mode = 2
+alignment = 1
+
+[node name="VolumeMasterLabel" type="RichTextLabel" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(115, 0)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Master:"
+fit_content = true
+
+[node name="VolumeMasterInput" type="LineEdit" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_sstob")
+theme_override_font_sizes/font_size = 16
+theme_override_icons/clear = SubResource("ImageTexture_ml7uj")
+placeholder_text = "100"
+alignment = 1
+max_length = 3
+editable = false
+middle_mouse_paste_enabled = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume"]
+layout_mode = 2
+alignment = 1
+
+[node name="VolumeMasterSlider" type="HSlider" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="MasterVolume2" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume2"]
+layout_mode = 2
+alignment = 1
+
+[node name="VolumeMusicLabel" type="RichTextLabel" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume2/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(115, 0)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Music:"
+fit_content = true
+
+[node name="VolumeMusicInput" type="LineEdit" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_sstob")
+theme_override_font_sizes/font_size = 16
+theme_override_icons/clear = SubResource("ImageTexture_ml7uj")
+placeholder_text = "100"
+alignment = 1
+max_length = 3
+editable = false
+middle_mouse_paste_enabled = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume2"]
+layout_mode = 2
+alignment = 1
+
+[node name="VolumeMusicSlider" type="HSlider" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume2/VBoxContainer2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="MasterVolume3" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume3"]
+layout_mode = 2
+alignment = 1
+
+[node name="VolumeSFXLabel" type="RichTextLabel" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume3/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(115, 0)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "sfx:"
+fit_content = true
+
+[node name="VolumeSFXInput" type="LineEdit" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume3"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_sstob")
+theme_override_font_sizes/font_size = 16
+theme_override_icons/clear = SubResource("ImageTexture_ml7uj")
+placeholder_text = "100"
+alignment = 1
+max_length = 3
+editable = false
+middle_mouse_paste_enabled = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume3"]
+layout_mode = 2
+alignment = 1
+
+[node name="VolumeSFXSlider" type="HSlider" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume3/VBoxContainer2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ReturnButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 36)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = ExtResource("2_ohn6s")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u8hsw")
+theme_override_styles/disabled = ExtResource("2_ohn6s")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_fxx53")
+theme_override_styles/hover_pressed = ExtResource("2_ohn6s")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_gfjma")
+theme_override_styles/hover = ExtResource("3_l58dn")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dobla")
+theme_override_styles/pressed = ExtResource("2_ohn6s")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_bmbee")
+theme_override_styles/normal = ExtResource("2_ohn6s")
+text = "Return"
