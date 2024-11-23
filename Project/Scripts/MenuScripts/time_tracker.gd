@@ -15,7 +15,7 @@ func _ready() -> void:
 	UpdateText()
 
 func _process(delta: float) -> void:
-	if visible:
+	if visible && not FadeTransitions.lockPlayer:
 		currentTime += delta
 		wholeTime = int(floor(currentTime))
 		seconds = int(floor(currentTime)) % 60
