@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="3_3hu2s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lgnu5"]
+font_size = 8
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
