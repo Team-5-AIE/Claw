@@ -179,11 +179,7 @@ theme_override_icons/clear = SubResource("ImageTexture_mwb2m")
 placeholder_text = "AAA"
 alignment = 1
 max_length = 3
-expand_to_text_length = true
-clear_button_enabled = true
 middle_mouse_paste_enabled = false
-caret_blink = true
-caret_force_displayed = true
 
 [node name="SubmitButton" type="Button" parent="MainScreen/PanelContainer/BestTimes/HBoxContainer"]
 custom_minimum_size = Vector2(112, 40)
