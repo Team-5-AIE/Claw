@@ -18,11 +18,11 @@ func _process(_delta):
 			if (rtnArray.size() > 0):
 				player = rtnArray[0]
 				playerCam = player.get_node("PlayerCamera")
+		else:
+			var pointLights : PackedVector3Array = material.get_shader_parameter("pointLights")
 			
 			var rtnArray2 = get_tree().get_nodes_in_group("PointLights")
 			pointLightObjects.assign(rtnArray2)
-		else:
-			var pointLights : PackedVector3Array = material.get_shader_parameter("pointLights")
 			
 			for i : int in pointLightObjects.size():
 				pointLights[i].x = pointLightObjects[i].global_position.x + 320
