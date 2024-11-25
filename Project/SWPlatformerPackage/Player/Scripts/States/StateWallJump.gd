@@ -6,7 +6,6 @@ extends State
 var jump_direction : Vector2 = Vector2(1,0)
 
 func EnterState() -> void:
-	AudioManager.play_game_sound_random(0, AudioManager.JUMP1, AudioManager.JUMP2, AudioManager.JUMP3)
 	var dust_instance = player.instance_create(player.RUN_DUST_PARTICLES,player)
 	dust_instance.scale.x = sign(-player.velocity.x)
 	dust_instance.set_as_top_level(true)
@@ -37,6 +36,7 @@ func EnterState() -> void:
 		print("Debug: Wall Jump State")
 	player.animation_player.play("WallJump")
 	player.last_input_direction.x = -player.last_input_direction.x
+	AudioManager.play_game_sound_random(-5, AudioManager.JUMP1, AudioManager.JUMP2, AudioManager.JUMP3)
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	if player.input_axis.x != 0 && !player.state_jump.bunnyhop:

@@ -49,7 +49,7 @@ func EnterState() -> void:
 #=================================================================================
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	if not hookSoundPlayed:
-		AudioManager.play_modulated_game_sound(AudioManager.WOOD_IMPACT, 0)
+		AudioManager.play_modulated_game_sound(AudioManager.WOOD_IMPACT, -5)
 		hookSoundPlayed = true
 	#ProcessVelocity(delta)
 
@@ -70,7 +70,7 @@ func ProcessVelocity(delta:float) -> void:
 	var ropeDirection : Vector2 = spearToPlayer
 	
 	if Input.is_action_just_pressed("SpearPull") && !player.is_on_floor():
-		AudioManager.play_game_sound_random(0, AudioManager.WOOSH2, AudioManager.WOOSH3)
+		AudioManager.play_game_sound_random(-5, AudioManager.WOOSH2, AudioManager.WOOSH3)
 		spearInstance.pullReleased = true
 		#if spearInstance.ropeLength > 16:
 		#	spearInstance.ropeLength -= delta * 150
@@ -79,7 +79,7 @@ func ProcessVelocity(delta:float) -> void:
 		return
 	
 	if Input.is_action_just_pressed("SpearPull"):
-		AudioManager.play_game_sound_random(0, AudioManager.WOOSH2, AudioManager.WOOSH3)
+		AudioManager.play_game_sound_random(-5, AudioManager.WOOSH2, AudioManager.WOOSH3)
 	
 	var currentRopeLength : float = ropeDirection.length()
 	ropeDirection /= currentRopeLength

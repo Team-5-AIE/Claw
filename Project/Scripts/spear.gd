@@ -37,7 +37,7 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("SpearPull") && player.is_on_floor() && hooked:
 		if player.state_spear.spearInstance != null:
 			print("pull")
-			AudioManager.play_game_sound_random_modulated(0, AudioManager.WOOSH2, AudioManager.WOOSH3)
+			#AudioManager.play_game_sound_random_modulated(-25, AudioManager.WOOSH2, AudioManager.WOOSH3)
 			player.state_spear.spearInstance.pullReleased = true
 			#if spearInstance.ropeLength > 16:
 			#	spearInstance.ropeLength -= delta * 150
@@ -93,7 +93,7 @@ func Shoot(dir : Vector2) -> void:
 	direction = dir.normalized()
 	extending = true
 	tip = self.global_position
-	AudioManager.play_modulated_game_sound(AudioManager.SHOOTSPEAR, 0)
+	AudioManager.play_modulated_game_sound(AudioManager.SHOOTSPEAR, -10)
 
 func Release() -> void:
 	#print("Release")
@@ -105,7 +105,7 @@ func Release() -> void:
 
 func JumpRelease() -> void: #NOTE: Not used
 	#print("Jump Release")
-	AudioManager.play_game_sound_random_modulated(0, AudioManager.WOOSH2, AudioManager.WOOSH3)
+	#AudioManager.play_game_sound_random_modulated(-25, AudioManager.WOOSH2, AudioManager.WOOSH3)
 	if player.is_on_floor():
 		player.state_fall.jumpedFromSpear = true
 		player.finite_state_machine.ChangeState(player.state_idle)

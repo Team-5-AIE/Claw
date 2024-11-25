@@ -18,7 +18,7 @@ const DOOR2 = preload("res://Sounds/JavierSounds/doorOpen (2).wav")
 const DOOR3 = preload("res://Sounds/JavierSounds/doorOpen (3).wav")
 const DOOR4 = preload("res://Sounds/JavierSounds/doorOpen (4).wav")
 
-const SHOOTSPEAR = preload("res://Sounds/JavierSounds/woosh (1).wav")
+const SHOOTSPEAR = preload("res://Sounds/JavierSounds/spearShoot.wav")
 const WOOSH2 = preload("res://Sounds/JavierSounds/woosh (2).wav")
 const WOOSH3 = preload("res://Sounds/JavierSounds/woosh (3).wav")
 
@@ -29,6 +29,7 @@ const FLOORSLIDE = preload("res://Sounds/JavierSounds/FloorSlide.wav")
 const DEATH = preload("res://Sounds/JavierSounds/deathSound.wav")
 
 const AUTOPULL = preload("res://Sounds/Effects/AutoPull.wav")
+const TOUCH_BLOOMIE = preload("res://Sounds/JavierSounds/keySparkle.wav")
 const COLLECT_BLOOMIE = preload("res://Sounds/Effects/collectBloomie.wav")
 const PULLJUMP = preload("res://Sounds/Effects/pullJump.wav")
 const SPLASH_SCREEN = preload("res://Sounds/SplashScreenSound.wav")

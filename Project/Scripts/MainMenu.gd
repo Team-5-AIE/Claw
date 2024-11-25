@@ -11,7 +11,7 @@ extends Control
 @onready var bloomieDisplay: Control = $"../CanvasLayer/BloomieDisplay"
 
 func _ready() -> void:
-	AudioManager.play_music(AudioManager.MUSIC_SPLASH, false)
+	AudioManager.play_music(AudioManager.MUSIC_SPLASH, -4, false)
 	pauseMenu.startChapterScenePath = startChapterScenePath
 	pauseMenu.roomContainer = roomContainer
 	pauseMenu.timeTracker = timeTracker

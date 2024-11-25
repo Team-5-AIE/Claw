@@ -23,6 +23,7 @@ var sprite_flip_lock = false
 var disable_gravity = false
 var air_resistance_lock = false
 @export var friction_lock = false
+@onready var death_audio_fix = $"../Timers/DeathSoundTimer"
 
 #=================================Functions===================================================
 func _ready() -> void:
@@ -34,7 +35,7 @@ func _process(delta) -> void:
 		player.velocity = Vector2.ZERO
 		if FadeTransitions.restart:
 			player.animation_player.play("Restart")
-			AudioManager.play_game_sound_random_modulated(0, AudioManager.DEATH)
+			death_audio_fix.start()
 		else:
 			player.animation_player.play("Idle")
 		return
@@ -291,3 +292,7 @@ func SpearPhysicsProcess() -> void:
 	player.state_spear.spearInstance.global_position = player.spear_marker.global_position
 	player.state_spear.spearInstance.Shoot(player.state_spear.shootDirection)
 	spearThrown = false
+
+
+func _on_death_sound_timer_timeout() -> void:
+	AudioManager.play_game_sound_random_modulated(0, AudioManager.DEATH)

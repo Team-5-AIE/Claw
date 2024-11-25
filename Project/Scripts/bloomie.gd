@@ -37,7 +37,7 @@ func _process(_delta)-> void:
 
 func _on_collection_timer_timeout():
 	collecting = true
-	AudioManager.play_game_sound(AudioManager.COLLECT_BLOOMIE, 0)
+	AudioManager.play_game_sound(AudioManager.COLLECT_BLOOMIE, -5)
 	animation_player.play("Fade")
 	await animation_player.animation_finished
 	
@@ -69,6 +69,7 @@ func _on_restart_player() -> void:
 func _on_area_2d_body_entered(body) -> void:
 	if player == null and body.name == "Player":
 		player = body
+		AudioManager.play_game_sound(AudioManager.TOUCH_BLOOMIE, -2)
 		
 		# The bloomie needs to be a child of the player so that it stays loaded
 		# when its room unloads, but we don't want it to move with the player
