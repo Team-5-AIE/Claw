@@ -114,3 +114,11 @@ func TogglePause() -> void:
 			AudioManager.pause_current_music()
 			AudioManager.pause_all_game_sounds()
 			get_tree().paused = true
+
+
+
+func _on_options_button_pressed() -> void:
+	$OptionsScreen.is_active = true
+
+func _on_options_return_button_pressed() -> void:
+	$OptionsScreen.is_active = false

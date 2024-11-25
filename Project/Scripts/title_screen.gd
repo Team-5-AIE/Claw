@@ -69,6 +69,12 @@ func _on_credits_return_button_pressed() -> void:
 	scoreboardScreen.visible = true
 	creditsScreen.visible = false
 
+# Options Buttons
+func _on_options_button_pressed() -> void:
+	optionsScreen.is_active = true
+func _on_options_return_button_pressed() -> void:
+	optionsScreen.is_active = false
+
 # Quit Button
 func _on_quit_button_pressed() -> void:
 	if not isQuitting:

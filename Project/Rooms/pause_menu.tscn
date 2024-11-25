@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://nelr0rw0cn6o"]
+[gd_scene load_steps=16 format=3 uid="uid://nelr0rw0cn6o"]
 
 [ext_resource type="Script" path="res://Scripts/MenuScripts/PauseMenu.gd" id="1_mpl1k"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="2_ayrj1"]
 [ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="3_h2gsb"]
 [ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="4_rao1h"]
+[ext_resource type="PackedScene" uid="uid://1n7gaf38aipt" path="res://Rooms/options_screen.tscn" id="5_kqyj5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4swhe"]
 
@@ -113,6 +114,31 @@ modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
+[node name="OptionsButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme = ExtResource("2_ayrj1")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = ExtResource("3_h2gsb")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4hofj")
+theme_override_styles/disabled = ExtResource("3_h2gsb")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_4w7fw")
+theme_override_styles/hover_pressed = ExtResource("3_h2gsb")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_u2rb6")
+theme_override_styles/hover = ExtResource("4_rao1h")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dhnej")
+theme_override_styles/pressed = ExtResource("3_h2gsb")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_prhkr")
+theme_override_styles/normal = ExtResource("3_h2gsb")
+text = "Options"
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
 [node name="RestartButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
@@ -133,7 +159,7 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_prhkr")
 theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Restart Chapter"
 
-[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
@@ -158,7 +184,15 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_prhkr")
 theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Return to Title"
 
+[node name="OptionsScreen" parent="." instance=ExtResource("5_kqyj5")]
+visible = false
+layout_mode = 2
+
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OptionsScreen/VBoxContainer/HBoxContainer/ReturnButton" to="." method="_on_options_return_button_pressed"]
+
+[editable path="OptionsScreen"]

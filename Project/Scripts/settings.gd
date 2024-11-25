@@ -11,10 +11,12 @@ var pixel_size: int :
 	set(value):
 		assert(value > 0, "Pixel size cannot be 0 or below")
 		var window = get_window()
-		
-		window.size = VIEWPORT_SIZE * value
-		if window.size.x >= DisplayServer.screen_get_size(window.current_screen).x:
+		var window_size = VIEWPORT_SIZE * value
+		if window_size.x >= DisplayServer.screen_get_size(window.current_screen).x:
 			is_fullscreen = true
+		else:
+			is_fullscreen = false
+		window.size = window_size
 		window.move_to_center()
 
 ## The state of whether the window is fullscreen or not. 
@@ -67,5 +69,5 @@ var sfx_volume: float :
 # Initial values
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
-	is_fullscreen = false
-	pixel_size = 2
+	
+	is_fullscreen = true
