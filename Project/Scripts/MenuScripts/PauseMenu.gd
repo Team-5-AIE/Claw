@@ -48,7 +48,7 @@ func _on_restart_button_pressed() -> void:
 	await FadeTransitions.on_fade_in_finished
 	
 	TogglePause()
-	AudioManager.play_music(AudioManager.MUSIC_WOLF)
+	AudioManager.play_music(AudioManager.MUSIC_WOLF, 0)
 	
 	Global.chapterOneBloomiesThisSession.fill(false)
 	if LevelFlags.chapterFlags.size() > 0: LevelFlags.chapterFlags.fill(false)

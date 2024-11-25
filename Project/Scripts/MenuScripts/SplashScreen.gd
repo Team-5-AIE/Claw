@@ -13,7 +13,7 @@ func _ready():
 
 func _on_animation_start_timeout() -> void:
 	getSprite.play()
-	AudioManager.play_menu_sound(AudioManager.SPLASH_SCREEN)
+	AudioManager.play_menu_sound(AudioManager.SPLASH_SCREEN, 0)
 
 func _on_change_scenes_timeout() -> void:
 	FadeTransitions.Transition()

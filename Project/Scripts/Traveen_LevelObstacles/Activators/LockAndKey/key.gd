@@ -54,7 +54,7 @@ func _on_restart_player() -> void:
 # Play collection animation, wait for the animation to end, then delete key
 func _on_collection_timer_timeout():
 	collected = true
-	AudioManager.play_game_sound(AudioManager.COLLECT_BLOOMIE) # Replace with key collect sound
+	AudioManager.play_game_sound(AudioManager.COLLECT_BLOOMIE, 0) # Replace with key collect sound
 	animation_player.play("Fade")
 	await animation_player.animation_finished
 	delete_key()

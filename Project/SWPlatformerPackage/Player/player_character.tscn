@@ -802,6 +802,10 @@ script = ExtResource("12_q8x25")
 wait_time = 0.1
 one_shot = true
 
+[node name="AudioStartTimer" type="Timer" parent="FiniteStateMachine/StateWallSlide"]
+wait_time = 0.15
+one_shot = true
+
 [node name="StateSlide" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("13_nh8it")
 
@@ -845,6 +849,10 @@ one_shot = true
 
 [node name="FootstepSoundTimer" type="Timer" parent="Timers"]
 wait_time = 0.3
+one_shot = true
+
+[node name="WallSlideSoundTimer" type="Timer" parent="Timers"]
+wait_time = 0.6
 one_shot = true
 
 [node name="RaycastSlideLeft" type="RayCast2D" parent="."]
@@ -920,7 +928,9 @@ shape = SubResource("RectangleShape2D_k8i1d")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
+[connection signal="timeout" from="FiniteStateMachine/StateWallSlide/AudioStartTimer" to="FiniteStateMachine/StateWallSlide" method="_on_audio_start_timer_timeout"]
 [connection signal="timeout" from="Timers/JumpBufferTimer" to="FiniteStateMachine" method="_on_jump_buffer_timer_timeout"]
 [connection signal="timeout" from="Timers/FootstepSoundTimer" to="FiniteStateMachine/StateMove" method="PlayFootsteps"]
+[connection signal="timeout" from="Timers/WallSlideSoundTimer" to="FiniteStateMachine/StateWallSlide" method="_on_wall_slide_sound_timer_timeout"]
 [connection signal="body_entered" from="SpikeArea" to="." method="_on_spike_area_body_entered"]
 [connection signal="area_entered" from="SpringArea" to="." method="_on_spring_area_area_entered"]
