@@ -1,0 +1,101 @@
+[gd_scene load_steps=25 format=3 uid="uid://c254vxstavde0"]
+
+[ext_resource type="PackedScene" uid="uid://dv4efoel4dv0s" path="res://Chapters/_MEGACHAPTER/Rooms/room_102a.tscn" id="1_5w2xi"]
+[ext_resource type="PackedScene" uid="uid://gl43kupvo4c7" path="res://Chapters/_MEGACHAPTER/Rooms/room_M02.tscn" id="2_u0fo2"]
+[ext_resource type="PackedScene" uid="uid://vvadaycrs8pg" path="res://Chapters/_MEGACHAPTER/Rooms/room_M05.tscn" id="3_6n716"]
+[ext_resource type="PackedScene" uid="uid://ci72gvr0e6cym" path="res://Chapters/_MEGACHAPTER/Rooms/room_T01.tscn" id="4_xcbbm"]
+[ext_resource type="PackedScene" uid="uid://c6erjf3yo8ku4" path="res://Chapters/_MEGACHAPTER/Rooms/room_T02.tscn" id="5_hwv3r"]
+[ext_resource type="PackedScene" uid="uid://ctes4j8o7puvf" path="res://Chapters/_MEGACHAPTER/Rooms/room_T03.tscn" id="6_8ywc1"]
+[ext_resource type="PackedScene" uid="uid://ca8xcd44l70bl" path="res://Chapters/_MEGACHAPTER/Rooms/room_T04.tscn" id="7_dlpib"]
+[ext_resource type="PackedScene" uid="uid://v2n8ow4alfbd" path="res://Chapters/_MEGACHAPTER/Rooms/room_T05.tscn" id="8_wht4e"]
+[ext_resource type="PackedScene" uid="uid://bafde2rxpmyn4" path="res://Chapters/_MEGACHAPTER/Rooms/room_T06.tscn" id="9_s51i5"]
+[ext_resource type="PackedScene" uid="uid://d4h8fxuntowwu" path="res://Chapters/_MEGACHAPTER/Rooms/room_MG3.tscn" id="10_eo0mi"]
+[ext_resource type="PackedScene" uid="uid://c5hp7mruy5a5v" path="res://Chapters/_MEGACHAPTER/Rooms/room_103a.tscn" id="11_ikfbl"]
+[ext_resource type="PackedScene" uid="uid://cf0q88ii0xw5g" path="res://Chapters/_MEGACHAPTER/Rooms/room_MG5.tscn" id="12_jiln0"]
+[ext_resource type="PackedScene" uid="uid://balfiyse2vfd5" path="res://Chapters/_MEGACHAPTER/Rooms/room_105a.tscn" id="13_1pdt2"]
+[ext_resource type="PackedScene" uid="uid://cm71kvd2upr7u" path="res://Chapters/_MEGACHAPTER/Rooms/room_MG6.tscn" id="14_cm08y"]
+[ext_resource type="PackedScene" uid="uid://c365hui7q56y2" path="res://Chapters/_MEGACHAPTER/Rooms/room_106a.tscn" id="15_05vgn"]
+[ext_resource type="PackedScene" uid="uid://c0t3tr5eph03q" path="res://Chapters/_MEGACHAPTER/Rooms/room_107a.tscn" id="16_o78w4"]
+[ext_resource type="PackedScene" uid="uid://mltrqsnnra1m" path="res://Chapters/_MEGACHAPTER/Rooms/room_108a.tscn" id="17_eb3ec"]
+[ext_resource type="PackedScene" uid="uid://cgxcftwfvaukj" path="res://Chapters/_MEGACHAPTER/Rooms/room_110a.tscn" id="18_3dw13"]
+[ext_resource type="PackedScene" uid="uid://vbnjtn10aiuf" path="res://Chapters/_MEGACHAPTER/Rooms/room_109a.tscn" id="19_04q0y"]
+[ext_resource type="PackedScene" uid="uid://cx8cusrm61qfo" path="res://Chapters/_MEGACHAPTER/Rooms/room_104.tscn" id="20_psfii"]
+[ext_resource type="PackedScene" uid="uid://cg3xp54lemnxm" path="res://Chapters/_MEGACHAPTER/Rooms/room_M03.tscn" id="21_qasel"]
+[ext_resource type="PackedScene" uid="uid://5a6u1yr5sd4i" path="res://Chapters/_MEGACHAPTER/Rooms/room_M04.tscn" id="22_yhsw6"]
+[ext_resource type="PackedScene" uid="uid://clsp3pwf0j07g" path="res://Chapters/_MEGACHAPTER/Rooms/room_111a.tscn" id="23_41yyg"]
+[ext_resource type="PackedScene" uid="uid://benfq7rvebr2o" path="res://Chapters/_MEGACHAPTER/Rooms/room_112a.tscn" id="24_auk4e"]
+
+[node name="Chapter_MEGA" type="Node2D"]
+
+[node name="Room102a" parent="." instance=ExtResource("1_5w2xi")]
+position = Vector2(2064, -416)
+
+[node name="LoadedRooms" type="Node2D" parent="."]
+
+[node name="RoomM02" parent="LoadedRooms" instance=ExtResource("2_u0fo2")]
+position = Vector2(11304, -1768)
+
+[node name="RoomM05" parent="LoadedRooms" instance=ExtResource("3_6n716")]
+position = Vector2(8072, -440)
+
+[node name="RoomT01" parent="LoadedRooms" instance=ExtResource("4_xcbbm")]
+
+[node name="RoomT02" parent="LoadedRooms" instance=ExtResource("5_hwv3r")]
+position = Vector2(688, 0)
+
+[node name="RoomT03" parent="LoadedRooms" instance=ExtResource("6_8ywc1")]
+position = Vector2(1376, 0)
+
+[node name="RoomT04" parent="LoadedRooms" instance=ExtResource("7_dlpib")]
+position = Vector2(2064, 0)
+
+[node name="RoomT05" parent="LoadedRooms" instance=ExtResource("8_wht4e")]
+position = Vector2(2752, 0)
+
+[node name="RoomT06" parent="LoadedRooms" instance=ExtResource("9_s51i5")]
+position = Vector2(1376, 400)
+
+[node name="RoomMG3" parent="LoadedRooms" instance=ExtResource("10_eo0mi")]
+position = Vector2(3424, -48)
+
+[node name="Room103a" parent="LoadedRooms" instance=ExtResource("11_ikfbl")]
+position = Vector2(4168, -64)
+
+[node name="RoomMG5" parent="LoadedRooms" instance=ExtResource("12_jiln0")]
+position = Vector2(4928, -192)
+
+[node name="Room105a" parent="LoadedRooms" instance=ExtResource("13_1pdt2")]
+position = Vector2(4928, -664)
+
+[node name="RoomMG6" parent="LoadedRooms" instance=ExtResource("14_cm08y")]
+position = Vector2(4248, -568)
+
+[node name="Room106a" parent="LoadedRooms" instance=ExtResource("15_05vgn")]
+position = Vector2(5712, -904)
+
+[node name="Room107a" parent="LoadedRooms" instance=ExtResource("16_o78w4")]
+position = Vector2(6552, -952)
+
+[node name="Room108a" parent="LoadedRooms" instance=ExtResource("17_eb3ec")]
+position = Vector2(7336, -952)
+
+[node name="Room110a" parent="LoadedRooms" instance=ExtResource("18_3dw13")]
+position = Vector2(8000, -1104)
+
+[node name="Room109a" parent="LoadedRooms" instance=ExtResource("19_04q0y")]
+position = Vector2(8688, -1408)
+
+[node name="Room104" parent="LoadedRooms" instance=ExtResource("20_psfii")]
+position = Vector2(8696, -2256)
+
+[node name="RoomM03" parent="LoadedRooms" instance=ExtResource("21_qasel")]
+position = Vector2(9192, -2928)
+
+[node name="RoomM04" parent="LoadedRooms" instance=ExtResource("22_yhsw6")]
+position = Vector2(10192, -2552)
+
+[node name="Room111a" parent="LoadedRooms" instance=ExtResource("23_41yyg")]
+position = Vector2(11504, -2400)
+
+[node name="Room112a" parent="LoadedRooms" instance=ExtResource("24_auk4e")]
+position = Vector2(13376, -2432)
