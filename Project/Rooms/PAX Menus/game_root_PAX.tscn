@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvv533hjdlncr"]
+[gd_scene load_steps=13 format=3 uid="uid://bvv533hjdlncr"]
 
 [ext_resource type="PackedScene" uid="uid://dnei0kqq507xw" path="res://Rooms/PAX Menus/main_menu_PAX.tscn" id="1_7374e"]
 [ext_resource type="Script" path="res://Scripts/RoomContainer.gd" id="1_bu72f"]
@@ -9,8 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://bb1qdc361jjvp" path="res://Objects/crosshair.tscn" id="4_lodj3"]
 [ext_resource type="PackedScene" uid="uid://220whnswt3p2" path="res://Objects/time_tracker.tscn" id="5_04kto"]
 [ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="6_hy8c1"]
-[ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="6_q6wf2"]
-[ext_resource type="PackedScene" uid="uid://cxlh1d6lgdbmm" path="res://Objects/bloomie_display.tscn" id="7_vnndk"]
+[ext_resource type="Theme" path="res://addons/Fonts/Chunky.tres" id="6_q6wf2"]
+[ext_resource type="PackedScene" path="res://Objects/bloomie_display.tscn" id="7_vnndk"]
+[ext_resource type="Shader" path="res://Shaders/SDFShadows.gdshader" id="9_n6n5d"]
+[ext_resource type="Script" path="res://Scripts/SDFShadows.gd" id="10_cp6cl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xolsr"]
+shader = ExtResource("9_n6n5d")
+shader_parameter/lightingEnabled = false
+shader_parameter/camOffset = null
+shader_parameter/ambientColour = Color(0, 0, 0, 0.470588)
+shader_parameter/directionalLightEnabled = false
+shader_parameter/directionalLightAngle = 225.0
+shader_parameter/directionalLightMaxDist = 50.0
+shader_parameter/pointLights = PackedVector3Array(0, 0, 200, 0, 0, 200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [node name="GameRoot2" type="Node"]
 
@@ -33,6 +45,25 @@ z_index = -100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Shadows" type="ColorRect" parent="CanvasLayer" groups=["Shadows"]]
+material = SubResource("ShaderMaterial_xolsr")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("10_cp6cl")
+
 [node name="DialogueManager" parent="CanvasLayer" instance=ExtResource("3_y85if")]
 visible = false
 
@@ -47,8 +78,9 @@ offset_right = 523.0
 offset_bottom = 3.88
 theme = ExtResource("6_q6wf2")
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_fov84")]
+[node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("shadowShader") instance=ExtResource("4_fov84")]
 visible = false
+shadowShader = NodePath("../Shadows")
 
 [node name="BloomieDisplay" parent="CanvasLayer" instance=ExtResource("7_vnndk")]
 offset_left = 6.0

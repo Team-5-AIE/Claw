@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=52 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://bqexwwlorewmv" path="res://SWPlatformerPackage/Player/PlayerSpriteSheet_NoSpear.png" id="2_d4djl"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallSlide.gd" id="12_q8x25"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
 [ext_resource type="AudioStream" uid="uid://dvgj8oqo664q0" path="res://Sounds/Effects/jump (1).wav" id="15_pytux"]
+[ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="20_j7iql"]
 
 [sub_resource type="Gradient" id="Gradient_62wi8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.14902, 0.329412, 1)
@@ -705,7 +706,7 @@ size = Vector2(19, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8i1d"]
 size = Vector2(25, 25)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 collision_mask = 10
 floor_constant_speed = true
@@ -731,6 +732,7 @@ air_acceleration = 700.0
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)
+light_mask = 32
 position = Vector2(0, -16)
 texture = ExtResource("2_d4djl")
 hframes = 10
@@ -738,6 +740,7 @@ vframes = 14
 
 [node name="LegsAir" type="Sprite2D" parent="."]
 visible = false
+light_mask = 32
 position = Vector2(0, -16)
 texture = ExtResource("2_rrav3")
 hframes = 10
@@ -746,6 +749,7 @@ frame = 32
 
 [node name="LegsGround" type="Sprite2D" parent="."]
 visible = false
+light_mask = 32
 position = Vector2(0, -16)
 texture = ExtResource("2_rrav3")
 hframes = 10
@@ -907,6 +911,10 @@ position = Vector2(0, -3)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_pytux")
+light_mask = 32
+light_mask = 32
+light_mask = 32
+light_mask = 32
 
 [node name="SpringArea" type="Area2D" parent="."]
 position = Vector2(0, 1)
@@ -917,6 +925,10 @@ priority = 10
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpringArea"]
 position = Vector2(1, -10)
 shape = SubResource("RectangleShape2D_k8i1d")
+
+[node name="Light" parent="." instance=ExtResource("20_j7iql")]
+position = Vector2(0, -20)
+lightIntensity = 50.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
