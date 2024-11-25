@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://cb0cuhxbd0b0n"]
+[gd_scene load_steps=10 format=4 uid="uid://cb0cuhxbd0b0n"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_lpv8h"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_khvry"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_tg6kj"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_m6do4"]
 [ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="5_2q67f"]
+[ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="6_rs12k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -23,6 +24,7 @@ b = Vector2(0, -64)
 [node name="Room102a" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_lpv8h")
 standaloneSpawner = NodePath("RoomArea/RoomBounds")
+lightingEnabled = true
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -89,6 +91,14 @@ flipSpawnDir = true
 
 [node name="Bloomie" parent="." instance=ExtResource("5_2q67f")]
 position = Vector2(0, -16)
+
+[node name="Light" parent="." instance=ExtResource("6_rs12k")]
+position = Vector2(-136, -16)
+lightIntensity = 75.0
+
+[node name="Light2" parent="." instance=ExtResource("6_rs12k")]
+position = Vector2(136, -48)
+lightIntensity = 75.0
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]

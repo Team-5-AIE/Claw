@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=49 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://bqexwwlorewmv" path="res://SWPlatformerPackage/Player/PlayerSpriteSheet_NoSpear.png" id="2_d4djl"]
@@ -911,10 +911,6 @@ position = Vector2(0, -3)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_pytux")
-light_mask = 32
-light_mask = 32
-light_mask = 32
-light_mask = 32
 
 [node name="SpringArea" type="Area2D" parent="."]
 position = Vector2(0, 1)
