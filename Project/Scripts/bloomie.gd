@@ -37,7 +37,7 @@ func _process(_delta)-> void:
 
 func _on_collection_timer_timeout():
 	collecting = true
-	AudioManager.play_game_sound(AudioManager.COLLECT_BLOOMIE)
+	AudioManager.play_game_sound(AudioManager.COLLECT_BLOOMIE, 0)
 	animation_player.play("Fade")
 	await animation_player.animation_finished
 	

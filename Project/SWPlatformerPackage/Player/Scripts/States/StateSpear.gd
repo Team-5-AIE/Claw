@@ -49,7 +49,7 @@ func EnterState() -> void:
 #=================================================================================
 func UpdatePhysics(delta) -> void: # Runs in _physics_process()
 	if not hookSoundPlayed:
-		AudioManager.play_game_sound_random(AudioManager.HOOK1, AudioManager.HOOK2)
+		AudioManager.play_modulated_game_sound(AudioManager.WOOD_IMPACT, 0)
 		hookSoundPlayed = true
 	#ProcessVelocity(delta)
 
@@ -70,13 +70,16 @@ func ProcessVelocity(delta:float) -> void:
 	var ropeDirection : Vector2 = spearToPlayer
 	
 	if Input.is_action_just_pressed("SpearPull") && !player.is_on_floor():
-		AudioManager.play_game_sound(AudioManager.PULLJUMP)
+		AudioManager.play_game_sound_random(0, AudioManager.WOOSH2, AudioManager.WOOSH3)
 		spearInstance.pullReleased = true
 		#if spearInstance.ropeLength > 16:
 		#	spearInstance.ropeLength -= delta * 150
 		player.velocity *= (1.0 - pullJumpStopFraction)
 		player.velocity += -spearToPlayer.normalized() * pullJumpStrength
 		return
+	
+	if Input.is_action_just_pressed("SpearPull"):
+		AudioManager.play_game_sound_random(0, AudioManager.WOOSH2, AudioManager.WOOSH3)
 	
 	var currentRopeLength : float = ropeDirection.length()
 	ropeDirection /= currentRopeLength
@@ -147,7 +150,7 @@ func AddAngularVelocity(force:float)-> void:
 
 func AutoGrapple(spearPos : Vector2) -> void:
 	var spearToPlayer = player.spear_marker.global_position - spearPos
-	AudioManager.play_game_sound(AudioManager.PULLJUMP)
+	AudioManager.play_game_sound(AudioManager.MUSIC_WOLF, 0)
 	if spearInstance != null:
 		spearInstance.pullReleased = true
 	#if spearInstance.ropeLength > 16:

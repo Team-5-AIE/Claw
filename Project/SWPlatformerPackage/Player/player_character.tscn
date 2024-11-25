@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bdo7thahg548t"]
+[gd_scene load_steps=49 format=3 uid="uid://bdo7thahg548t"]
 
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/SWPlatformerCharacter.gd" id="1_qfw28"]
 [ext_resource type="Texture2D" uid="uid://bqexwwlorewmv" path="res://SWPlatformerPackage/Player/PlayerSpriteSheet_NoSpear.png" id="2_d4djl"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallSlide.gd" id="12_q8x25"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
 [ext_resource type="PackedScene" uid="uid://bb1qdc361jjvp" path="res://Objects/crosshair.tscn" id="17_4yyds"]
+[ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="17_m7yus"]
 
 [sub_resource type="Gradient" id="Gradient_62wi8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.14902, 0.329412, 1)
@@ -705,7 +706,7 @@ size = Vector2(19, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8i1d"]
 size = Vector2(25, 25)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 process_mode = 1
 z_index = 1
 collision_mask = 10
@@ -802,6 +803,10 @@ script = ExtResource("12_q8x25")
 wait_time = 0.1
 one_shot = true
 
+[node name="AudioStartTimer" type="Timer" parent="FiniteStateMachine/StateWallSlide"]
+wait_time = 0.15
+one_shot = true
+
 [node name="StateSlide" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("13_nh8it")
 
@@ -845,6 +850,10 @@ one_shot = true
 
 [node name="FootstepSoundTimer" type="Timer" parent="Timers"]
 wait_time = 0.3
+one_shot = true
+
+[node name="WallSlideSoundTimer" type="Timer" parent="Timers"]
+wait_time = 0.6
 one_shot = true
 
 [node name="RaycastSlideLeft" type="RayCast2D" parent="."]
@@ -906,7 +915,7 @@ debug_color = Color(1, 0.800359, 0.969968, 0.42)
 [node name="DustMarker2D" type="Marker2D" parent="."]
 position = Vector2(0, -3)
 
-[node name="Crosshair" parent="." instance=ExtResource("17_4yyds")]
+[node name="Crosshair" parent="." groups=["Crosshair"] instance=ExtResource("17_4yyds")]
 
 [node name="SpringArea" type="Area2D" parent="."]
 position = Vector2(0, 1)
@@ -918,9 +927,15 @@ priority = 10
 position = Vector2(1, -10)
 shape = SubResource("RectangleShape2D_k8i1d")
 
+[node name="Light" parent="." instance=ExtResource("17_m7yus")]
+position = Vector2(0, -20)
+lightIntensity = 50.0
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
+[connection signal="timeout" from="FiniteStateMachine/StateWallSlide/AudioStartTimer" to="FiniteStateMachine/StateWallSlide" method="_on_audio_start_timer_timeout"]
 [connection signal="timeout" from="Timers/JumpBufferTimer" to="FiniteStateMachine" method="_on_jump_buffer_timer_timeout"]
 [connection signal="timeout" from="Timers/FootstepSoundTimer" to="FiniteStateMachine/StateMove" method="PlayFootsteps"]
+[connection signal="timeout" from="Timers/WallSlideSoundTimer" to="FiniteStateMachine/StateWallSlide" method="_on_wall_slide_sound_timer_timeout"]
 [connection signal="body_entered" from="SpikeArea" to="." method="_on_spike_area_body_entered"]
 [connection signal="area_entered" from="SpringArea" to="." method="_on_spring_area_area_entered"]

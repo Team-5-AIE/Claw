@@ -7,6 +7,7 @@ var startChapterScenePath : String
 
 # Editor variables
 @export var restartButton : Button
+@export var shadowShader : ColorRect
 
 var roomContainer : Node2D
 var timeTracker : Node
@@ -48,7 +49,9 @@ func _on_restart_button_pressed() -> void:
 	await FadeTransitions.on_fade_in_finished
 	
 	TogglePause()
-	AudioManager.play_music(AudioManager.MUSIC_WOLF)
+	AudioManager.play_music(AudioManager.MUSIC_WOLF, 0)
+	
+	shadowShader.lightingEnabled = false
 	
 	Global.chapterOneBloomiesThisSession.fill(false)
 	if LevelFlags.chapterFlags.size() > 0: LevelFlags.chapterFlags.fill(false)
@@ -87,6 +90,8 @@ func _on_quit_button_pressed() -> void:
 	Global.chapterOneBloomiesThisSession.fill(false)
 	if LevelFlags.chapterFlags.size() > 0: LevelFlags.chapterFlags.resize(0)
 	get_tree().change_scene_to_file(mainMenuScenePath)
+	
+	shadowShader.lightingEnabled = false
 	
 	await FadeTransitions.on_fade_out_finished
 

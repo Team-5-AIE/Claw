@@ -6,7 +6,7 @@ extends State
 var jump_direction : Vector2 = Vector2(1,0)
 
 func EnterState() -> void:
-	AudioManager.play_game_sound_random(AudioManager.JUMP1, AudioManager.JUMP2, AudioManager.JUMP3)
+	AudioManager.play_game_sound_random(0, AudioManager.JUMP1, AudioManager.JUMP2, AudioManager.JUMP3)
 	var dust_instance = player.instance_create(player.RUN_DUST_PARTICLES,player)
 	dust_instance.scale.x = sign(-player.velocity.x)
 	dust_instance.set_as_top_level(true)

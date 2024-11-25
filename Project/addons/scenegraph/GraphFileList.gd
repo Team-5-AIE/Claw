@@ -91,11 +91,10 @@ func _on_file_moved(oldPath : String, newPath : String) -> void:
 
 # FileMenu signals
 func _on_file_menu_new_graph() -> void:
-	var newGraph : RoomGraph = MakeNewGraph()
-	var newListItemIndex : int = AddGraphToList("", newGraph)
-	set_item_text(newListItemIndex, "[New Graph]")
-	SelectGraph(newListItemIndex)
-	OpenGraph(newListItemIndex)
+	var newGraphIndex : int = MakeNewGraph()
+	
+	SelectGraph(newGraphIndex)
+	OpenGraph(newGraphIndex)
 
 func _on_file_menu_load_graph() -> void:
 	m_loadFileDialogue.file_mode = EditorFileDialog.FILE_MODE_OPEN_FILES
@@ -105,10 +104,10 @@ func _on_file_menu_save_graph() -> void:
 	var selectedListItemIndex : int = get_selected_items()[0]
 	var metadata : RoomGraphMetadata = get_item_metadata(selectedListItemIndex)
 	
-	if metadata.LevelGraph.resource_path == "":
+	if metadata.roomGraph.resource_path == "":
 		_on_file_menu_save_graph_as()
 	else:
-		ResourceSaver.save(metadata.LevelGraph, metadata.LevelGraph.resource_path)
+		ResourceSaver.save(metadata.roomGraph, metadata.roomGraph.resource_path)
 
 func _on_file_menu_save_graph_as() -> void:
 	m_saveFileDialogue.file_mode = EditorFileDialog.FILE_MODE_SAVE_FILE
@@ -124,7 +123,7 @@ func _on_save_file_dialogue_file_selected(path : String) -> void:
 	var selectedListItemIndex : int = get_selected_items()[0]
 	var metadata : RoomGraphMetadata = get_item_metadata(selectedListItemIndex)
 	
-	ResourceSaver.save(metadata.LevelGraph, path, ResourceSaver.FLAG_CHANGE_PATH)
+	ResourceSaver.save(metadata.roomGraph, path, ResourceSaver.FLAG_CHANGE_PATH)
 	
 	metadata.filePath = path
 	set_item_metadata(selectedListItemIndex, metadata)
@@ -139,8 +138,17 @@ func _on_load_file_dialogue_files_selected(paths : Array[String]) -> void:
 		LoadGraphFromFile(file)
 
 # Custom Functions
-func MakeNewGraph(scenes_ : Array[PackedScene] = []) -> RoomGraph:
-	return RoomGraph.new(scenes_)
+func MakeNewGraph(scenePath_ : String = "") -> int:
+	var newRoomGraph : RoomGraph = RoomGraph.new(scenePath_)
+	var newListItemIndex : int = AddGraphToList("", newRoomGraph)
+	set_item_text(newListItemIndex, "[New Graph]")
+	
+	var metadata : RoomGraphMetadata = RoomGraphMetadata.new("", newRoomGraph)
+	set_item_metadata(newListItemIndex, metadata)
+	
+	set_item_tooltip(newListItemIndex, "[New Graph]")
+	
+	return newListItemIndex
 
 func LoadGraphFromFile(path : String):
 	# To avoid duplicates, we check all of our currently loaded files
@@ -178,12 +186,12 @@ func SelectGraph(index_ : int) -> void:
 	select(index_)
 
 func OpenGraph(index_ : int) -> void:
-	graphOpened.emit()
-	
 	var metadata : RoomGraphMetadata = get_item_metadata(index_)
-	if metadata.LevelGraph == null:
-		metadata.LevelGraph = load(metadata.filePath)
+	if metadata.roomGraph == null:
+		metadata.roomGraph = load(metadata.filePath)
 	set_item_metadata(index_, metadata)
+	
+	graphOpened.emit()
 
 # TODO: Add a check if the user has unsaved work
 func CloseGraph(index_ : int) -> void:

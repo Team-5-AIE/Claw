@@ -10,7 +10,6 @@ const MUSIC_WOLF = preload("res://Sounds/BGM/Wolf - Jeremy L  Chiptune [No Copyr
 
 ## SFX Files ==================================================================/===================/
 const FAST_WIND = preload("res://Sounds/JavierSounds/fastWind.wav")
-const SPEAR_SHOOT = preload("res://Sounds/JavierSounds/spearShoot.wav")
 const SPRING = preload("res://Sounds/JavierSounds/spring.wav")
 const WOOD_IMPACT = preload("res://Sounds/JavierSounds/woodImpact.wav")
 
@@ -19,10 +18,15 @@ const DOOR2 = preload("res://Sounds/JavierSounds/doorOpen (2).wav")
 const DOOR3 = preload("res://Sounds/JavierSounds/doorOpen (3).wav")
 const DOOR4 = preload("res://Sounds/JavierSounds/doorOpen (4).wav")
 
-const WOOSH1 = preload("res://Sounds/JavierSounds/woosh (1).wav")
+const SHOOTSPEAR = preload("res://Sounds/JavierSounds/woosh (1).wav")
 const WOOSH2 = preload("res://Sounds/JavierSounds/woosh (2).wav")
 const WOOSH3 = preload("res://Sounds/JavierSounds/woosh (3).wav")
 
+const PAGEFLIP = preload("res://Sounds/JavierSounds/pageFlip.mp3")
+const WALLSLIDE = preload("res://Sounds/JavierSounds/wallSlide.wav")
+const WALLSLIDEAFTER = preload("res://Sounds/JavierSounds/WallSlideAfter.wav")
+const FLOORSLIDE = preload("res://Sounds/JavierSounds/FloorSlide.wav")
+const DEATH = preload("res://Sounds/JavierSounds/deathSound.wav")
 
 const AUTOPULL = preload("res://Sounds/Effects/AutoPull.wav")
 const COLLECT_BLOOMIE = preload("res://Sounds/Effects/collectBloomie.wav")
@@ -52,18 +56,30 @@ const STEPS3 = preload("res://Sounds/Effects/steps3.wav")
 
 ## Play sound in a free audio channel in the Game SFX Player. 
 ## Return true when a channel is found, and false otherwise.
-func play_game_sound(sound: Resource, _sfx_player: Node = game_sfx_player) -> bool:
+func play_game_sound(sound: Resource, volume: float, _sfx_player: Node = game_sfx_player) -> bool:
 	for channel in _sfx_player.get_children():
 		if channel is AudioStreamPlayer and not channel.playing:
 			channel.stream_paused = false
 			channel.stream = sound
+			channel.volume_db = volume
+			channel.play()
+			return true
+	return false
+
+func play_modulated_game_sound(sound: Resource, volume: float, _sfx_player: Node = game_sfx_player) -> bool:
+	for channel in _sfx_player.get_children():
+		if channel is AudioStreamPlayer and not channel.playing:
+			channel.stream_paused = false
+			channel.stream = sound
+			channel.volume_db = volume
+			channel.pitch_scale = randf_range(0.8,1.2)
 			channel.play()
 			return true
 	return false
 
 ## Play random game sound out of options. 
 ## Return true when a channel is found, and false otherwise.
-func play_game_sound_random(s1: Resource = null, s2: Resource = null, s3: Resource = null, s4: Resource = null, _sfx_player: Node = game_sfx_player) -> bool:
+func play_game_sound_random(volume: float, s1: Resource = null, s2: Resource = null, s3: Resource = null, s4: Resource = null, _sfx_player: Node = game_sfx_player) -> bool:
 	# Because variable arguments aren't supported :(
 	var sound_pool = []
 	for argument in [s1, s2, s3, s4]:
@@ -71,7 +87,20 @@ func play_game_sound_random(s1: Resource = null, s2: Resource = null, s3: Resour
 			sound_pool.push_back(argument)
 	
 	if sound_pool.size() > 0:
-		return play_game_sound(sound_pool.pick_random(), _sfx_player)
+		
+		return play_game_sound(sound_pool.pick_random(), volume,_sfx_player)
+	return false
+
+func play_game_sound_random_modulated(volume: float, s1: Resource = null, s2: Resource = null, s3: Resource = null, s4: Resource = null, _sfx_player: Node = game_sfx_player) -> bool:
+	# Because variable arguments aren't supported :(
+	var sound_pool = []
+	for argument in [s1, s2, s3, s4]:
+		if argument != null:
+			sound_pool.push_back(argument)
+	
+	if sound_pool.size() > 0:
+		
+		return play_modulated_game_sound(sound_pool.pick_random(), volume, _sfx_player)
 	return false
 
 ## Pause all currently playing game sounds. 
@@ -96,13 +125,13 @@ func resume_all_game_sounds(_sfx_player: Node = game_sfx_player) -> bool:
 
 ## Play sound in a free audio channel in the Menu SFX Player. 
 ## Return true when a channel is found, and false otherwise.
-func play_menu_sound(sound: Resource) -> bool:
-	return play_game_sound(sound, menu_sfx_player)
+func play_menu_sound(sound: Resource, volume: float,) -> bool:
+	return play_game_sound(sound, volume, menu_sfx_player)
 
 ## Play random menu sound out of options. 
 ## Return true when a channel is found, and false otherwise.
-func play_menu_sound_random(s1: Resource = null, s2: Resource = null, s3: Resource = null, s4: Resource = null) -> bool:
-	return play_game_sound_random(s1, s2, s3, s4, menu_sfx_player)
+func play_menu_sound_random(volume: float, s1: Resource = null, s2: Resource = null, s3: Resource = null, s4: Resource = null) -> bool:
+	return play_game_sound_random(volume, s1, s2, s3, s4, menu_sfx_player)
 
 ## Pause all currently playing menu sounds. 
 ## Return true when it pauses a menu SFX channel, and false when it couldn't pause any of them.
@@ -116,13 +145,15 @@ func resume_all_menu_sounds() -> bool:
 
 ## Play specific music. 
 ## Return true when executed, and false if music is already playing when not forcing start
-func play_music(music: Resource, force_start: bool = true) -> bool:
+func play_music(music: Resource, volume: float, force_start: bool = true) -> bool:
 	if music_player.playing:
 		if force_start: music_player.stop()
 		else: return false
 	music_player.stream_paused = false
 	music_player.stream = music
+	music_player.volume_db = volume
 	music_player.play()
+	
 	return true
 
 ## Pause music. 
@@ -145,3 +176,7 @@ func resume_current_music():
 
 func _ready():
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
+
+
+func _on_music_player_finished() -> void:
+	music_player.play()

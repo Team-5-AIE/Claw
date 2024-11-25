@@ -34,6 +34,7 @@ func _process(delta) -> void:
 		player.velocity = Vector2.ZERO
 		if FadeTransitions.restart:
 			player.animation_player.play("Restart")
+			AudioManager.play_game_sound_random_modulated(0, AudioManager.DEATH)
 		else:
 			player.animation_player.play("Idle")
 		return

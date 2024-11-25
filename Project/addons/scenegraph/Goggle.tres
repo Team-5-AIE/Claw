@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SceneGraph" load_steps=2 format=3 uid="uid://cipxwqqfydc0n"]
 
-[ext_resource type="Script" path="res://addons/scenegraph/RoomGraph.gd" id="1_cruap"]
+[ext_resource type="Script" path="res://addons/scenegraph/RoomGraphNode.gd" id="1_cruap"]
 
 [resource]
 script = ExtResource("1_cruap")

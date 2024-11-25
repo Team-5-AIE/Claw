@@ -17,6 +17,7 @@ func _process(_delta):
 			ShowDialouge()
 			return
 		if Input.is_action_just_pressed("Confirm"): # Show next queued text
+			AudioManager.play_modulated_game_sound(AudioManager.PAGEFLIP, 0)
 			ResetDialougeBox()
 
 func UpdateText() -> void:

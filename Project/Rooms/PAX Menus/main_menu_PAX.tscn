@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dnei0kqq507xw"]
+[gd_scene load_steps=14 format=3 uid="uid://dnei0kqq507xw"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_4b8s4"]
-[ext_resource type="Script" path="res://Rooms/PAX Menus/title_screen.gd" id="2_isglf"]
+[ext_resource type="Script" path="res://Scripts/title_screen.gd" id="2_isglf"]
 [ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="3_3iaoi"]
 [ext_resource type="Texture2D" uid="uid://bvjoixhlebefi" path="res://Sprites/Backgrounds/Title Screen No Menu.png" id="3_wpaw7"]
+[ext_resource type="Script" path="res://Scripts/text_flicker.gd" id="4_3eme8"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="4_hn62b"]
 [ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="5_2yjop"]
 [ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="6_jpmdu"]
@@ -36,6 +37,17 @@ offset_right = 640.0
 offset_bottom = 360.0
 texture = ExtResource("3_wpaw7")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="TitleBG"]
+layout_mode = 0
+offset_top = 127.0
+offset_right = 276.0
+offset_bottom = 197.0
+theme = ExtResource("4_hn62b")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]Press any button"
+script = ExtResource("4_3eme8")
+
 [node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("titleScreen", "mainScreen", "scoreboardScreen", "creditsScreen", "highscoreRank", "highscoreNames", "highscoreSeparator", "highscoreTimes")]
 layout_mode = 1
 anchors_preset = 15
@@ -54,6 +66,7 @@ highscoreSeparator = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginCon
 highscoreTimes = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginContainer/Scores/HighscoreHBox/Time")
 
 [node name="MainScreen" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 2
 offset_right = 640.0
 offset_bottom = 360.0

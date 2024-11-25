@@ -17,9 +17,9 @@ func EnterState() -> void:
 	dust_instance.global_position = player.dustMarker2D.global_position + Vector2(sign(player.velocity.x) * 3,0)
 	if bunnyhop:
 		print("bunnyhop")
-		AudioManager.play_game_sound(AudioManager.PULLJUMP)
+		AudioManager.play_game_sound(AudioManager.PULLJUMP, 0)
 	else:
-		AudioManager.play_game_sound_random(AudioManager.JUMP1, AudioManager.JUMP2, AudioManager.JUMP3)
+		AudioManager.play_game_sound_random(0, AudioManager.JUMP1, AudioManager.JUMP2, AudioManager.JUMP3)
 		print("normal jump")
 	initVel = player.velocity
 	half_jump = false

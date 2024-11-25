@@ -5,20 +5,22 @@ extends Camera2D
 @export var frontOffset : int
 
 # Scene nodes
-@onready var player = $".."
+@onready var player : SWPlatformerCharacter = $".."
 var roomBounds : CollisionShape2D
 
 # Public members
+var crosshair : Node2D
 var lookDirection : Vector2
-
 
 # ---Functions---
 # Godot functions
 func _process(_delta):
 	if player != null and roomBounds != null:
-		if player.input_axis.x:
-			lookDirection = Vector2(player.input_axis.x, 0)
-			position = frontOffset * lookDirection
+		var rtnArray = get_tree().get_nodes_in_group("Crosshair")
+		if (rtnArray.size() > 0):
+			crosshair = rtnArray[0]
+		lookDirection = (crosshair.global_position - player.global_position).normalized()
+		position = frontOffset * lookDirection
 		
 		# Clamp camera x
 		var clampedX = ClampCameraAxis(roomBounds.global_position.x, roomBounds.shape.size.x,

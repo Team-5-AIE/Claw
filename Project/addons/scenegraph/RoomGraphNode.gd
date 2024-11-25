@@ -2,9 +2,8 @@
 extends Resource
 class_name RoomGraphNode
 
-@export var scene : PackedScene
+var scenePath : String
+var connections : Dictionary # Key: RoomGraphNode | Value: Room Transition Index
 
-var connectionIndices : Array[TravelNode]
-
-func _init(scene_ : PackedScene) -> void:
-	scene = scene_
+func _init(scenePath_ : String) -> void:
+	scenePath = scenePath_
