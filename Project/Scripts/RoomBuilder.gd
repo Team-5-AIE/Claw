@@ -8,6 +8,7 @@ signal playerEnteredRoom
 
 # ---Variables---
 @export var standaloneSpawner : Node2D
+@export var lightingEnabled : bool
 
 @onready var currentSpawner : Node2D = standaloneSpawner
 
@@ -16,13 +17,14 @@ var roomContainer : Node2D
 var pauseMenu : Node
 var timeTracker : Node
 var player : SWPlatformerCharacter
+var shadowShader : ColorRect
 
 #var adjacentRoomPaths : Array[String]
 
 # ---Functions---
 # Init
 func Init(gameRoot_ : Node, roomContainer_ : Node2D, timeTracker_ : Node, \
-		  pauseMenu_ : Node, player_ : SWPlatformerCharacter):
+		  pauseMenu_ : Node, player_ : SWPlatformerCharacter, crosshair_ : Node2D):
 	gameRoot = gameRoot_
 	
 	roomContainer = roomContainer_
@@ -35,6 +37,8 @@ func Init(gameRoot_ : Node, roomContainer_ : Node2D, timeTracker_ : Node, \
 	else:
 		player = player_
 	
+	player.get_node("PlayerCamera").crosshair = crosshair_
+	
 	playerEnteredRoom.connect(_on_player_entered_room)
 	
 	var rtnArray = get_tree().get_nodes_in_group("RoomInitListeners")
@@ -44,6 +48,10 @@ func Init(gameRoot_ : Node, roomContainer_ : Node2D, timeTracker_ : Node, \
 	for roomInitListener : Area2D in roomInitListenersArray:
 		if roomInitListener.owner == self:
 			roomInit.connect(roomInitListener._on_room_init)
+	
+	rtnArray = get_tree().get_nodes_in_group("Shadows")
+	if (rtnArray.size() > 0):
+		shadowShader = rtnArray[0]
 	
 	roomInit.emit()
 
@@ -67,6 +75,8 @@ func DisconnectRestartPlayerSignal():
 func _on_player_entered_room():
 	if roomContainer.lastRoom != null:
 		roomContainer.lastRoom.player.restartPlayer.disconnect(roomContainer.lastRoom._on_restart_player)
+	
+	shadowShader.lightingEnabled = lightingEnabled
 	
 	player.restartPlayer.connect(_on_restart_player)
 

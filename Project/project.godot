@@ -72,6 +72,10 @@ RoomInitListeners=""
 RoomTransitionNodes=""
 PlayerSpawns=""
 RoomRepositionListeners=""
+Shadows=""
+PointLights=""
+Player=""
+Crosshair=""
 
 [gui]
 

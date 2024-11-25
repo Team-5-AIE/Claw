@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://cu28km1n03oc6"]
+[gd_scene load_steps=18 format=4 uid="uid://cu28km1n03oc6"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_miu7a"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_g0c5v"]
@@ -18,6 +18,21 @@ resource_local_to_scene = true
 a = Vector2(0, 64)
 b = Vector2(0, -64)
 
+[sub_resource type="Animation" id="Animation_8ad12"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingBlockVisual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_yk4w3"]
 resource_name = "spike_barrier"
 length = 12.0
@@ -34,7 +49,13 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(-88, 0), Vector2(0, 0), Vector2(88, 0), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_8ad12"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n6jj7"]
+_data = {
+"RESET": SubResource("Animation_8ad12"),
+"spike_barrier": SubResource("Animation_yk4w3")
+}
+
+[sub_resource type="Animation" id="Animation_04rv0"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -47,12 +68,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_n6jj7"]
-_data = {
-"RESET": SubResource("Animation_8ad12"),
-"spike_barrier": SubResource("Animation_yk4w3")
 }
 
 [sub_resource type="Animation" id="Animation_ordn8"]
@@ -71,26 +86,16 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(0, 160)]
 }
 
-[sub_resource type="Animation" id="Animation_04rv0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MovingBlockVisual:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_165ie"]
 _data = {
 "RESET": SubResource("Animation_04rv0"),
 "door_unlock": SubResource("Animation_ordn8")
 }
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_uhv0w"]
+resource_local_to_scene = true
+a = Vector2(0, 64)
+b = Vector2(0, -64)
 
 [node name="RoomMG6" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_miu7a")
@@ -134,6 +139,7 @@ shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="RoomTransition" parent="." instance=ExtResource("4_5yg55")]
 position = Vector2(-336, 144)
+nextRoom = "res://Chapters/JavierRooms/MultiChapter_Rooms/room_MG5.tscn"
 exitDirection = "Left"
 
 [node name="CollisionShape2D" parent="RoomTransition" index="0"]
@@ -141,7 +147,7 @@ position = Vector2(16, 0)
 shape = SubResource("SegmentShape2D_xaixi")
 
 [node name="PlayerSpawn" parent="RoomTransition" index="1"]
-position = Vector2(48, 48)
+position = Vector2(48, 64)
 
 [node name="MovingBlock" parent="." instance=ExtResource("5_u4mqf")]
 position = Vector2(-40, -16)
@@ -178,7 +184,7 @@ libraries = {
 }
 
 [node name="MovingBlockVisual" parent="ManualMovingBlock" index="1"]
-tile_map_data = PackedByteArray("AAAAAAQAAQAIAAUAAAAAAAMAAQAIAAUAAAAAAAIAAQAIAAUAAAAAAAEAAQAIAAUAAAAAAAAAAQAIAAUAAAAAAP//AQAIAAUAAAAAAP7/AQAIAAUAAAAAAP3/AQAIAAUAAAAAAPz/AQAIAAUAAAAAAPv/AQAIAAUAAAD//wQAAQACAAUAAAD//wMAAQACAAUAAAD//wIAAQACAAUAAAD//wEAAQACAAUAAAD//wAAAQACAAUAAAD/////AQACAAUAAAD///7/AQACAAUAAAD///3/AQACAAUAAAD///z/AQACAAUAAAD///v/AQACAAUAAAD+//z/AQABAAUAAAD+//v/AQABAAUAAAD+//r/AQABAAUAAAD///r/AQACAAIAAAAAAPr/AQAIAAIAAAD+//3/AQABAAUAAAD+//7/AQABAAUAAAD+////AQABAAUAAAD+/wAAAQABAAUAAAD+/wEAAQABAAUAAAD+/wIAAQABAAUAAAD+/wMAAQABAAUAAAD+/wQAAQABAAUAAAAAAAUAAQAIAAgAAAD//wUAAQACAAgAAAD+/wUAAQABAAUAAAABAPv/AQAJAAUAAAABAPz/AQAJAAUAAAABAPr/AQAJAAUAAAABAP3/AQAJAAUAAAABAP7/AQAJAAUAAAABAP//AQAJAAUAAAABAAAAAQAJAAUAAAABAAEAAQAJAAUAAAABAAIAAQAJAAUAAAABAAMAAQAJAAUAAAABAAQAAQAJAAUAAAABAAUAAQAJAAUAAAD+//n/AQABAAEAAAD///n/AQAFAAEAAAAAAPn/AQAFAAEAAAABAPn/AQAJAAEAAAAAAAYAAQAFAAkAAAD//wYAAQAFAAkAAAD+/wYAAQABAAkAAAABAAYAAQAJAAkAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAQAIAAUAAAAAAP//AQAIAAUAAAD//wAAAQACAAUAAAD/////AQACAAUAAAD+/wAAAQABAAUAAAD+////AQABAAUAAAD+//7/AQABAAUAAAD///7/AQACAAUAAAAAAP7/AQAIAAUAAAAAAAEAAQAIAAUAAAD//wEAAQACAAUAAAD+/wEAAQABAAUAAAABAP//AQAJAAUAAAABAAAAAQAJAAUAAAABAP7/AQAJAAUAAAABAAEAAQAJAAUAAAAAAAQAAQAIAAUAAAAAAAMAAQAIAAUAAAAAAAIAAQAIAAUAAAAAAP3/AQAIAAUAAAAAAPz/AQAIAAUAAAAAAPv/AQAIAAUAAAD//wQAAQACAAUAAAD//wMAAQACAAUAAAD//wIAAQACAAUAAAD///3/AQACAAUAAAD///z/AQACAAUAAAD///v/AQACAAUAAAD+//z/AQABAAUAAAD+//v/AQABAAUAAAD+//r/AQABAAUAAAD///r/AQACAAIAAAAAAPr/AQAIAAIAAAD+//3/AQABAAUAAAD+/wIAAQABAAUAAAD+/wMAAQABAAUAAAD+/wQAAQABAAUAAAAAAAUAAQAIAAgAAAD//wUAAQACAAgAAAD+/wUAAQABAAUAAAABAPv/AQAJAAUAAAABAPz/AQAJAAUAAAABAPr/AQAJAAUAAAABAP3/AQAJAAUAAAABAAIAAQAJAAUAAAABAAMAAQAJAAUAAAABAAQAAQAJAAUAAAABAAUAAQAJAAUAAAD+//n/AQABAAEAAAD///n/AQAFAAEAAAAAAPn/AQAFAAEAAAABAPn/AQAJAAEAAAAAAAYAAQAFAAkAAAD//wYAAQAFAAkAAAD+/wYAAQABAAkAAAABAAYAAQAJAAkAAAA=")
 
 [node name="Lock" parent="." instance=ExtResource("7_61ck5")]
 position = Vector2(320, -192)
@@ -186,8 +192,20 @@ position = Vector2(320, -192)
 [node name="Key" parent="Lock" instance=ExtResource("8_hmu8i")]
 position = Vector2(-96, 0)
 
+[node name="RoomTransition2" parent="." instance=ExtResource("4_5yg55")]
+position = Vector2(336, -192)
+nextRoom = "res://Chapters/JavierRooms/MultiChapter_Rooms/room_MG7.tscn"
+
+[node name="CollisionShape2D" parent="RoomTransition2" index="0"]
+position = Vector2(-16, 0)
+shape = SubResource("SegmentShape2D_uhv0w")
+
+[node name="PlayerSpawn" parent="RoomTransition2" index="1"]
+position = Vector2(-64, 48)
+
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
 [editable path="MovingBlock"]
 [editable path="MovingBlock2"]
 [editable path="ManualMovingBlock"]
+[editable path="RoomTransition2"]
