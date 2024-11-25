@@ -7,6 +7,7 @@ var startChapterScenePath : String
 
 # Editor variables
 @export var restartButton : Button
+@export var shadowShader : ColorRect
 
 var roomContainer : Node2D
 var timeTracker : Node
@@ -51,6 +52,8 @@ func _on_restart_button_pressed() -> void:
 	
 	TogglePause()
 	
+	shadowShader.lightingEnabled = false
+	
 	Global.chapterOneBloomiesThisSession.fill(false)
 	
 	for room in roomContainer.get_children():
@@ -87,6 +90,8 @@ func _on_quit_button_pressed() -> void:
 	
 	Global.chapterOneBloomiesThisSession.fill(false)
 	get_tree().change_scene_to_file(mainMenuScenePath)
+	
+	shadowShader.lightingEnabled = false
 	
 	await FadeTransitions.on_fade_out_finished
 

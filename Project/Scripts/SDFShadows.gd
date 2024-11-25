@@ -5,6 +5,11 @@ var pointLightObjects : Array[Node2D]
 var player : SWPlatformerCharacter
 var playerCam : Camera2D
 
+var lightingEnabled : bool:
+	set(value):
+		lightingEnabled = value
+		material.set_shader_parameter("lightingEnabled", lightingEnabled)
+
 # ---Functions---
 func _process(_delta):
 	if !Engine.is_editor_hint():
@@ -22,6 +27,7 @@ func _process(_delta):
 			for i : int in pointLightObjects.size():
 				pointLights[i].x = pointLightObjects[i].global_position.x + 320
 				pointLights[i].y = pointLightObjects[i].global_position.y + 180
+				pointLights[i].z = pointLightObjects[i].lightIntensity
 				
 				if i == pointLightObjects.size() - 1:
 					pointLights[i + 1].z = -1

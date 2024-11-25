@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=80 format=3 uid="uid://k06gckh0bst4"]
+[gd_resource type="TileSet" load_steps=82 format=3 uid="uid://k06gckh0bst4"]
 
 [ext_resource type="Texture2D" uid="uid://bhjv0y3qf7mkr" path="res://SWPlatformerPackage/Tilemap/Tilemap.png" id="1_ishsc"]
 [ext_resource type="Texture2D" uid="uid://sbyk5q33xplj" path="res://Sprites/Tilesets/Castle Tileset Export.png" id="2_ttpan"]
@@ -143,6 +143,9 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7i8uf"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1pdyo"]
+polygon = PackedVector2Array(0, -8, 8, -8, 8, 8, 4, 8, 4, 7, 2, 7, 2, 6, 1, 6, 1, 5, 0, 5)
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ycfoj"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, 0, 8, 0, 7, -3, 7, -3, 6, -5, 6, -5, 5, -3, 5, -3, 4, 0, 4, 0, 0, -5, 0, -5, 3, -6, 3, -6, 5, -7, 5, -7, 3, -8, 3)
 
@@ -181,6 +184,9 @@ polygon = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_l5h4u"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rdtb0"]
+polygon = PackedVector2Array(-8, -8, 0, -8, 0, 4, -1, 4, -1, 6, -2, 6, -2, 7, -4, 7, -4, 8, -8, 8)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kwrrv"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 0, 0, 0, 0, 8, -8, 8)
@@ -783,6 +789,7 @@ texture = ExtResource("2_ttpan")
 18:1/0 = 0
 19:1/0 = 0
 16:9/0 = 0
+16:9/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_rdtb0")
 14:2/next_alternative_id = 4
 14:2/0 = 0
 14:2/0/terrain_set = 0
@@ -948,6 +955,7 @@ texture = ExtResource("2_ttpan")
 11:8/0 = 0
 11:8/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_7i8uf")
 10:9/0 = 0
+10:9/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_1pdyo")
 12:8/0 = 0
 12:8/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_7i8uf")
 14:9/0 = 0

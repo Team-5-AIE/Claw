@@ -14,6 +14,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xolsr"]
 shader = ExtResource("9_n6n5d")
+shader_parameter/lightingEnabled = false
 shader_parameter/camOffset = null
 shader_parameter/ambientColour = Color(0, 0, 0, 0.470588)
 shader_parameter/directionalLightEnabled = false
@@ -24,7 +25,7 @@ shader_parameter/pointLights = PackedVector3Array(0, 0, 200, 0, 0, 200, 0, 0, 0,
 [node name="GameRoot2" type="Node"]
 
 [node name="MainMenu" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu", "timeTracker", "dialogueManager", "bgmPlayer") instance=ExtResource("1_7374e")]
-startChapterScenePath = "res://Chapters/LightingTest.tscn"
+startChapterScenePath = "res://Chapters/SarahPAXRooms/sarah_room_05.tscn"
 roomContainer = NodePath("../RoomContainer")
 pauseMenu = NodePath("../CanvasLayer/PauseMenu")
 timeTracker = NodePath("../CanvasLayer/TimeTracker")
@@ -36,7 +37,7 @@ script = ExtResource("1_bu72f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Shadows" type="ColorRect" parent="CanvasLayer"]
+[node name="Shadows" type="ColorRect" parent="CanvasLayer" groups=["Shadows"]]
 material = SubResource("ShaderMaterial_xolsr")
 anchors_preset = 8
 anchor_left = 0.5
@@ -68,8 +69,9 @@ offset_right = 523.0
 offset_bottom = 3.88
 theme = ExtResource("6_q6wf2")
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_fov84")]
+[node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("shadowShader") instance=ExtResource("4_fov84")]
 visible = false
+shadowShader = NodePath("../Shadows")
 
 [node name="BloomieDisplay" parent="CanvasLayer" instance=ExtResource("7_vnndk")]
 offset_left = 6.0

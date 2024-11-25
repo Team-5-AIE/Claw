@@ -1,6 +1,8 @@
 shader_type canvas_item;
 render_mode unshaded;
 
+uniform bool lightingEnabled;
+
 uniform vec2 camOffset;
 
 uniform vec4 ambientColour : source_color;
@@ -104,8 +106,7 @@ void fragment() {
 		finalPixelAlpha = 0.0;
 	}
 	
-	if (!isLightPixel) { COLOR = vec4(ambientColour.xyz, finalPixelAlpha); }
-	else { COLOR = vec4(1, 0, 1, 1); }
+	COLOR = vec4(ambientColour.xyz, finalPixelAlpha * float(lightingEnabled));
 	
 	//float sdfSample = texture_sdf(sdfPos) / 100.0;
 	//COLOR += vec4(sdfSample, sdfSample, sdfSample, 0.5);
