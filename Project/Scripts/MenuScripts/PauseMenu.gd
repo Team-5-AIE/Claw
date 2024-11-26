@@ -8,6 +8,10 @@ var startChapterScenePath : String
 # Editor variables
 @export var restartButton : Button
 @export var shadowShader : ColorRect
+@export_group("Focus Buttons")
+@export var startingFocus : Button
+@export var optionsMenuFocus : Button
+@export var optionsReturnFocus : Button
 
 var roomContainer : Node2D
 var timeTracker : Node
@@ -114,11 +118,14 @@ func TogglePause() -> void:
 			AudioManager.pause_current_music()
 			AudioManager.pause_all_game_sounds()
 			get_tree().paused = true
+			startingFocus.call_deferred("grab_focus")
 
 
 
 func _on_options_button_pressed() -> void:
 	$OptionsScreen.is_active = true
+	optionsMenuFocus.call_deferred("grab_focus")
 
 func _on_options_return_button_pressed() -> void:
 	$OptionsScreen.is_active = false
+	optionsReturnFocus.call_deferred("grab_focus")

@@ -1,5 +1,10 @@
 extends MarginContainer
 
+@export_group("Starting buttons")
+@export var main_button : Control
+@export var credits_button : Control
+@export var options_button : Control
+@export_group("Screens")
 @export var titleScreen : Control
 @export var mainScreen : Control
 @export var scoreboardScreen : Control
@@ -23,6 +28,7 @@ var titleScreenActivated : bool :
 				mainScreen.visible = true
 				scoreboardScreen.visible = true
 				creditsScreen.visible = false
+				main_button.call_deferred("grab_focus")
 			false:
 				titleScreen.visible = true
 				mainScreen.visible = false
@@ -64,21 +70,26 @@ func _input(event: InputEvent) -> void:
 # Credits Buttons
 func _on_credits_button_pressed() -> void:
 	creditsScreen.visible = true
+	credits_button.call_deferred("grab_focus")
 	scoreboardScreen.visible = false
 func _on_credits_return_button_pressed() -> void:
 	scoreboardScreen.visible = true
+	$"../MainScreen/PanelContainer/Scoreboard/ButtonsHBox1/CreditsButton".call_deferred("grab_focus")
 	creditsScreen.visible = false
 
 # Options Buttons
 func _on_options_button_pressed() -> void:
 	optionsScreen.is_active = true
+	options_button.call_deferred("grab_focus")
 func _on_options_return_button_pressed() -> void:
 	optionsScreen.is_active = false
+	$"../MainScreen/PanelContainer/Scoreboard/ButtonsHBox2/OptionsButton".call_deferred("grab_focus")
 
 # Quit Button
 func _on_quit_button_pressed() -> void:
 	if not isQuitting:
 		isQuitting = true
+		$"../MainScreen/PanelContainer/Scoreboard/ButtonsHBox2/QuitButton".call_deferred("release_focus")
 		titleScreenActivated = false
 		FadeTransitions.Transition()
 		await FadeTransitions.on_fade_in_finished

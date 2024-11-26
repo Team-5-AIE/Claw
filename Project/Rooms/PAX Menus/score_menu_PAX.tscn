@@ -6,7 +6,7 @@
 
 [sub_resource type="ImageTexture" id="ImageTexture_mwb2m"]
 
-[node name="ScoreMenu" type="Control" node_paths=PackedStringArray("first_place", "second_place", "third_place", "fourth_place", "fifth_place", "player_name_input", "player_time")]
+[node name="ScoreMenu" type="Control" node_paths=PackedStringArray("first_place", "second_place", "third_place", "fourth_place", "fifth_place", "player_name_input", "player_time", "startingButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +22,7 @@ fifth_place = NodePath("MainScreen/PanelContainer/BestTimes/MarginContainer/TopR
 player_name_input = NodePath("MainScreen/PanelContainer/BestTimes/HBoxContainer/PlayerNameInput")
 player_time = NodePath("MainScreen/PanelContainer/BestTimes/PlayerTime")
 mainMenuScenePath = "res://Rooms/PAX Menus/game_root_PAX.tscn"
+startingButton = NodePath("MainScreen/PanelContainer/BestTimes/HBoxContainer/SubmitButton")
 
 [node name="TitleBG" type="TextureRect" parent="."]
 layout_mode = 0
@@ -173,6 +174,7 @@ alignment = 1
 [node name="PlayerNameInput" type="LineEdit" parent="MainScreen/PanelContainer/BestTimes/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_right = NodePath(".")
 theme = ExtResource("4_b2npv")
 theme_override_font_sizes/font_size = 16
 theme_override_icons/clear = SubResource("ImageTexture_mwb2m")
@@ -184,6 +186,7 @@ middle_mouse_paste_enabled = false
 [node name="SubmitButton" type="Button" parent="MainScreen/PanelContainer/BestTimes/HBoxContainer"]
 custom_minimum_size = Vector2(112, 40)
 layout_mode = 2
+focus_neighbor_left = NodePath("../PlayerNameInput")
 theme = ExtResource("4_b2npv")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4

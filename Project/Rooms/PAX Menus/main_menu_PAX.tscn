@@ -49,7 +49,7 @@ bbcode_enabled = true
 text = "[center]Press any button"
 script = ExtResource("4_3eme8")
 
-[node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("titleScreen", "mainScreen", "scoreboardScreen", "creditsScreen", "optionsScreen", "highscoreRank", "highscoreNames", "highscoreSeparator", "highscoreTimes")]
+[node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("main_button", "credits_button", "options_button", "titleScreen", "mainScreen", "scoreboardScreen", "creditsScreen", "optionsScreen", "highscoreRank", "highscoreNames", "highscoreSeparator", "highscoreTimes")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,6 +57,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_isglf")
+main_button = NodePath("../MainScreen/PanelContainer/Scoreboard/ButtonsHBox1/StartButton")
+credits_button = NodePath("../MainScreen/PanelContainer/Credits/HBoxContainer/CreditsReturnButton")
+options_button = NodePath("../OptionsScreen/VBoxContainer/VisualSettings/VBoxContainer/ToggleFullscreen/ButtonFullscreen")
 titleScreen = NodePath(".")
 mainScreen = NodePath("../MainScreen")
 scoreboardScreen = NodePath("../MainScreen/PanelContainer/Scoreboard")
@@ -68,7 +71,6 @@ highscoreSeparator = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginCon
 highscoreTimes = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginContainer/Scores/HighscoreHBox/Time")
 
 [node name="MainScreen" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 2
 offset_right = 640.0
 offset_bottom = 360.0
@@ -166,6 +168,8 @@ alignment = 1
 [node name="StartButton" type="Button" parent="MainScreen/PanelContainer/Scoreboard/ButtonsHBox1"]
 custom_minimum_size = Vector2(150, 42)
 layout_mode = 2
+focus_neighbor_right = NodePath("../CreditsButton")
+focus_neighbor_bottom = NodePath("../../ButtonsHBox2/OptionsButton")
 theme = ExtResource("4_hn62b")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -187,6 +191,8 @@ autowrap_mode = 2
 [node name="CreditsButton" type="Button" parent="MainScreen/PanelContainer/Scoreboard/ButtonsHBox1"]
 custom_minimum_size = Vector2(150, 42)
 layout_mode = 2
+focus_neighbor_left = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../../ButtonsHBox2/QuitButton")
 theme = ExtResource("4_hn62b")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -211,6 +217,8 @@ alignment = 1
 [node name="OptionsButton" type="Button" parent="MainScreen/PanelContainer/Scoreboard/ButtonsHBox2"]
 custom_minimum_size = Vector2(90, 32)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../ButtonsHBox1/StartButton")
+focus_neighbor_right = NodePath("../QuitButton")
 theme = ExtResource("4_hn62b")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
@@ -231,6 +239,8 @@ text = "Options"
 [node name="QuitButton" type="Button" parent="MainScreen/PanelContainer/Scoreboard/ButtonsHBox2"]
 custom_minimum_size = Vector2(90, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../OptionsButton")
+focus_neighbor_top = NodePath("../../ButtonsHBox1/CreditsButton")
 theme = ExtResource("4_hn62b")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
