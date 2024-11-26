@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://ce5a3eo73sio7"]
+[gd_scene load_steps=9 format=4 uid="uid://ce5a3eo73sio7"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_s7ss6"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_yleuv"]
 [ext_resource type="PackedScene" uid="uid://x0uvq1ihbtug" path="res://Objects/spring.tscn" id="3_oydxq"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_vikgg"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_60kfc"]
-[ext_resource type="PackedScene" uid="uid://caudwsaw0pv0c" path="res://Objects/end_of_chapter_trigger.tscn" id="5_70d47"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -16,9 +15,10 @@ resource_local_to_scene = true
 a = Vector2(0, 48)
 b = Vector2(0, -48)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1nk4m"]
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ds62w"]
 resource_local_to_scene = true
-size = Vector2(20, 96)
+a = Vector2(0, 48)
+b = Vector2(0, -48)
 
 [node name="RoomM05" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_s7ss6")
@@ -72,18 +72,24 @@ shape = SubResource("SegmentShape2D_xaixi")
 [node name="PlayerSpawn" parent="RoomTransition" index="1"]
 position = Vector2(-48, 32)
 
-[node name="EndOfChapterTrigger" parent="." instance=ExtResource("5_70d47")]
-position = Vector2(-320, -128)
-
-[node name="CollisionShape2D" parent="EndOfChapterTrigger" index="0"]
-shape = SubResource("RectangleShape2D_1nk4m")
-
 [node name="Spring" parent="." instance=ExtResource("3_oydxq")]
 position = Vector2(256, 144)
 
 [node name="Spring2" parent="." instance=ExtResource("3_oydxq")]
 position = Vector2(160, 32)
 
+[node name="RoomTransition2" parent="." instance=ExtResource("4_60kfc")]
+position = Vector2(-336, -128)
+nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_112c.tscn"
+exitDirection = "Left"
+
+[node name="CollisionShape2D" parent="RoomTransition2" index="0"]
+position = Vector2(16, 0)
+shape = SubResource("SegmentShape2D_ds62w")
+
+[node name="PlayerSpawn" parent="RoomTransition2" index="1"]
+position = Vector2(48, 32)
+
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
-[editable path="EndOfChapterTrigger"]
+[editable path="RoomTransition2"]
