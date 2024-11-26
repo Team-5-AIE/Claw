@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_tg6kj"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_m6do4"]
 [ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="5_2q67f"]
-[ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="6_rs12k"]
+[ext_resource type="PackedScene" path="res://Objects/light.tscn" id="6_rs12k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -24,7 +24,6 @@ b = Vector2(0, -64)
 [node name="Room102a" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_lpv8h")
 standaloneSpawner = NodePath("RoomArea/RoomBounds")
-lightingEnabled = true
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -94,6 +93,7 @@ position = Vector2(0, -16)
 bloomieID = 2
 
 [node name="Lights" type="Node2D" parent="."]
+visible = false
 
 [node name="Light" parent="Lights" instance=ExtResource("6_rs12k")]
 position = Vector2(-136, 0)
