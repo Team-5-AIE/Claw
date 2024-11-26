@@ -78,7 +78,7 @@ position = Vector2(80, 192)
 
 [node name="RoomTransition2" parent="." instance=ExtResource("4_keu2w")]
 position = Vector2(240, -192)
-nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_104b.tscn"
+nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_105b.tscn"
 exitDirection = "Up"
 launchPlayer = true
 launchForce = 350.0
