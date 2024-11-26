@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://inkpm8w72ml4"]
+
+[ext_resource type="Texture2D" uid="uid://bja7gdcdnen66" path="res://Sprites/Particles/Wood Particles-Sheet.png" id="1_kiaqs"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fwisd"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_o8ecf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.603375, 1), 0.0, 0.0, 0, 0, Vector2(0.995781, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_tlfa3"]
+curve = SubResource("Curve_o8ecf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1t5e3"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+angle_min = -45.0
+angle_max = 45.0
+direction = Vector3(0, -5, 0)
+spread = 60.0
+flatness = 0.5
+initial_velocity_min = 70.0
+initial_velocity_max = 120.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+gravity = Vector3(0, 200, 0)
+alpha_curve = SubResource("CurveTexture_tlfa3")
+anim_offset_max = 1.0
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+z_index = 7
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_fwisd")
+position = Vector2(-1, 0)
+emitting = false
+amount = 6
+amount_ratio = 0.8
+process_material = SubResource("ParticleProcessMaterial_1t5e3")
+texture = ExtResource("1_kiaqs")
+lifetime = 1.4
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0

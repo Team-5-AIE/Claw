@@ -14,6 +14,7 @@ func BouncePlayer(player)-> void:
 	player.velocity += Vector2.UP.rotated(rotation) * bounceAmount
 	print("Bounce")
 	resetAnimation = true
+	AudioManager.play_modulated_game_sound(AudioManager.SPRING, -5)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	animation_player.play("Idle")

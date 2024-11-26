@@ -69,7 +69,7 @@ func _on_restart_player() -> void:
 func _on_area_2d_body_entered(body) -> void:
 	if player == null and body.name == "Player":
 		player = body
-		AudioManager.play_game_sound(AudioManager.TOUCH_BLOOMIE, -2)
+		AudioManager.play_game_sound(AudioManager.TOUCH_BLOOMIE, -3)
 		
 		# The bloomie needs to be a child of the player so that it stays loaded
 		# when its room unloads, but we don't want it to move with the player

@@ -19,7 +19,6 @@ var angle
 var damping = 0.995
 var angularVel : float = 0.0
 var angularAcceleration : float = 0.0
-var hookSoundPlayed = false
 var angularVelocity : Vector2
 var inputAmount : float = 0
 var drawVisual : bool = true
@@ -37,7 +36,6 @@ var drawVisual : bool = true
 #=================================================================================
 func EnterState() -> void:
 	player.finite_state_machine.air_resistance_lock = true
-	hookSoundPlayed = false
 	if player.debug_mode:
 		print("Debug: Spear State")
 	# Update sprite flip to the shoot direction
@@ -47,12 +45,6 @@ func EnterState() -> void:
 
 
 #=================================================================================
-func UpdatePhysics(delta) -> void: # Runs in _physics_process()
-	if not hookSoundPlayed:
-		AudioManager.play_modulated_game_sound(AudioManager.WOOD_IMPACT, -5)
-		hookSoundPlayed = true
-	#ProcessVelocity(delta)
-
 func ExitState() -> void:
 	#NOTE: removed line -- below
 	#spearInstance = null

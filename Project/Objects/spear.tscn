@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddbhcmjxuh73m"]
+[gd_scene load_steps=6 format=3 uid="uid://ddbhcmjxuh73m"]
 
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="1_imvm8"]
+[ext_resource type="PackedScene" uid="uid://inkpm8w72ml4" path="res://Effects/wood_particles.tscn" id="2_82l3f"]
 [ext_resource type="Texture2D" uid="uid://nq3odiky7bqs" path="res://Sprites/Claw.png" id="2_tudld"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t58d4"]
@@ -16,6 +17,8 @@ collision_mask = 4
 script = ExtResource("1_imvm8")
 SPEED = 15.0
 
+[node name="GPUParticles2D" parent="." instance=ExtResource("2_82l3f")]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_t58d4")
 
@@ -24,9 +27,11 @@ texture = ExtResource("2_tudld")
 
 [node name="AutoGrappleArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 32
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoGrappleArea"]
+light_mask = 4
+visibility_layer = 65
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_5i8b4")
 

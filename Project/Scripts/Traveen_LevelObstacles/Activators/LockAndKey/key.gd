@@ -100,7 +100,7 @@ func _collect_key() -> void:
 	key_collected.emit(keyID)
 	
 	follow = true
-	AudioManager.play_game_sound(AudioManager.TOUCH_BLOOMIE, -2)
+	AudioManager.play_game_sound(AudioManager.TOUCH_KEY, -2)
 	print("pick up key")
 
 # Reset key and its impression back to its original state
