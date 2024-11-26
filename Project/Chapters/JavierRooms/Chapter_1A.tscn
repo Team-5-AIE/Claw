@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://6kexlgiu60lf"]
+[gd_scene load_steps=13 format=3 uid="uid://6kexlgiu60lf"]
 
 [ext_resource type="PackedScene" uid="uid://d00e5euaeheuv" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_101a.tscn" id="1_3mvgo"]
 [ext_resource type="PackedScene" uid="uid://cb0cuhxbd0b0n" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_102a.tscn" id="2_rdwa6"]
@@ -11,10 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b64w4ldskplux" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_110a.tscn" id="11_er680"]
 [ext_resource type="PackedScene" uid="uid://buf28fkgb2lju" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_111a.tscn" id="12_3llvy"]
 [ext_resource type="PackedScene" uid="uid://dda5iml5yb1ad" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_106a.tscn" id="12_tgmmi"]
-[ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="13_datcd"]
 [ext_resource type="PackedScene" uid="uid://ck8432jxscoma" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_109a.tscn" id="13_ii3nq"]
-[ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="14_7dmxr"]
-[ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="15_0ytxd"]
 
 [node name="Chapter_01a" type="Node2D"]
 
@@ -54,12 +51,3 @@ position = Vector2(5344, -2144)
 
 [node name="Room111a" parent="LoadedRooms" instance=ExtResource("12_3llvy")]
 position = Vector2(6352, -2096)
-
-[node name="Player" parent="." instance=ExtResource("13_datcd")]
-unique_name_in_owner = true
-position = Vector2(-256, 144)
-
-[node name="PlayerCamera" parent="Player" instance=ExtResource("14_7dmxr")]
-offset = Vector2(1, 0)
-zoom = Vector2(1, 1)
-script = ExtResource("15_0ytxd")

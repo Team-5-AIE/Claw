@@ -74,6 +74,7 @@ position = Vector2(0, 112)
 
 [node name="RoomTransition2" parent="." instance=ExtResource("4_8fkd8")]
 position = Vector2(-336, 80)
+nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_111a.tscn"
 exitDirection = "Left"
 
 [node name="CollisionShape2D" parent="RoomTransition2" index="0"]

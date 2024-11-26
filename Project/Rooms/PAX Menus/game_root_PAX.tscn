@@ -23,7 +23,7 @@ shader_parameter/pointLights = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 process_mode = 3
 
 [node name="MainMenu" parent="." node_paths=PackedStringArray("roomContainer", "pauseMenu", "timeTracker", "dialogueManager") instance=ExtResource("1_7374e")]
-startChapterScenePath = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_101.tscn"
+startChapterScenePath = "res://Chapters/JavierRooms/Rooms_Tutorial/room_T01.tscn"
 roomContainer = NodePath("../RoomContainer")
 pauseMenu = NodePath("../CanvasLayer/PauseMenu")
 timeTracker = NodePath("../CanvasLayer/TimeTracker")
