@@ -2,6 +2,22 @@ extends Node
 ## Plays and switches between music
 ## Plays SFX in free audio channels
 
+## Signals ====================================================================/===================/
+signal sfx_channel_played(sound_clip: Resource, volume: float, channel: AudioStreamPlayer)
+
+signal game_sfx_paused()
+signal game_sfx_resumed()
+signal game_sfx_stopped()
+signal menu_sfx_paused()
+signal menu_sfx_resumed()
+signal menu_sfx_stopped()
+
+signal music_played(music_clip: Resource, volume: float)
+signal music_paused()
+signal music_resumed()
+signal music_stopped()
+signal music_looped()
+signal music_loop_state_changed(loop_state: bool)
 
 ## Music Files ================================================================/===================/
 const MUSIC_ENCHANTED_FOREST = preload("res://Sounds/BGM/Si - Enchanted Forest.mp3")
@@ -48,6 +64,8 @@ const STEPS3 = preload("res://Sounds/Effects/steps3.wav")
 
 ## ============================================================================/===================/
 
+var looping_music: bool = true
+
 @onready var mixer_master = AudioServer.get_bus_index("Master")
 @onready var mixer_music = AudioServer.get_bus_index("Music")
 @onready var mixer_sfx = AudioServer.get_bus_index("SFX")
@@ -65,6 +83,7 @@ func play_game_sound(sound: Resource, volume: float, _sfx_player: Node = game_sf
 			channel.stream = sound
 			channel.volume_db = volume
 			channel.play()
+			sfx_channel_played.emit(sound, volume, channel)
 			return true
 	return false
 
@@ -76,6 +95,7 @@ func play_modulated_game_sound(sound: Resource, volume: float, _sfx_player: Node
 			channel.volume_db = volume
 			channel.pitch_scale = randf_range(0.8,1.2)
 			channel.play()
+			sfx_channel_played.emit(sound, volume, channel)
 			return true
 	return false
 
@@ -113,6 +133,9 @@ func pause_all_game_sounds(_sfx_player: Node = game_sfx_player) -> bool:
 		if channel is AudioStreamPlayer and not channel.stream_paused:
 				channel.stream_paused = true
 				paused = true
+	
+	if _sfx_player == game_sfx_player: game_sfx_paused.emit()
+	elif _sfx_player == menu_sfx_player: menu_sfx_paused.emit()
 	return paused
 
 ## Resume all paused game sound channels. 
@@ -123,7 +146,24 @@ func resume_all_game_sounds(_sfx_player: Node = game_sfx_player) -> bool:
 		if channel is AudioStreamPlayer and channel.stream_paused:
 				channel.stream_paused = false
 				resumed = true
+	
+	if _sfx_player == game_sfx_player: game_sfx_resumed.emit()
+	elif _sfx_player == menu_sfx_player: menu_sfx_resumed.emit()
 	return resumed
+
+## Stop all currently playing game sounds.
+## Return true when it stops at least one, and false when it couldn't find any to stop.
+func stop_all_game_sounds(_sfx_player: Node = game_sfx_player) -> bool: 
+	var stopped: bool = false
+	resume_all_game_sounds(_sfx_player)
+	for channel in _sfx_player.get_children():
+		if channel is AudioStreamPlayer and channel.playing:
+				channel.stop()
+				stopped = true
+	
+	if _sfx_player == game_sfx_player: game_sfx_stopped.emit()
+	elif _sfx_player == menu_sfx_player: menu_sfx_stopped.emit()
+	return stopped
 
 ## Play sound in a free audio channel in the Menu SFX Player. 
 ## Return true when a channel is found, and false otherwise.
@@ -145,17 +185,25 @@ func pause_all_menu_sounds() -> bool:
 func resume_all_menu_sounds() -> bool:
 	return resume_all_game_sounds(menu_sfx_player)
 
+## Stop all currently playing menu sounds.
+## Return true when it stops at least one, and false when it couldn't find any to stop.
+func stop_all_menu_sounds() -> bool: 
+	return stop_all_game_sounds(menu_sfx_player)
+
 ## Play specific music. 
 ## Return true when executed, and false if music is already playing when not forcing start
-func play_music(music: Resource, volume: float, force_start: bool = true) -> bool:
+func play_music(music: Resource, volume: float, force_start: bool = true, loopable: bool = true) -> bool:
 	if music_player.playing:
-		if force_start: music_player.stop()
+		if force_start: stop_current_music()
 		else: return false
 	music_player.stream_paused = false
 	music_player.stream = music
 	music_player.volume_db = volume
 	music_player.play()
-	
+	music_played.emit(music, volume)
+	if looping_music != loopable:
+		looping_music = loopable
+		music_loop_state_changed.emit(loopable)
 	return true
 
 ## Pause music. 
@@ -163,6 +211,7 @@ func play_music(music: Resource, volume: float, force_start: bool = true) -> boo
 func pause_current_music() -> bool:
 	if music_player.playing and not music_player.stream_paused:
 		music_player.stream_paused = true
+		music_paused.emit()
 		return true
 	else:
 		return false
@@ -172,13 +221,25 @@ func pause_current_music() -> bool:
 func resume_current_music():
 	if music_player.stream_paused:
 		music_player.stream_paused = false
+		music_resumed.emit()
 		return true
 	else:
 		return false
+
+## Stop current music.
+## Return true when executed, and false if there isn't any music playing.
+func stop_current_music():
+	if music_player.playing:
+		music_player.stop()
+		music_stopped.emit()
+		return true
+	return false
 
 func _ready():
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
 
 
 func _on_music_player_finished() -> void:
-	music_player.play()
+	if looping_music:
+		music_player.play()
+		music_looped.emit()
