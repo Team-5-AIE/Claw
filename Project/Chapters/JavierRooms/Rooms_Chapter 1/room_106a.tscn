@@ -86,7 +86,7 @@ flipSpawnDir = true
 
 [node name="Bloomie" parent="." instance=ExtResource("5_cmckl")]
 position = Vector2(128, 96)
-bloomieID = 5
+bloomieID = 4
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
