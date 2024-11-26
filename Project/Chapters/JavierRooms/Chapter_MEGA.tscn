@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://drlad7wbt4i07"]
+[gd_scene load_steps=8 format=3 uid="uid://c42iirc2wtluj"]
 
-[ext_resource type="PackedScene" uid="uid://cywesme0dv0lk" path="res://Chapters/JavierRooms/Chapter_Tutorial_(M).tscn" id="1_qn7dy"]
+[ext_resource type="PackedScene" path="res://Chapters/JavierRooms/Chapter_Tutorial_(M).tscn" id="1_qn7dy"]
 [ext_resource type="PackedScene" uid="uid://6kexlgiu60lf" path="res://Chapters/JavierRooms/Chapter_1A.tscn" id="2_s80u7"]
 [ext_resource type="PackedScene" uid="uid://c1t04kikgnjlj" path="res://Chapters/JavierRooms/Chapter_Wood.tscn" id="3_7lypk"]
-[ext_resource type="PackedScene" uid="uid://xsqhkutfrput" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_112c.tscn" id="4_o8u0r"]
+[ext_resource type="PackedScene" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_112c.tscn" id="4_o8u0r"]
 [ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="6_ikyqr"]
 [ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="7_dg8n4"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="8_yirdx"]

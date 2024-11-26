@@ -3,7 +3,7 @@ extends Node
 var totalBloomiesCollected : int = 0
 var chapterOneBloomies : Array[bool]
 var chapterOneBloomiesThisSession : Array[bool]
-var chapterOneBloomieCount = 8
+var chapterOneBloomieCount = 9
 
 #This holds all the data of score entry
 #first entry is the latest one.
