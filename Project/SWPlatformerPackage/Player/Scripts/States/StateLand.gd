@@ -7,6 +7,7 @@ extends State
 func EnterState() -> void:
 	player.finite_state_machine.reset_grounded_variables()
 	player.wall_grab_stamina.stop()
+	player.move_lock = false
 	if player.debug_mode:
 		print("Debug: Land State")
 	player.animation_player.play("Land")
