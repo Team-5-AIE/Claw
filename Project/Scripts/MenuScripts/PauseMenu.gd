@@ -110,7 +110,7 @@ func TogglePause() -> void:
 			# Pause
 			_paused = true
 			visible = true
-			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			AudioManager.pause_current_music()
 			AudioManager.pause_all_game_sounds()
 			get_tree().paused = true

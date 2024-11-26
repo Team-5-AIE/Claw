@@ -52,7 +52,7 @@ func _ready() -> void:
 	if sizeArr <= 1:
 		second_place.text = "2. --:--"
 	
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func Sort(scoresToSort) ->Array:
 	print(str("unsorted:",scoresToSort))
