@@ -56,9 +56,11 @@ func _physics_process(delta) -> void:
 	if spearThrown:
 		SpearPhysicsProcess()
 	
+	# Immediately reset spear cooldown for people that let go of it
+	if Input.is_action_pressed("Spear") == false and player.spearCooldownTimer.time_left > 0: 
+		player.spearCooldownTimer.stop()
 	
-	
-	if state is State:
+	if state is State: 
 		state.UpdatePhysics(delta) # Run the UpdatePhysics function in our current state
 	
 	if !disable_gravity:
@@ -166,7 +168,7 @@ func jump_buffer_jump() -> bool:
 func can_we_throw_spear():
 	if player.spearCollected:
 		if state != player.state_spear && player.state_spear.spearInstance == null:
-			if Input.is_action_just_pressed("Spear") && player.spearCooldownTimer.time_left <= 0.0:
+			if Input.is_action_pressed("Spear") && player.spearCooldownTimer.time_left <= 0.0:
 				spearThrown = true
 
 func jump_buffer_check() -> bool:

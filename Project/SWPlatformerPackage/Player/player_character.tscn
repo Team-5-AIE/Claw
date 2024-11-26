@@ -15,8 +15,8 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallJump.gd" id="11_r1ntv"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallSlide.gd" id="12_q8x25"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
-[ext_resource type="PackedScene" uid="uid://bb1qdc361jjvp" path="res://Objects/crosshair.tscn" id="17_4yyds"]
-[ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="17_m7yus"]
+[ext_resource type="PackedScene" path="res://Objects/crosshair.tscn" id="17_4yyds"]
+[ext_resource type="PackedScene" path="res://Objects/light.tscn" id="17_m7yus"]
 
 [sub_resource type="Gradient" id="Gradient_62wi8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.14902, 0.329412, 1)
@@ -715,6 +715,7 @@ floor_block_on_wall = false
 floor_snap_length = 3.0
 script = ExtResource("1_qfw28")
 jump_height = 280.0
+throwSpearCooldown = 0.45
 slide_speed = 280.0
 slide_time = 0.3
 slide_friction = 900.0
@@ -784,8 +785,11 @@ script = ExtResource("7_mqss4")
 
 [node name="StateSpear" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("8_h64g1")
-pullJumpStrength = 420.0
-pullJumpStopFraction = -0.2
+pullJumpStrength = 450.0
+pullJumpStopFraction = 0.8
+swingSpeedCap = 5
+climbRopeSpeedUp = 75
+climbRopeSpeedDown = 75
 
 [node name="StateCrouch" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("9_gut04")
@@ -841,7 +845,7 @@ one_shot = true
 one_shot = true
 
 [node name="SpearCooldownTimer" type="Timer" parent="Timers"]
-wait_time = 0.2
+wait_time = 2.0
 one_shot = true
 
 [node name="SnapRopeTimer" type="Timer" parent="Timers"]
