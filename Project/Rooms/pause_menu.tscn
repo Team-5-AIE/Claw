@@ -1,30 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://nelr0rw0cn6o"]
+[gd_scene load_steps=5 format=3 uid="uid://nelr0rw0cn6o"]
 
 [ext_resource type="Script" path="res://Scripts/MenuScripts/PauseMenu.gd" id="1_mpl1k"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="2_ayrj1"]
 [ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="3_h2gsb"]
-[ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="4_rao1h"]
 [ext_resource type="PackedScene" uid="uid://1n7gaf38aipt" path="res://Rooms/options_screen.tscn" id="5_kqyj5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4swhe"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bi3c2"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_27kwu"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a1kge"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ekmjj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4hofj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4w7fw"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u2rb6"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhnej"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_prhkr"]
 
 [node name="PauseMenu" type="PanelContainer" node_paths=PackedStringArray("restartButton", "startingFocus", "optionsMenuFocus", "optionsReturnFocus")]
 process_mode = 3
@@ -76,16 +55,6 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = ExtResource("3_h2gsb")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4swhe")
-theme_override_styles/disabled = ExtResource("3_h2gsb")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_bi3c2")
-theme_override_styles/hover_pressed = ExtResource("3_h2gsb")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_27kwu")
-theme_override_styles/hover = ExtResource("4_rao1h")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_a1kge")
-theme_override_styles/pressed = ExtResource("3_h2gsb")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ekmjj")
-theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Resume"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
@@ -103,16 +72,6 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = ExtResource("3_h2gsb")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4hofj")
-theme_override_styles/disabled = ExtResource("3_h2gsb")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_4w7fw")
-theme_override_styles/hover_pressed = ExtResource("3_h2gsb")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_u2rb6")
-theme_override_styles/hover = ExtResource("4_rao1h")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dhnej")
-theme_override_styles/pressed = ExtResource("3_h2gsb")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_prhkr")
-theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Retry Room"
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
@@ -130,16 +89,6 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = ExtResource("3_h2gsb")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4hofj")
-theme_override_styles/disabled = ExtResource("3_h2gsb")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_4w7fw")
-theme_override_styles/hover_pressed = ExtResource("3_h2gsb")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_u2rb6")
-theme_override_styles/hover = ExtResource("4_rao1h")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dhnej")
-theme_override_styles/pressed = ExtResource("3_h2gsb")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_prhkr")
-theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Options"
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
@@ -156,17 +105,6 @@ theme = ExtResource("2_ayrj1")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = ExtResource("3_h2gsb")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4hofj")
-theme_override_styles/disabled = ExtResource("3_h2gsb")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_4w7fw")
-theme_override_styles/hover_pressed = ExtResource("3_h2gsb")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_u2rb6")
-theme_override_styles/hover = ExtResource("4_rao1h")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dhnej")
-theme_override_styles/pressed = ExtResource("3_h2gsb")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_prhkr")
-theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Restart Chapter"
 
 [node name="HSeparator4" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
@@ -182,17 +120,6 @@ theme = ExtResource("2_ayrj1")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = ExtResource("3_h2gsb")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4hofj")
-theme_override_styles/disabled = ExtResource("3_h2gsb")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_4w7fw")
-theme_override_styles/hover_pressed = ExtResource("3_h2gsb")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_u2rb6")
-theme_override_styles/hover = ExtResource("4_rao1h")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dhnej")
-theme_override_styles/pressed = ExtResource("3_h2gsb")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_prhkr")
-theme_override_styles/normal = ExtResource("3_h2gsb")
 text = "Return to Title"
 
 [node name="OptionsScreen" parent="." instance=ExtResource("5_kqyj5")]
