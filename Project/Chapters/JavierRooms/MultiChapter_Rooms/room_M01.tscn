@@ -81,7 +81,7 @@ position = Vector2(16, 0)
 shape = SubResource("SegmentShape2D_bg0bv")
 
 [node name="PlayerSpawn" parent="RoomTransition2" index="1"]
-position = Vector2(80, 64)
+position = Vector2(48, 64)
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
