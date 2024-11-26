@@ -42,6 +42,7 @@ position = Vector2(3856, -1296)
 
 [node name="Room108a" parent="LoadedRooms" instance=ExtResource("9_v6elx")]
 position = Vector2(4640, -1296)
+lightingEnabled = false
 
 [node name="Room109a" parent="LoadedRooms" instance=ExtResource("13_ii3nq")]
 position = Vector2(5344, -1488)

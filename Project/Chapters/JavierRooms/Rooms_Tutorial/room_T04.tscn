@@ -32,6 +32,7 @@ position = Vector2(8, 8)
 visible = false
 
 [node name="Collisions" type="TileMapLayer" parent="TileMap/CollisionLayers"]
+visible = false
 z_index = -1
 use_parent_material = true
 position = Vector2(8, 8)
