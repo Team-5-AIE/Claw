@@ -130,7 +130,7 @@ flipSpawnDir = true
 
 [node name="Bloomie" parent="." instance=ExtResource("5_a7ktp")]
 position = Vector2(-104, -344)
-bloomieID = 5
+bloomieID = 7
 
 [node name="ManualMovingBlock" parent="." node_paths=PackedStringArray("linked_activator") instance=ExtResource("6_eae66")]
 position = Vector2(16, -296)

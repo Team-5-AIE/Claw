@@ -1,12 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://ct0pg7nntbx32"]
+[gd_scene load_steps=11 format=4 uid="uid://ct0pg7nntbx32"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_jo1e8"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_g8asr"]
-[ext_resource type="Texture2D" uid="uid://c2d174co5glf5" path="res://Sprites/UI/Mouse3.png" id="3_fmupw"]
+[ext_resource type="Texture2D" uid="uid://c5i8k2pq4siy6" path="res://Sprites/UI/Mouse3.png" id="3_fmupw"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_hh8to"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_8bo1g"]
-[ext_resource type="Texture2D" uid="uid://c1x74uqgglmic" path="res://Sprites/UI/Keys4.png" id="4_c4p7k"]
-[ext_resource type="PackedScene" uid="uid://caudwsaw0pv0c" path="res://Objects/end_of_chapter_trigger.tscn" id="6_ifk11"]
+[ext_resource type="Texture2D" uid="uid://b6bgrowhiyhuc" path="res://Sprites/UI/Keys4.png" id="4_c4p7k"]
 [ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="8_pmqr0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
@@ -18,9 +17,10 @@ resource_local_to_scene = true
 a = Vector2(0, 48)
 b = Vector2(0, -48)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wylpk"]
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8j8qp"]
 resource_local_to_scene = true
-size = Vector2(16, 96)
+a = Vector2(0, 48)
+b = Vector2(0, -48)
 
 [node name="RoomT05" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_jo1e8")
@@ -79,12 +79,16 @@ shape = SubResource("SegmentShape2D_7pux2")
 [node name="PlayerSpawn" parent="RoomTransition" index="1"]
 position = Vector2(48, 32)
 
-[node name="EndOfChapterTrigger" parent="." instance=ExtResource("6_ifk11")]
+[node name="RoomTransition2" parent="." instance=ExtResource("4_8bo1g")]
 position = Vector2(337, -48)
+nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_101a.tscn"
 
-[node name="CollisionShape2D" parent="EndOfChapterTrigger" index="0"]
-position = Vector2(-32, 0)
-shape = SubResource("RectangleShape2D_wylpk")
+[node name="CollisionShape2D" parent="RoomTransition2" index="0"]
+position = Vector2(-16, 0)
+shape = SubResource("SegmentShape2D_8j8qp")
+
+[node name="PlayerSpawn" parent="RoomTransition2" index="1"]
+position = Vector2(-80, 32)
 
 [node name="Bloomie" parent="." instance=ExtResource("8_pmqr0")]
 position = Vector2(257, -48)
@@ -95,9 +99,9 @@ position = Vector2(129, -32)
 texture = ExtResource("3_fmupw")
 
 [node name="Keys4" type="Sprite2D" parent="."]
-position = Vector2(-271, 0)
+position = Vector2(-271, -80)
 texture = ExtResource("4_c4p7k")
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
-[editable path="EndOfChapterTrigger"]
+[editable path="RoomTransition2"]
