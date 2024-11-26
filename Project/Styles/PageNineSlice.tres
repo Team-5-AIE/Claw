@@ -1,0 +1,13 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://bcwqrixrcff6g"]
+
+[ext_resource type="Texture2D" uid="uid://blhb4mdjsb51t" path="res://Sprites/UI/9-Slice.png" id="1_fdbf2"]
+
+[resource]
+texture = ExtResource("1_fdbf2")
+texture_margin_left = 35.0
+texture_margin_top = 20.0
+texture_margin_right = 35.0
+texture_margin_bottom = 20.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 64, 126.68)

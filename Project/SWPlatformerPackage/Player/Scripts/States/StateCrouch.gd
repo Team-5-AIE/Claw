@@ -11,6 +11,7 @@ func EnterState() -> void:
 		print("Debug: Crouch State")
 	player.animation_player.play("Crouch")
 
+
 func UpdatePhysics(_delta) -> void: # Runs in _physics_process()
 	# Make sure we aren't under a collision that would get us stuck in the wall 
 	# Before changing to idle or move

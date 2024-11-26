@@ -149,6 +149,7 @@ _data = {
 }
 
 [node name="FadeTransitions" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_3p1g1")
 lockPlayer = true
 

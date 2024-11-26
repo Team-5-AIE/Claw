@@ -16,6 +16,9 @@ var lookDirection : Vector2
 # Godot functions
 func _process(_delta):
 	if player != null and roomBounds != null:
+		var rtnArray = get_tree().get_nodes_in_group("Crosshair")
+		if (rtnArray.size() > 0):
+			crosshair = rtnArray[0]
 		lookDirection = (crosshair.global_position - player.global_position).normalized()
 		position = frontOffset * lookDirection
 		

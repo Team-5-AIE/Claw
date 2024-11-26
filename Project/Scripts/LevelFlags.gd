@@ -8,6 +8,9 @@ var chapterTestFlagCount: int = 32
 
 var chapterFlags: Array[bool]
 
+func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
+
 # Create chapter flag array of specified size and fill it with false flags
 func create_flag_array(chapter_id: Chapters = Chapters.CHAPTER_TEST) -> void:
 	var flag_count: int
