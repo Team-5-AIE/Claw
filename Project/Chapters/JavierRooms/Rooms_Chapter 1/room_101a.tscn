@@ -4,8 +4,8 @@
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_bka1d"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_c2ahq"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_5qyqf"]
-[ext_resource type="PackedScene" path="res://Objects/Traveen_LevelObstacles/Moving Block/manual_moving_block.tscn" id="7_2ofe0"]
-[ext_resource type="PackedScene" uid="uid://brrwtpvjpgey7" path="res://Objects/Traveen_LevelObstacles/Activators/Switch/toggle_switch.tscn" id="8_8to0w"]
+[ext_resource type="PackedScene" uid="uid://bhhoo7ko0n7sk" path="res://Objects/Traveen_LevelObstacles/Activators/Switch/perma_switch.tscn" id="6_nyye8"]
+[ext_resource type="PackedScene" uid="uid://c0voaw65dtuhj" path="res://Objects/Traveen_LevelObstacles/Moving Block/manual_moving_block.tscn" id="7_2ofe0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -58,9 +58,8 @@ _data = {
 "door_lifting": SubResource("Animation_uxvxo")
 }
 
-[node name="Room101a" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
+[node name="Room101a" type="Node2D"]
 script = ExtResource("1_c58tr")
-standaloneSpawner = NodePath("")
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -125,7 +124,7 @@ position = Vector2(80, 32)
 
 [node name="ManualMovingBlock" parent="." node_paths=PackedStringArray("linked_activator") instance=ExtResource("7_2ofe0")]
 position = Vector2(304, 0)
-linked_activator = NodePath("../ToggleSwitch")
+linked_activator = NodePath("../PermaSwitch")
 animation_name = "door_lifting"
 
 [node name="AnimationPlayer" parent="ManualMovingBlock" index="0"]
@@ -136,7 +135,7 @@ libraries = {
 [node name="MovingBlockVisual" parent="ManualMovingBlock" index="1"]
 tile_map_data = PackedByteArray("AAAAAAAAAQAIAAcAAAAAAP//AQAIAAcAAAD//wAAAQACAAMAAAD/////AQACAAMAAAD+/wAAAQABAAMAAAD+////AQABAAcAAAD+//7/AQABAAYAAAD///7/AQACAAMAAAAAAP7/AQAIAAcAAAAAAAEAAQAIAAcAAAD//wEAAQACAAMAAAD+/wEAAQABAAQAAAABAP//AQAJAAUAAAABAAAAAQAJAAUAAAABAP7/AQAJAAcAAAABAAEAAQAJAAMAAAD+//r/AQABAAIAAAD+//v/AQABAAMAAAD+//z/AQABAAQAAAD+//3/AQABAAUAAAD+/wIAAQABAAUAAAD+/wMAAQABAAYAAAD+/wQAAQABAAcAAAD+/wUAAQABAAgAAAABAPr/AQAJAAMAAAABAPv/AQAJAAQAAAABAPz/AQAJAAUAAAABAP3/AQAJAAYAAAABAAIAAQAJAAQAAAABAAMAAQAJAAUAAAABAAQAAQAJAAYAAAABAAUAAQAJAAcAAAD///v/AQACAAMAAAD///z/AQACAAMAAAD///3/AQACAAMAAAD//wIAAQACAAMAAAD//wMAAQACAAMAAAD//wQAAQACAAMAAAAAAPv/AQAIAAcAAAAAAPz/AQAIAAcAAAAAAP3/AQAIAAcAAAAAAAIAAQAIAAcAAAAAAAMAAQAIAAcAAAAAAAQAAQAIAAcAAAAAAPr/AQAIAAIAAAD///r/AQACAAIAAAD//wUAAQACAAgAAAAAAAUAAQAIAAgAAAD+//n/AQABAAEAAAABAPn/AQAJAAEAAAAAAPn/AQAFAAEAAAD///n/AQAFAAEAAAD+/wYAAQABAAkAAAABAAYAAQAJAAkAAAD//wYAAQAFAAkAAAAAAAYAAQAFAAkAAAA=")
 
-[node name="ToggleSwitch" parent="." instance=ExtResource("8_8to0w")]
+[node name="PermaSwitch" parent="." instance=ExtResource("6_nyye8")]
 position = Vector2(256, -80)
 
 [editable path="RoomArea"]
