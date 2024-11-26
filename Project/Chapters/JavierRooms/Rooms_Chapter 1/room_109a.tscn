@@ -1,13 +1,14 @@
-[gd_scene load_steps=15 format=4 uid="uid://ck8432jxscoma"]
+[gd_scene load_steps=16 format=4 uid="uid://ck8432jxscoma"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_d50t6"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_dpibu"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_lxsdm"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_0t70n"]
 [ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="5_a7ktp"]
-[ext_resource type="PackedScene" path="res://Objects/Traveen_LevelObstacles/Moving Block/manual_moving_block.tscn" id="6_eae66"]
-[ext_resource type="PackedScene" path="res://Objects/Traveen_LevelObstacles/Activators/LockAndKey/Lock.tscn" id="7_4ok7k"]
+[ext_resource type="PackedScene" uid="uid://c0voaw65dtuhj" path="res://Objects/Traveen_LevelObstacles/Moving Block/manual_moving_block.tscn" id="6_eae66"]
+[ext_resource type="PackedScene" uid="uid://c1lt5sw1xpng4" path="res://Objects/Traveen_LevelObstacles/Activators/LockAndKey/Lock.tscn" id="7_4ok7k"]
 [ext_resource type="PackedScene" uid="uid://1jc8mx5akmnw" path="res://Objects/Traveen_LevelObstacles/Activators/LockAndKey/Key.tscn" id="8_7oqqf"]
+[ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="9_3rh1q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -63,6 +64,7 @@ _data = {
 [node name="Room109a" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_d50t6")
 standaloneSpawner = NodePath("RoomArea/RoomBounds")
+lightingEnabled = true
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -119,6 +121,8 @@ position = Vector2(48, 32)
 position = Vector2(-248, -400)
 nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_110a.tscn"
 exitDirection = "Up"
+launchPlayer = true
+launchForce = 300.0
 
 [node name="CollisionShape2D" parent="RoomTransition2" index="0"]
 position = Vector2(0, 16)
@@ -157,6 +161,40 @@ position = Vector2(216, 280)
 
 [node name="Key3" parent="Lock" instance=ExtResource("8_7oqqf")]
 position = Vector2(216, 504)
+
+[node name="LightHolder" type="Node2D" parent="."]
+
+[node name="Light3" parent="LightHolder" instance=ExtResource("9_3rh1q")]
+position = Vector2(204, 232)
+lightIntensity = 40.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 8.0
+movementFlickerDistance = 3.0
+movementFlickerSpeed = 8.0
+
+[node name="Light4" parent="LightHolder" instance=ExtResource("9_3rh1q")]
+position = Vector2(266, 5)
+lightIntensity = 40.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 8.0
+movementFlickerDistance = 3.0
+movementFlickerSpeed = 8.0
+
+[node name="Light5" parent="LightHolder" instance=ExtResource("9_3rh1q")]
+position = Vector2(202, -224)
+lightIntensity = 40.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 8.0
+movementFlickerDistance = 3.0
+movementFlickerSpeed = 8.0
+
+[node name="Light6" parent="LightHolder" instance=ExtResource("9_3rh1q")]
+position = Vector2(-245, -273)
+lightIntensity = 40.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 8.0
+movementFlickerDistance = 3.0
+movementFlickerSpeed = 8.0
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]

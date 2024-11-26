@@ -1,13 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://b30pr5xo7owc2"]
+[gd_scene load_steps=9 format=4 uid="uid://b30pr5xo7owc2"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_m258o"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_njhbs"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_qn80r"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_gtsxb"]
-[ext_resource type="Texture2D" uid="uid://bds5fue7p3aue" path="res://Sprites/UI/Controls/Mouse2.png" id="5_egjhd"]
-[ext_resource type="Texture2D" uid="uid://jglgft0ysrgf" path="res://Sprites/UI/Controls/Mouse1.png" id="6_xywyp"]
-[ext_resource type="Texture2D" uid="uid://b6fuu1wudo63v" path="res://Sprites/UI/Controls/Shoulder Buttons4.png" id="7_o774a"]
-[ext_resource type="Texture2D" uid="uid://b8qllfaxq8lwl" path="res://Sprites/UI/Controls/Shoulder Buttons3.png" id="8_1dn7i"]
+[ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="5_cnsis"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -23,61 +20,10 @@ resource_local_to_scene = true
 a = Vector2(0, 48)
 b = Vector2(0, -48)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4ah6v"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_egjhd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_egjhd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_egjhd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_egjhd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_xywyp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_xywyp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_xywyp")
-}],
-"loop": true,
-"name": &"pc",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_o774a")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_o774a")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_o774a")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_o774a")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_1dn7i")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_1dn7i")
-}],
-"loop": true,
-"name": &"xbox",
-"speed": 4.0
-}]
-
 [node name="RoomT04" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_m258o")
 standaloneSpawner = NodePath("RoomArea/RoomBounds")
+lightingEnabled = true
 
 [node name="TileMap" type="Node2D" parent="."]
 position = Vector2(8, 8)
@@ -86,6 +32,7 @@ position = Vector2(8, 8)
 visible = false
 
 [node name="Collisions" type="TileMapLayer" parent="TileMap/CollisionLayers"]
+visible = false
 z_index = -1
 use_parent_material = true
 position = Vector2(8, 8)
@@ -112,6 +59,7 @@ tile_set = ExtResource("2_njhbs")
 [node name="BG" type="TileMapLayer" parent="TileMap/VisualLayers"]
 z_index = -2
 use_parent_material = true
+tile_map_data = PackedByteArray("AADu//j/AwADAAIAAADu//f/AwADAAIAAADu//b/AwADAAIAAADu//X/AwADAAIAAADt//j/AwADAAIAAADt//f/AwADAAIAAADt//b/AwADAAIAAADt//X/AwADAAIAAADs//j/AwADAAIAAADs//f/AwADAAIAAADs//b/AwADAAIAAADs//X/AwADAAIAAADr//b/AwABAAMAAADr//X/AwABAAIAAADr//T/AwABAAEAAADs//T/AwAOAAUAAADt//T/AwADAAIAAADr//f/AwABAAIAAADr//j/AwABAAIAAADt//n/AwAKAAEAAADs//n/AwADAAIAAADr//n/AwABAAIAAADu//T/AwADAAIAAADu//n/AwACAAQAAADv//X/AwADAAIAAADv//b/AwAKAAEAAADv//T/AwADAAIAAADv//f/AwAEAAIAAADv//j/AwAEAAIAAADv//n/AwAEAAQAAADv//P/AwADAAIAAADu//P/AwADAAIAAADt//P/AwADAAIAAADs//P/AwABAAIAAADs//L/AwABAAEAAADt//L/AwACAAEAAADu//L/AwACAAEAAADv//L/AwADAAEAAADw//P/AwAEAAMAAADw//T/AwAEAAIAAADw//L/AwAEAAEAAADw//X/AwAEAAIAAADw//b/AwAEAAQAAADs//r/AwADAAIAAADt//r/AwAEAAMAAADr//r/AwABAAIAAADt//v/AwAEAAQAAADs//v/AwACAAQAAADr//v/AwABAAQAAAD2//v/AwADAAIAAAD2//r/AwADAAIAAAD2//n/AwADAAIAAAD1//v/AwADAAIAAAD1//r/AwADAAIAAAD1//n/AwADAAIAAAD0//v/AwADAAIAAAD0//r/AwADAAIAAAD0//n/AwADAAIAAADz//r/AwABAAMAAADz//n/AwABAAIAAADz//j/AwABAAEAAAD0//j/AwAOAAUAAAD1//j/AwADAAIAAADz//v/AwABAAMAAAD1//z/AwADAAIAAAD0//z/AwAOAAEAAADz//z/AwABAAQAAAD2//j/AwADAAIAAAD2//z/AwAKAAEAAAD3//n/AwADAAIAAAD3//r/AwADAAIAAAD3//j/AwAKAAUAAAD3//v/AwAKAAEAAAD3//z/AwAEAAQAAAD4//n/AwADAAIAAAD4//r/AwAKAAEAAAD4//j/AwADAAEAAAD4//v/AwAEAAQAAAD5//n/AwADAAIAAAD5//r/AwADAAQAAAD5//j/AwADAAEAAAD6//n/AwAEAAIAAAD6//r/AwAEAAQAAAD6//j/AwAEAAEAAAD2//f/AwADAAIAAAD2//b/AwADAAIAAAD1//f/AwADAAIAAAD1//b/AwADAAIAAAD0//f/AwABAAIAAAD0//b/AwABAAMAAAD0//X/AwABAAEAAAD1//X/AwADAAEAAAD2//X/AwADAAEAAAD3//b/AwAEAAMAAAD3//f/AwAEAAMAAAD3//X/AwAEAAEAAAD1//3/AwADAAIAAAD2//3/AwAEAAIAAAD0//3/AwABAAIAAAD2//7/AwAEAAQAAAD1//7/AwADAAQAAAD0//7/AwABAAQAAAD+/wkAAwADAAIAAAD+/wgAAwADAAIAAAD+/wcAAwADAAIAAAD+/wYAAwADAAIAAAD9/wkAAwADAAIAAAD9/wgAAwADAAIAAAD9/wcAAwADAAIAAAD9/wYAAwADAAIAAAD8/wkAAwADAAIAAAD8/wgAAwADAAIAAAD8/wcAAwADAAIAAAD8/wYAAwADAAIAAAD7/wkAAwADAAIAAAD7/wgAAwADAAIAAAD7/wcAAwADAAIAAAD7/wYAAwADAAIAAAD6/wkAAwADAAIAAAD6/wgAAwADAAIAAAD6/wcAAwADAAIAAAD6/wYAAwADAAIAAAD5/wkAAwADAAIAAAD5/wgAAwADAAIAAAD5/wcAAwADAAIAAAD5/wYAAwADAAIAAAD4/wcAAwAOAAUAAAD4/wYAAwABAAMAAAD4/wUAAwABAAEAAAD5/wUAAwADAAEAAAD6/wUAAwACAAEAAAD4/wgAAwADAAIAAAD4/wkAAwADAAIAAAD6/woAAwADAAQAAAD5/woAAwACAAQAAAD4/woAAwACAAQAAAD7/wUAAwAOAAUAAAD7/woAAwACAAQAAAD8/wUAAwADAAIAAAD8/woAAwADAAQAAAD9/wUAAwAKAAUAAAD9/woAAwACAAQAAAD+/wUAAwADAAEAAAD+/woAAwACAAQAAAD//wYAAwAEAAIAAAD//wcAAwAEAAIAAAD//wUAAwAEAAEAAAD//wgAAwAEAAMAAAD//wkAAwAEAAIAAAD//woAAwAEAAQAAAD3/wkAAwADAAIAAAD3/wgAAwAOAAUAAAD3/wcAAwABAAEAAAD3/woAAwADAAQAAAD2/woAAwABAAQAAAD2/wkAAwABAAIAAAD2/wgAAwABAAEAAAD8/wQAAwADAAIAAAD9/wQAAwADAAIAAAD7/wQAAwABAAMAAAD7/wMAAwABAAEAAAD8/wMAAwACAAEAAAD9/wMAAwACAAEAAAD+/wQAAwAEAAIAAAD+/wMAAwAEAAEAAAAPAAkAAwADAAIAAAAPAAgAAwADAAIAAAAPAAcAAwADAAIAAAAPAAYAAwADAAIAAAAOAAkAAwADAAIAAAAOAAgAAwADAAIAAAAOAAcAAwADAAIAAAAOAAYAAwADAAIAAAANAAkAAwADAAIAAAANAAgAAwADAAIAAAANAAcAAwADAAIAAAANAAYAAwADAAIAAAAMAAkAAwADAAIAAAAMAAgAAwADAAIAAAAMAAcAAwADAAIAAAAMAAYAAwADAAIAAAALAAcAAwAOAAUAAAALAAYAAwABAAIAAAALAAUAAwABAAEAAAAMAAUAAwAOAAUAAAANAAUAAwADAAIAAAALAAgAAwADAAIAAAALAAkAAwADAAIAAAANAAoAAwADAAQAAAAMAAoAAwACAAQAAAALAAoAAwADAAQAAAAOAAUAAwAKAAUAAAAOAAoAAwADAAQAAAAPAAUAAwACAAEAAAAPAAoAAwADAAQAAAAQAAYAAwAEAAMAAAAQAAcAAwAEAAMAAAAQAAUAAwAEAAEAAAAQAAgAAwAEAAIAAAAQAAkAAwAEAAMAAAAQAAoAAwAEAAQAAAAKAAgAAwADAAIAAAAKAAkAAwADAAIAAAAJAAkAAwADAAIAAAAJAAgAAwADAAIAAAAIAAkAAwABAAMAAAAIAAgAAwABAAMAAAAIAAcAAwABAAEAAAAJAAcAAwACAAEAAAAKAAcAAwACAAEAAAAKAAoAAwADAAQAAAAJAAoAAwACAAQAAAAIAAoAAwABAAQAAAANAAQAAwADAAIAAAAOAAQAAwAEAAIAAAAMAAQAAwABAAMAAAAMAAMAAwABAAEAAAANAAMAAwACAAEAAAAOAAMAAwAEAAEAAAAKAPf/AwADAAIAAAAKAPb/AwADAAIAAAAKAPX/AwADAAIAAAAKAPT/AwADAAIAAAAJAPf/AwADAAIAAAAJAPb/AwADAAIAAAAJAPX/AwADAAIAAAAJAPT/AwADAAIAAAAIAPf/AwADAAIAAAAIAPb/AwADAAIAAAAIAPX/AwADAAIAAAAIAPT/AwADAAIAAAAHAPX/AwABAAMAAAAHAPT/AwABAAIAAAAHAPP/AwABAAEAAAAIAPP/AwADAAEAAAAJAPP/AwADAAEAAAAHAPb/AwABAAIAAAAHAPf/AwAOAAUAAAAJAPj/AwADAAIAAAAIAPj/AwADAAIAAAAHAPj/AwADAAIAAAAKAPP/AwACAAEAAAAKAPj/AwAKAAEAAAALAPT/AwAKAAUAAAALAPX/AwADAAIAAAALAPP/AwAEAAEAAAALAPb/AwADAAIAAAALAPf/AwAKAAEAAAALAPj/AwAEAAQAAAAMAPX/AwADAAIAAAAMAPb/AwADAAIAAAAMAPT/AwACAAEAAAAMAPf/AwADAAQAAAANAPb/AwADAAIAAAANAPX/AwADAAIAAAANAPT/AwACAAEAAAANAPf/AwAOAAEAAAAOAPX/AwAKAAUAAAAOAPb/AwADAAIAAAAOAPT/AwAEAAEAAAAOAPf/AwADAAIAAAAOAPj/AwADAAIAAAAPAPb/AwAEAAMAAAAPAPf/AwAEAAIAAAAPAPX/AwAEAAEAAAAPAPj/AwAEAAIAAAANAPj/AwABAAMAAAAPAPn/AwAEAAQAAAAOAPn/AwADAAQAAAANAPn/AwABAAQAAAAJAPn/AwADAAQAAAAIAPn/AwACAAQAAAAHAPn/AwACAAQAAAAKAPn/AwAEAAQAAAAGAPj/AwADAAIAAAAGAPn/AwACAAQAAAAFAPn/AwABAAQAAAAFAPj/AwABAAIAAAAFAPf/AwABAAEAAAAGAPf/AwADAAEAAAA=")
 tile_set = ExtResource("2_njhbs")
 
 [node name="RoomArea" parent="." instance=ExtResource("3_qn80r")]
@@ -144,11 +92,31 @@ shape = SubResource("SegmentShape2D_n38vw")
 position = Vector2(-48, 32)
 flipSpawnDir = true
 
-[node name="Mouse2" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 96)
-sprite_frames = SubResource("SpriteFrames_4ah6v")
-animation = &"pc"
-autoplay = "pc"
+[node name="LightHolder" type="Node2D" parent="."]
+
+[node name="Light" parent="LightHolder" instance=ExtResource("5_cnsis")]
+position = Vector2(-145, 0)
+lightIntensity = 50.0
+intensityFlickerAmount = 6.0
+intensityFlickerSpeed = 2.0
+movementFlickerDistance = 4.0
+movementFlickerSpeed = 2.0
+
+[node name="Light2" parent="LightHolder" instance=ExtResource("5_cnsis")]
+position = Vector2(137, 0)
+lightIntensity = 50.0
+intensityFlickerAmount = 6.0
+intensityFlickerSpeed = 2.0
+movementFlickerDistance = 4.0
+movementFlickerSpeed = 2.0
+
+[node name="Light3" parent="LightHolder" instance=ExtResource("5_cnsis")]
+position = Vector2(287, 14)
+lightIntensity = 50.0
+intensityFlickerAmount = 6.0
+intensityFlickerSpeed = 2.0
+movementFlickerDistance = 4.0
+movementFlickerSpeed = 2.0
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]

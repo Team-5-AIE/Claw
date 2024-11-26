@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://b0u1dxsx1rq1w"]
+[gd_scene load_steps=10 format=4 uid="uid://b0u1dxsx1rq1w"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_pwi2u"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_qspql"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_bjwkb"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_2hgmu"]
 [ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="5_vy2vx"]
+[ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="6_3ah0w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -23,6 +24,7 @@ b = Vector2(0, -48)
 [node name="Room108a" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_pwi2u")
 standaloneSpawner = NodePath("RoomArea/RoomBounds")
+lightingEnabled = 40.0
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -90,6 +92,32 @@ flipSpawnDir = true
 [node name="Bloomie" parent="." instance=ExtResource("5_vy2vx")]
 position = Vector2(96, -96)
 bloomieID = 6
+
+[node name="Light Holder" type="Node2D" parent="."]
+
+[node name="Light3" parent="Light Holder" instance=ExtResource("6_3ah0w")]
+position = Vector2(98, 16)
+lightIntensity = 40.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 8.0
+movementFlickerDistance = 3.0
+movementFlickerSpeed = 8.0
+
+[node name="Light2" parent="Light Holder" instance=ExtResource("6_3ah0w")]
+position = Vector2(-157, -101)
+lightIntensity = 40.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 8.0
+movementFlickerDistance = 3.0
+movementFlickerSpeed = 8.0
+
+[node name="Light4" parent="Light Holder" instance=ExtResource("6_3ah0w")]
+position = Vector2(229, 36)
+lightIntensity = 40.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 8.0
+movementFlickerDistance = 3.0
+movementFlickerSpeed = 8.0
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
