@@ -1,29 +1,35 @@
 extends Control
-@onready var bloomie_1: Sprite2D = $Bloomie1
-@onready var bloomie_2: Sprite2D = $Bloomie2
-@onready var bloomie_3: Sprite2D = $Bloomie3
-@onready var bloomie_4: Sprite2D = $Bloomie4
-@onready var bloomie_5: Sprite2D = $Bloomie5
-@onready var bloomie_6: Sprite2D = $Bloomie6
+@onready var bloomie: Sprite2D = $Bloomie
+
+var bloomie_list = []
 
 func _ready() -> void:
 	visible = false
 	
-	for i in Global.chapterOneBloomieCount:
+	bloomie_list.append(bloomie)
+	if Global.chapterOneBloomies[0]:
+		bloomie_list[0].modulate = "ffffffff"
+	else:
+		bloomie_list[0].modulate = "5c5c5c33"
+	
+	for i in Global.chapterOneBloomieCount-1:
+		var new_bloomie = bloomie.duplicate()
+		add_child(new_bloomie)
+		new_bloomie.position.x = 8 + 16 * (i+1)
+		bloomie_list.append(new_bloomie)
+		
+		
+		if Global.chapterOneBloomies[i+1]:
+			bloomie_list[i+1].modulate = "ffffffff"
+		else:
+			bloomie_list[i+1].modulate = "5c5c5c33"
+
+func ResetBloomies() -> void:
+	for i in bloomie_list.length():
 		if Global.chapterOneBloomies[i]:
-			match i:
-				0: bloomie_1.modulate = "ffffffff"
-				1: bloomie_2.modulate = "ffffffff"
-				2: bloomie_3.modulate = "ffffffff"
-				3: bloomie_4.modulate = "ffffffff"
-				4: bloomie_5.modulate = "ffffffff"
-				5: bloomie_6.modulate = "ffffffff"
+			bloomie_list[i].modulate = "ffffff33"
+		else:
+			bloomie_list[i].modulate = "5c5c5c33"
 
 func AddBloomieCount(ID : int) -> void:
-	match ID:
-		0: bloomie_1.modulate = "ffffffff"
-		1: bloomie_2.modulate = "ffffffff"
-		2: bloomie_3.modulate = "ffffffff"
-		3: bloomie_4.modulate = "ffffffff"
-		4: bloomie_5.modulate = "ffffffff"
-		5: bloomie_6.modulate = "ffffffff"
+	bloomie_list[ID].modulate = "ffffffff"

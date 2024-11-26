@@ -27,6 +27,7 @@ FadeTransitions="*res://Objects/fade_transitions.tscn"
 GlobalWorldEnvironment="*res://Objects/world_environment.tscn"
 LevelFlags="*res://Scripts/LevelFlags.gd"
 AudioManager="*res://Objects/AudioManager.tscn"
+Settings="*res://Scripts/settings.gd"
 
 [debug]
 
@@ -37,9 +38,7 @@ settings/canvas_textures/default_texture_filter=3
 window/size/viewport_width=640
 window/size/viewport_height=360
 window/size/mode=3
-window/size/borderless=true
-window/size/window_width_override=1920
-window/size/window_height_override=1080
+window/size/resizable=false
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="res://Sprites/Cursor.png"
 mouse_cursor/custom_image_hotspot=Vector2(20, 20)

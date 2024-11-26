@@ -104,11 +104,21 @@ func TogglePause() -> void:
 			visible = false
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 			AudioManager.resume_current_music()
+			AudioManager.resume_all_game_sounds()
 			get_tree().paused = false
 		else:
 			# Pause
 			_paused = true
 			visible = true
-			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			AudioManager.pause_current_music()
+			AudioManager.pause_all_game_sounds()
 			get_tree().paused = true
+
+
+
+func _on_options_button_pressed() -> void:
+	$OptionsScreen.is_active = true
+
+func _on_options_return_button_pressed() -> void:
+	$OptionsScreen.is_active = false

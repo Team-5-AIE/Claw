@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnei0kqq507xw"]
+[gd_scene load_steps=15 format=3 uid="uid://dnei0kqq507xw"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_4b8s4"]
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="2_isglf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="4_hn62b"]
 [ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="5_2yjop"]
 [ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="6_jpmdu"]
+[ext_resource type="PackedScene" uid="uid://1n7gaf38aipt" path="res://Rooms/options_screen.tscn" id="9_0npgc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yga4s"]
 
@@ -48,7 +49,7 @@ bbcode_enabled = true
 text = "[center]Press any button"
 script = ExtResource("4_3eme8")
 
-[node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("titleScreen", "mainScreen", "scoreboardScreen", "creditsScreen", "highscoreRank", "highscoreNames", "highscoreSeparator", "highscoreTimes")]
+[node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("titleScreen", "mainScreen", "scoreboardScreen", "creditsScreen", "optionsScreen", "highscoreRank", "highscoreNames", "highscoreSeparator", "highscoreTimes")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,6 +61,7 @@ titleScreen = NodePath(".")
 mainScreen = NodePath("../MainScreen")
 scoreboardScreen = NodePath("../MainScreen/PanelContainer/Scoreboard")
 creditsScreen = NodePath("../MainScreen/PanelContainer/Credits")
+optionsScreen = NodePath("../OptionsScreen")
 highscoreRank = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginContainer/Scores/HighscoreHBox/Rank")
 highscoreNames = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginContainer/Scores/HighscoreHBox/Name")
 highscoreSeparator = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginContainer/Scores/HighscoreHBox/Separator")
@@ -444,7 +446,15 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
 theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Return"
 
+[node name="OptionsScreen" parent="." instance=ExtResource("9_0npgc")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="MainScreen/PanelContainer/Scoreboard/ButtonsHBox1/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainScreen/PanelContainer/Scoreboard/ButtonsHBox1/CreditsButton" to="TitleScreen" method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MainScreen/PanelContainer/Scoreboard/ButtonsHBox2/OptionsButton" to="TitleScreen" method="_on_options_button_pressed"]
 [connection signal="pressed" from="MainScreen/PanelContainer/Scoreboard/ButtonsHBox2/QuitButton" to="TitleScreen" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MainScreen/PanelContainer/Credits/HBoxContainer/CreditsReturnButton" to="TitleScreen" method="_on_credits_return_button_pressed"]
+[connection signal="pressed" from="OptionsScreen/VBoxContainer/HBoxContainer/ReturnButton" to="TitleScreen" method="_on_options_return_button_pressed"]
+
+[editable path="OptionsScreen"]

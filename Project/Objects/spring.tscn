@@ -63,6 +63,7 @@ size = Vector2(27, 14)
 [node name="Spring" type="Area2D"]
 collision_layer = 0
 script = ExtResource("1_eeff0")
+bounceStopFraction = 0.85
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
