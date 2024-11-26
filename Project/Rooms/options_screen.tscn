@@ -1,21 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://1n7gaf38aipt"]
+[gd_scene load_steps=8 format=3 uid="uid://1n7gaf38aipt"]
 
 [ext_resource type="Script" path="res://Scripts/MenuScripts/options_screen.gd" id="1_8hfhu"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="1_sstob"]
-[ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="2_ohn6s"]
-[ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="3_l58dn"]
+[ext_resource type="Texture2D" uid="uid://dae5vrh6dkvmj" path="res://Sprites/UI/Checkbox2.png" id="3_8whb1"]
+[ext_resource type="Texture2D" uid="uid://cbg2kv3vqpgsc" path="res://Sprites/UI/Checkbox1.png" id="4_vg233"]
+[ext_resource type="Texture2D" uid="uid://deyexs83h0mvu" path="res://Sprites/UI/Slider2.png" id="5_5subj"]
+[ext_resource type="Texture2D" uid="uid://btotq1p1t44aq" path="res://Sprites/UI/Slider3.png" id="6_vig2f"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_ml7uj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u8hsw"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fxx53"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfjma"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dobla"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bmbee"]
 
 [node name="OptionsScreen" type="PanelContainer" node_paths=PackedStringArray("fullscreen_toggle", "pixel_size_buttons", "master_num", "master_slider", "music_num", "music_slider", "sfx_num", "sfx_slider")]
 anchors_preset = 15
@@ -101,6 +93,8 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../../../HBoxContainer/ReturnButton")
 focus_neighbor_bottom = NodePath("../../PixelSize/ButtonSize1")
 theme = ExtResource("1_sstob")
+theme_override_icons/checked = ExtResource("3_8whb1")
+theme_override_icons/unchecked = ExtResource("4_vg233")
 action_mode = 0
 
 [node name="PixelSize" type="HBoxContainer" parent="VBoxContainer/VisualSettings/VBoxContainer"]
@@ -267,6 +261,8 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../../../VisualSettings/VBoxContainer/PixelSize/ButtonSize1")
 focus_neighbor_bottom = NodePath("../../../MasterVolume2/VBoxContainer2/VolumeMusicSlider")
+theme = ExtResource("1_sstob")
+value = 25.0
 rounded = true
 
 [node name="MasterVolume2" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
@@ -308,6 +304,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../MasterVolume/VBoxContainer2/VolumeMasterSlider")
 focus_neighbor_bottom = NodePath("../../../MasterVolume3/VBoxContainer2/VolumeSFXSlider")
+theme = ExtResource("1_sstob")
 rounded = true
 
 [node name="MasterVolume3" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
@@ -349,6 +346,9 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../MasterVolume2/VBoxContainer2/VolumeMusicSlider")
 focus_neighbor_bottom = NodePath("../../../../../HBoxContainer/ReturnButton")
+theme = ExtResource("1_sstob")
+theme_override_icons/grabber = ExtResource("5_5subj")
+theme_override_icons/grabber_highlight = ExtResource("6_vig2f")
 rounded = true
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
@@ -369,17 +369,6 @@ theme = ExtResource("1_sstob")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = ExtResource("2_ohn6s")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u8hsw")
-theme_override_styles/disabled = ExtResource("2_ohn6s")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_fxx53")
-theme_override_styles/hover_pressed = ExtResource("2_ohn6s")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_gfjma")
-theme_override_styles/hover = ExtResource("3_l58dn")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dobla")
-theme_override_styles/pressed = ExtResource("2_ohn6s")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_bmbee")
-theme_override_styles/normal = ExtResource("2_ohn6s")
 text = "Return"
 
 [connection signal="toggled" from="VBoxContainer/VisualSettings/VBoxContainer/ToggleFullscreen/ButtonFullscreen" to="." method="_on_button_fullscreen_toggled"]

@@ -1,24 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dnei0kqq507xw"]
+[gd_scene load_steps=7 format=3 uid="uid://dnei0kqq507xw"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_4b8s4"]
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="2_isglf"]
-[ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="3_3iaoi"]
 [ext_resource type="Texture2D" uid="uid://bvjoixhlebefi" path="res://Sprites/Backgrounds/Title Screen No Menu.png" id="3_wpaw7"]
 [ext_resource type="Script" path="res://Scripts/text_flicker.gd" id="4_3eme8"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="4_hn62b"]
-[ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="5_2yjop"]
-[ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="6_jpmdu"]
 [ext_resource type="PackedScene" uid="uid://1n7gaf38aipt" path="res://Rooms/options_screen.tscn" id="9_0npgc"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yga4s"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rycgk"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x77qh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_otbmf"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n1t5b"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("startButton")]
 layout_mode = 3
@@ -89,13 +76,21 @@ theme = ExtResource("4_hn62b")
 [node name="Scoreboard" type="VBoxContainer" parent="MainScreen/PanelContainer"]
 layout_mode = 2
 
-[node name="Title" type="TextureRect" parent="MainScreen/PanelContainer/Scoreboard"]
-custom_minimum_size = Vector2(0, 91.5)
+[node name="Title" type="RichTextLabel" parent="MainScreen/PanelContainer/Scoreboard"]
+clip_contents = false
 layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("3_3iaoi")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("4_hn62b")
+theme_override_colors/default_color = Color(0.909804, 0.756863, 0.439216, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]Fastest Times
+
+[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MainScreen/PanelContainer/Scoreboard"]
 layout_mode = 2
@@ -174,17 +169,6 @@ theme = ExtResource("4_hn62b")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = ExtResource("5_2yjop")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yga4s")
-theme_override_styles/disabled = ExtResource("5_2yjop")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rycgk")
-theme_override_styles/hover_pressed = ExtResource("5_2yjop")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_x77qh")
-theme_override_styles/hover = ExtResource("6_jpmdu")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_otbmf")
-theme_override_styles/pressed = ExtResource("5_2yjop")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
-theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Start"
 autowrap_mode = 2
 
@@ -197,17 +181,6 @@ theme = ExtResource("4_hn62b")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = ExtResource("5_2yjop")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yga4s")
-theme_override_styles/disabled = ExtResource("5_2yjop")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rycgk")
-theme_override_styles/hover_pressed = ExtResource("5_2yjop")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_x77qh")
-theme_override_styles/hover = ExtResource("6_jpmdu")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_otbmf")
-theme_override_styles/pressed = ExtResource("5_2yjop")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
-theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Credits"
 
 [node name="ButtonsHBox2" type="HBoxContainer" parent="MainScreen/PanelContainer/Scoreboard"]
@@ -223,17 +196,6 @@ theme = ExtResource("4_hn62b")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 8
-theme_override_styles/focus = ExtResource("5_2yjop")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yga4s")
-theme_override_styles/disabled = ExtResource("5_2yjop")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rycgk")
-theme_override_styles/hover_pressed = ExtResource("5_2yjop")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_x77qh")
-theme_override_styles/hover = ExtResource("6_jpmdu")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_otbmf")
-theme_override_styles/pressed = ExtResource("5_2yjop")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
-theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="MainScreen/PanelContainer/Scoreboard/ButtonsHBox2"]
@@ -245,17 +207,6 @@ theme = ExtResource("4_hn62b")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 8
-theme_override_styles/focus = ExtResource("5_2yjop")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yga4s")
-theme_override_styles/disabled = ExtResource("5_2yjop")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rycgk")
-theme_override_styles/hover_pressed = ExtResource("5_2yjop")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_x77qh")
-theme_override_styles/hover = ExtResource("6_jpmdu")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_otbmf")
-theme_override_styles/pressed = ExtResource("5_2yjop")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
-theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Quit"
 
 [node name="Credits" type="VBoxContainer" parent="MainScreen/PanelContainer"]
@@ -443,17 +394,6 @@ theme = ExtResource("4_hn62b")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = ExtResource("5_2yjop")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yga4s")
-theme_override_styles/disabled = ExtResource("5_2yjop")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rycgk")
-theme_override_styles/hover_pressed = ExtResource("5_2yjop")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_x77qh")
-theme_override_styles/hover = ExtResource("6_jpmdu")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_otbmf")
-theme_override_styles/pressed = ExtResource("5_2yjop")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_n1t5b")
-theme_override_styles/normal = ExtResource("5_2yjop")
 text = "Return"
 
 [node name="OptionsScreen" parent="." instance=ExtResource("9_0npgc")]
