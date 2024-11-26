@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://1n7gaf38aipt"]
 
+[ext_resource type="Script" path="res://Scripts/MenuScripts/options_screen.gd" id="1_8hfhu"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="1_sstob"]
-[ext_resource type="Script" path="res://Scripts/MenuScripts/options_screen.gd" id="1_xkhf3"]
 [ext_resource type="StyleBox" uid="uid://dptlgg7il1axh" path="res://Styles/ButtonIdle.tres" id="2_ohn6s"]
 [ext_resource type="StyleBox" uid="uid://c58gh58e5wsja" path="res://Styles/ButtonSelected.tres" id="3_l58dn"]
 
@@ -17,7 +17,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bmbee"]
 
-[node name="OptionsScreen" type="PanelContainer" node_paths=PackedStringArray("fullscreen_toggle", "pixel_size_one", "pixel_size_two", "pixel_size_three", "master_num", "master_slider", "music_num", "music_slider", "sfx_num", "sfx_slider")]
+[node name="OptionsScreen" type="PanelContainer" node_paths=PackedStringArray("fullscreen_toggle", "pixel_size_buttons", "master_num", "master_slider", "music_num", "music_slider", "sfx_num", "sfx_slider")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,11 +25,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_xkhf3")
+script = ExtResource("1_8hfhu")
 fullscreen_toggle = NodePath("VBoxContainer/VisualSettings/VBoxContainer/ToggleFullscreen/ButtonFullscreen")
-pixel_size_one = NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize1")
-pixel_size_two = NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize2")
-pixel_size_three = NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize3")
+pixel_size_buttons = [NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize1"), NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize2"), NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize3"), NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize4"), NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize5"), NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize6"), NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize7")]
 master_num = NodePath("VBoxContainer/AudioSettings/VBoxContainer/MasterVolume/VolumeMasterInput")
 master_slider = NodePath("VBoxContainer/AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2/VolumeMasterSlider")
 music_num = NodePath("VBoxContainer/AudioSettings/VBoxContainer/MasterVolume2/VolumeMusicInput")
@@ -145,6 +143,38 @@ toggle_mode = true
 action_mode = 0
 text = "x3"
 
+[node name="ButtonSize4" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+toggle_mode = true
+action_mode = 0
+text = "x4"
+
+[node name="ButtonSize5" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+toggle_mode = true
+action_mode = 0
+text = "x5"
+
+[node name="ButtonSize6" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+toggle_mode = true
+action_mode = 0
+text = "x6"
+
+[node name="ButtonSize7" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme = ExtResource("1_sstob")
+toggle_mode = true
+action_mode = 0
+text = "x7"
+
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 8)
@@ -207,6 +237,7 @@ alignment = 1
 [node name="VolumeMasterSlider" type="HSlider" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+rounded = true
 
 [node name="MasterVolume2" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
 layout_mode = 2
@@ -245,6 +276,7 @@ alignment = 1
 [node name="VolumeMusicSlider" type="HSlider" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume2/VBoxContainer2"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+rounded = true
 
 [node name="MasterVolume3" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
 layout_mode = 2
@@ -283,6 +315,7 @@ alignment = 1
 [node name="VolumeSFXSlider" type="HSlider" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume3/VBoxContainer2"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+rounded = true
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
@@ -317,6 +350,10 @@ text = "Return"
 [connection signal="pressed" from="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize1" to="." method="_on_button_size_pressed" binds= [1]]
 [connection signal="pressed" from="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize2" to="." method="_on_button_size_pressed" binds= [2]]
 [connection signal="pressed" from="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize3" to="." method="_on_button_size_pressed" binds= [3]]
+[connection signal="pressed" from="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize4" to="." method="_on_button_size_pressed" binds= [4]]
+[connection signal="pressed" from="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize5" to="." method="_on_button_size_pressed" binds= [5]]
+[connection signal="pressed" from="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize6" to="." method="_on_button_size_pressed" binds= [6]]
+[connection signal="pressed" from="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize7" to="." method="_on_button_size_pressed" binds= [7]]
 [connection signal="drag_ended" from="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2/VolumeMasterSlider" to="." method="_on_volume_slider_drag_ended"]
 [connection signal="value_changed" from="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2/VolumeMasterSlider" to="." method="_on_volume_master_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume2/VBoxContainer2/VolumeMusicSlider" to="." method="_on_volume_music_slider_value_changed"]
