@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://btr04pfqnhcvi" path="res://Objects/player_spawn.tscn" id="3_7lxxh"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="4_ghx2d"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="5_mvw5e"]
-[ext_resource type="Texture2D" uid="uid://c3158y27246lc" path="res://Sprites/UI/Keys5.png" id="6_xrljx"]
+[ext_resource type="Texture2D" uid="uid://dodarxo0xyc0t" path="res://Sprites/UI/Keys5.png" id="6_xrljx"]
 [ext_resource type="Texture2D" uid="uid://cc4pmtuyvu30o" path="res://Sprites/UI/Space2.png" id="7_ffaee"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="8_mbmmw"]
 
@@ -55,7 +55,7 @@ use_parent_material = true
 tile_set = ExtResource("2_ohw7w")
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_7lxxh")]
-position = Vector2(-256, 144)
+position = Vector2(-256, 152)
 
 [node name="RoomArea" parent="." instance=ExtResource("4_ghx2d")]
 

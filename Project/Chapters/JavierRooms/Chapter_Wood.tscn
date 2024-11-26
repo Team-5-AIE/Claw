@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1t04kikgnjlj"]
+[gd_scene load_steps=8 format=3 uid="uid://c1t04kikgnjlj"]
 
 [ext_resource type="PackedScene" uid="uid://fadwks7n6prn" path="res://Chapters/JavierRooms/MultiChapter_Rooms/room_M01.tscn" id="1_1ayxa"]
 [ext_resource type="PackedScene" uid="uid://c6tpl2epsyww6" path="res://Chapters/JavierRooms/MultiChapter_Rooms/room_M02.tscn" id="2_q83rs"]
 [ext_resource type="PackedScene" uid="uid://dpk0fa0tvmdj7" path="res://Chapters/JavierRooms/MultiChapter_Rooms/room_M03.tscn" id="3_50km5"]
 [ext_resource type="PackedScene" uid="uid://p6bcxx5tyhmn" path="res://Chapters/JavierRooms/MultiChapter_Rooms/room_M04.tscn" id="4_6ksat"]
-[ext_resource type="PackedScene" uid="uid://ce5a3eo73sio7" path="res://Chapters/JavierRooms/MultiChapter_Rooms/room_M05.tscn" id="5_tnvof"]
 [ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="13_u8kdf"]
 [ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="14_afrix"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="15_ksr4k"]
@@ -23,9 +22,6 @@ position = Vector2(0, -832)
 
 [node name="RoomM04" parent="LoadedRooms" instance=ExtResource("4_6ksat")]
 position = Vector2(-320, -1440)
-
-[node name="RoomM05" parent="LoadedRooms" instance=ExtResource("5_tnvof")]
-position = Vector2(-1328, -1856)
 
 [node name="Player" parent="." instance=ExtResource("13_u8kdf")]
 unique_name_in_owner = true
