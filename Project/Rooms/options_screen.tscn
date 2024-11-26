@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://1n7gaf38aipt"]
+[gd_scene load_steps=9 format=3 uid="uid://1n7gaf38aipt"]
 
 [ext_resource type="Script" path="res://Scripts/MenuScripts/options_screen.gd" id="1_8hfhu"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="1_sstob"]
@@ -7,9 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://deyexs83h0mvu" path="res://Sprites/UI/Slider2.png" id="5_5subj"]
 [ext_resource type="Texture2D" uid="uid://btotq1p1t44aq" path="res://Sprites/UI/Slider3.png" id="6_vig2f"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rj4a6"]
+bg_color = Color(0, 0, 0, 0.54902)
+
 [sub_resource type="ImageTexture" id="ImageTexture_ml7uj"]
 
 [node name="OptionsScreen" type="PanelContainer" node_paths=PackedStringArray("fullscreen_toggle", "pixel_size_buttons", "master_num", "master_slider", "music_num", "music_slider", "sfx_num", "sfx_slider")]
+process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,6 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rj4a6")
 script = ExtResource("1_8hfhu")
 fullscreen_toggle = NodePath("VBoxContainer/VisualSettings/VBoxContainer/ToggleFullscreen/ButtonFullscreen")
 pixel_size_buttons = [NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize1"), NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize2"), NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize3"), NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize4"), NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize5"), NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize6"), NodePath("VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize7")]
@@ -250,6 +255,7 @@ fit_content = true
 [node name="VolumeMasterInput" type="LineEdit" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_mode = 0
 theme = ExtResource("1_sstob")
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
@@ -258,7 +264,13 @@ placeholder_text = "100"
 alignment = 1
 max_length = 3
 editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume"]
 layout_mode = 2
@@ -294,6 +306,7 @@ fit_content = true
 [node name="VolumeMusicInput" type="LineEdit" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume2"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_mode = 0
 theme = ExtResource("1_sstob")
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
@@ -302,7 +315,13 @@ placeholder_text = "100"
 alignment = 1
 max_length = 3
 editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume2"]
 layout_mode = 2
@@ -337,6 +356,7 @@ fit_content = true
 [node name="VolumeSFXInput" type="LineEdit" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume3"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_mode = 0
 theme = ExtResource("1_sstob")
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
@@ -345,7 +365,13 @@ placeholder_text = "100"
 alignment = 1
 max_length = 3
 editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume3"]
 layout_mode = 2

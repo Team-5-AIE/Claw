@@ -17,9 +17,6 @@ func _ready() -> void:
 	pauseMenu.timeTracker = timeTracker
 	pauseMenu.dialogueManager = dialogueManager
 	
-	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	#DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
-	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_start_button_pressed():

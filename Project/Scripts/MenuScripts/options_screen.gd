@@ -20,7 +20,7 @@ var is_active : bool :
 			read_audio_settings()
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _enter_tree() -> void:
 	initialise_pixel_size_buttons()
 
 # Initialise the pixel size buttons. Hide pixel size buttons that exceed screen size
@@ -31,11 +31,19 @@ func initialise_pixel_size_buttons() -> void:
 		if i+1 > max_pixel_size: # Make invisible when above screen size
 			pixel_size_buttons[i].visible = false
 			pixel_size_buttons[i].disabled = true
-			pixel_size_buttons[i-1].focus_neighbor_right = ""
 			pixel_size_buttons[i].focus_mode = Control.FOCUS_NONE
 		else: # Make visible when under screen size
 			pixel_size_buttons[i].visible = true
 			pixel_size_buttons[i].focus_mode = Control.FOCUS_ALL
+		
+		if i+1 == max_pixel_size: # Connect final pixel size button with first button
+			pixel_size_buttons[i].focus_neighbor_right = pixel_size_buttons[i].get_path_to(pixel_size_buttons[0])
+			pixel_size_buttons[0].focus_neighbor_left = pixel_size_buttons[0].get_path_to(pixel_size_buttons[i])
+	
+	# If absolute last button is visible, connect to first button 
+	if pixel_size_buttons[-1].visible:
+		pixel_size_buttons[-1].focus_neighbor_right = pixel_size_buttons[-1].get_path_to(pixel_size_buttons[0])
+		pixel_size_buttons[0].focus_neighbor_left = pixel_size_buttons[0].get_path_to(pixel_size_buttons[-1])
 
 # Read the visual settings and apply to each of the appropriate options elements
 func read_visual_settings() -> void:
