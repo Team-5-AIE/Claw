@@ -22,7 +22,7 @@ const SHOOTSPEAR = preload("res://Sounds/JavierSounds/woosh (1).wav")
 const WOOSH2 = preload("res://Sounds/JavierSounds/woosh (2).wav")
 const WOOSH3 = preload("res://Sounds/JavierSounds/woosh (3).wav")
 
-const PAGEFLIP = preload("res://Sounds/JavierSounds/pageFlip.mp3")
+const PAGEFLIP = preload("res://Sounds/JavierSounds/pageturn-102978.mp3")
 const WALLSLIDE = preload("res://Sounds/JavierSounds/wallSlide.wav")
 const WALLSLIDEAFTER = preload("res://Sounds/JavierSounds/WallSlideAfter.wav")
 const FLOORSLIDE = preload("res://Sounds/JavierSounds/FloorSlide.wav")
