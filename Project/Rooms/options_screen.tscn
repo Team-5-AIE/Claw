@@ -98,6 +98,8 @@ fit_content = true
 [node name="ButtonFullscreen" type="CheckButton" parent="VBoxContainer/VisualSettings/VBoxContainer/ToggleFullscreen"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../../HBoxContainer/ReturnButton")
+focus_neighbor_bottom = NodePath("../../PixelSize/ButtonSize1")
 theme = ExtResource("1_sstob")
 action_mode = 0
 
@@ -122,6 +124,9 @@ fit_content = true
 [node name="ButtonSize1" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../ToggleFullscreen/ButtonFullscreen")
+focus_neighbor_right = NodePath("../ButtonSize2")
+focus_neighbor_bottom = NodePath("../../../../AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2/VolumeMasterSlider")
 theme = ExtResource("1_sstob")
 toggle_mode = true
 action_mode = 0
@@ -130,6 +135,10 @@ text = "x1"
 [node name="ButtonSize2" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonSize1")
+focus_neighbor_top = NodePath("../../ToggleFullscreen/ButtonFullscreen")
+focus_neighbor_right = NodePath("../ButtonSize3")
+focus_neighbor_bottom = NodePath("../../../../AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2/VolumeMasterSlider")
 theme = ExtResource("1_sstob")
 toggle_mode = true
 action_mode = 0
@@ -138,6 +147,10 @@ text = "x2"
 [node name="ButtonSize3" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonSize2")
+focus_neighbor_top = NodePath("../../ToggleFullscreen/ButtonFullscreen")
+focus_neighbor_right = NodePath("../ButtonSize4")
+focus_neighbor_bottom = NodePath("../../../../AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2/VolumeMasterSlider")
 theme = ExtResource("1_sstob")
 toggle_mode = true
 action_mode = 0
@@ -146,6 +159,10 @@ text = "x3"
 [node name="ButtonSize4" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonSize3")
+focus_neighbor_top = NodePath("../../ToggleFullscreen/ButtonFullscreen")
+focus_neighbor_right = NodePath("../ButtonSize5")
+focus_neighbor_bottom = NodePath("../../../../AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2/VolumeMasterSlider")
 theme = ExtResource("1_sstob")
 toggle_mode = true
 action_mode = 0
@@ -154,6 +171,10 @@ text = "x4"
 [node name="ButtonSize5" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonSize4")
+focus_neighbor_top = NodePath("../../ToggleFullscreen/ButtonFullscreen")
+focus_neighbor_right = NodePath("../ButtonSize6")
+focus_neighbor_bottom = NodePath("../../../../AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2/VolumeMasterSlider")
 theme = ExtResource("1_sstob")
 toggle_mode = true
 action_mode = 0
@@ -162,6 +183,10 @@ text = "x5"
 [node name="ButtonSize6" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonSize5")
+focus_neighbor_top = NodePath("../../ToggleFullscreen/ButtonFullscreen")
+focus_neighbor_right = NodePath("../ButtonSize7")
+focus_neighbor_bottom = NodePath("../../../../AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2/VolumeMasterSlider")
 theme = ExtResource("1_sstob")
 toggle_mode = true
 action_mode = 0
@@ -170,6 +195,9 @@ text = "x6"
 [node name="ButtonSize7" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonSize6")
+focus_neighbor_top = NodePath("../../ToggleFullscreen/ButtonFullscreen")
+focus_neighbor_bottom = NodePath("../../../../AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2/VolumeMasterSlider")
 theme = ExtResource("1_sstob")
 toggle_mode = true
 action_mode = 0
@@ -237,6 +265,8 @@ alignment = 1
 [node name="VolumeMasterSlider" type="HSlider" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../../../VisualSettings/VBoxContainer/PixelSize/ButtonSize1")
+focus_neighbor_bottom = NodePath("../../../MasterVolume2/VBoxContainer2/VolumeMusicSlider")
 rounded = true
 
 [node name="MasterVolume2" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
@@ -276,6 +306,8 @@ alignment = 1
 [node name="VolumeMusicSlider" type="HSlider" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume2/VBoxContainer2"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../MasterVolume/VBoxContainer2/VolumeMasterSlider")
+focus_neighbor_bottom = NodePath("../../../MasterVolume3/VBoxContainer2/VolumeSFXSlider")
 rounded = true
 
 [node name="MasterVolume3" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
@@ -315,6 +347,8 @@ alignment = 1
 [node name="VolumeSFXSlider" type="HSlider" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume3/VBoxContainer2"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../MasterVolume2/VBoxContainer2/VolumeMusicSlider")
+focus_neighbor_bottom = NodePath("../../../../../HBoxContainer/ReturnButton")
 rounded = true
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
@@ -329,6 +363,8 @@ alignment = 1
 [node name="ReturnButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 36)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../AudioSettings/VBoxContainer/MasterVolume3/VBoxContainer2/VolumeSFXSlider")
+focus_neighbor_bottom = NodePath("../../VisualSettings/VBoxContainer/ToggleFullscreen/ButtonFullscreen")
 theme = ExtResource("1_sstob")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4

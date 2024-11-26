@@ -11,7 +11,11 @@ extends Control
 
 @export_file("*.tscn") var mainMenuScenePath : String
 
+@export_group("Focus Buttons")
+@export var startingButton : Button
+
 func _ready() -> void: 
+	startingButton.call_deferred("grab_focus")
 	first_place.text = ""
 	player_time.text = str("[center]","YOUR TIME: ",Global.lastScore[1],"[/center]")
 	var timeString = Global.lastScore[1]
