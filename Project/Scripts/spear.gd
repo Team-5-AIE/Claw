@@ -1,7 +1,7 @@
 class_name Spear
 extends CharacterBody2D
 @onready var spear: Sprite2D = $Spear
-
+@onready var particles: GPUParticles2D = $GPUParticles2D
 
 @onready var direction : Vector2
 @onready var speed : float = 5
@@ -19,9 +19,7 @@ var pullReleased = false
 var flipped = false
 var ropeSnapTimerStarted = false
 var timerStarted = false
-var audio_stream_player: AudioStreamPlayer
-const JUMP1 = preload("res://Sounds/Effects/jump (2).wav")
-const JUMP2 = preload("res://Sounds/Effects/jump (3).wav")
+var hookSoundPlayed = false
 
 
 func _draw():
@@ -40,8 +38,6 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("SpearPull") && player.is_on_floor() && hooked:
 		if player.state_spear.spearInstance != null:
 			print("pull")
-			player.state_spear.audio_stream_player.stream = player.state_spear.PULLJUMP
-			player.state_spear.audio_stream_player.play()
 			player.state_spear.spearInstance.pullReleased = true
 			#if spearInstance.ropeLength > 16:
 			#	spearInstance.ropeLength -= delta * 150
@@ -54,7 +50,7 @@ func _physics_process(_delta):
 			print("spear instance does not exists - tried to pull")
 	
 	
-	#===
+	#=================================
 	if extending:
 		var collision = move_and_collide(direction * SPEED)
 		if collision:
@@ -69,7 +65,16 @@ func _physics_process(_delta):
 			player.finite_state_machine.ChangeState(player.state_spear)
 		if player.finite_state_machine.state == player.state_spear && player.is_on_floor():
 			player.finite_state_machine.ChangeState(player.state_idle)
+		if not hookSoundPlayed:
+			AudioManager.play_modulated_game_sound(AudioManager.WOOD_IMPACT, -5)
+			particles.global_position = tip
+			particles.visible = true
+			particles.emitting = true
+			particles.reparent(get_parent())
+			
+		hookSoundPlayed = true
 	tip = global_position
+	
 	#Auto release the hook if you're grounded
 	if player.is_on_floor() && !extending && !ropeSnapTimerStarted:
 		player.snap_rope_timer.start()
@@ -97,6 +102,8 @@ func Shoot(dir : Vector2) -> void:
 	direction = dir.normalized()
 	extending = true
 	tip = self.global_position
+	AudioManager.play_modulated_game_sound(AudioManager.SHOOTSPEAR, -10)
+	hookSoundPlayed = false
 
 func Release() -> void:
 	#print("Release")
@@ -108,11 +115,6 @@ func Release() -> void:
 
 func JumpRelease() -> void: #NOTE: Not used
 	#print("Jump Release")
-	var randSound = randi_range(0,1)
-	match randSound:
-		0: audio_stream_player.stream = JUMP1
-		1: audio_stream_player.stream = JUMP2
-	audio_stream_player.play()
 	if player.is_on_floor():
 		player.state_fall.jumpedFromSpear = true
 		player.finite_state_machine.ChangeState(player.state_idle)
@@ -133,10 +135,13 @@ func Retract() -> bool:
 		return true
 	return false
 
-func _on_auto_grapple_area_body_entered(_body: Node2D):
-	print("AutoGrapple point grabbed")
-	if !retracted:
-		player.state_spear.AutoGrapple(global_position)
+func _on_auto_grapple_area_body_entered(_body: Node):
+	#print("AutoGrapple point grabbed")
+	#if !retracted:
+		#player.state_spear.AutoGrapple(global_position)
+	
+	if _body is Switch and !retracted:
+		particles.visible = false
 
 
 func _on_destroy_timeout() -> void:

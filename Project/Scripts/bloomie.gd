@@ -4,10 +4,7 @@ var follow : bool = false
 var player = null
 var collecting = false
 var collected = false
-@onready var destroy_timer = $DestroyTimer
 @onready var collection_timer = $CollectionTimer
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-const COLLECT_BLOOMIE = preload("res://Sounds/Effects/collectBloomie.wav")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var bloomieID : int = 0
 @onready var initialParent = get_parent()
@@ -37,25 +34,19 @@ func _process(_delta)-> void:
 	else:
 		position.x = lerp(position.x, initialPosition.x, 0.1)
 		position.y = lerp(position.y, initialPosition.y, 0.1)
-	
-	if collected:
-		if !audio_stream_player.playing:
-			#Add bloomie to display
-			var bloomieDisplay = get_tree().root.get_node("/root/GameRoot2/CanvasLayer/BloomieDisplay")
-			bloomieDisplay.AddBloomieCount(bloomieID)
-			Global.chapterOneBloomies[bloomieID] = true
-			Global.chapterOneBloomiesThisSession[bloomieID] = true
-			queue_free()
 
 func _on_collection_timer_timeout():
 	collecting = true
-	destroy_timer.start()
-	audio_stream_player.stream = COLLECT_BLOOMIE
-	audio_stream_player.play()
+	AudioManager.play_game_sound(AudioManager.COLLECT_BLOOMIE, -5)
 	animation_player.play("Fade")
-
-func _on_destroy_timer_timeout():
-	collected = true
+	await animation_player.animation_finished
+	
+	#Add bloomie to display
+	var bloomieDisplay = get_tree().root.get_node("/root/GameRoot2/CanvasLayer/BloomieDisplay")
+	bloomieDisplay.AddBloomieCount(bloomieID)
+	Global.chapterOneBloomies[bloomieID] = true
+	Global.chapterOneBloomiesThisSession[bloomieID] = true
+	queue_free()
 
 func _on_restart_player() -> void:
 	if player != null:
@@ -78,6 +69,7 @@ func _on_restart_player() -> void:
 func _on_area_2d_body_entered(body) -> void:
 	if player == null and body.name == "Player":
 		player = body
+		AudioManager.play_game_sound(AudioManager.TOUCH_BLOOMIE, -3)
 		
 		# The bloomie needs to be a child of the player so that it stays loaded
 		# when its room unloads, but we don't want it to move with the player

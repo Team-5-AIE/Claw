@@ -17,17 +17,15 @@ func _process(_delta):
 			ShowDialouge()
 			return
 		if Input.is_action_just_pressed("Confirm"): # Show next queued text
+			AudioManager.play_modulated_game_sound(AudioManager.PAGEFLIP, -3)
 			ResetDialougeBox()
 
 func UpdateText() -> void:
 	if textSpeedTimer.time_left <= 0.0:
-		var textLength = textQueue[0].length()
-		for s in textLength:
-			if s == textAsPart.length():
-				textAsPart = textAsPart + textQueue[0][s]
-				textSpeedTimer.start()
-				textLabel.text = textAsPart
-				return
+		textAsPart = textAsPart + textQueue[0][textAsPart.length()]
+		textSpeedTimer.start()
+		textLabel.text = textAsPart
+		return
 				
 func AddDialougeTextBox(newText : String = ""):
 	textQueue.append(newText)

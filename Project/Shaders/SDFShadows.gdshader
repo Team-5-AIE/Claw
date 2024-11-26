@@ -16,9 +16,9 @@ uniform vec3 pointLights[64];
 
 void fragment() {
 	vec2 sdfPos = screen_uv_to_sdf(SCREEN_UV);
-	
+
 	float finalPixelAlpha = ambientColour.a;
-	
+
 	// Directional
 	//float finalDirLightIntensity = 0.0;
 	//if (directionalLightEnabled)
@@ -46,21 +46,21 @@ void fragment() {
 		//
 		//finalDirLightIntensity = lightIntensity;
 	//}
-	
+
 	// Point
 	float finalPointLightIntensity = 0.0;
-	
+
 	vec2 pixelCoords = sdfPos;
 	for (int i = 0; i < pointLights.length(); i++)
 	{
 		if (pointLights[i].z == -1.0) { break; }
-		
+
 		vec2 pointLightCoords = pointLights[i].xy - camOffset;
-		
+
 		vec2 lightVector = pointLightCoords - pixelCoords;
 		vec2 lightDir = normalize(lightVector);
 		float lightDist = length(lightVector);
-		
+
 		int samples = 32;
 		vec2 sdfSamplePos = sdfPos;
 		float accumulator = 0.0;
@@ -69,40 +69,40 @@ void fragment() {
 		{
 			float dist = texture_sdf(sdfSamplePos);
 			accumulator += dist;
-			
+
 			if (dist <= 0.0)
 			{
 				result = 0.0;
 				break;
 			}
-			
+
 			if (accumulator > lightDist)
 			{
 				result = 1.0 - (lightDist / pointLights[i].z);
 				break;
 			}
-			
+
 			sdfSamplePos += dist * lightDir;
 		}
-		
+
 		if (lightDist <= pointLights[i].z)
 		{
 			finalPointLightIntensity += result;
 		}
 	}
-	
+
 	finalPixelAlpha -= finalPointLightIntensity;
-	
+
 	if (texture_sdf(sdfPos) < 0.0)
 	{
 		finalPixelAlpha = 0.0;
 	}
-	
+
 	COLOR = vec4(ambientColour.xyz, finalPixelAlpha * float(lightingEnabled));
-	
+
 	//float sdfSample = texture_sdf(sdfPos) / 100.0;
 	//COLOR += vec4(sdfSample, sdfSample, sdfSample, 0.5);
-	
+
 	//COLOR = vec4(FRAGCOORD.xyz * 0.001, 1);
 	//COLOR = vec4(VERTEX, 0.0, 1.0);
 }

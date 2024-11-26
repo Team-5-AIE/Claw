@@ -8,20 +8,16 @@ extends Control
 @export var pauseMenu : Node
 @export var timeTracker : Control
 @export var dialogueManager : Control
-@export var bgmPlayer : AudioStreamPlayer
 @onready var bloomieDisplay: Control = $"../CanvasLayer/BloomieDisplay"
 
 func _ready() -> void:
+	AudioManager.play_music(AudioManager.MUSIC_SPLASH, -4, false)
 	pauseMenu.startChapterScenePath = startChapterScenePath
 	pauseMenu.roomContainer = roomContainer
 	pauseMenu.timeTracker = timeTracker
 	pauseMenu.dialogueManager = dialogueManager
-	pauseMenu.bgmPlayer = bgmPlayer
 	
-	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	#DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
-	
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_start_button_pressed():
 	startButton.disabled = true
