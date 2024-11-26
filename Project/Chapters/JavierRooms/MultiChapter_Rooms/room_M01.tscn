@@ -64,6 +64,8 @@ shape = SubResource("RectangleShape2D_l72mg")
 position = Vector2(256, -208)
 nextRoom = "res://Chapters/JavierRooms/MultiChapter_Rooms/room_M02.tscn"
 exitDirection = "Up"
+launchPlayer = true
+launchForce = 300.0
 
 [node name="CollisionShape2D" parent="RoomTransition" index="0"]
 position = Vector2(0, 16)

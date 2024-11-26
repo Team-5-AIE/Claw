@@ -120,6 +120,8 @@ position = Vector2(0, -240)
 position = Vector2(224, -288)
 nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_105a.tscn"
 exitDirection = "Up"
+launchPlayer = true
+launchForce = 320.0
 
 [node name="CollisionShape2D" parent="RoomTransition2" index="0"]
 position = Vector2(0, 16)
