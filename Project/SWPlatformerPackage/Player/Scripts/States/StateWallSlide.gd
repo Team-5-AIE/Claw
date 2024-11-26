@@ -71,7 +71,7 @@ func ExitState() -> void:
 
 
 func _on_wall_slide_sound_timer_timeout() -> void:
-	AudioManager.play_modulated_game_sound(AudioManager.WALLSLIDEAFTER, 0)
+	AudioManager.play_modulated_game_sound(AudioManager.WALLSLIDEAFTER, -3)
 	if player.finite_state_machine.state == player.state_wall_slide:
 		slide_audio_timer.start()
 	else:
@@ -80,5 +80,5 @@ func _on_wall_slide_sound_timer_timeout() -> void:
 
 func _on_audio_start_timer_timeout() -> void:
 	if player.finite_state_machine.state == player.state_wall_slide:
-		AudioManager.play_modulated_game_sound(AudioManager.WALLSLIDE, 0)
+		AudioManager.play_modulated_game_sound(AudioManager.WALLSLIDE, -3)
 		slide_audio_timer.start()

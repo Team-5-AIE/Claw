@@ -20,7 +20,7 @@ func EnterState() -> void:
 		print("Debug: Slide State")
 	player.animation_player.play("Slide")
 	
-	AudioManager.play_modulated_game_sound(AudioManager.FLOORSLIDE, 0)
+	AudioManager.play_modulated_game_sound(AudioManager.FLOORSLIDE, -3)
 
 func UpdatePhysics(_delta)-> void:  # Runs in _physics_process()
 	if slide_dust_timer.time_left <= 0.0:

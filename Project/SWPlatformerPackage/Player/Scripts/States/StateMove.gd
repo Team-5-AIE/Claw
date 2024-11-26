@@ -57,6 +57,6 @@ func ExitState() -> void:
 	footstep_sound_timer.stop()
 
 func PlayFootsteps():
-	AudioManager.play_game_sound_random_modulated(0, AudioManager.STEPS1, AudioManager.STEPS2, AudioManager.STEPS3)
+	AudioManager.play_game_sound_random_modulated(-5, AudioManager.STEPS1, AudioManager.STEPS2, AudioManager.STEPS3)
 	if player.finite_state_machine.state == player.state_move:
 		footstep_sound_timer.start()

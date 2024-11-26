@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://drlad7wbt4i07"]
+
+[ext_resource type="PackedScene" uid="uid://cywesme0dv0lk" path="res://Chapters/JavierRooms/Chapter_Tutorial_(M).tscn" id="1_qn7dy"]
+[ext_resource type="PackedScene" uid="uid://6kexlgiu60lf" path="res://Chapters/JavierRooms/Chapter_1A.tscn" id="2_s80u7"]
+[ext_resource type="PackedScene" uid="uid://c1t04kikgnjlj" path="res://Chapters/JavierRooms/Chapter_Wood.tscn" id="3_7lypk"]
+[ext_resource type="PackedScene" uid="uid://xsqhkutfrput" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_112c.tscn" id="4_o8u0r"]
+[ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="6_ikyqr"]
+[ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="7_dg8n4"]
+[ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="8_yirdx"]
+
+[node name="Chapter_MEGA" type="Node2D"]
+
+[node name="LoadedChapters" type="Node2D" parent="."]
+
+[node name="Chapter_0T" parent="LoadedChapters" instance=ExtResource("1_qn7dy")]
+
+[node name="Chapter_01a" parent="LoadedChapters" instance=ExtResource("2_s80u7")]
+position = Vector2(3440, -160)
+
+[node name="Chapter_0W" parent="LoadedChapters" instance=ExtResource("3_7lypk")]
+position = Vector2(10800, -2336)
+
+[node name="Room112c" parent="LoadedChapters" instance=ExtResource("4_o8u0r")]
+position = Vector2(8800, -4352)
+
+[node name="Player" parent="." instance=ExtResource("6_ikyqr")]
+unique_name_in_owner = true
+position = Vector2(-256, 144)
+
+[node name="PlayerCamera" parent="Player" instance=ExtResource("7_dg8n4")]
+offset = Vector2(1, 0)
+zoom = Vector2(1, 1)
+script = ExtResource("8_yirdx")

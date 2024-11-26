@@ -856,6 +856,10 @@ one_shot = true
 wait_time = 0.6
 one_shot = true
 
+[node name="DeathSoundTimer" type="Timer" parent="Timers"]
+wait_time = 0.05
+one_shot = true
+
 [node name="RaycastSlideLeft" type="RayCast2D" parent="."]
 position = Vector2(-5, 0)
 target_position = Vector2(0, -27)
@@ -937,5 +941,6 @@ lightIntensity = 50.0
 [connection signal="timeout" from="Timers/JumpBufferTimer" to="FiniteStateMachine" method="_on_jump_buffer_timer_timeout"]
 [connection signal="timeout" from="Timers/FootstepSoundTimer" to="FiniteStateMachine/StateMove" method="PlayFootsteps"]
 [connection signal="timeout" from="Timers/WallSlideSoundTimer" to="FiniteStateMachine/StateWallSlide" method="_on_wall_slide_sound_timer_timeout"]
+[connection signal="timeout" from="Timers/DeathSoundTimer" to="FiniteStateMachine" method="_on_death_sound_timer_timeout"]
 [connection signal="body_entered" from="SpikeArea" to="." method="_on_spike_area_body_entered"]
 [connection signal="area_entered" from="SpringArea" to="." method="_on_spring_area_area_entered"]

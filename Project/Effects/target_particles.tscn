@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://inkpm8w72ml4"]
+[gd_scene load_steps=6 format=3 uid="uid://b0qwka3j84kgu"]
 
-[ext_resource type="Texture2D" uid="uid://b28pxnsb3s12v" path="res://Sprites/Particles/Target Particles-Sheet.png" id="1_l61bq"]
+[ext_resource type="Texture2D" uid="uid://b28pxnsb3s12v" path="res://Sprites/Particles/Target Particles-Sheet.png" id="1_ygqri"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fwisd"]
 particles_animation = true
@@ -41,7 +41,7 @@ emitting = false
 amount = 6
 amount_ratio = 0.8
 process_material = SubResource("ParticleProcessMaterial_1t5e3")
-texture = ExtResource("1_l61bq")
+texture = ExtResource("1_ygqri")
 lifetime = 1.4
 one_shot = true
 explosiveness = 1.0
