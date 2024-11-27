@@ -82,7 +82,7 @@ position = Vector2(48, 32)
 
 [node name="RoomTransition2" parent="." instance=ExtResource("4_hlol6")]
 position = Vector2(336, 16)
-nextRoom = "res://Chapters/JavierRooms/Rooms_Tutorial/room_T03.tscn"
+nextRoom = "res://Chapters/JavierRooms/Rooms_Tutorial/room_T03a.tscn"
 
 [node name="CollisionShape2D" parent="RoomTransition2" index="0"]
 position = Vector2(-16, 0)

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://23sgmllu7u2h" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_103a.tscn" id="3_hkmei"]
 [ext_resource type="PackedScene" uid="uid://bjgoy5wqorh8h" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_104a.tscn" id="4_au13m"]
 [ext_resource type="PackedScene" uid="uid://cuwxgg0wrhi5a" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_107a.tscn" id="8_5e5yx"]
-[ext_resource type="PackedScene" uid="uid://b3egjj4k1fu52" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_111c.tscn" id="8_iqse4"]
+[ext_resource type="PackedScene" uid="uid://cmrn1itkurvum" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_111c.tscn" id="8_iqse4"]
 [ext_resource type="PackedScene" uid="uid://b0u1dxsx1rq1w" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_108a.tscn" id="9_v6elx"]
 [ext_resource type="PackedScene" uid="uid://b64w4ldskplux" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_110a.tscn" id="11_er680"]
 [ext_resource type="PackedScene" uid="uid://bgrciul5x86u2" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_105b.tscn" id="12_okqub"]
@@ -40,6 +40,7 @@ position = Vector2(3856, -704)
 
 [node name="Room108a" parent="LoadedRooms" instance=ExtResource("9_v6elx")]
 position = Vector2(4640, -704)
+lightingEnabled = false
 
 [node name="Room110a" parent="LoadedRooms" instance=ExtResource("11_er680")]
 position = Vector2(5344, -848)

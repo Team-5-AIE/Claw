@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://b3egjj4k1fu52"]
+[gd_scene load_steps=8 format=4 uid="uid://cmrn1itkurvum"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_wbv74"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_2i76o"]

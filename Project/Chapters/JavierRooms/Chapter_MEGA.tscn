@@ -15,13 +15,13 @@
 [node name="Chapter_0T" parent="LoadedChapters" instance=ExtResource("1_qn7dy")]
 
 [node name="Chapter_01a" parent="LoadedChapters" instance=ExtResource("2_s80u7")]
-position = Vector2(3600, -160)
+position = Vector2(3434, -162)
 
 [node name="Chapter_0W" parent="LoadedChapters" instance=ExtResource("3_7lypk")]
-position = Vector2(10960, -1040)
+position = Vector2(10794, -1042)
 
 [node name="Room112c" parent="LoadedChapters" instance=ExtResource("4_o8u0r")]
-position = Vector2(9632, -2816)
+position = Vector2(9467, -2818)
 
 [node name="Player" parent="." instance=ExtResource("6_ikyqr")]
 unique_name_in_owner = true

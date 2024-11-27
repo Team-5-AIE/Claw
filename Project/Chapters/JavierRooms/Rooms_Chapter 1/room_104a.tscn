@@ -23,7 +23,6 @@ b = Vector2(-64, 0)
 [node name="Room104a" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_eiylj")
 standaloneSpawner = NodePath("RoomArea/RoomBounds")
-lightingEnabled = true
 
 [node name="TileMap" type="Node2D" parent="."]
 

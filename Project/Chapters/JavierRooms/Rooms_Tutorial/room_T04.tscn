@@ -70,7 +70,7 @@ shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="RoomTransition" parent="." instance=ExtResource("4_gtsxb")]
 position = Vector2(-336, 0)
-nextRoom = "res://Chapters/JavierRooms/Rooms_Tutorial/room_T03.tscn"
+nextRoom = "res://Chapters/JavierRooms/Rooms_Tutorial/room_T03a.tscn"
 exitDirection = "Left"
 
 [node name="CollisionShape2D" parent="RoomTransition" index="0"]

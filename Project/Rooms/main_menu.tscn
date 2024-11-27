@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://nelr0rw0cn6o" path="res://Rooms/pause_menu.tscn" id="6_nf4r0"]
 [ext_resource type="PackedScene" uid="uid://7heicgmosfh4" path="res://Objects/parallaxing.tscn" id="6_qgjvj"]
 [ext_resource type="PackedScene" uid="uid://ddpsmd40t8qe1" path="res://Objects/bgm_player.tscn" id="7_qykg7"]
-[ext_resource type="PackedScene" uid="uid://c3h5y1qp77ink" path="res://Effects/Shaders/Debug Colour Blindness Simulator/debug_colour_blindness_simulator.tscn" id="9_js1un"]
+[ext_resource type="PackedScene" uid="uid://c3h5y1qp77ink" path="res://TraveenPrototypes/Prototype_Features/Debug Colour Blindness Simulator/debug_colour_blindness_simulator.tscn" id="9_js1un"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_besrm"]
 texture = ExtResource("4_ncfom")
