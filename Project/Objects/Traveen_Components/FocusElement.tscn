@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctmijes8u5jpf"]
+
+[ext_resource type="Script" path="res://Scripts/MenuScripts/ui_button_focus.gd" id="1_kgoru"]
+
+[node name="FocusElement" type="Node"]
+script = ExtResource("1_kgoru")

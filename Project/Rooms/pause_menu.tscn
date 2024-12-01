@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://nelr0rw0cn6o"]
+[gd_scene load_steps=5 format=3 uid="uid://nelr0rw0cn6o"]
 
 [ext_resource type="Script" path="res://Scripts/MenuScripts/PauseMenu.gd" id="1_mpl1k"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="2_ayrj1"]
+[ext_resource type="PackedScene" uid="uid://ctmijes8u5jpf" path="res://Objects/Traveen_Components/FocusElement.tscn" id="3_fev3d"]
 [ext_resource type="PackedScene" uid="uid://1n7gaf38aipt" path="res://Rooms/options_screen.tscn" id="5_kqyj5"]
 
 [node name="PauseMenu" type="PanelContainer" node_paths=PackedStringArray("restartButton", "startingFocus", "optionsMenuFocus", "optionsReturnFocus")]
@@ -56,6 +57,8 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
 text = "Resume"
 
+[node name="FocusElement" parent="VBoxContainer/MarginContainer/VBoxContainer/ResumeButton" instance=ExtResource("3_fev3d")]
+
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 8)
@@ -71,6 +74,8 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
 text = "Retry Room"
+
+[node name="FocusElement" parent="VBoxContainer/MarginContainer/VBoxContainer/RetryButton" instance=ExtResource("3_fev3d")]
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
@@ -88,6 +93,8 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
 text = "Options"
 
+[node name="FocusElement" parent="VBoxContainer/MarginContainer/VBoxContainer/OptionsButton" instance=ExtResource("3_fev3d")]
+
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 8)
@@ -104,6 +111,8 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
 text = "Restart Chapter"
 
+[node name="FocusElement" parent="VBoxContainer/MarginContainer/VBoxContainer/RestartButton" instance=ExtResource("3_fev3d")]
+
 [node name="HSeparator4" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 8)
@@ -119,6 +128,8 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
 text = "Return to Title"
+
+[node name="FocusElement" parent="VBoxContainer/MarginContainer/VBoxContainer/QuitButton" instance=ExtResource("3_fev3d")]
 
 [node name="OptionsScreen" parent="." instance=ExtResource("5_kqyj5")]
 visible = false

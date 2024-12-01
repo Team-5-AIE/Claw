@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://1n7gaf38aipt"]
+[gd_scene load_steps=10 format=3 uid="uid://1n7gaf38aipt"]
 
 [ext_resource type="Script" path="res://Scripts/MenuScripts/options_screen.gd" id="1_8hfhu"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="1_sstob"]
 [ext_resource type="Texture2D" uid="uid://dae5vrh6dkvmj" path="res://Sprites/UI/Checkbox2.png" id="3_8whb1"]
 [ext_resource type="Texture2D" uid="uid://cbg2kv3vqpgsc" path="res://Sprites/UI/Checkbox1.png" id="4_vg233"]
 [ext_resource type="Texture2D" uid="uid://deyexs83h0mvu" path="res://Sprites/UI/Slider2.png" id="5_5subj"]
+[ext_resource type="PackedScene" uid="uid://ctmijes8u5jpf" path="res://Objects/Traveen_Components/FocusElement.tscn" id="5_hasvd"]
 [ext_resource type="Texture2D" uid="uid://btotq1p1t44aq" path="res://Sprites/UI/Slider3.png" id="6_vig2f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rj4a6"]
@@ -102,6 +103,8 @@ theme_override_icons/checked = ExtResource("3_8whb1")
 theme_override_icons/unchecked = ExtResource("4_vg233")
 action_mode = 0
 
+[node name="FocusElement" parent="VBoxContainer/VisualSettings/VBoxContainer/ToggleFullscreen/ButtonFullscreen" instance=ExtResource("5_hasvd")]
+
 [node name="PixelSize" type="HBoxContainer" parent="VBoxContainer/VisualSettings/VBoxContainer"]
 layout_mode = 2
 alignment = 1
@@ -132,6 +135,8 @@ toggle_mode = true
 action_mode = 0
 text = "x1"
 
+[node name="FocusElement" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize1" instance=ExtResource("5_hasvd")]
+
 [node name="ButtonSize2" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -144,6 +149,8 @@ theme_override_constants/outline_size = 4
 toggle_mode = true
 action_mode = 0
 text = "x2"
+
+[node name="FocusElement" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize2" instance=ExtResource("5_hasvd")]
 
 [node name="ButtonSize3" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
 custom_minimum_size = Vector2(32, 32)
@@ -158,6 +165,8 @@ toggle_mode = true
 action_mode = 0
 text = "x3"
 
+[node name="FocusElement" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize3" instance=ExtResource("5_hasvd")]
+
 [node name="ButtonSize4" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -170,6 +179,8 @@ theme_override_constants/outline_size = 4
 toggle_mode = true
 action_mode = 0
 text = "x4"
+
+[node name="FocusElement" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize4" instance=ExtResource("5_hasvd")]
 
 [node name="ButtonSize5" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
 custom_minimum_size = Vector2(32, 32)
@@ -184,6 +195,8 @@ toggle_mode = true
 action_mode = 0
 text = "x5"
 
+[node name="FocusElement" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize5" instance=ExtResource("5_hasvd")]
+
 [node name="ButtonSize6" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -197,6 +210,8 @@ toggle_mode = true
 action_mode = 0
 text = "x6"
 
+[node name="FocusElement" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize6" instance=ExtResource("5_hasvd")]
+
 [node name="ButtonSize7" type="Button" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -208,6 +223,8 @@ theme_override_constants/outline_size = 4
 toggle_mode = true
 action_mode = 0
 text = "x7"
+
+[node name="FocusElement" parent="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize7" instance=ExtResource("5_hasvd")]
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
@@ -285,6 +302,8 @@ theme = ExtResource("1_sstob")
 value = 25.0
 rounded = true
 
+[node name="FocusElement" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume/VBoxContainer2/VolumeMasterSlider" instance=ExtResource("5_hasvd")]
+
 [node name="MasterVolume2" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
 layout_mode = 2
 alignment = 1
@@ -334,6 +353,8 @@ focus_neighbor_top = NodePath("../../../MasterVolume/VBoxContainer2/VolumeMaster
 focus_neighbor_bottom = NodePath("../../../MasterVolume3/VBoxContainer2/VolumeSFXSlider")
 theme = ExtResource("1_sstob")
 rounded = true
+
+[node name="FocusElement" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume2/VBoxContainer2/VolumeMusicSlider" instance=ExtResource("5_hasvd")]
 
 [node name="MasterVolume3" type="HBoxContainer" parent="VBoxContainer/AudioSettings/VBoxContainer"]
 layout_mode = 2
@@ -387,6 +408,8 @@ theme_override_icons/grabber = ExtResource("5_5subj")
 theme_override_icons/grabber_highlight = ExtResource("6_vig2f")
 rounded = true
 
+[node name="FocusElement" parent="VBoxContainer/AudioSettings/VBoxContainer/MasterVolume3/VBoxContainer2/VolumeSFXSlider" instance=ExtResource("5_hasvd")]
+
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 8)
@@ -406,6 +429,8 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
 text = "Return"
+
+[node name="FocusElement" parent="VBoxContainer/HBoxContainer/ReturnButton" instance=ExtResource("5_hasvd")]
 
 [connection signal="toggled" from="VBoxContainer/VisualSettings/VBoxContainer/ToggleFullscreen/ButtonFullscreen" to="." method="_on_button_fullscreen_toggled"]
 [connection signal="pressed" from="VBoxContainer/VisualSettings/VBoxContainer/PixelSize/ButtonSize1" to="." method="_on_button_size_pressed" binds= [1]]

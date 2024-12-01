@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnei0kqq507xw"]
+[gd_scene load_steps=8 format=3 uid="uid://dnei0kqq507xw"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_4b8s4"]
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="2_isglf"]
 [ext_resource type="Texture2D" uid="uid://bvjoixhlebefi" path="res://Sprites/Backgrounds/Title Screen No Menu.png" id="3_wpaw7"]
 [ext_resource type="Script" path="res://Scripts/text_flicker.gd" id="4_3eme8"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="4_hn62b"]
+[ext_resource type="PackedScene" uid="uid://ctmijes8u5jpf" path="res://Objects/Traveen_Components/FocusElement.tscn" id="6_kdrqr"]
 [ext_resource type="PackedScene" uid="uid://1n7gaf38aipt" path="res://Rooms/options_screen.tscn" id="9_0npgc"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("startButton")]
@@ -172,6 +173,8 @@ theme_override_font_sizes/font_size = 16
 text = "Start"
 autowrap_mode = 2
 
+[node name="FocusElement" parent="MainScreen/PanelContainer/Scoreboard/ButtonsHBox1/StartButton" instance=ExtResource("6_kdrqr")]
+
 [node name="CreditsButton" type="Button" parent="MainScreen/PanelContainer/Scoreboard/ButtonsHBox1"]
 custom_minimum_size = Vector2(150, 42)
 layout_mode = 2
@@ -182,6 +185,8 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 16
 text = "Credits"
+
+[node name="FocusElement" parent="MainScreen/PanelContainer/Scoreboard/ButtonsHBox1/CreditsButton" instance=ExtResource("6_kdrqr")]
 
 [node name="ButtonsHBox2" type="HBoxContainer" parent="MainScreen/PanelContainer/Scoreboard"]
 layout_mode = 2
@@ -198,6 +203,8 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 8
 text = "Options"
 
+[node name="FocusElement" parent="MainScreen/PanelContainer/Scoreboard/ButtonsHBox2/OptionsButton" instance=ExtResource("6_kdrqr")]
+
 [node name="QuitButton" type="Button" parent="MainScreen/PanelContainer/Scoreboard/ButtonsHBox2"]
 custom_minimum_size = Vector2(90, 32)
 layout_mode = 2
@@ -208,6 +215,8 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 8
 text = "Quit"
+
+[node name="FocusElement" parent="MainScreen/PanelContainer/Scoreboard/ButtonsHBox2/QuitButton" instance=ExtResource("6_kdrqr")]
 
 [node name="Credits" type="VBoxContainer" parent="MainScreen/PanelContainer"]
 visible = false
@@ -395,6 +404,8 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 16
 text = "Return"
+
+[node name="FocusElement" parent="MainScreen/PanelContainer/Credits/HBoxContainer/CreditsReturnButton" instance=ExtResource("6_kdrqr")]
 
 [node name="OptionsScreen" parent="." instance=ExtResource("9_0npgc")]
 visible = false

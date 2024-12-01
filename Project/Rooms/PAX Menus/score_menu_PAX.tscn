@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://80ljbkxkaea4"]
+[gd_scene load_steps=6 format=3 uid="uid://80ljbkxkaea4"]
 
 [ext_resource type="Script" path="res://Scripts/MenuScripts/score_menu.gd" id="1_xxyev"]
 [ext_resource type="Texture2D" uid="uid://bvjoixhlebefi" path="res://Sprites/Backgrounds/Title Screen No Menu.png" id="2_40o2b"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="4_b2npv"]
+[ext_resource type="PackedScene" uid="uid://ctmijes8u5jpf" path="res://Objects/Traveen_Components/FocusElement.tscn" id="4_ic1r1"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_mwb2m"]
 
@@ -183,6 +184,8 @@ alignment = 1
 max_length = 3
 middle_mouse_paste_enabled = false
 
+[node name="FocusElement" parent="MainScreen/PanelContainer/BestTimes/HBoxContainer/PlayerNameInput" instance=ExtResource("4_ic1r1")]
+
 [node name="SubmitButton" type="Button" parent="MainScreen/PanelContainer/BestTimes/HBoxContainer"]
 custom_minimum_size = Vector2(112, 40)
 layout_mode = 2
@@ -194,5 +197,7 @@ theme_override_constants/h_separation = 0
 theme_override_font_sizes/font_size = 16
 text = "Submit
 "
+
+[node name="FocusElement" parent="MainScreen/PanelContainer/BestTimes/HBoxContainer/SubmitButton" instance=ExtResource("4_ic1r1")]
 
 [connection signal="pressed" from="MainScreen/PanelContainer/BestTimes/HBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
