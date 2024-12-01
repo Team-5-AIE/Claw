@@ -17,9 +17,14 @@ extends Control
 func _ready() -> void: 
 	startingButton.call_deferred("grab_focus")
 	first_place.text = ""
-	player_time.text = str("[center]","YOUR TIME: ",Global.lastScore[1],"[/center]")
+	var completion = Global.chapterOneBloomiesThisSession.count(true)
 	var timeString = Global.lastScore[1]
 	var time = Global.lastScore[2]
+	
+	player_time.text = str(
+		"[center]","Collected: ",completion,"/",Global.chapterOneBloomieCount,
+		"\nYOUR TIME: ",timeString,"[/center]")
+	
 	var newArr = Global.highscores.duplicate(true)
 	newArr.append(["YOU",timeString,time])
 	newArr = Sort(newArr)

@@ -162,9 +162,11 @@ size_flags_horizontal = 3
 theme = ExtResource("4_b2npv")
 theme_override_colors/default_color = Color(0.854902, 0.52549, 0.243137, 1)
 theme_override_constants/outline_size = 4
+theme_override_constants/line_separation = 2
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "[center]Your Time: MM:SS.sss[/center]"
+text = "[center]Collected: 99/99
+Your Time: MM:SS.sss[/center]"
 fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainScreen/PanelContainer/BestTimes"]

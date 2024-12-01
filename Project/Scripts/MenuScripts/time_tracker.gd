@@ -9,7 +9,7 @@ var hours : int = 0
 var minutes : int = 0
 var seconds : int = 0
 var milseconds : int = 0
-var wholeTime : int = 0 #Used for easier sorting.
+var wholeTime : float = 0 #Used for easier sorting.
 
 func _ready() -> void:
 	visible = false
