@@ -62,7 +62,7 @@ shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="RoomTransition" parent="." instance=ExtResource("4_1eaqc")]
 position = Vector2(-432, 144)
-nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_105a.tscn"
+nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_105b.tscn"
 exitDirection = "Left"
 
 [node name="CollisionShape2D" parent="RoomTransition" index="0"]
@@ -86,7 +86,7 @@ flipSpawnDir = true
 
 [node name="Bloomie" parent="." instance=ExtResource("5_cmckl")]
 position = Vector2(128, 96)
-bloomieID = 5
+bloomieID = 4
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]

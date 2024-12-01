@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://1jc8mx5akmnw"]
+[gd_scene load_steps=11 format=3 uid="uid://1jc8mx5akmnw"]
 
 [ext_resource type="Script" path="res://Scripts/Traveen_LevelObstacles/Activators/LockAndKey/key.gd" id="1_j4mvt"]
 [ext_resource type="Texture2D" uid="uid://b7c8fd2j2ile8" path="res://Sprites/KEY.png" id="3_0if82"]
+[ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="3_ex7vg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wqhvq"]
 radius = 14.0
@@ -138,6 +139,13 @@ texture = SubResource("GradientTexture2D_bbuup")
 libraries = {
 "": SubResource("AnimationLibrary_4iw1s")
 }
+
+[node name="Light" parent="." instance=ExtResource("3_ex7vg")]
+lightIntensity = 40.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 5.0
+movementFlickerDistance = 3.0
+movementFlickerSpeed = 3.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="CollectionTimer" to="." method="_on_collection_timer_timeout"]

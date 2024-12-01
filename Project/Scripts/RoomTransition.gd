@@ -22,6 +22,9 @@ class_name RoomTransition
 			"Up":
 				_exitDirInternal = Vector2.UP
 
+@export var launchPlayer : bool
+@export var launchForce : float
+
 # Public variables
 @onready var roomGlobals : Node2D = get_owner()
 
@@ -72,6 +75,13 @@ func _on_body_entered(body_):
 			
 			var excludedRooms : Array[String] = [roomGlobals.scene_file_path, nextRoom]
 			roomContainer.FreeAdjacentRooms(excludedRooms)
+			
+			if launchPlayer:
+				player.finite_state_machine.ChangeState(player.state_jump)
+				player.move_lock = true
+				
+				print_debug("Player Vel.: ", player.velocity)
+				player.velocity = _exitDirInternal * launchForce
 			
 			#roomGlobals.playerExitedRoom.emit()
 		

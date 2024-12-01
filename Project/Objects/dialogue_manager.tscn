@@ -1,22 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://clhj20ryjsiow"]
+[gd_scene load_steps=7 format=3 uid="uid://clhj20ryjsiow"]
 
 [ext_resource type="Texture2D" uid="uid://cqabt1i41l5yi" path="res://Sprites/KimikoPortrait.png" id="1_bpr6d"]
 [ext_resource type="Script" path="res://Scripts/MenuScripts/dialogue_manager.gd" id="1_tst8m"]
 [ext_resource type="Texture2D" uid="uid://blhb4mdjsb51t" path="res://Sprites/UI/9-Slice.png" id="2_6wmvi"]
-[ext_resource type="Texture2D" uid="uid://dwrsnbk2bb2k2" path="res://Sprites/Menu/NameBox.png" id="4_bhif2"]
+[ext_resource type="Texture2D" uid="uid://dn7v3hlmd3de8" path="res://Sprites/UI/Nametag.png" id="3_0u2mg"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="5_obutv"]
-[ext_resource type="FontFile" uid="uid://bppwh1x16uaqo" path="res://addons/Fonts/monoupheaval/monoupheaval.ttf" id="6_pujpk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qoxb6"]
 line_spacing = 0.0
 font_size = 8
 font_color = Color(0.301961, 0.168627, 0.196078, 1)
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_mkl88"]
-font = ExtResource("6_pujpk")
-font_size = 8
-outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [node name="DialogueManager" type="Control"]
@@ -45,11 +38,11 @@ patch_margin_bottom = 8
 
 [node name="NameBox" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_left = 212.0
-offset_top = 254.0
-offset_right = 292.0
-offset_bottom = 286.0
-texture = ExtResource("4_bhif2")
+offset_left = 213.0
+offset_top = 239.0
+offset_right = 293.0
+offset_bottom = 271.0
+texture = ExtResource("3_0u2mg")
 patch_margin_left = 5
 patch_margin_top = 5
 patch_margin_right = 5
@@ -78,13 +71,3 @@ autowrap_mode = 2
 [node name="TextSpeedTimer" type="Timer" parent="."]
 wait_time = 0.01
 one_shot = true
-
-[node name="NameLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 225.0
-offset_top = 261.0
-offset_right = 279.0
-offset_bottom = 284.0
-theme = ExtResource("5_obutv")
-text = "Kimiko"
-label_settings = SubResource("LabelSettings_mkl88")
