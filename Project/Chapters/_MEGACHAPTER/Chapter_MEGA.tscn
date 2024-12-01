@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c254vxstavde0"]
+
+[ext_resource type="PackedScene" uid="uid://c4sarfgp81r1a" path="res://Chapters/JavierRooms/Chapter_Tutorial.tscn" id="1_edh3l"]
+[ext_resource type="PackedScene" uid="uid://6kexlgiu60lf" path="res://Chapters/JavierRooms/Chapter_1A.tscn" id="2_bleks"]
+[ext_resource type="PackedScene" uid="uid://c1t04kikgnjlj" path="res://Chapters/JavierRooms/Chapter_Wood.tscn" id="3_n0hrb"]
+
+[node name="Chapter_MEGA" type="Node2D"]
+
+[node name="Chapter_0T" parent="." instance=ExtResource("1_edh3l")]
+
+[node name="Chapter_01a" parent="." instance=ExtResource("2_bleks")]
+position = Vector2(3392, 0)
+
+[node name="Chapter_0W" parent="." instance=ExtResource("3_n0hrb")]
+position = Vector2(10720, -2096)

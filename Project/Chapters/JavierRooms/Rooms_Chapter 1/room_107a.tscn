@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://cuwxgg0wrhi5a"]
+[gd_scene load_steps=9 format=4 uid="uid://cuwxgg0wrhi5a"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_u2gws"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_uhuys"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_rueok"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_vd1ww"]
+[ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="5_kaa2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -22,6 +23,7 @@ b = Vector2(0, -48)
 [node name="Room107a" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_u2gws")
 standaloneSpawner = NodePath("RoomArea/RoomBounds")
+lightingEnabled = true
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -85,6 +87,24 @@ shape = SubResource("SegmentShape2D_kaeuv")
 [node name="PlayerSpawn" parent="RoomTransition2" index="1"]
 position = Vector2(-32, 32)
 flipSpawnDir = true
+
+[node name="Light Holder" type="Node2D" parent="."]
+
+[node name="Light3" parent="Light Holder" instance=ExtResource("5_kaa2m")]
+position = Vector2(232, -28)
+lightIntensity = 40.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 8.0
+movementFlickerDistance = 3.0
+movementFlickerSpeed = 8.0
+
+[node name="Light2" parent="Light Holder" instance=ExtResource("5_kaa2m")]
+position = Vector2(1, -84)
+lightIntensity = 40.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 8.0
+movementFlickerDistance = 3.0
+movementFlickerSpeed = 8.0
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]

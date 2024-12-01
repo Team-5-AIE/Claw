@@ -2,6 +2,8 @@ class_name StateWallSlide
 extends State
 @onready var player = $"../.."
 @onready var wall_dust_timer = $WallDustTimer
+@onready var slide_audio_timer = $"../../Timers/WallSlideSoundTimer"
+@onready var audio_start = $AudioStartTimer
 
 func EnterState() -> void:
 	player.wall_grab_stamina.paused = false
@@ -13,6 +15,7 @@ func EnterState() -> void:
 		player.sprite_sheet.flip_h = false
 	player.finite_state_machine.sprite_flip_lock = true
 	player.animation_player.play("WallSlide")
+	audio_start.start()
 
 func Update(_delta) -> void:
 	if wall_dust_timer.time_left <= 0.0:
@@ -64,3 +67,18 @@ func Inputs(_event) -> void:  # Runs in _process()
 func ExitState() -> void:
 	player.finite_state_machine.sprite_flip_lock = false
 	player.wall_grab_stamina.paused = true
+	slide_audio_timer.stop()
+
+
+func _on_wall_slide_sound_timer_timeout() -> void:
+	AudioManager.play_modulated_game_sound(AudioManager.WALLSLIDEAFTER, -3)
+	if player.finite_state_machine.state == player.state_wall_slide:
+		slide_audio_timer.start()
+	else:
+		slide_audio_timer.stop()
+
+
+func _on_audio_start_timer_timeout() -> void:
+	if player.finite_state_machine.state == player.state_wall_slide:
+		AudioManager.play_modulated_game_sound(AudioManager.WALLSLIDE, -3)
+		slide_audio_timer.start()

@@ -62,6 +62,7 @@ func change_block_activity(active_state: bool) -> void:
 			active = active_state
 	if active == true:
 		animation_player.play(animation_name)
+		AudioManager.play_modulated_game_sound(AudioManager.DOOR3, -18)
 	elif inactive_trigger_mode == 0:
 			end_activity()
 

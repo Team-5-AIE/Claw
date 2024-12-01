@@ -23,17 +23,19 @@ var sprite_flip_lock = false
 var disable_gravity = false
 var air_resistance_lock = false
 @export var friction_lock = false
+@onready var death_audio_fix = $"../Timers/DeathSoundTimer"
 
 #=================================Functions===================================================
 func _ready() -> void:
 	ChangeState(state)
 
 func _process(delta) -> void:
-	print(player.velocity.y)
+	#print(player.velocity.y)
 	if FadeTransitions.lockPlayer: 
 		player.velocity = Vector2.ZERO
 		if FadeTransitions.restart:
 			player.animation_player.play("Restart")
+			death_audio_fix.start()
 		else:
 			player.animation_player.play("Idle")
 		return
@@ -54,9 +56,11 @@ func _physics_process(delta) -> void:
 	if spearThrown:
 		SpearPhysicsProcess()
 	
+	# Immediately reset spear cooldown for people that let go of it
+	if Input.is_action_pressed("Spear") == false and player.spearCooldownTimer.time_left > 0: 
+		player.spearCooldownTimer.stop()
 	
-	
-	if state is State:
+	if state is State: 
 		state.UpdatePhysics(delta) # Run the UpdatePhysics function in our current state
 	
 	if !disable_gravity:
@@ -164,7 +168,7 @@ func jump_buffer_jump() -> bool:
 func can_we_throw_spear():
 	if player.spearCollected:
 		if state != player.state_spear && player.state_spear.spearInstance == null:
-			if Input.is_action_just_pressed("Spear") && player.spearCooldownTimer.time_left <= 0.0:
+			if Input.is_action_pressed("Spear") && player.spearCooldownTimer.time_left <= 0.0:
 				spearThrown = true
 
 func jump_buffer_check() -> bool:
@@ -286,8 +290,11 @@ func SpearPhysicsProcess() -> void:
 	
 	# Spear Set up
 	player.state_spear.add_child(player.state_spear.spearInstance)
-	player.state_spear.spearInstance.audio_stream_player = player.audio_stream_player
 	player.state_spear.spearInstance.player = player
 	player.state_spear.spearInstance.global_position = player.spear_marker.global_position
 	player.state_spear.spearInstance.Shoot(player.state_spear.shootDirection)
 	spearThrown = false
+
+
+func _on_death_sound_timer_timeout() -> void:
+	AudioManager.play_game_sound_random_modulated(0, AudioManager.DEATH)

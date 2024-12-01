@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="3_qajuq"]
 [ext_resource type="PackedScene" uid="uid://btr04pfqnhcvi" path="res://Objects/player_spawn.tscn" id="4_7768i"]
 [ext_resource type="PackedScene" uid="uid://ddrlv8enrycsh" path="res://Objects/spear_pickup.tscn" id="6_yhg1j"]
-[ext_resource type="PackedScene" path="res://Objects/Traveen_LevelObstacles/Moving Block/manual_moving_block.tscn" id="7_lcdns"]
+[ext_resource type="PackedScene" uid="uid://c0voaw65dtuhj" path="res://Objects/Traveen_LevelObstacles/Moving Block/manual_moving_block.tscn" id="7_lcdns"]
 [ext_resource type="PackedScene" uid="uid://brrwtpvjpgey7" path="res://Objects/Traveen_LevelObstacles/Activators/Switch/toggle_switch.tscn" id="8_vf713"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]

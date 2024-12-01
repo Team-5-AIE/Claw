@@ -35,8 +35,3 @@ func _process(_delta):
 			material.set_shader_parameter("pointLights", pointLights)
 			
 			material.set_shader_parameter("camOffset", playerCam.get_screen_center_position())
-
-func _unhandled_input(event):
-	if !Engine.is_editor_hint():
-		if event.is_action_pressed("ShaderToggle"):
-			visible = !visible

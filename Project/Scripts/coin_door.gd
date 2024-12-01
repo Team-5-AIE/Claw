@@ -16,6 +16,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	label.text = str(toggledCoins) + "/" + str(coinsNeeded)
 	if toggledCoins == coinsNeeded && !doorOpened:
+		AudioManager.play_modulated_game_sound(AudioManager.DOOR1, -5)
 		doorOpened = true
 		sprite.frame = 1
 		

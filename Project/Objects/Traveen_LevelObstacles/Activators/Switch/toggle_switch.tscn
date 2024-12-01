@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Traveen_LevelObstacles/Activators/Switch/toggle_switch.gd" id="1_moatw"]
 [ext_resource type="Texture2D" uid="uid://rhn7q2dogg1l" path="res://Sprites/Target.png" id="2_idnp7"]
-[ext_resource type="PackedScene" uid="uid://inkpm8w72ml4" path="res://Effects/TargetParticles.tscn" id="3_sh4wi"]
+[ext_resource type="PackedScene" uid="uid://b0qwka3j84kgu" path="res://Effects/target_particles.tscn" id="3_6t16u"]
 
 [sub_resource type="Animation" id="Animation_ovk26"]
 length = 0.001
@@ -102,7 +102,7 @@ hframes = 7
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_erbcc")
 
-[node name="GPUParticles2D" parent="." instance=ExtResource("3_sh4wi")]
+[node name="GPUParticles2D" parent="." instance=ExtResource("3_6t16u")]
 
 [node name="SpearDetector" type="Area2D" parent="."]
 collision_layer = 0

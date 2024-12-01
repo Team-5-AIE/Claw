@@ -1,22 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://clhj20ryjsiow"]
+[gd_scene load_steps=9 format=3 uid="uid://clhj20ryjsiow"]
 
 [ext_resource type="Texture2D" uid="uid://cqabt1i41l5yi" path="res://Sprites/KimikoPortrait.png" id="1_bpr6d"]
 [ext_resource type="Script" path="res://Scripts/MenuScripts/dialogue_manager.gd" id="1_tst8m"]
-[ext_resource type="Texture2D" uid="uid://ddn2a8jc1xfie" path="res://Sprites/Menu/DialogueBox.png" id="2_107u4"]
+[ext_resource type="Texture2D" uid="uid://blhb4mdjsb51t" path="res://Sprites/UI/9-Slice.png" id="2_6wmvi"]
 [ext_resource type="Texture2D" uid="uid://dwrsnbk2bb2k2" path="res://Sprites/Menu/NameBox.png" id="4_bhif2"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="5_obutv"]
+[ext_resource type="FontFile" uid="uid://bppwh1x16uaqo" path="res://addons/Fonts/monoupheaval/monoupheaval.ttf" id="6_pujpk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qoxb6"]
-font_size = 14
-outline_size = 4
+line_spacing = 0.0
+font_size = 8
+font_color = Color(0.301961, 0.168627, 0.196078, 1)
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mkl88"]
-font_size = 14
+font = ExtResource("6_pujpk")
+font_size = 8
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [node name="DialogueManager" type="Control"]
+process_mode = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,27 +31,47 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_tst8m")
 
-[node name="DialogueBox" type="Sprite2D" parent="."]
-position = Vector2(323, 310.5)
-texture = ExtResource("2_107u4")
+[node name="DialogueBox" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 268.0
+offset_right = 499.0
+offset_bottom = 353.0
+texture = ExtResource("2_6wmvi")
+patch_margin_left = 20
+patch_margin_top = 8
+patch_margin_right = 28
+patch_margin_bottom = 8
 
-[node name="NameBox" type="Sprite2D" parent="."]
-position = Vector2(252, 268)
+[node name="NameBox" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 254.0
+offset_right = 292.0
+offset_bottom = 286.0
 texture = ExtResource("4_bhif2")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
 
-[node name="KimikoPortrait" type="Sprite2D" parent="."]
-position = Vector2(190, 287)
-scale = Vector2(1.19186, 1.225)
+[node name="KimikoPortrait" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 246.0
+offset_right = 234.0
+offset_bottom = 346.0
 texture = ExtResource("1_bpr6d")
 
 [node name="Text" type="Label" parent="."]
 layout_mode = 0
-offset_left = 222.0
-offset_top = 277.0
-offset_right = 492.0
+offset_left = 218.0
+offset_top = 276.0
+offset_right = 481.0
 offset_bottom = 345.0
 theme = ExtResource("5_obutv")
-text = "Hello this is test text"
+theme_override_constants/line_spacing = 1
+text = "Hello this is test text
+hello"
 label_settings = SubResource("LabelSettings_qoxb6")
 autowrap_mode = 2
 
@@ -57,10 +81,10 @@ one_shot = true
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 227.0
-offset_top = 259.0
-offset_right = 281.0
-offset_bottom = 282.0
+offset_left = 225.0
+offset_top = 261.0
+offset_right = 279.0
+offset_bottom = 284.0
 theme = ExtResource("5_obutv")
 text = "Kimiko"
 label_settings = SubResource("LabelSettings_mkl88")

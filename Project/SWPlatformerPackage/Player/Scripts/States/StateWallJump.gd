@@ -5,16 +5,7 @@ extends State
 # This state happens if we have pressed the Jump key.
 var jump_direction : Vector2 = Vector2(1,0)
 
-const JUMP1 = preload("res://Sounds/Effects/jump (2).wav")
-const JUMP2 = preload("res://Sounds/Effects/jump (3).wav")
-@onready var audio_stream_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
-
 func EnterState() -> void:
-	var randSound = randi_range(0,1)
-	match randSound:
-		0: audio_stream_player.stream = JUMP1
-		1: audio_stream_player.stream = JUMP2
-	audio_stream_player.play()
 	var dust_instance = player.instance_create(player.RUN_DUST_PARTICLES,player)
 	dust_instance.scale.x = sign(-player.velocity.x)
 	dust_instance.set_as_top_level(true)
@@ -45,6 +36,7 @@ func EnterState() -> void:
 		print("Debug: Wall Jump State")
 	player.animation_player.play("WallJump")
 	player.last_input_direction.x = -player.last_input_direction.x
+	AudioManager.play_game_sound_random(-5, AudioManager.JUMP1, AudioManager.JUMP2, AudioManager.JUMP3)
 
 func UpdatePhysics(delta)-> void:  # Runs in _physics_process()
 	if player.input_axis.x != 0 && !player.state_jump.bunnyhop:

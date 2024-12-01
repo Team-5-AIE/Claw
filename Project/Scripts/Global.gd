@@ -3,7 +3,7 @@ extends Node
 var totalBloomiesCollected : int = 0
 var chapterOneBloomies : Array[bool]
 var chapterOneBloomiesThisSession : Array[bool]
-var chapterOneBloomieCount = 7
+var chapterOneBloomieCount = 9
 
 #This holds all the data of score entry
 #first entry is the latest one.
@@ -59,6 +59,7 @@ func _ready():
 	chapterOneBloomiesThisSession.fill(false)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	process_mode = PROCESS_MODE_ALWAYS
 
 func _process(_delta):
 	pass
@@ -93,5 +94,3 @@ func AddTimeToList() -> void:
 	Global.highscores.append([playerName,timeString,time])
 	Global.BubbleSortScores()
 	Global.SaveScoresToFile()
-
-signal playerCreated

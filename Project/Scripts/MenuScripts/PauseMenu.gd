@@ -8,11 +8,14 @@ var startChapterScenePath : String
 # Editor variables
 @export var restartButton : Button
 @export var shadowShader : ColorRect
+@export_group("Focus Buttons")
+@export var startingFocus : Button
+@export var optionsMenuFocus : Button
+@export var optionsReturnFocus : Button
 
 var roomContainer : Node2D
 var timeTracker : Node
 var dialogueManager: Control
-var bgmPlayer : AudioStreamPlayer
 
 # Member variables
 # - Public
@@ -44,13 +47,13 @@ func _on_restart_button_pressed() -> void:
 	
 	inGame = false
 	restartButton.disabled = true
-	bgmPlayer.stop()
 	dialogueManager.ClearDialogueBox()
 	
 	FadeTransitions.Transition()
 	await FadeTransitions.on_fade_in_finished
 	
 	TogglePause()
+	AudioManager.play_music(AudioManager.MUSIC_WOLF, 0)
 	
 	shadowShader.lightingEnabled = false
 	
@@ -65,7 +68,6 @@ func _on_restart_button_pressed() -> void:
 	var room = roomContainer.LoadRoom(startChapterScenePath, timeTracker, self)
 	room.StartingRoomSetup()
 	visible = false
-	bgmPlayer.play()
 	
 	timeTracker.visible = false
 	
@@ -105,12 +107,26 @@ func TogglePause() -> void:
 			_paused = false
 			visible = false
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
-			
+			if $OptionsScreen.is_active: $OptionsScreen.is_active = false
+			AudioManager.resume_current_music()
+			AudioManager.resume_all_game_sounds()
 			get_tree().paused = false
 		else:
 			# Pause
 			_paused = true
 			visible = true
-			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-			
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			AudioManager.pause_current_music()
+			AudioManager.pause_all_game_sounds()
 			get_tree().paused = true
+			startingFocus.call_deferred("grab_focus")
+
+
+
+func _on_options_button_pressed() -> void:
+	$OptionsScreen.is_active = true
+	optionsMenuFocus.call_deferred("grab_focus")
+
+func _on_options_return_button_pressed() -> void:
+	$OptionsScreen.is_active = false
+	optionsReturnFocus.call_deferred("grab_focus")

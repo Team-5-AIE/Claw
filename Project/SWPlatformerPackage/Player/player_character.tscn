@@ -15,8 +15,8 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallJump.gd" id="11_r1ntv"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallSlide.gd" id="12_q8x25"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
-[ext_resource type="AudioStream" uid="uid://dvgj8oqo664q0" path="res://Sounds/Effects/jump (1).wav" id="15_pytux"]
-[ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="20_j7iql"]
+[ext_resource type="PackedScene" path="res://Objects/crosshair.tscn" id="17_4yyds"]
+[ext_resource type="PackedScene" path="res://Objects/light.tscn" id="17_m7yus"]
 
 [sub_resource type="Gradient" id="Gradient_62wi8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.14902, 0.329412, 1)
@@ -707,6 +707,7 @@ size = Vector2(19, 40)
 size = Vector2(25, 25)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+process_mode = 1
 z_index = 1
 collision_mask = 10
 floor_constant_speed = true
@@ -714,6 +715,7 @@ floor_block_on_wall = false
 floor_snap_length = 3.0
 script = ExtResource("1_qfw28")
 jump_height = 280.0
+throwSpearCooldown = 0.45
 slide_speed = 280.0
 slide_time = 0.3
 slide_friction = 900.0
@@ -732,7 +734,6 @@ air_acceleration = 700.0
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 modulate = Color(1, 0.321569, 0.290196, 1)
-light_mask = 32
 position = Vector2(0, -16)
 texture = ExtResource("2_d4djl")
 hframes = 10
@@ -740,7 +741,6 @@ vframes = 14
 
 [node name="LegsAir" type="Sprite2D" parent="."]
 visible = false
-light_mask = 32
 position = Vector2(0, -16)
 texture = ExtResource("2_rrav3")
 hframes = 10
@@ -749,7 +749,6 @@ frame = 32
 
 [node name="LegsGround" type="Sprite2D" parent="."]
 visible = false
-light_mask = 32
 position = Vector2(0, -16)
 texture = ExtResource("2_rrav3")
 hframes = 10
@@ -786,8 +785,11 @@ script = ExtResource("7_mqss4")
 
 [node name="StateSpear" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("8_h64g1")
-pullJumpStrength = 420.0
-pullJumpStopFraction = -0.2
+pullJumpStrength = 450.0
+pullJumpStopFraction = 0.8
+swingSpeedCap = 5
+climbRopeSpeedUp = 75
+climbRopeSpeedDown = 75
 
 [node name="StateCrouch" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("9_gut04")
@@ -803,6 +805,10 @@ script = ExtResource("12_q8x25")
 
 [node name="WallDustTimer" type="Timer" parent="FiniteStateMachine/StateWallSlide"]
 wait_time = 0.1
+one_shot = true
+
+[node name="AudioStartTimer" type="Timer" parent="FiniteStateMachine/StateWallSlide"]
+wait_time = 0.15
 one_shot = true
 
 [node name="StateSlide" type="Node" parent="FiniteStateMachine"]
@@ -839,7 +845,7 @@ one_shot = true
 one_shot = true
 
 [node name="SpearCooldownTimer" type="Timer" parent="Timers"]
-wait_time = 0.2
+wait_time = 2.0
 one_shot = true
 
 [node name="SnapRopeTimer" type="Timer" parent="Timers"]
@@ -848,6 +854,14 @@ one_shot = true
 
 [node name="FootstepSoundTimer" type="Timer" parent="Timers"]
 wait_time = 0.3
+one_shot = true
+
+[node name="WallSlideSoundTimer" type="Timer" parent="Timers"]
+wait_time = 0.6
+one_shot = true
+
+[node name="DeathSoundTimer" type="Timer" parent="Timers"]
+wait_time = 0.05
 one_shot = true
 
 [node name="RaycastSlideLeft" type="RayCast2D" parent="."]
@@ -909,8 +923,7 @@ debug_color = Color(1, 0.800359, 0.969968, 0.42)
 [node name="DustMarker2D" type="Marker2D" parent="."]
 position = Vector2(0, -3)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("15_pytux")
+[node name="Crosshair" parent="." groups=["Crosshair"] instance=ExtResource("17_4yyds")]
 
 [node name="SpringArea" type="Area2D" parent="."]
 position = Vector2(0, 1)
@@ -922,13 +935,16 @@ priority = 10
 position = Vector2(1, -10)
 shape = SubResource("RectangleShape2D_k8i1d")
 
-[node name="Light" parent="." instance=ExtResource("20_j7iql")]
+[node name="Light" parent="." instance=ExtResource("17_m7yus")]
 position = Vector2(0, -20)
 lightIntensity = 50.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="animation_started"]
+[connection signal="timeout" from="FiniteStateMachine/StateWallSlide/AudioStartTimer" to="FiniteStateMachine/StateWallSlide" method="_on_audio_start_timer_timeout"]
 [connection signal="timeout" from="Timers/JumpBufferTimer" to="FiniteStateMachine" method="_on_jump_buffer_timer_timeout"]
 [connection signal="timeout" from="Timers/FootstepSoundTimer" to="FiniteStateMachine/StateMove" method="PlayFootsteps"]
+[connection signal="timeout" from="Timers/WallSlideSoundTimer" to="FiniteStateMachine/StateWallSlide" method="_on_wall_slide_sound_timer_timeout"]
+[connection signal="timeout" from="Timers/DeathSoundTimer" to="FiniteStateMachine" method="_on_death_sound_timer_timeout"]
 [connection signal="body_entered" from="SpikeArea" to="." method="_on_spike_area_body_entered"]
 [connection signal="area_entered" from="SpringArea" to="." method="_on_spring_area_area_entered"]
