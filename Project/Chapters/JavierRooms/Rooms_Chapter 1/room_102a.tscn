@@ -93,13 +93,23 @@ flipSpawnDir = true
 position = Vector2(0, -16)
 bloomieID = 2
 
-[node name="Light" parent="." instance=ExtResource("6_rs12k")]
-position = Vector2(-136, -16)
-lightIntensity = 75.0
+[node name="Lights" type="Node2D" parent="."]
 
-[node name="Light2" parent="." instance=ExtResource("6_rs12k")]
-position = Vector2(136, -48)
-lightIntensity = 75.0
+[node name="Light" parent="Lights" instance=ExtResource("6_rs12k")]
+position = Vector2(-136, 0)
+lightIntensity = 100.0
+intensityFlickerAmount = 8.0
+intensityFlickerSpeed = 7.0
+movementFlickerDistance = 2.0
+movementFlickerSpeed = 8.0
+
+[node name="Light2" parent="Lights" instance=ExtResource("6_rs12k")]
+position = Vector2(136, -32)
+lightIntensity = 100.0
+intensityFlickerAmount = 8.0
+intensityFlickerSpeed = 7.0
+movementFlickerDistance = 2.0
+movementFlickerSpeed = 8.0
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]

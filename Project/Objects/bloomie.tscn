@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgw3eujb45oi8"]
+[gd_scene load_steps=12 format=3 uid="uid://bgw3eujb45oi8"]
 
 [ext_resource type="Texture2D" uid="uid://dbver6tbuv0bv" path="res://Sprites/Bloomie.png" id="1_mwvca"]
 [ext_resource type="Script" path="res://Scripts/bloomie.gd" id="1_ou05q"]
 [ext_resource type="AudioStream" uid="uid://ybnshgeeo1uv" path="res://Sounds/Effects/collectBloomie.wav" id="3_ss4g6"]
+[ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="4_2ikup"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6sv0p"]
 
@@ -201,6 +202,13 @@ hframes = 5
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.27451, 0.803922, 0.133333, 0.635294)
 texture = SubResource("GradientTexture2D_fa7ga")
+
+[node name="Light" parent="." instance=ExtResource("4_2ikup")]
+lightIntensity = 45.0
+intensityFlickerAmount = 7.0
+intensityFlickerSpeed = 7.0
+movementFlickerDistance = 1.5
+movementFlickerSpeed = 8.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="CollectionTimer" to="." method="_on_collection_timer_timeout"]
