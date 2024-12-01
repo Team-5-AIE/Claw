@@ -89,20 +89,20 @@ func _on_button_size_pressed(new_pixel_size: int) -> void:
 # Master volume slider
 func _on_volume_master_slider_value_changed(value: float) -> void:
 	Settings.master_volume = value / 100
-	master_num.text = str(int(value * 100))
-	master_slider.value = value * 100
+	master_num.text = str(int(value))
+	master_slider.value = value
 
 # Music volume slider
 func _on_volume_music_slider_value_changed(value: float) -> void:
 	Settings.music_volume = value / 100
-	music_num.text = str(int(value * 100))
-	music_slider.value = value * 100
+	music_num.text = str(int(value))
+	music_slider.value = value
 
 # SFX volume slider
 func _on_volume_sfx_slider_value_changed(value: float) -> void:
 	Settings.sfx_volume = value / 100
-	sfx_num.text = str(int(value * 100))
-	sfx_slider.value = value * 100
+	sfx_num.text = str(int(value))
+	sfx_slider.value = value
 
 # Master and SFX slider: Play Bloomie sound when finishing using the slider
 func _on_volume_slider_drag_ended(value_changed: bool) -> void:
