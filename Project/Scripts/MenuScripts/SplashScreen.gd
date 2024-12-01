@@ -13,7 +13,7 @@ func _ready():
 	start_tween = get_tree().create_tween()
 	start_tween.set_parallel(true)
 	start_tween.tween_property(getrect, "color", Color8(218, 134, 62, 255), 1.3)
-	start_tween.tween_property(getSprite, "modulate", Color.WHITE, 1).set_ease(Tween.EASE_IN)
+	start_tween.chain().tween_property(getSprite, "modulate", Color.WHITE, 1).set_ease(Tween.EASE_IN)
 
 func _on_animation_start_timeout() -> void:
 	getSprite.play()
