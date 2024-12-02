@@ -1,4 +1,4 @@
-extends MarginContainer
+extends Control
 
 @export_group("Starting buttons")
 @export var main_button : Control

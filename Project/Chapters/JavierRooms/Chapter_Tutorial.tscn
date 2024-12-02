@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://cuoj5kvln51vu" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T01.tscn" id="1_fatff"]
 [ext_resource type="PackedScene" uid="uid://b6qrpxvq2ow2a" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T02.tscn" id="2_y40hw"]
-[ext_resource type="PackedScene" uid="uid://vch0t0ngjjt7" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T03.tscn" id="3_0x5j8"]
+[ext_resource type="PackedScene" uid="uid://bl5cm5awdk2bk" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T03a.tscn" id="3_0x5j8"]
 [ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="3_bvdkg"]
 [ext_resource type="PackedScene" uid="uid://b30pr5xo7owc2" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T04.tscn" id="4_20reu"]
 [ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="4_lxn6y"]
 [ext_resource type="PackedScene" uid="uid://ct0pg7nntbx32" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T05.tscn" id="5_n2qp0"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="5_waluu"]
-[ext_resource type="PackedScene" uid="uid://ctjwe72dpy5gg" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T06.tscn" id="6_02y7b"]
+[ext_resource type="PackedScene" uid="uid://crguyiiatbonf" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T06a.tscn" id="6_02y7b"]
 
 [node name="Chapter_0T" type="Node2D"]
 
