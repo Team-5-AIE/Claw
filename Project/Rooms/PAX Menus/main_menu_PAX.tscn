@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnei0kqq507xw"]
+[gd_scene load_steps=9 format=3 uid="uid://dnei0kqq507xw"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_4b8s4"]
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="2_isglf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/text_flicker.gd" id="4_3eme8"]
 [ext_resource type="Theme" uid="uid://oe4o7s0x8n1e" path="res://addons/Fonts/Chunky.tres" id="4_hn62b"]
 [ext_resource type="PackedScene" uid="uid://ctmijes8u5jpf" path="res://Objects/Traveen_Components/FocusElement.tscn" id="6_kdrqr"]
+[ext_resource type="Texture2D" uid="uid://b3rdolexmmwq" path="res://Sprites/Menu/Title.png" id="6_t2win"]
 [ext_resource type="PackedScene" uid="uid://1n7gaf38aipt" path="res://Rooms/options_screen.tscn" id="9_0npgc"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("startButton")]
@@ -26,18 +27,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 texture = ExtResource("3_wpaw7")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TitleBG"]
-layout_mode = 0
-offset_top = 127.0
-offset_right = 276.0
-offset_bottom = 197.0
-theme = ExtResource("4_hn62b")
-theme_override_font_sizes/normal_font_size = 16
-bbcode_enabled = true
-text = "[center]Press any button"
-script = ExtResource("4_3eme8")
-
-[node name="TitleScreen" type="MarginContainer" parent="." node_paths=PackedStringArray("main_button", "credits_button", "options_button", "titleScreen", "mainScreen", "scoreboardScreen", "creditsScreen", "optionsScreen", "highscoreRank", "highscoreNames", "highscoreSeparator", "highscoreTimes")]
+[node name="TitleScreen" type="Control" parent="." node_paths=PackedStringArray("main_button", "credits_button", "options_button", "titleScreen", "mainScreen", "scoreboardScreen", "creditsScreen", "optionsScreen", "highscoreRank", "highscoreNames", "highscoreSeparator", "highscoreTimes")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,7 +48,27 @@ highscoreNames = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginContain
 highscoreSeparator = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginContainer/Scores/HighscoreHBox/Separator")
 highscoreTimes = NodePath("../MainScreen/PanelContainer/Scoreboard/MarginContainer/Scores/HighscoreHBox/Time")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="TitleScreen"]
+layout_mode = 0
+offset_top = 127.0
+offset_right = 276.0
+offset_bottom = 197.0
+pivot_offset = Vector2(47, -99)
+theme = ExtResource("4_hn62b")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]Press any button"
+script = ExtResource("4_3eme8")
+
+[node name="TextureRect" type="TextureRect" parent="TitleScreen"]
+layout_mode = 2
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("6_t2win")
+stretch_mode = 2
+
 [node name="MainScreen" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 2
 offset_right = 640.0
 offset_bottom = 360.0

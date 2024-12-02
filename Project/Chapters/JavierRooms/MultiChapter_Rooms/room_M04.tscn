@@ -70,7 +70,7 @@ position = Vector2(0, -16)
 shape = SubResource("SegmentShape2D_xaixi")
 
 [node name="PlayerSpawn" parent="RoomTransition" index="1"]
-position = Vector2(0, -32)
+position = Vector2(0, -272)
 
 [node name="RoomTransition2" parent="." instance=ExtResource("4_f5imo")]
 position = Vector2(-656, -304)
