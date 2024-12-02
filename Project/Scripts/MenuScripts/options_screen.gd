@@ -9,6 +9,15 @@ extends PanelContainer
 @export var music_slider : HSlider
 @export var sfx_num : LineEdit
 @export var sfx_slider : HSlider
+@export_group("Slider")
+@export var change_per_second = 20
+@export var change_interval: float
+
+var joypad_timer: float = 0
+
+var joypad_cooldown: float :
+	get:
+		return change_interval * get_physics_process_delta_time()
 
 var is_active : bool :
 	get:
@@ -76,6 +85,20 @@ func read_audio_settings() -> void:
 
 # ===== Applying Settings =====
 
+# Enable slider usage with keys
+func _physics_process(delta: float) -> void:
+	if joypad_timer <= 0:
+		var current_focus = get_viewport().gui_get_focus_owner()
+		# Check if current focus is a slider
+		if current_focus != null && current_focus is HSlider:
+			# Check if aim direction is not 0
+			var aim_direction = get_joy_vector().x
+			if aim_direction != 0:
+				joypad_timer = joypad_cooldown
+				current_focus.value += aim_direction * change_per_second * joypad_cooldown
+	else:
+		joypad_timer -= delta
+
 # Fullscreen toggle
 func _on_button_fullscreen_toggled(toggled_on: bool) -> void:
 	Settings.is_fullscreen = toggled_on
@@ -107,3 +130,34 @@ func _on_volume_sfx_slider_value_changed(value: float) -> void:
 # Master and SFX slider: Play Bloomie sound when finishing using the slider
 func _on_volume_slider_drag_ended(value_changed: bool) -> void:
 	AudioManager.play_menu_sound(AudioManager.COLLECT_BLOOMIE, 0)
+
+
+# ===== Other =====
+
+func get_joy_vector() -> Vector2:
+	var joyX: float
+	var joyY: float
+	
+	#if Input.is_action_pressed("Aim Down"):
+		#joyY = joyPadSpeed
+	#elif Input.is_action_pressed("Aim Up"):
+		#joyY = -joyPadSpeed
+	#if Input.is_action_pressed("Aim Right"):
+		#joyX = joyPadSpeed
+	#elif Input.is_action_pressed("Aim Left"):
+		#joyX = -joyPadSpeed
+		
+	var leftJoyAxis = Input.get_vector("Left", "Right", "Up", "Down")
+	var rightJoyAxis = Input.get_vector("Aim Left", "Aim Right", "Aim Up", "Aim Down")
+	
+	if rightJoyAxis != Vector2.ZERO:
+		joyX = rightJoyAxis.x
+		joyY = rightJoyAxis.y
+	elif leftJoyAxis != Vector2.ZERO:
+		joyX = leftJoyAxis.x
+		joyY = leftJoyAxis.y
+	else:
+		joyX = 0
+		joyY = 0
+	
+	return Vector2(joyX, joyY)

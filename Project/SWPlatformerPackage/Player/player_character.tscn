@@ -15,7 +15,7 @@
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallJump.gd" id="11_r1ntv"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateWallSlide.gd" id="12_q8x25"]
 [ext_resource type="Script" path="res://SWPlatformerPackage/Player/Scripts/States/StateSlide.gd" id="13_nh8it"]
-[ext_resource type="PackedScene" path="res://Objects/crosshair.tscn" id="17_4yyds"]
+[ext_resource type="PackedScene" uid="uid://bba62ibc1ekr" path="res://Objects/crosshair.tscn" id="17_4yyds"]
 [ext_resource type="PackedScene" path="res://Objects/light.tscn" id="17_m7yus"]
 
 [sub_resource type="Gradient" id="Gradient_62wi8"]
@@ -715,7 +715,7 @@ floor_block_on_wall = false
 floor_snap_length = 3.0
 script = ExtResource("1_qfw28")
 jump_height = 280.0
-throwSpearCooldown = 0.45
+throwSpearCooldown = 0.4
 slide_speed = 280.0
 slide_time = 0.3
 slide_friction = 900.0

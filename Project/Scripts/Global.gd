@@ -5,6 +5,8 @@ var chapterOneBloomies : Array[bool]
 var chapterOneBloomiesThisSession : Array[bool]
 var chapterOneBloomieCount = 9
 
+var crosshair: Crosshair
+
 #This holds all the data of score entry
 #first entry is the latest one.
 var lastScore = ["NAME","0:14",14]#[Name, Score as string, time]

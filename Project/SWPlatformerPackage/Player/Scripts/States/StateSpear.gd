@@ -51,7 +51,6 @@ func ExitState() -> void:
 	player.finite_state_machine.sprite_flip_lock = false
 	pivotPoint = Vector2.ZERO
 	#player.finite_state_machine.disable_gravity = false
-	player.spearCooldownTimer.start()
 	inputAmount = 0
 	player.finite_state_machine.air_resistance_lock = false
 #=================================================================================
@@ -63,6 +62,7 @@ func ProcessVelocity(delta:float) -> void:
 	
 	if Input.is_action_just_pressed("SpearPull") && !player.is_on_floor():
 		AudioManager.play_game_sound_random(-5, AudioManager.WOOSH2, AudioManager.WOOSH3)
+		player.spearCooldownTimer.start()
 		spearInstance.pullReleased = true
 		#if spearInstance.ropeLength > 16:
 		#	spearInstance.ropeLength -= delta * 150
