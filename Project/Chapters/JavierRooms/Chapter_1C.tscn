@@ -1,0 +1,45 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5jo7yo3our6d"]
+
+[ext_resource type="PackedScene" uid="uid://d00e5euaeheuv" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_101a.tscn" id="1_mcxbh"]
+[ext_resource type="PackedScene" uid="uid://c5mkek6wg34rn" path="res://Chapters/JavierRooms/MultiChapter_Rooms/room_MG3.tscn" id="2_de4cq"]
+[ext_resource type="PackedScene" uid="uid://c47jd3gvntga3" path="res://Chapters/JavierRooms/MultiChapter_Rooms/room_MG4.tscn" id="3_bisur"]
+[ext_resource type="PackedScene" uid="uid://cllmhgahqipkx" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_103b.tscn" id="4_epfow"]
+[ext_resource type="PackedScene" uid="uid://dkmr1br4b20ub" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_104c.tscn" id="5_uhim4"]
+[ext_resource type="PackedScene" uid="uid://buf28fkgb2lju" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_111a.tscn" id="7_eomu5"]
+[ext_resource type="PackedScene" uid="uid://qd6bqum6olc7" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_110b.tscn" id="9_ic5br"]
+[ext_resource type="PackedScene" uid="uid://bdo7thahg548t" path="res://SWPlatformerPackage/Player/player_character.tscn" id="13_s3kpr"]
+[ext_resource type="PackedScene" uid="uid://2cdjqjtwcad0" path="res://SWPlatformerPackage/custom_camera.tscn" id="14_snxxw"]
+[ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="15_u2myq"]
+
+[node name="Chapter_01c" type="Node2D"]
+
+[node name="LoadedRooms" type="Node2D" parent="."]
+
+[node name="Room101a" parent="LoadedRooms" instance=ExtResource("1_mcxbh")]
+
+[node name="RoomMG3" parent="LoadedRooms" instance=ExtResource("2_de4cq")]
+position = Vector2(672, 0)
+
+[node name="RoomMG4" parent="LoadedRooms" instance=ExtResource("3_bisur")]
+position = Vector2(1376, 0)
+
+[node name="Room103b" parent="LoadedRooms" instance=ExtResource("4_epfow")]
+position = Vector2(2144, 0)
+
+[node name="Room104c" parent="LoadedRooms" instance=ExtResource("5_uhim4")]
+position = Vector2(2912, -16)
+
+[node name="Room110b" parent="LoadedRooms" instance=ExtResource("9_ic5br")]
+position = Vector2(3392, -464)
+
+[node name="Room111a" parent="LoadedRooms" instance=ExtResource("7_eomu5")]
+position = Vector2(4400, -416)
+
+[node name="Player" parent="." instance=ExtResource("13_s3kpr")]
+unique_name_in_owner = true
+position = Vector2(-256, 144)
+
+[node name="PlayerCamera" parent="Player" instance=ExtResource("14_snxxw")]
+offset = Vector2(1, 0)
+zoom = Vector2(1, 1)
+script = ExtResource("15_u2myq")

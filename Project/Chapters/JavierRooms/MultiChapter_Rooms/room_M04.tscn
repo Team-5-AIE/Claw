@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://p6bcxx5tyhmn"]
+[gd_scene load_steps=9 format=4 uid="uid://p6bcxx5tyhmn"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_wtywr"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_iagc6"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_b2gr6"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_f5imo"]
+[ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="5_dotu6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -61,7 +62,7 @@ shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="RoomTransition" parent="." instance=ExtResource("4_f5imo")]
 position = Vector2(576, 384)
-nextRoom = "res://Chapters/JavierRooms/MultiChapter_Rooms/room_M03.tscn"
+nextRoom = "res://Chapters/JavierRooms/MultiChapter_Rooms/room_M02.tscn"
 exitDirection = "Down"
 
 [node name="CollisionShape2D" parent="RoomTransition" index="0"]
@@ -69,11 +70,11 @@ position = Vector2(0, -16)
 shape = SubResource("SegmentShape2D_xaixi")
 
 [node name="PlayerSpawn" parent="RoomTransition" index="1"]
-position = Vector2(0, -32)
+position = Vector2(0, -272)
 
 [node name="RoomTransition2" parent="." instance=ExtResource("4_f5imo")]
 position = Vector2(-656, -304)
-nextRoom = "res://Chapters/JavierRooms/MultiChapter_Rooms/room_112c.tscn"
+nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_109b.tscn"
 exitDirection = "Left"
 
 [node name="CollisionShape2D" parent="RoomTransition2" index="0"]
@@ -82,6 +83,10 @@ shape = SubResource("SegmentShape2D_fmu5l")
 
 [node name="PlayerSpawn" parent="RoomTransition2" index="1"]
 position = Vector2(48, 32)
+
+[node name="Bloomie" parent="." instance=ExtResource("5_dotu6")]
+position = Vector2(-376, 200)
+bloomieID = 4
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
