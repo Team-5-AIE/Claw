@@ -53,7 +53,6 @@ func _on_restart_button_pressed() -> void:
 	await FadeTransitions.on_fade_in_finished
 	
 	TogglePause()
-	AudioManager.play_music(AudioManager.MUSIC_WOLF, 0)
 	
 	shadowShader.lightingEnabled = false
 	
