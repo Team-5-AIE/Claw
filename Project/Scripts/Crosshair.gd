@@ -36,7 +36,8 @@ func _process(delta: float) -> void:
 		crosshair.reparent(gameRoot)
 		mousePos = crosshair.get_global_mouse_position()
 		crosshair.global_position = mousePos
-		
+		self.visible = true
+		crosshair.modulate = Color.WHITE
 	else:
 		crosshair.reparent(player)
 		
