@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://lfflvitcu814"]
+[gd_scene load_steps=19 format=3 uid="uid://lfflvitcu814"]
 
 [ext_resource type="PackedScene" uid="uid://cuoj5kvln51vu" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T01.tscn" id="1_kba2p"]
 [ext_resource type="PackedScene" uid="uid://b6qrpxvq2ow2a" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T02.tscn" id="2_xd0on"]
@@ -10,9 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://47miig1p48bw" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_104a.tscn" id="10_ub8g5"]
 [ext_resource type="PackedScene" uid="uid://eux4c185v0jl" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_104b.tscn" id="11_7ujw3"]
 [ext_resource type="PackedScene" uid="uid://ceqsnnj5wtai4" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_110a.tscn" id="12_v31do"]
-[ext_resource type="PackedScene" uid="uid://buf28fkgb2lju" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_111a.tscn" id="13_4fu7r"]
+[ext_resource type="PackedScene" uid="uid://dff2q0ltv40xk" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_111c.tscn" id="13_qxwf0"]
 [ext_resource type="PackedScene" uid="uid://c5qxtdn1n2030" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_MG3.tscn" id="14_f8k85"]
-[ext_resource type="PackedScene" uid="uid://blg8c44i8ge88" path="res://Chapters/JavierRooms/MultiChapter_Rooms/room_MG5.tscn" id="14_mmlwq"]
 [ext_resource type="PackedScene" uid="uid://cccqhsbk5nx77" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_MG4.tscn" id="15_n1guy"]
 [ext_resource type="PackedScene" uid="uid://c6tpl2epsyww6" path="res://Chapters/JavierRooms/MultiChapter_Rooms/room_M02.tscn" id="15_vv8uc"]
 [ext_resource type="PackedScene" uid="uid://p6bcxx5tyhmn" path="res://Chapters/JavierRooms/MultiChapter_Rooms/room_M04.tscn" id="16_tp2os"]
@@ -61,26 +60,23 @@ position = Vector2(5688, -608)
 [node name="Room110a" parent="main" instance=ExtResource("12_v31do")]
 position = Vector2(6136, -1152)
 
-[node name="Room111a" parent="main" instance=ExtResource("13_4fu7r")]
+[node name="Room111c" parent="main" instance=ExtResource("13_qxwf0")]
 position = Vector2(7144, -1104)
 
 [node name="spring" type="Node" parent="."]
 
-[node name="RoomMG5" parent="spring" instance=ExtResource("14_mmlwq")]
-position = Vector2(8160, -1168)
-
 [node name="RoomM02" parent="spring" instance=ExtResource("15_vv8uc")]
-position = Vector2(8128, -1664)
+position = Vector2(8128, -1504)
 
 [node name="RoomM04" parent="spring" instance=ExtResource("16_tp2os")]
-position = Vector2(8448, -2264)
+position = Vector2(8448, -2104)
 scale = Vector2(-1, 1)
 
 [node name="Room109a" parent="spring" instance=ExtResource("17_2ge37")]
-position = Vector2(9456, -2792)
+position = Vector2(9456, -2632)
 
 [node name="RoomM05" parent="spring" instance=ExtResource("18_t76dd")]
-position = Vector2(8768, -3176)
+position = Vector2(8768, -3016)
 
 [node name="Room112c" parent="." instance=ExtResource("19_exg4o")]
 position = Vector2(8072, -3336)
