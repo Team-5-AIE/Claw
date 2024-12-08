@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_c2ahq"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_5qyqf"]
 [ext_resource type="PackedScene" uid="uid://bhhoo7ko0n7sk" path="res://Objects/Traveen_LevelObstacles/Activators/Switch/perma_switch.tscn" id="6_nyye8"]
-[ext_resource type="PackedScene" uid="uid://c0voaw65dtuhj" path="res://Objects/Traveen_LevelObstacles/Moving Block/manual_moving_block.tscn" id="7_2ofe0"]
+[ext_resource type="PackedScene" path="res://Objects/Traveen_LevelObstacles/Moving Block/manual_moving_block.tscn" id="7_2ofe0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -58,8 +58,9 @@ _data = {
 "door_lifting": SubResource("Animation_uxvxo")
 }
 
-[node name="Room101a" type="Node2D"]
+[node name="Room101a" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
 script = ExtResource("1_c58tr")
+standaloneSpawner = NodePath("RoomArea/RoomBounds")
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -101,7 +102,7 @@ shape = SubResource("RectangleShape2D_l72mg")
 
 [node name="RoomTransition" parent="." instance=ExtResource("4_5qyqf")]
 position = Vector2(336, 0)
-nextRoom = "res://Chapters/JavierRooms/Rooms_Chapter 1/room_102a.tscn"
+nextRoom = "res://Chapters/JavierRooms/MultiChapter_Rooms/room_MG3.tscn"
 
 [node name="CollisionShape2D" parent="RoomTransition" index="0"]
 position = Vector2(-16, 0)

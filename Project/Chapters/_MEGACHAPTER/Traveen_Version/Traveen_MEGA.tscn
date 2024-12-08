@@ -1,0 +1,82 @@
+[gd_scene load_steps=19 format=3 uid="uid://lfflvitcu814"]
+
+[ext_resource type="PackedScene" uid="uid://cuoj5kvln51vu" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T01.tscn" id="1_kba2p"]
+[ext_resource type="PackedScene" uid="uid://b6qrpxvq2ow2a" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T02.tscn" id="2_xd0on"]
+[ext_resource type="PackedScene" uid="uid://c84iftykas5sy" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T03a.tscn" id="3_yrgjr"]
+[ext_resource type="PackedScene" uid="uid://b30pr5xo7owc2" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T04.tscn" id="4_rjmk0"]
+[ext_resource type="PackedScene" uid="uid://hrw1418dqx5o" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/tut/room_T05.tscn" id="5_e0bqp"]
+[ext_resource type="PackedScene" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T06a.tscn" id="6_p2hg3"]
+[ext_resource type="PackedScene" uid="uid://23sgmllu7u2h" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_103a.tscn" id="9_2b7mw"]
+[ext_resource type="PackedScene" uid="uid://47miig1p48bw" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_104a.tscn" id="10_ub8g5"]
+[ext_resource type="PackedScene" uid="uid://eux4c185v0jl" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_104b.tscn" id="11_7ujw3"]
+[ext_resource type="PackedScene" uid="uid://ceqsnnj5wtai4" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_110a.tscn" id="12_v31do"]
+[ext_resource type="PackedScene" uid="uid://dff2q0ltv40xk" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_111c.tscn" id="13_qxwf0"]
+[ext_resource type="PackedScene" uid="uid://c5qxtdn1n2030" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_MG3.tscn" id="14_f8k85"]
+[ext_resource type="PackedScene" uid="uid://cccqhsbk5nx77" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_MG4.tscn" id="15_n1guy"]
+[ext_resource type="PackedScene" uid="uid://c6tpl2epsyww6" path="res://Chapters/JavierRooms/MultiChapter_Rooms/room_M02.tscn" id="15_vv8uc"]
+[ext_resource type="PackedScene" uid="uid://p6bcxx5tyhmn" path="res://Chapters/JavierRooms/MultiChapter_Rooms/room_M04.tscn" id="16_tp2os"]
+[ext_resource type="PackedScene" uid="uid://ck8432jxscoma" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_109a.tscn" id="17_2ge37"]
+[ext_resource type="PackedScene" uid="uid://ce5a3eo73sio7" path="res://Chapters/JavierRooms/MultiChapter_Rooms/room_M05.tscn" id="18_t76dd"]
+[ext_resource type="PackedScene" uid="uid://d35k7jpv8ye1d" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_112c.tscn" id="19_exg4o"]
+
+[node name="Chapter_MEGA" type="Node2D"]
+
+[node name="tut" type="Node" parent="."]
+
+[node name="RoomT01" parent="tut" instance=ExtResource("1_kba2p")]
+
+[node name="RoomT02" parent="tut" instance=ExtResource("2_xd0on")]
+position = Vector2(688, 0)
+
+[node name="RoomT03" parent="tut" instance=ExtResource("3_yrgjr")]
+position = Vector2(1376, 0)
+
+[node name="RoomT04" parent="tut" instance=ExtResource("4_rjmk0")]
+position = Vector2(2064, 0)
+
+[node name="RoomT05" parent="tut" instance=ExtResource("5_e0bqp")]
+position = Vector2(2752, 0)
+
+[node name="RoomT06" parent="tut" instance=ExtResource("6_p2hg3")]
+position = Vector2(1376, 400)
+
+[node name="main" type="Node" parent="."]
+
+[node name="RoomMG3" parent="main" instance=ExtResource("14_f8k85")]
+position = Vector2(3440, -80)
+
+[node name="RoomMG4" parent="main" instance=ExtResource("15_n1guy")]
+position = Vector2(4144, -80)
+
+[node name="Room103a" parent="main" instance=ExtResource("9_2b7mw")]
+position = Vector2(4920, -96)
+
+[node name="Room104a" parent="main" instance=ExtResource("10_ub8g5")]
+position = Vector2(5688, -112)
+
+[node name="Room104b" parent="main" instance=ExtResource("11_7ujw3")]
+position = Vector2(5688, -608)
+
+[node name="Room110a" parent="main" instance=ExtResource("12_v31do")]
+position = Vector2(6136, -1152)
+
+[node name="Room111c" parent="main" instance=ExtResource("13_qxwf0")]
+position = Vector2(7144, -1104)
+
+[node name="spring" type="Node" parent="."]
+
+[node name="RoomM02" parent="spring" instance=ExtResource("15_vv8uc")]
+position = Vector2(8128, -1504)
+
+[node name="RoomM04" parent="spring" instance=ExtResource("16_tp2os")]
+position = Vector2(8448, -2104)
+scale = Vector2(-1, 1)
+
+[node name="Room109a" parent="spring" instance=ExtResource("17_2ge37")]
+position = Vector2(9456, -2632)
+
+[node name="RoomM05" parent="spring" instance=ExtResource("18_t76dd")]
+position = Vector2(8768, -3016)
+
+[node name="Room112c" parent="." instance=ExtResource("19_exg4o")]
+position = Vector2(8072, -3336)
