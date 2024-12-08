@@ -21,14 +21,14 @@ signal music_loop_state_changed(loop_state: bool)
 
 ## Music Files ================================================================/===================/
 const MUSIC_ENCHANTED_FOREST = preload("res://Sounds/BGM/Si - Enchanted Forest.mp3")
-const MUSIC_SPLASH = preload("res://Sounds/BGM/Splash - Spiff Tune  Chiptune [No Copyright Music].mp3")
-const MUSIC_WOLF = preload("res://Sounds/BGM/Wolf - Jeremy L  Chiptune [No Copyright Music].mp3")
+const MUSIC_SPLASH = preload("res://Sounds/BGM/Wolf - Jeremy L  Chiptune [No Copyright Music].mp3")
+const MUSIC_WOLF = preload("res://Sounds/BGM/Splash - Spiff Tune  Chiptune [No Copyright Music].mp3")
 
 ## SFX Files ==================================================================/===================/
 const FAST_WIND = preload("res://Sounds/JavierSounds/fastWind.wav")
 const SPRING = preload("res://Sounds/JavierSounds/spring.wav")
 const WOOD_IMPACT = preload("res://Sounds/JavierSounds/woodImpact.wav")
-
+   
 const DOOR1 = preload("res://Sounds/JavierSounds/doorOpen (1).wav")
 const DOOR2 = preload("res://Sounds/JavierSounds/doorOpen (2).wav")
 const DOOR3 = preload("res://Sounds/JavierSounds/doorOpen (3).wav")
