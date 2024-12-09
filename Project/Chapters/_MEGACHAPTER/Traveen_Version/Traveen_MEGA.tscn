@@ -1,11 +1,11 @@
 [gd_scene load_steps=19 format=3 uid="uid://lfflvitcu814"]
 
-[ext_resource type="PackedScene" uid="uid://cuoj5kvln51vu" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T01.tscn" id="1_kba2p"]
-[ext_resource type="PackedScene" uid="uid://b6qrpxvq2ow2a" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T02.tscn" id="2_xd0on"]
-[ext_resource type="PackedScene" uid="uid://bl5cm5awdk2bk" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T03a.tscn" id="3_yrgjr"]
-[ext_resource type="PackedScene" uid="uid://b30pr5xo7owc2" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T04.tscn" id="4_rjmk0"]
-[ext_resource type="PackedScene" uid="uid://hrw1418dqx5o" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/tut/room_T05.tscn" id="5_e0bqp"]
-[ext_resource type="PackedScene" uid="uid://crguyiiatbonf" path="res://Chapters/JavierRooms/Rooms_Tutorial/room_T06a.tscn" id="6_p2hg3"]
+[ext_resource type="PackedScene" uid="uid://bjwvwbcxqj5tm" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/tut/room_T01.tscn" id="1_yn7ok"]
+[ext_resource type="PackedScene" uid="uid://daafogyp3d1i8" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/tut/room_T02.tscn" id="2_dvgo2"]
+[ext_resource type="PackedScene" uid="uid://bqb8rywjnb20g" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/tut/room_T03a.tscn" id="3_dkbuf"]
+[ext_resource type="PackedScene" uid="uid://bnw4a102kixpp" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/tut/room_T04.tscn" id="4_ldkff"]
+[ext_resource type="PackedScene" uid="uid://d2ro3c4j6w02i" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/tut/room_T05.tscn" id="5_e0bqp"]
+[ext_resource type="PackedScene" uid="uid://dvgpm6ifp5wuc" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/tut/room_T06a.tscn" id="6_giosd"]
 [ext_resource type="PackedScene" uid="uid://23sgmllu7u2h" path="res://Chapters/JavierRooms/Rooms_Chapter 1/room_103a.tscn" id="9_2b7mw"]
 [ext_resource type="PackedScene" uid="uid://47miig1p48bw" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_104a.tscn" id="10_ub8g5"]
 [ext_resource type="PackedScene" uid="uid://eux4c185v0jl" path="res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/main/room_104b.tscn" id="11_7ujw3"]
@@ -21,26 +21,27 @@
 
 [node name="Chapter_MEGA" type="Node2D"]
 
-[node name="tut" type="Node" parent="."]
+[node name="tut" type="Node2D" parent="."]
 
-[node name="RoomT01" parent="tut" instance=ExtResource("1_kba2p")]
+[node name="RoomT01" parent="tut" instance=ExtResource("1_yn7ok")]
 
-[node name="RoomT02" parent="tut" instance=ExtResource("2_xd0on")]
-position = Vector2(688, 0)
+[node name="RoomT02" parent="tut" instance=ExtResource("2_dvgo2")]
+position = Vector2(648, 0)
 
-[node name="RoomT03" parent="tut" instance=ExtResource("3_yrgjr")]
-position = Vector2(1376, 0)
+[node name="RoomT03" parent="tut" instance=ExtResource("3_dkbuf")]
+position = Vector2(1344, 0)
 
-[node name="RoomT04" parent="tut" instance=ExtResource("4_rjmk0")]
-position = Vector2(2064, 0)
+[node name="RoomT04" parent="tut" instance=ExtResource("4_ldkff")]
+position = Vector2(2016, 0)
 
 [node name="RoomT05" parent="tut" instance=ExtResource("5_e0bqp")]
-position = Vector2(2752, 0)
+position = Vector2(2688, 0)
 
-[node name="RoomT06" parent="tut" instance=ExtResource("6_p2hg3")]
-position = Vector2(1376, 400)
+[node name="RoomT06" parent="tut" instance=ExtResource("6_giosd")]
+position = Vector2(1344, 384)
 
-[node name="main" type="Node" parent="."]
+[node name="main" type="Node2D" parent="."]
+position = Vector2(-64, 0)
 
 [node name="RoomMG3" parent="main" instance=ExtResource("14_f8k85")]
 position = Vector2(3440, -80)
@@ -63,7 +64,8 @@ position = Vector2(6136, -1152)
 [node name="Room111c" parent="main" instance=ExtResource("13_qxwf0")]
 position = Vector2(7144, -1104)
 
-[node name="spring" type="Node" parent="."]
+[node name="spring" type="Node2D" parent="."]
+position = Vector2(-72, 0)
 
 [node name="RoomM02" parent="spring" instance=ExtResource("14_gs6hu")]
 position = Vector2(8144, -1184)

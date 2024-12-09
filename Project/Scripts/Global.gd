@@ -3,7 +3,7 @@ extends Node
 var totalBloomiesCollected : int = 0
 var chapterOneBloomies : Array[bool]
 var chapterOneBloomiesThisSession : Array[bool]
-var chapterOneBloomieCount = 9
+var chapterOneBloomieCount = 7
 
 var crosshair: Crosshair
 

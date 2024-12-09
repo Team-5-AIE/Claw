@@ -90,7 +90,7 @@ flipSpawnDir = true
 
 [node name="Bloomie" parent="." instance=ExtResource("5_6oiby")]
 position = Vector2(248, 80)
-bloomieID = 3
+bloomieID = 2
 
 [node name="LightHolder" type="Node2D" parent="."]
 
