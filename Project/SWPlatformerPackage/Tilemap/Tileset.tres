@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=117 format=3 uid="uid://k06gckh0bst4"]
+[gd_resource type="TileSet" load_steps=118 format=3 uid="uid://k06gckh0bst4"]
 
 [ext_resource type="Texture2D" uid="uid://bhjv0y3qf7mkr" path="res://SWPlatformerPackage/Tilemap/Tilemap.png" id="1_ishsc"]
 [ext_resource type="Texture2D" uid="uid://sbyk5q33xplj" path="res://Sprites/Tilesets/Castle Tileset Export.png" id="2_ttpan"]
@@ -66,6 +66,9 @@ tile_data = PackedInt32Array(0, 1441793, 28, 65536, 393217, 7, 1, 131073, 19, 65
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_u74r4"]
 tile_data = PackedInt32Array(0, 65537, 5, 65536, 65537, 5, 131072, 65537, 17, 196608, 983041, 19, 1, 917505, 4, 65537, 720897, 3, 131073, 786433, 20, 196609, 1245185, 19, 2, 589825, 5, 65538, 589825, 5, 131074, 458753, 17, 196610, 1507329, 19)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_j6584"]
+tile_data = PackedInt32Array(0, 196609, 15, 65536, 196609, 16, 1, 262145, 15, 65537, 262145, 16, 2, 262145, 15, 65538, 262145, 16, 3, 327681, 15, 65539, 327681, 16)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_tn48p"]
 tile_data = PackedInt32Array(0, 131073, 6, 65536, 131073, 7)
@@ -5001,3 +5004,4 @@ pattern_24 = SubResource("TileMapPattern_8sig0")
 pattern_25 = SubResource("TileMapPattern_w6crm")
 pattern_26 = SubResource("TileMapPattern_a2j3s")
 pattern_27 = SubResource("TileMapPattern_u74r4")
+pattern_28 = SubResource("TileMapPattern_j6584")
