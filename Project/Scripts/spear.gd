@@ -10,6 +10,7 @@ var tip : Vector2 = Vector2(0,0)
 
 @export var SPEED : float = 20
 @export var maxDistance = 150
+@export var retractDistance = 200
 var extending : bool = false
 var hooked : bool = false
 var retracted : bool = false
@@ -89,13 +90,13 @@ func _physics_process(_delta):
 		return
 	
 	distanceToPlayer = global_position.distance_to(player.spear_marker.global_position)
-	if distanceToPlayer > maxDistance:
+	if distanceToPlayer > retractDistance:
 		Release()
 		return
 	if pullReleased:
 		Release()
 		return
-	if Input.is_action_just_released("Spear") && !extending:
+	if not Input.is_action_pressed("Spear") && !extending && !retracted:
 		Release()
 		return
 	
