@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bl5cm5awdk2bk"]
+[gd_scene load_steps=25 format=4 uid="uid://bl5cm5awdk2bk"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_6qoys"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_68fcd"]
@@ -12,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://b428vrw487t15" path="res://Sprites/UI/Controls/Joysticks4.png" id="9_3lgwh"]
 [ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="10_vt3sa"]
 [ext_resource type="Texture2D" uid="uid://jglgft0ysrgf" path="res://Sprites/UI/Controls/Mouse1.png" id="12_8aaf0"]
+[ext_resource type="Texture2D" uid="uid://b2nx6mi18uq7h" path="res://Sprites/UI/Arrow1.png" id="12_af0xe"]
 [ext_resource type="Texture2D" uid="uid://bds5fue7p3aue" path="res://Sprites/UI/Controls/Mouse2.png" id="13_clw26"]
+[ext_resource type="Texture2D" uid="uid://b1h8tg8ak8ins" path="res://Sprites/UI/Arrow2.png" id="13_s8ecm"]
 [ext_resource type="Texture2D" uid="uid://b8qllfaxq8lwl" path="res://Sprites/UI/Controls/Shoulder Buttons3.png" id="14_rfrix"]
 [ext_resource type="Texture2D" uid="uid://b6fuu1wudo63v" path="res://Sprites/UI/Controls/Shoulder Buttons4.png" id="15_f5v5t"]
 
@@ -75,6 +77,26 @@ animations = [{
 }],
 "loop": true,
 "name": &"xbox",
+"speed": 4.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_308o5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_af0xe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_af0xe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_s8ecm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_s8ecm")
+}],
+"loop": true,
+"name": &"default",
 "speed": 4.0
 }]
 
@@ -262,6 +284,12 @@ position = Vector2(56, -75)
 sprite_frames = SubResource("SpriteFrames_8ph5e")
 animation = &"pc"
 autoplay = "pc"
+
+[node name="Mouse2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-294, 123)
+sprite_frames = SubResource("SpriteFrames_308o5")
+autoplay = "default"
+frame_progress = 0.0198161
 
 [node name="Mouse3" type="AnimatedSprite2D" parent="."]
 position = Vector2(55, -16)
