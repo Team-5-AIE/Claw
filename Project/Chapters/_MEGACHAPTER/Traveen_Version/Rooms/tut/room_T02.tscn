@@ -91,24 +91,16 @@ flipSpawnDir = true
 
 [node name="LightHolder" type="Node2D" parent="."]
 
+[node name="Light2" parent="LightHolder" instance=ExtResource("5_11vnu")]
+position = Vector2(120, 24)
+lightIntensity = 40.0
+intensityFlickerAmount = 6.0
+intensityFlickerSpeed = 4.0
+movementFlickerDistance = 1.0
+movementFlickerSpeed = 2.0
+
 [node name="Light" parent="LightHolder" instance=ExtResource("5_11vnu")]
-position = Vector2(-17, 48)
-lightIntensity = 40.0
-intensityFlickerAmount = 6.0
-intensityFlickerSpeed = 4.0
-movementFlickerDistance = 1.0
-movementFlickerSpeed = 2.0
-
-[node name="Light" parent="LightHolder/Light" instance=ExtResource("5_11vnu")]
-position = Vector2(145, -22)
-lightIntensity = 40.0
-intensityFlickerAmount = 6.0
-intensityFlickerSpeed = 4.0
-movementFlickerDistance = 1.0
-movementFlickerSpeed = 2.0
-
-[node name="Light" parent="LightHolder/Light/Light" instance=ExtResource("5_11vnu")]
-position = Vector2(155, -13)
+position = Vector2(-24, 40)
 lightIntensity = 40.0
 intensityFlickerAmount = 6.0
 intensityFlickerSpeed = 4.0

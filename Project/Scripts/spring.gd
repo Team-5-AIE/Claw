@@ -22,5 +22,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is SWPlatformerCharacter:
-		if body.velocity.dot(Vector2.UP.rotated(rotation)) < 0:
+		if body.velocity.dot(Vector2.UP.rotated(rotation)) < 0.5   :
 			BouncePlayer(body)

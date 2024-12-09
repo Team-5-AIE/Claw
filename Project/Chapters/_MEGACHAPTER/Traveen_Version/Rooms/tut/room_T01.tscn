@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bjwvwbcxqj5tm"]
+[gd_scene load_steps=21 format=4 uid="uid://bjwvwbcxqj5tm"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_o1vjk"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_vosst"]
@@ -8,9 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://djriny68v10s" path="res://Sprites/UI/Controls/Keys1.png" id="6_nwwkd"]
 [ext_resource type="Texture2D" uid="uid://cphqbxmdepe4f" path="res://Sprites/UI/Controls/Keys3.png" id="7_rnw48"]
 [ext_resource type="Texture2D" uid="uid://c3158y27246lc" path="res://Sprites/UI/Controls/Keys5.png" id="8_640s7"]
+[ext_resource type="Texture2D" uid="uid://b715nw63fud2r" path="res://Sprites/UI/Controls/Joysticks3.png" id="9_cemaw"]
 [ext_resource type="Texture2D" uid="uid://bt74ayjxvbl5o" path="res://Sprites/UI/Controls/Space1.png" id="9_g4aus"]
+[ext_resource type="Texture2D" uid="uid://b428vrw487t15" path="res://Sprites/UI/Controls/Joysticks4.png" id="10_g7w0g"]
 [ext_resource type="Texture2D" uid="uid://c2rexvvdq6t27" path="res://Sprites/UI/Controls/Space2.png" id="10_okwfd"]
+[ext_resource type="Script" path="res://Scripts/tutorial_ui.gd" id="11_ymtlr"]
 [ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="12_jsaoh"]
+[ext_resource type="Texture2D" uid="uid://3tyqrtt1n57d" path="res://Sprites/UI/Controls/Controller Face buttons1.png" id="13_jtbhg"]
+[ext_resource type="Texture2D" uid="uid://duhqlv7qh0b0x" path="res://Sprites/UI/Controls/Controller Face buttons4.png" id="14_pu17q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -21,7 +26,7 @@ resource_local_to_scene = true
 a = Vector2(0, 48)
 b = Vector2(0, -48)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hmv6v"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_rn3em"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -37,8 +42,19 @@ animations = [{
 "texture": ExtResource("8_640s7")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"pc",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_cemaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_g7w0g")
+}],
+"loop": true,
+"name": &"xbox",
+"speed": 4.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_miybq"]
@@ -49,16 +65,21 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("10_okwfd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_g4aus")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_okwfd")
 }],
 "loop": true,
-"name": &"default",
-"speed": 3.0
+"name": &"pc",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_jtbhg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_pu17q")
+}],
+"loop": true,
+"name": &"xbox",
+"speed": 4.0
 }]
 
 [node name="RoomT01" type="Node2D" node_paths=PackedStringArray("standaloneSpawner")]
@@ -120,23 +141,25 @@ shape = SubResource("SegmentShape2D_n38vw")
 position = Vector2(-48, 32)
 flipSpawnDir = true
 
-[node name="Keys5" type="AnimatedSprite2D" parent="."]
-position = Vector2(8, 120)
-sprite_frames = SubResource("SpriteFrames_hmv6v")
-autoplay = "default"
-frame_progress = 0.284256
+[node name="Control" type="AnimatedSprite2D" parent="."]
+position = Vector2(-104, 144)
+sprite_frames = SubResource("SpriteFrames_rn3em")
+animation = &"pc"
+autoplay = "pc"
+script = ExtResource("11_ymtlr")
 
-[node name="Space2" type="AnimatedSprite2D" parent="."]
-position = Vector2(8, 152)
+[node name="Control2" type="AnimatedSprite2D" parent="."]
+position = Vector2(48, 144)
 sprite_frames = SubResource("SpriteFrames_miybq")
-autoplay = "default"
-frame_progress = 0.31478
+animation = &"pc"
+autoplay = "pc"
+script = ExtResource("11_ymtlr")
 
 [node name="LightHolder" type="Node2D" parent="."]
 position = Vector2(-8, -8)
 
 [node name="Light" parent="LightHolder" instance=ExtResource("12_jsaoh")]
-position = Vector2(16, 144)
+position = Vector2(-248, 128)
 lightIntensity = 60.0
 intensityFlickerAmount = 7.0
 intensityFlickerSpeed = 7.0

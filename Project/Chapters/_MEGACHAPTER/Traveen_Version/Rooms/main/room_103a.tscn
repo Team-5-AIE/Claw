@@ -103,14 +103,6 @@ intensityFlickerSpeed = 7.0
 movementFlickerDistance = 5.0
 movementFlickerSpeed = 3.0
 
-[node name="Light2" parent="LightHolder" instance=ExtResource("6_ldgfq")]
-position = Vector2(-20, 46)
-lightIntensity = 60.0
-intensityFlickerAmount = 7.0
-intensityFlickerSpeed = 7.0
-movementFlickerDistance = 5.0
-movementFlickerSpeed = 3.0
-
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
 [editable path="RoomTransition2"]

@@ -24,12 +24,13 @@
 [node name="tut" type="Node2D" parent="."]
 
 [node name="RoomT01" parent="tut" instance=ExtResource("1_yn7ok")]
+position = Vector2(-24, 8)
 
 [node name="RoomT02" parent="tut" instance=ExtResource("2_dvgo2")]
-position = Vector2(648, 0)
+position = Vector2(648, 8)
 
 [node name="RoomT03" parent="tut" instance=ExtResource("3_dkbuf")]
-position = Vector2(1344, 0)
+position = Vector2(1344, 8)
 
 [node name="RoomT04" parent="tut" instance=ExtResource("4_ldkff")]
 position = Vector2(2016, 0)
@@ -38,7 +39,7 @@ position = Vector2(2016, 0)
 position = Vector2(2688, 0)
 
 [node name="RoomT06" parent="tut" instance=ExtResource("6_giosd")]
-position = Vector2(1344, 384)
+position = Vector2(1336, 400)
 
 [node name="main" type="Node2D" parent="."]
 position = Vector2(-64, 0)

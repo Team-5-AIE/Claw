@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bqb8rywjnb20g"]
+[gd_scene load_steps=24 format=4 uid="uid://bqb8rywjnb20g"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_oerpv"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_ojwae"]
@@ -12,10 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://b715nw63fud2r" path="res://Sprites/UI/Controls/Joysticks3.png" id="10_fbt8f"]
 [ext_resource type="Texture2D" uid="uid://b428vrw487t15" path="res://Sprites/UI/Controls/Joysticks4.png" id="11_naqvm"]
 [ext_resource type="Texture2D" uid="uid://b2nx6mi18uq7h" path="res://Sprites/UI/Arrow1.png" id="12_at0k6"]
+[ext_resource type="Script" path="res://Scripts/tutorial_ui.gd" id="13_8herj"]
 [ext_resource type="Texture2D" uid="uid://b1h8tg8ak8ins" path="res://Sprites/UI/Arrow2.png" id="13_fgigt"]
-[ext_resource type="Texture2D" uid="uid://jglgft0ysrgf" path="res://Sprites/UI/Controls/Mouse1.png" id="14_j1lgb"]
 [ext_resource type="Texture2D" uid="uid://bds5fue7p3aue" path="res://Sprites/UI/Controls/Mouse2.png" id="15_faeel"]
-[ext_resource type="Texture2D" uid="uid://b8qllfaxq8lwl" path="res://Sprites/UI/Controls/Shoulder Buttons3.png" id="16_y0ase"]
 [ext_resource type="Texture2D" uid="uid://b6fuu1wudo63v" path="res://Sprites/UI/Controls/Shoulder Buttons4.png" id="17_2vxvs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
@@ -36,6 +35,20 @@ b = Vector2(0, -48)
 resource_local_to_scene = true
 a = Vector2(0.000213623, 56)
 b = Vector2(-0.000320435, -88)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_308o5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_at0k6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fgigt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8ph5e"]
 animations = [{
@@ -61,12 +74,6 @@ animations = [{
 "texture": ExtResource("10_fbt8f")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_fbt8f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_fbt8f")
-}, {
-"duration": 1.0,
 "texture": ExtResource("11_naqvm")
 }, {
 "duration": 1.0,
@@ -80,41 +87,9 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_308o5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("12_at0k6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_at0k6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_fgigt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_fgigt")
-}],
-"loop": true,
-"name": &"default",
-"speed": 4.0
-}]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_g27em"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("14_j1lgb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_j1lgb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_j1lgb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_faeel")
-}, {
 "duration": 1.0,
 "texture": ExtResource("15_faeel")
 }, {
@@ -129,18 +104,6 @@ animations = [{
 "speed": 4.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("16_y0ase")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_y0ase")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_y0ase")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_2vxvs")
-}, {
 "duration": 1.0,
 "texture": ExtResource("17_2vxvs")
 }, {
@@ -241,7 +204,7 @@ position = Vector2(112, -32)
 position = Vector2(-8, -8)
 
 [node name="Light" parent="LightHolder" instance=ExtResource("5_o15i4")]
-position = Vector2(56, 24)
+position = Vector2(56, 40)
 lightIntensity = 50.0
 intensityFlickerAmount = 7.0
 intensityFlickerSpeed = 7.0
@@ -249,7 +212,7 @@ movementFlickerDistance = 3.5
 movementFlickerSpeed = 2.0
 
 [node name="Light2" parent="LightHolder" instance=ExtResource("5_o15i4")]
-position = Vector2(-209, 52)
+position = Vector2(-200, 128)
 lightIntensity = 50.0
 intensityFlickerAmount = 7.0
 intensityFlickerSpeed = 7.0
@@ -257,42 +220,44 @@ movementFlickerDistance = 3.5
 movementFlickerSpeed = 2.0
 
 [node name="Light3" parent="LightHolder" instance=ExtResource("5_o15i4")]
-position = Vector2(277, -1)
+position = Vector2(224, 0)
 lightIntensity = 50.0
 intensityFlickerAmount = 7.0
 intensityFlickerSpeed = 7.0
 movementFlickerDistance = 3.5
 movementFlickerSpeed = 2.0
 
+[node name="Arrow" type="AnimatedSprite2D" parent="."]
+position = Vector2(-296, 120)
+sprite_frames = SubResource("SpriteFrames_308o5")
+autoplay = "default"
+frame_progress = 0.0198161
+
+[node name="Control" type="AnimatedSprite2D" parent="."]
+position = Vector2(48, -32)
+sprite_frames = SubResource("SpriteFrames_8ph5e")
+animation = &"pc"
+autoplay = "pc"
+script = ExtResource("13_8herj")
+
+[node name="Control2" type="AnimatedSprite2D" parent="."]
+position = Vector2(48, -88)
+sprite_frames = SubResource("SpriteFrames_g27em")
+animation = &"pc"
+autoplay = "pc"
+script = ExtResource("13_8herj")
+
 [node name="Label2" type="Label" parent="."]
-offset_left = 33.0
-offset_top = -79.0
-offset_right = 65.0
-offset_bottom = -47.0
+offset_left = 32.0
+offset_top = -80.0
+offset_right = 66.0
+offset_bottom = -38.0
 theme = ExtResource("6_rsf3x")
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Mouse1" type="AnimatedSprite2D" parent="."]
-position = Vector2(48, -96)
-sprite_frames = SubResource("SpriteFrames_8ph5e")
-animation = &"pc"
-autoplay = "pc"
-
-[node name="Mouse2" type="AnimatedSprite2D" parent="."]
-position = Vector2(-296, 120)
-sprite_frames = SubResource("SpriteFrames_308o5")
-autoplay = "default"
-frame_progress = 0.0198161
-
-[node name="Mouse3" type="AnimatedSprite2D" parent="."]
-position = Vector2(48, -32)
-sprite_frames = SubResource("SpriteFrames_g27em")
-animation = &"pc"
-autoplay = "pc"
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]

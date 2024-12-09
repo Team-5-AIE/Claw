@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ddbhcmjxuh73m"]
 
 [ext_resource type="Script" path="res://Scripts/spear.gd" id="1_imvm8"]
-[ext_resource type="PackedScene" path="res://Effects/wood_particles.tscn" id="2_82l3f"]
+[ext_resource type="PackedScene" uid="uid://inkpm8w72ml4" path="res://Effects/wood_particles.tscn" id="2_82l3f"]
 [ext_resource type="Texture2D" uid="uid://nq3odiky7bqs" path="res://Sprites/Claw.png" id="2_tudld"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t58d4"]

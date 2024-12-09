@@ -111,7 +111,7 @@ movementFlickerDistance = 4.0
 movementFlickerSpeed = 2.0
 
 [node name="Light3" parent="LightHolder" instance=ExtResource("5_2a7ad")]
-position = Vector2(287, 14)
+position = Vector2(264, -56)
 lightIntensity = 50.0
 intensityFlickerAmount = 6.0
 intensityFlickerSpeed = 2.0

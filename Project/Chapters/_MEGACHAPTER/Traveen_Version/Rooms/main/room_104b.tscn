@@ -169,7 +169,7 @@ movementFlickerDistance = 3.0
 movementFlickerSpeed = 8.0
 
 [node name="Light2" parent="Light Holder" instance=ExtResource("9_ggkos")]
-position = Vector2(-64, 144)
+position = Vector2(24, 88)
 lightIntensity = 55.0
 intensityFlickerAmount = 5.0
 intensityFlickerSpeed = 8.0
@@ -177,7 +177,7 @@ movementFlickerDistance = 3.0
 movementFlickerSpeed = 8.0
 
 [node name="Light3" parent="Light Holder" instance=ExtResource("9_ggkos")]
-position = Vector2(128, 0)
+position = Vector2(224, -200)
 lightIntensity = 80.0
 intensityFlickerAmount = 5.0
 intensityFlickerSpeed = 8.0

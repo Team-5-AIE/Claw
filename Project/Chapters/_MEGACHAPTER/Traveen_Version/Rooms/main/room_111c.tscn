@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://dff2q0ltv40xk"]
+[gd_scene load_steps=10 format=4 uid="uid://dff2q0ltv40xk"]
 
 [ext_resource type="Script" path="res://Scripts/RoomBuilder.gd" id="1_33mam"]
 [ext_resource type="TileSet" uid="uid://k06gckh0bst4" path="res://SWPlatformerPackage/Tilemap/Tileset.tres" id="2_eql1e"]
 [ext_resource type="PackedScene" uid="uid://cabs30l8s80yl" path="res://Objects/room_area.tscn" id="3_41uqk"]
 [ext_resource type="PackedScene" uid="uid://bgw3eujb45oi8" path="res://Objects/bloomie.tscn" id="3_j6u2o"]
 [ext_resource type="PackedScene" uid="uid://vxmuknsyvmr7" path="res://Objects/room_transition.tscn" id="4_6dmkn"]
+[ext_resource type="PackedScene" uid="uid://c32bm027h15yd" path="res://Objects/light.tscn" id="6_wd336"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72mg"]
 resource_local_to_scene = true
@@ -90,6 +91,40 @@ flipSpawnDir = true
 [node name="Bloomie" parent="." instance=ExtResource("3_j6u2o")]
 position = Vector2(-40, -136)
 bloomieID = 4
+
+[node name="LightHolder" type="Node2D" parent="."]
+
+[node name="Light" parent="LightHolder" instance=ExtResource("6_wd336")]
+position = Vector2(240, 0)
+lightIntensity = 60.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 5.0
+movementFlickerDistance = 2.0
+movementFlickerSpeed = 2.0
+
+[node name="Light2" parent="LightHolder" instance=ExtResource("6_wd336")]
+position = Vector2(-320, 0)
+lightIntensity = 60.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 5.0
+movementFlickerDistance = 2.0
+movementFlickerSpeed = 2.0
+
+[node name="Light3" parent="LightHolder" instance=ExtResource("6_wd336")]
+position = Vector2(-40, -16)
+lightIntensity = 60.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 5.0
+movementFlickerDistance = 2.0
+movementFlickerSpeed = 2.0
+
+[node name="Light4" parent="LightHolder" instance=ExtResource("6_wd336")]
+position = Vector2(512, 96)
+lightIntensity = 40.0
+intensityFlickerAmount = 5.0
+intensityFlickerSpeed = 5.0
+movementFlickerDistance = 2.0
+movementFlickerSpeed = 2.0
 
 [editable path="RoomArea"]
 [editable path="RoomTransition"]
