@@ -90,7 +90,7 @@ position = Vector2(256, -208)
 nextRoom = "res://Chapters/_MEGACHAPTER/Traveen_Version/Rooms/spring/room_M04.tscn"
 exitDirection = "Up"
 launchPlayer = true
-launchForce = 450.0
+launchForce = 700.0
 
 [node name="CollisionShape2D" parent="RoomTransition2" index="0"]
 position = Vector2(0, 16)
