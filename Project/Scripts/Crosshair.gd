@@ -22,10 +22,10 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventJoypadMotion:
+	if event is InputEventJoypadMotion or event is InputEventJoypadButton:
 		isMouseUsed = false
 	
-	elif event is InputEventMouseButton:
+	elif event is InputEventMouseButton or event is InputEventKey:
 		isMouseUsed = true
 		self.visible = true
 

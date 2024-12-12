@@ -6,6 +6,9 @@ var using_keyboard: bool :
 			using_keyboard = value
 			_choose_animation()
 
+func _ready():
+	using_keyboard = true
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	using_keyboard = Global.crosshair.isMouseUsed

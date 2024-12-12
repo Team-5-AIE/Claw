@@ -27,7 +27,16 @@ var _paused : bool = false
 
 # ---Functions---
 # Godot built ins
-func _input(event : InputEvent) -> void:
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_retry"):
+		_on_retry_button_pressed()
+	elif event.is_action_pressed("debug_restart"):
+		TogglePause()
+		_on_restart_button_pressed()
+	elif event.is_action_pressed("debug_quit"):
+		TogglePause()
+		_on_quit_button_pressed()
+	
 	if inGame and event.is_action_pressed("TogglePause"):
 		TogglePause()
 
