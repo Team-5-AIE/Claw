@@ -14,6 +14,9 @@ extends Control
 @export_group("Focus Buttons")
 @export var startingButton : Button
 
+@onready var playerNameInput: LineEdit = $MainScreen/PanelContainer/BestTimes/HBoxContainer/PlayerNameInput
+@onready var submitButton: Button = $MainScreen/PanelContainer/BestTimes/HBoxContainer/SubmitButton
+
 func _ready() -> void: 
 	startingButton.call_deferred("grab_focus")
 	first_place.text = ""
@@ -86,3 +89,7 @@ func _on_submit_button_pressed() -> void:
 	get_tree().change_scene_to_file(mainMenuScenePath)
 	
 	await FadeTransitions.on_fade_out_finished
+
+func _process(delta: float) -> void:
+	submitButton.disabled = playerNameInput.text.is_empty()
+	

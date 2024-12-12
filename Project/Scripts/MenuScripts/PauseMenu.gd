@@ -39,7 +39,8 @@ func _on_resume_button_pressed() -> void:
 func _on_retry_button_pressed() -> void:
 	if _paused:
 		TogglePause()
-		player._on_spike_area_body_entered(null)
+		
+	player._on_spike_area_body_entered(null)
 
 func _on_restart_button_pressed() -> void:
 	if !_paused:

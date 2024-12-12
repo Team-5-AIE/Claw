@@ -61,7 +61,7 @@ func ProcessVelocity(delta:float) -> void:
 	var ropeDirection : Vector2 = spearToPlayer
 	
 	if Input.is_action_just_pressed("SpearPull") && !player.is_on_floor():
-		AudioManager.play_game_sound_random(-5, AudioManager.WOOSH2, AudioManager.WOOSH3)
+		AudioManager.play_game_sound_random(-7, AudioManager.WOOSH2, AudioManager.WOOSH3)
 		player.spearCooldownTimer.start()
 		spearInstance.pullReleased = true
 		#if spearInstance.ropeLength > 16:
@@ -71,7 +71,7 @@ func ProcessVelocity(delta:float) -> void:
 		return
 	
 	if Input.is_action_just_pressed("SpearPull"):
-		AudioManager.play_game_sound_random(-5, AudioManager.WOOSH2, AudioManager.WOOSH3)
+		AudioManager.play_game_sound_random(-7, AudioManager.WOOSH2, AudioManager.WOOSH3)
 	
 	var currentRopeLength : float = ropeDirection.length()
 	ropeDirection /= currentRopeLength

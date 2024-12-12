@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cb7graucrarhh"
+path="res://.godot/imported/RoccoW - New Game Minus.mp3-882d69f6bc01333d84e9f4c3a8294cbb.mp3str"
+
+[deps]
+
+source_file="res://Sounds/BGM/RoccoW - New Game Minus.mp3"
+dest_files=["res://.godot/imported/RoccoW - New Game Minus.mp3-882d69f6bc01333d84e9f4c3a8294cbb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
