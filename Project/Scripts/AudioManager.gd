@@ -24,6 +24,7 @@ const MUSIC_ENCHANTED_FOREST = preload("res://Sounds/BGM/Si - Enchanted Forest.m
 const MUSIC_SPLASH = preload("res://Sounds/BGM/Wolf - Jeremy L  Chiptune [No Copyright Music].mp3")
 const MUSIC_WOLF = preload("res://Sounds/BGM/Splash - Spiff Tune  Chiptune [No Copyright Music].mp3")
 const MUSIC_NEW_GAME_MINUS = preload("res://Sounds/BGM/RoccoW - New Game Minus.mp3")
+const MUSIC_SPRING = preload("res://Sounds/BGM/RoccoW - A Bed of Snakes - 06 SPring.mp3")
 
 ## SFX Files ==================================================================/===================/
 const FAST_WIND = preload("res://Sounds/JavierSounds/fastWind.wav")

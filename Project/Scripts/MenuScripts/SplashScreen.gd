@@ -22,7 +22,7 @@ func _on_animation_start_timeout() -> void:
 func _on_change_scenes_timeout() -> void:
 	FadeTransitions.Transition()
 	await FadeTransitions.on_fade_in_finished
-	AudioManager.play_music(AudioManager.MUSIC_NEW_GAME_MINUS, -17)
+	AudioManager.play_music(AudioManager.MUSIC_SPRING, -20)
 	fade_tween.kill()
 	text_tween.kill()
 	get_tree().change_scene_to_file(getScene.resource_path)
